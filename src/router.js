@@ -9,9 +9,7 @@ function load (component) {
   return () => import(`@/${component}.vue`)
 }
 
-let routes = [
-  { path: '/', component: load('index') }
-]
+let routes = [{ path: '/', component: load('index') }]
 
 let showcase = {
   path: '/showcase',
@@ -38,16 +36,16 @@ function component (path, config) {
   }
 }
 
-i18n.messages.zh.categories.forEach(item => {
-  if (item.extract) {
+i18n.messages.zh.categories.forEach(category => {
+  if (category.extract) {
     return
   }
 
-  item.children.forEach(subItem => {
-    let path = item.path + '/' + subItem.path
+  category.features.forEach(feature => {
+    let path = category.path + '/' + feature.path
 
-    if (!subItem.children) {
-      showcase.children.push(component(path, subItem))
+    if (!feature.children) {
+      showcase.children.push(component(path, feature))
     }
   })
 })

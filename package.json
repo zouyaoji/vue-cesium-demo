@@ -9,11 +9,12 @@
     "clean": "node build/script.clean.js",
     "dev": "node build/script.dev.js",
     "build": "node build/script.build.js",
+    "dist": "node server/server.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-runtime": "^6.25.0",
-    "js-cookie": "^2.2.0",
     "quasar-extras": "0.x",
     "quasar-framework": "^0.14.4",
     "vue": "^2.5.0",

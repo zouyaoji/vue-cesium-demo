@@ -6,7 +6,7 @@
       <router-view />
     </q-transition>
     <q-ajax-bar ref="bar" color="red" size="5px" :delay="0" />
-    <v-footer slot="footer"></v-footer>
+    <!-- <v-footer slot="footer"></v-footer> -->
     <q-fixed-position corner="bottom-right" :offset="[18, 18]">
       <q-btn
         v-back-to-top

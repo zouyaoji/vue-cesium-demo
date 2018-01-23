@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import Cookies from 'js-cookie'
+import { Cookies } from 'quasar'
 import enLocale from './en'
 import zhLocale from './zh'
 

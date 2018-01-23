@@ -22,25 +22,26 @@
       replace
     >
       <q-item-side icon="home" />
-      <q-item-main label="Showcase home" />
+      <q-item-main>{{ $t('nav.showcase') }} </q-item-main>
       <q-item-side right icon="chevron_right" />
     </q-side-link>
     <q-item-separator />
-    <template v-for="(item, index) in $t('categories')">
-      <q-list-header :key="index">
-        {{ item.title }}
+    <template v-for="(category, index) in $t('categories')">
+      <q-list-header :key="index" :icon="category.icon">
+        {{ category.title }}
       </q-list-header>
       <q-side-link
         item
-        v-for="(subItem, subIndex) in item.children"
+        v-for="(feature, subIndex) in category.features"
         :key="index+'-'+subIndex"
-        :to="`/showcase/${item.path}/${subItem.path}`"
+        :to="`/showcase/${category.path}/${feature.path}`"
         replace
       >
-        <q-item-side :icon="subItem.icon" />
-        <q-item-main :label="subItem.title" />
+        <q-item-side :icon="feature.icon" />
+        <q-item-main :label="feature.title" />
         <q-item-side right icon="chevron_right" />
       </q-side-link>
+      <q-item-separator :key="index+'-'+ 'q'" />
     </template>
   </q-list>
   </q-scroll-area>

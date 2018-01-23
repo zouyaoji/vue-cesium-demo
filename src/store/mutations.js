@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+import { Cookies } from 'quasar'
 
 let mutations = {
   setLanguage (state, language) {
