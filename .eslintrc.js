@@ -21,7 +21,8 @@ module.exports = {
     'DEV': true,
     'PROD': true,
     '__THEME': true,
-    'Cesium': true
+    'Cesium': true,
+    '$t': true
   },
   // add your custom rules here
   'rules': {

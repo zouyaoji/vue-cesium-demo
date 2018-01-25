@@ -11,6 +11,9 @@
     <img src="~assets/imgs/SuperMapLogo.png" class="responsive"/>
     <div style="margin-left: 15px">
       Cesium v{{ CesiumVersion }}
+      <a @click="launch">
+        <q-icon name="fa-github" size="24px"></q-icon>
+      </a>
     </div>
   </div>
   <q-list no-border link inset-separator highlight>
@@ -22,15 +25,15 @@
       replace
     >
       <q-item-side icon="home" />
-      <q-item-main>{{ $t('nav.showcase') }} </q-item-main>
+      <q-item-main>{{ $t('categories.showcase') }} </q-item-main>
       <q-item-side right icon="chevron_right" />
     </q-side-link>
     <q-item-separator />
-    <template v-for="(category, index) in $t('categories')">
+    <template v-for="(category, index) in categories">
       <q-list-header :key="index" :icon="category.icon">
-        {{ category.title }}
+        {{ $t(category.title) }}
       </q-list-header>
-      <q-side-link
+      <q-side-link ref="link"
         item
         v-for="(feature, subIndex) in category.features"
         :key="index+'-'+subIndex"
@@ -38,7 +41,7 @@
         replace
       >
         <q-item-side :icon="feature.icon" />
-        <q-item-main :label="feature.title" />
+        <q-item-main v-model="test" :label=" $t(feature.title)" />
         <q-item-side right icon="chevron_right" />
       </q-side-link>
       <q-item-separator :key="index+'-'+ 'q'" />
@@ -48,13 +51,24 @@
 </template>
 
 <script>
-
+import categories from '@/showcase/categories'
+import { openURL } from 'quasar'
 export default {
   name: 'drawer',
   data () {
     return {
       CesiumVersion: window.Cesium.VERSION,
-      scrollAreaBackground: '#4e8ca8'
+      scrollAreaBackground: '#4e8ca8',
+      test: '',
+      categories: categories
+    }
+  },
+  mounted () {
+  },
+
+  methods: {
+    launch () {
+      openURL('https://github.com/zouyaoji/vue-quasar-supermapwebgl')
     }
   }
 }

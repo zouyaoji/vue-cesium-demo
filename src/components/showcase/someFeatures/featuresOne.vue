@@ -45,6 +45,7 @@ export default {
   mounted () {
     if (!this.viewer) {
       let viewer = new Cesium.Viewer('cesiumContainer')
+      // this.$store.dispatch('setViewer', {viewer: viewer})
       this.setViewer(viewer)
       // let imageryLayers = viewer.imageryLayers
       // let labelImagery = new Cesium.TiandituImageryProvider({
@@ -58,8 +59,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setViewer',
-      'setScene'
+      'setViewer'
     ]),
     makeMaker () {
       commonScene.makeMaker(this.viewer, this.$refs.bubbleContainer)

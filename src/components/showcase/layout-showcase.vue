@@ -22,6 +22,7 @@
 import vHeader from '@/common/header/header'
 import vDrawer from '@/common/drawer/drawer'
 import vFooter from '@/common/footer/footer'
+// import categories from './categories'
 export default {
   name: 'showcase',
   data () {

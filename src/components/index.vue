@@ -14,7 +14,7 @@
           class="full-width"
           icon="layers"
         >
-          SuperMapWebGL Showcase
+          {{ $t('index.showcase') }}
         </q-btn>
 
         <q-btn
@@ -24,7 +24,7 @@
           @click="launch"
           icon="launch"
         >
-          SuperMapWebGL Docs
+          {{ $t('index.docs') }}
         </q-btn>
 
         <!-- <a
@@ -71,7 +71,7 @@ export default {
     border-radius 2px
     img
       height 140px
-      width 140px
+      width 300px
 
 .ribbon
   width 12.1em

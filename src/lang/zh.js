@@ -1,150 +1,37 @@
 ﻿export default {
-  categories: [
-    {
-      title: '图层',
-      icon: 'layers',
-      path: 'layer',
-      features: [
-        {
-          title: '地形',
-          icon: 'terrain',
-          path: 'addTerrainLayer'
-        },
-        {
-          title: '影像',
-          icon: 'photo',
-          path: 'addImageryLayer'
-        },
-        {
-          title: '三维缓存',
-          icon: 'drafts',
-          path: 'addS3MTilesLayer'
-        }
-      ]
-    },
-    {
-      title: '场景',
-      icon: 'global',
-      path: 'scene',
-      features: [
-        {
-          title: '位置信息',
-          icon: 'place',
-          path: 'pickPosition'
-        }
-      ]
-    },
-    {
-      title: '查询',
-      icon: 'search',
-      path: 'query',
-      features: [
-        {
-          title: '在线检索',
-          icon: 'language',
-          path: 'queryByOnlineAPI'
-        },
-        {
-          title: '属性查询',
-          icon: 'web',
-          path: 'queryBySQL'
-        }
-      ]
-    },
-    {
-      title: '三维分析',
-      icon: 'global',
-      path: 'analysis3D',
-      features: [
-        {
-          title: '通视分析',
-          icon: 'layers',
-          path: 'sightline'
-        },
-        {
-          title: '可视域分析',
-          icon: 'layers',
-          path: 'viewshed3D'
-        },
-        {
-          title: '阴影分析',
-          icon: 'layers',
-          path: 'shadowVisibilityQuery'
-        },
-        {
-          title: '天际线分析',
-          icon: 'layers',
-          path: 'skyline'
-        },
-        {
-          title: '剖面分析',
-          icon: 'layers',
-          path: 'profile '
-        },
-        {
-          title: '视频投放',
-          icon: 'layers',
-          path: 'projectionImage'
-        },
-        {
-          title: 'Box裁剪',
-          icon: 'layers',
-          path: 'clipByBox '
-
-        },
-        {
-          title: '坡度坡向分析',
-          icon: 'layers',
-          path: 'slopeMap'
-        }
-      ]
-    },
-    {
-      title: 'KML&模型',
-      icon: 'global',
-      path: 'scenes',
-      features: [
-        {
-          title: '分层设色',
-          icon: 'layers',
-          path: 'position'
-        },
-        {
-          title: '三维分析',
-          icon: 'layers',
-          path: 'position'
-        }
-      ]
-    },
-    {
-      title: '一些功能',
-      icon: 'functions',
-      path: 'someFeatures',
-      features: [
-        {
-          title: '定位标注',
-          icon: 'bookmark',
-          path: 'featuresOne'
-        },
-        {
-          title: '量算',
-          icon: 'collections',
-          path: 'location'
-        },
-        {
-          title: '飞行',
-          icon: 'collections',
-          path: 'outputSceneToFile'
-        },
-        {
-          title: '分层设色',
-          icon: 'collections',
-          path: 'location'
-        }
-      ]
-    }
-  ],
-  nav: {
-    showcase: '范例首页'
+  index: {
+    showcase: '示范程序',
+    docs: '在线文档'
+  },
+  categories: {
+    showcase: '范例汇总',
+    // 图层
+    layer: '图层',
+    addTerrainLayer: '地形',
+    addImageryLayer: '影像',
+    addS3MTilesLayer: '三维缓存',
+    // 场景
+    scene: '场景',
+    pickPosition: '拾取位置',
+    // 查询
+    query: '查询',
+    queryByOnlineAPI: '在线检索',
+    queryBySQL: '属性查询',
+    // 三维分析
+    analysis3D: '三维分析',
+    sightline: '通视分析',
+    viewshed3D: '可视域分析',
+    shadowVisibilityQuery: '阴影分析',
+    skyline: '天际线分析',
+    profile: '剖面分析',
+    projectionImage: '视频投放',
+    clipByBox: 'Box裁剪',
+    slopeMap: '坡度坡向分析',
+    // KML&模型
+    // 一些功能
+    someFeatures: '一些功能',
+    locationMaker: '定位标注',
+    measure: '量算',
+    flyManager: '飞行'
   }
 }

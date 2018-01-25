@@ -1,9 +1,14 @@
+import {
+  SET_LANGUAGE,
+  SET_VIEWER
+} from './mutation-types'
+
 const actions = {
   setLanguage: ({ commit }, language) => {
-    commit('setLanguage', language)
+    commit(SET_LANGUAGE, language)
   },
   setViewer: ({ commit }, viewer) => {
-    commit('setViewer', viewer)
+    commit(SET_VIEWER, viewer)
   }
 }
 

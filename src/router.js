@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import i18n from '@/../lang'
+import showcaseStore from '@/showcase/showcase-store'
+import categories from '@/showcase/categories'
 
 Vue.use(VueRouter)
 
@@ -36,7 +37,7 @@ function component (path, config) {
   }
 }
 
-i18n.messages.zh.categories.forEach(category => {
+categories.forEach(category => {
   if (category.extract) {
     return
   }
@@ -69,6 +70,14 @@ const router = new VueRouter({
   mode: 'hash',
   scrollBehavior: () => ({ y: 0 }),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta) {
+    // console.log(i18n.messages[i18n.locale])
+    showcaseStore.set(to.meta)
+  }
+  next()
 })
 
 export default router
