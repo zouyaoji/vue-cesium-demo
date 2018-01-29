@@ -1,6 +1,8 @@
 <template>
-  <div class="featuresOne">
-    <div id="cesiumContainer"></div>
+  <div class="content">
+    <sm-cesium-viewer @selectedEntityChanged="selectedEntityChanged" @ready="ready">
+    </sm-cesium-viewer>
+    
     <div ref="bubbleContainer" id="bubbleContainer" class="bubbleContainer" hidden>
       <div class="bubbleHeader">
         <span></span>
@@ -30,10 +32,10 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import commonScene from 'src/api/commonScene.js'
-let Cesium = window.Cesium
+// let Cesium = window.Cesium
 // import sceneControl from '@/common/sceneControl/sceneControl'
 export default {
-  name: 'featuresOne',
+  name: 'locationMaker',
   components: {
   },
   computed: {
@@ -44,9 +46,9 @@ export default {
   },
   mounted () {
     if (!this.viewer) {
-      let viewer = new Cesium.Viewer('cesiumContainer')
+      // let viewer = new Cesium.Viewer('cesiumContainer')
       // this.$store.dispatch('setViewer', {viewer: viewer})
-      this.setViewer(viewer)
+      // this.setViewer(viewer)
       // let imageryLayers = viewer.imageryLayers
       // let labelImagery = new Cesium.TiandituImageryProvider({
       //   mapStyle: Cesium.TiandituMapsStyle.CIA_C // 天地图全球中文注记服务（经纬度投影）
@@ -69,6 +71,12 @@ export default {
     },
     outputSceneToFile () {
 
+    },
+    ready (e) {
+      this.setViewer(e.viewer)
+    },
+    selectedEntityChanged () {
+      console.log('selectedEntityChanged')
     }
   },
   beforeDestroy () {
@@ -79,26 +87,15 @@ export default {
 </script>
 
 <style>
-#cesiumContainer {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-
-.cesium-viewer-navigationContainer {
-  display: block;
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 0;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 300px;
-  width: 128px;
+.content {
+    /* min-height: 52px; */
+    background-color: #f9f9f9;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* margin-top: 60px; */
 }
 
 .toolbar {

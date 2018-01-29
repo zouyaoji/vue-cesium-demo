@@ -18,6 +18,7 @@ export default {
     queryByOnlineAPI: 'QueryByOnlineAPI',
     queryBySQL: 'QueryBySQL',
     // 三维分析
+    hypsometric: 'Hypsometric',
     analysis3D: 'Analysis3D',
     sightline: 'Sightline',
     viewshed3D: 'Viewshed3D',
@@ -28,6 +29,8 @@ export default {
     clipByBox: 'ClipByBox',
     slopeMap: 'SlopeMap',
     // KML&模型
+    kmlAndModel: 'KML&Model',
+    modelEditor: 'ModelEditor',
     // 一些功能
     someFeatures: 'SomeFeatures',
     locationMaker: 'LocationMaker',

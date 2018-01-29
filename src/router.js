@@ -74,7 +74,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta) {
-    // console.log(i18n.messages[i18n.locale])
     showcaseStore.set(to.meta)
   }
   next()

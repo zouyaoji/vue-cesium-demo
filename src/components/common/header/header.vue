@@ -59,7 +59,7 @@
     },
     watch: {
       language: function (oldVal, newVal) {
-        console.log(this.$router.options.routes[1].children)
+        // console.log(this.$router.options.routes[1].children)
       }
     }
   }
@@ -67,6 +67,7 @@
 
 <style>
   .q-toolbar {
+    height: 60px;
     overflow: visible;
   }
 

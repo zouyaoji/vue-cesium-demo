@@ -1,7 +1,7 @@
 import axios from 'axios'
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded;charset=utf-8'
-let Cesium = window.Cesium
+// let Cesium = window.Cesium
 let bubble = null
 let viewer = null
 let commonScene = {

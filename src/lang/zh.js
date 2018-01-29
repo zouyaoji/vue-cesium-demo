@@ -18,6 +18,7 @@
     queryByOnlineAPI: '在线检索',
     queryBySQL: '属性查询',
     // 三维分析
+    hypsometric: '分层设色',
     analysis3D: '三维分析',
     sightline: '通视分析',
     viewshed3D: '可视域分析',
@@ -28,6 +29,8 @@
     clipByBox: 'Box裁剪',
     slopeMap: '坡度坡向分析',
     // KML&模型
+    kmlAndModel: 'KML&模型',
+    modelEditor: '模型编辑',
     // 一些功能
     someFeatures: '一些功能',
     locationMaker: '定位标注',

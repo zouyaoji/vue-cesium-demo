@@ -4,7 +4,7 @@
 // require(`./themes/app.${__THEME}.styl`)
 // 2. or, use next line to activate DEFAULT QUASAR STYLE
 require(`quasar/dist/quasar.${__THEME}.css`)
-require('src/statics/libs/Cesium/Widgets/widgets.css')
+// require('src/statics/libs/Cesium/Widgets/widgets.css')
 // ==============================
 
 // Uncomment the following lines if you need IE11/Edge support
@@ -16,9 +16,11 @@ import Quasar, * as All from 'quasar'
 import i18n from './lang'
 import router from './router'
 import store from './store'
-
+import SmCesium from 'vue-sm-cesium'
 Vue.config.productionTip = false
-
+Vue.use(SmCesium, {
+  cesiumPath: '/statics/libs'
+})
 Vue.use(Quasar, {
   components: All,
   directives: All

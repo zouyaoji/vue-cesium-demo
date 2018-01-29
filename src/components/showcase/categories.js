@@ -56,6 +56,11 @@ let categories = [
     path: 'analysis3D',
     features: [
       {
+        title: 'categories.hypsometric',
+        icon: 'layers',
+        path: 'hypsometric'
+      },
+      {
         title: 'categories.sightline',
         icon: 'layers',
         path: 'sightline'
@@ -98,46 +103,36 @@ let categories = [
     ]
   },
   {
-    title: 'KML&模型',
+    title: 'categories.kmlAndModel',
     icon: 'global',
-    path: 'scenes',
+    path: 'kmlAndModel',
     features: [
       {
-        title: '分层设色',
+        title: 'categories.modelEditor',
         icon: 'layers',
-        path: 'position'
-      },
-      {
-        title: '三维分析',
-        icon: 'layers',
-        path: 'position'
+        path: 'modelEditor'
       }
     ]
   },
   {
-    title: 'categories',
+    title: 'categories.someFeatures',
     icon: 'functions',
     path: 'someFeatures',
     features: [
       {
-        title: 'categories.featuresOne',
+        title: 'categories.locationMaker',
         icon: 'bookmark',
-        path: 'featuresOne'
+        path: 'locationMaker'
       },
       {
-        title: 'categories.location',
+        title: 'categories.measure',
         icon: 'collections',
-        path: 'location'
+        path: 'measure'
       },
       {
-        title: 'categories.outputSceneToFile',
+        title: 'categories.flyManager',
         icon: 'collections',
-        path: 'outputSceneToFile'
-      },
-      {
-        title: '分层设色',
-        icon: 'collections',
-        path: 'location'
+        path: 'flyManager'
       }
     ]
   }
