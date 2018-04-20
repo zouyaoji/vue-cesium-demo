@@ -10,7 +10,7 @@
   <div class="row flex-center bg-white" style="width: 100%; height: 100px;">
     <img src="~assets/imgs/SuperMapLogo.png" class="responsive"/>
     <div style="margin-left: 15px">
-      SmCesium v{{ SmCesiumVersion }}
+      vue-supermap-cesium v{{ SmCesiumVersion }}
       <a @click="launch">
         <q-icon name="fa-github" size="24px"></q-icon>
       </a>
@@ -51,14 +51,14 @@
 </template>
 
 <script>
-import SmCesium from 'vue-sm-cesium'
+// import SuperMapCesium from 'vue-supermap-cesium'
 import categories from '@/showcase/categories'
 import { openURL } from 'quasar'
 export default {
   name: 'drawer',
   data () {
     return {
-      SmCesiumVersion: SmCesium.version,
+      SmCesiumVersion: 'aa',
       scrollAreaBackground: '#4e8ca8',
       test: '',
       categories: categories

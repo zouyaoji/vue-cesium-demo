@@ -10,7 +10,7 @@ var path = require('path'),
     (env.dev && config.dev.cssSourceMap) ||
     (env.prod && config.build.productionSourceMap)
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -90,7 +90,7 @@ module.exports = {
       DEV: env.dev,
       PROD: env.prod,
       __THEME: '"' + env.platform.theme + '"'
-    }),    
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: env.prod,
       options: {

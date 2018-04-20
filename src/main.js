@@ -16,10 +16,10 @@ import Quasar, * as All from 'quasar'
 import i18n from './lang'
 import router from './router'
 import store from './store'
-import SmCesium from 'vue-sm-cesium'
+import SuperMapCesium from 'vue-supermap-cesium'
 Vue.config.productionTip = false
-Vue.use(SmCesium, {
-  cesiumPath: '/statics/libs'
+Vue.use(SuperMapCesium, {
+  cesiumPath: 'https://zouyaoji.top/vue-supermap-cesium'
 })
 Vue.use(Quasar, {
   components: All,
@@ -31,7 +31,7 @@ if (__THEME === 'mat') {
 }
 import 'quasar-extras/material-icons'
 // import 'quasar-extras/ionicons'
-import 'quasar-extras/fontawesome'
+// import 'quasar-extras/fontawesome'
 import 'quasar-extras/animate'
 
 Quasar.start(() => {

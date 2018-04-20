@@ -1,7 +1,8 @@
 <template>
   <div class="content">
-    <sm-cesium-viewer @selectedEntityChanged="selectedEntityChanged" @ready="ready">
-    </sm-cesium-viewer>
+    <sm-viewer @selectedEntityChanged="selectedEntityChanged" @ready="ready" :animation="true" selectionIndicator geocoder sceneModePicker shouldAnimate>
+      <!-- <sm-scene></sm-scene> -->
+    </sm-viewer>
     
     <div ref="bubbleContainer" id="bubbleContainer" class="bubbleContainer" hidden>
       <div class="bubbleHeader">
@@ -36,6 +37,13 @@ import commonScene from 'src/api/commonScene.js'
 // import sceneControl from '@/common/sceneControl/sceneControl'
 export default {
   name: 'locationMaker',
+  data () {
+    return {
+      navigation: false,
+      test: false,
+      flag: true
+    }
+  },
   components: {
   },
   computed: {
@@ -58,45 +66,55 @@ export default {
       // var credit = this.viewer.scene.frameState.creditDisplay
       // credit.container.removeChild(credit._imageContainer)
     }
+    // console.log(this.viewer)
   },
   methods: {
     ...mapActions([
       'setViewer'
     ]),
     makeMaker () {
-      commonScene.makeMaker(this.viewer, this.$refs.bubbleContainer)
+      if (this.flag) {
+        commonScene.makeMaker(this.viewer, this.$refs.bubbleContainer)
+      }
+      this.flag = false
     },
     search () {
 
     },
     outputSceneToFile () {
-
+      this.test = !this.test
     },
     ready (e) {
+      console.log(e.viewer)
       this.setViewer(e.viewer)
+      window.viewer = e.viewer
+      var terrainProvider = new e.Cesium.CesiumTerrainProvider({
+        url: 'http://localhost:8090/iserver/services/3D-GuoZiGou/rest/realspace/datas/TIN',
+        isSct: true // 地形服务源自SuperMap iServer发布时需设置isSct为true
+      })
+      e.viewer.scene.terrainProvider = terrainProvider
+      var layer = e.viewer.imageryLayers.addImageryProvider(new e.Cesium.SuperMapImageryProvider({
+        url: 'http://localhost:8090/iserver/services/3D-GuoZiGou/rest/realspace/datas/YX11@dixing'
+      }))
+      this.viewer.zoomTo(layer)
+
+      // this.viewer.scene.destroy()
+      // console.log(new Cesium.BingMapsImageryProvider())
     },
-    selectedEntityChanged () {
+    selectedEntityChanged (val) {
       console.log('selectedEntityChanged')
+      commonScene.makeMaker2(this.viewer, this.$refs.bubbleContainer, val)
     }
   },
   beforeDestroy () {
     this.viewer.destroy()
-    this.setViewer(null)
+    // this.setViewer(null)
   }
 }
 </script>
 
-<style>
-.content {
-    /* min-height: 52px; */
-    background-color: #f9f9f9;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* margin-top: 60px; */
-}
+<style scoped>
+
 
 .toolbar {
   padding-top: 10px;
@@ -116,6 +134,18 @@ export default {
 }
 
 /*-------bubble------------------*/
+.bubble:after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: 50px;
+    border-width: 0 20px 50px 0px;
+    border-style: solid;
+    border-color: transparent #fff;
+    display: block;
+    width: 0;
+}
+
 .bubbleContainer {
     /* display: none; */
     width: 400px;

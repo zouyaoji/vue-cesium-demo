@@ -1,7 +1,7 @@
 <template>
   <q-layout ref="layout" view="lHh Lpr fff" :left-class="{'bg-grey-2': true}" :style="{ backgroundColor: backgroundColor}">
     <v-header slot="header"></v-header>
-    <v-drawer slot="left"></v-drawer>
+    <v-drawer slot="left" class="drawer1"></v-drawer>
     <q-transition enter="fadeIn" leave="fadeOut" mode="out-in" :duration="300">
       <router-view />
     </q-transition>

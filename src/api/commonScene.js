@@ -31,6 +31,11 @@ let commonScene = {
       bubble.showAt(position)
       handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK)
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+  },
+  makeMaker2 (appViewer, dom, entity) {
+    viewer = appViewer
+    bubble = new Bubble(viewer.scene, dom)
+    bubble.showAt(entity.position)
   }
 }
 

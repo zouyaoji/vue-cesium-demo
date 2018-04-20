@@ -1,6 +1,8 @@
 # vue-quasar-supermapwebgl
 
-> vue+supermap iclent3d for webgl演示程序
+> [vue+supermap iclent3d for webgl练手项目](http://support.supermap.com.cn:8090/webgl/)
+
+> [vue-supermap-cesium练手项目](https://github.com/zouyaoji/vue-supermap-cesium)
 
 ## Build Setup
 
@@ -20,5 +22,3 @@ $ quasar lint
 # run dist
 $ npm run dist
 ```
-
-## vue+quasar+webgl学习例子,先搭好项目结构，再学习vue和webgl功能。
