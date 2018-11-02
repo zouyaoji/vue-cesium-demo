@@ -1,23 +1,37 @@
 <template>
-  <!-- Don't drop "q-app" class -->
-  <div id="q-app" class="my-demo">
-     <q-transition enter="fadeIn" leave="fadeOut" mode="out-in" :duration="300" @leave="resetScroll">
-      <router-view />
-    </q-transition>
+  <div id="q-app">
+    <router-view />
   </div>
 </template>
 
 <script>
-/*
- * Root component
- */
 export default {
-  name: 'q-app',
-  methods: {
-    resetScroll (el, done) {
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-      done()
+  name: 'App',
+  mounted () {
+    setTimeout(() => {
+      document.body.removeChild(document.getElementById('StartLoading'))
+    }, 200)
+    /* eslint no-extend-native: ["error", { "exceptions": ["String"] }] */
+    String.prototype.format = function (args) {
+      let result = this
+      if (arguments.length > 0) {
+        if (arguments.length === 1 && typeof args === 'object') {
+          for (let key in args) {
+            if (args[key] !== undefined) {
+              let reg = new RegExp('({' + key + '})', 'g')
+              result = result.replace(reg, args[key])
+            }
+          }
+        } else {
+          for (let i = 0; i < arguments.length; i++) {
+            if (arguments[i] !== undefined) {
+              let reg = new RegExp('({)' + i + '(})', 'g')
+              result = result.replace(reg, arguments[i])
+            }
+          }
+        }
+      }
+      return result
     }
   }
 }

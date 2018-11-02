@@ -1,24 +1,18 @@
-# vue-quasar-supermapwebgl
+# community
 
-> [vue+supermap iclent3d for webgl练手项目](http://support.supermap.com.cn:8090/webgl/)
+## 项目介绍
 
-> [vue-supermap-cesium练手项目](https://github.com/zouyaoji/vue-supermap-cesium)
+小区
 
-## Build Setup
+## 软件架构
 
-``` bash
-# install dependencies
-$ npm install
+软件架构说明
 
-# serve with hot reload at localhost:8888
-$ npm run dev
+## 安装教程
 
-# build for production with minification
-$ npm run build
+1. 安装nodejs8.9以上
+2. 进入工程目录 npm install
 
-# lint code
-$ quasar lint
+## 使用说明
 
-# run dist
-$ npm run dist
-```
+1. quasar dev

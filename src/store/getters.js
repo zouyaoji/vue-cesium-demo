@@ -1,7 +1,4 @@
 const getters = {
-  getLanguage: state => state.language,
-  getHeaderTitle: state => state.headerTitle,
-  getViewer: state => state.viewer
+  cesiumInstance: state => state.app.cesiumInstance
 }
-
 export default getters
