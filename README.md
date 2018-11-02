@@ -1,17 +1,14 @@
-# community
+# vue cesium demo
 
 ## 项目介绍
 
-小区
+vue cesium组件例子
 
 ## 软件架构
 
-软件架构说明
-
-## 安装教程
-
-1. 安装nodejs8.9以上
-2. 进入工程目录 npm install
+"node": ">= 8.9.0",
+"npm": ">= 5.6.0",
+"yarn": ">= 1.6.0"
 
 ## 使用说明
 
