@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     menuClick () {
-      this.$parent.$parent.$parent.leftSide = !this.$parent.$parent.$parent.leftSide
+      this.$parent.$parent.$parent.leftDrawerOpen = !this.$parent.$parent.$parent.leftDrawerOpen
     }
   },
   watch: {

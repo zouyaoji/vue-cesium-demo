@@ -1,8 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="q-gutter-md row items-start">
-      <q-date v-model="date" />
-    </div>
+  <q-page class="flex flex-center viewer">
+    <vc-viewer></vc-viewer>
   </q-page>
 </template>
 

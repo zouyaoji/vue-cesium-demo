@@ -4,9 +4,8 @@
       Vue Cesium Demo
     </div>
     <div class="text-center">
-      <div class="card bg-white shadow-4 column no-wrap flex-center group">
+      <div class="card bg-white shadow-4 column no-wrap flex-center group q-gutter-sm">
         <img src="https://zouyaoji.top/vue-cesium/favicon.png" class="responsive">
-        <br>
         <q-btn
           color="primary"
           push
