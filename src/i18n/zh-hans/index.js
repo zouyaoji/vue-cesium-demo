@@ -7,6 +7,7 @@ export default {
     showcase: '范例汇总',
     // 图层
     layer: '图层',
+    terrainAndImagery: '地形影像',
     addTerrainLayer: '地形',
     addImageryLayer: '影像',
     addS3MTilesLayer: '三维缓存',

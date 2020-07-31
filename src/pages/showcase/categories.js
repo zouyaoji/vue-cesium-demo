@@ -1,24 +1,29 @@
-let categories = [
+const categories = [
   {
     title: 'categories.layer',
     icon: 'layers',
     path: 'layer',
     features: [
       {
-        title: 'categories.addTerrainLayer',
+        title: 'categories.terrainAndImagery',
         icon: 'terrain',
-        path: 'addTerrainLayer'
-      },
-      {
-        title: 'categories.addImageryLayer',
-        icon: 'photo',
-        path: 'addImageryLayer'
-      },
-      {
-        title: 'categories.addS3MTilesLayer',
-        icon: 'drafts',
-        path: 'addS3MTilesLayer'
+        path: 'TerrainAndImagery'
       }
+      // {
+      //   title: 'categories.addTerrainLayer',
+      //   icon: 'terrain',
+      //   path: 'addTerrainLayer'
+      // },
+      // {
+      //   title: 'categories.addImageryLayer',
+      //   icon: 'photo',
+      //   path: 'addImageryLayer'
+      // },
+      // {
+      //   title: 'categories.addS3MTilesLayer',
+      //   icon: 'drafts',
+      //   path: 'addS3MTilesLayer'
+      // }
     ]
   },
   {

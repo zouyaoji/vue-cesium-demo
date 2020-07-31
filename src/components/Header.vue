@@ -8,16 +8,18 @@
     <q-toolbar-title :padding="1" class="menu-link">
       <q-icon v-show="showcaseStore.icon" style="font-size: 2rem; margin-right: 5px;" :name="showcaseStore.icon" /> {{ $t(showcaseStore.title) }}
     </q-toolbar-title>
+
     <div class="float-right">
-      <q-icon name="language" size="32px" />
+      <div class="row justify-center items-center q-gutter-md">
+        <q-icon name="language" size="32px" />
+        <q-select radio color="amber" v-model="lang" :options="selectListOptions" emit-value map-options />
+      </div>
     </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <q-select stack-label="国际化" radio color="amber" v-model="lang" :options="selectListOptions" />
   </q-toolbar>
 </template>
 
 <script>
-import showcaseStore from '@/pages/showcase/showcase-store'
+import showcaseStore from 'pages/showcase/showcase-store'
 import {
   mapGetters
 } from 'vuex'
@@ -26,7 +28,7 @@ export default {
   name: 'vHeader',
   data () {
     return {
-      lang: '',
+      lang: 'zh-hans',
       selectListOptions: [{
         label: '简体中文',
         value: 'zh-hans'
@@ -45,7 +47,7 @@ export default {
     })
   },
   mounted () {
-    this.lang = this.$q.cookies.get('language')
+    // this.lang = this.$q.cookies.get('language')
   },
   methods: {
     menuClick () {
@@ -54,11 +56,10 @@ export default {
   },
   watch: {
     lang (lang) {
-      import(`quasar-framework/i18n/${lang}`).then(lang => {
-        this.$q.i18n.set(lang.default)
+      import('quasar/lang/' + lang).then(lang => {
+        this.$q.lang.set(lang.default)
       })
       this.$i18n.locale = lang
-      this.$q.cookies.set('language', lang)
     }
   }
 }

@@ -1,19 +1,14 @@
+import categories from 'pages/showcase/categories'
 
-import categories from '@/pages/showcase/categories'
+const appRouter = [{ path: '/', name: 'home_index', component: () => import('pages/Index') }]
 
-function load (component) {
-  return () => import(`@/${component}.vue`)
-}
-
-const appRouter = [{ path: '/', name: 'home_index', component: load('pages/Index') }]
-
-let showcase = {
+const showcase = {
   path: '/showcase',
-  component: load('layouts/ShowcaseLayout'),
+  component: () => import('layouts/MainLayout'),
   children: [
     {
       path: '',
-      component: load('pages/showcase/Showcase'),
+      component: () => import('pages/showcase/Showcase'),
       meta: {
         title: 'categories.showcase',
         hash: '/showcase',
@@ -28,7 +23,7 @@ function component (path, config) {
   return {
     path,
     meta: config,
-    component: load('pages/showcase/' + path)
+    component: () => import('pages/showcase/' + path)
   }
 }
 
@@ -38,7 +33,7 @@ categories.forEach(category => {
   }
 
   category.features.forEach(feature => {
-    let path = category.path + '/' + feature.path
+    const path = category.path + '/' + feature.path
 
     if (!feature.children) {
       showcase.children.push(component(path, feature))
@@ -50,7 +45,11 @@ appRouter.push(showcase)
 appRouter.push({
   path: '*',
   name: '404',
-  component: load('pages/Error404')
+  component: () => import('pages/Error404')
 })
 
-export const routes = [...appRouter]
+const routes = [...appRouter]
+
+console.log(routes)
+
+export default routes

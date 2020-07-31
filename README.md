@@ -1,15 +1,26 @@
-# vue cesium demo
+# Vue Cesium Demo (vue-cesium-demo)
 
-## 项目介绍
+Demos of vue-cesium component
 
-vue cesium组件例子
+## Install the dependencies
+```bash
+npm install
+```
 
-## 软件架构
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
+```
 
-"node": ">= 8.9.0",
-"npm": ">= 5.6.0",
-"yarn": ">= 1.6.0"
+### Lint the files
+```bash
+npm run lint
+```
 
-## 使用说明
+### Build the app for production
+```bash
+quasar build
+```
 
-1. quasar dev
+### Customize the configuration
+See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).

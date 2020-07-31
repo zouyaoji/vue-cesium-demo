@@ -1,44 +1,49 @@
 {
   "name": "vue-cesium-demo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Demos of vue-cesium component",
   "productName": "Vue Cesium Demo",
-  "cordovaId": "org.cordova.quasar.app",
   "author": "zouyaoji <370681295@qq.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue src",
+    "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "v-distpicker": "^1.0.20",
-    "vue-cesium": "0.0.4",
-    "vue-i18n": "^7.3.3",
-    "vuelidate": "^0.7.4"
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.18.1",
+    "core-js": "^3.6.5",
+    "quasar": "^1.0.0",
+    "vue-cesium": "^2.1.4",
+    "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.18.2",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.3.0",
-    "quasar-cli": "^0.17.0",
-    "strip-ansi": "=3.0.1"
-  },
-  "engines": {
-    "node": ">= 8.9.0",
-    "npm": ">= 5.6.0",
-    "yarn": ">= 1.6.0"
+    "@quasar/app": "^2.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.1.2"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 10"
-  ]
+    "ie >= 11",
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
 }

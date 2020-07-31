@@ -14,36 +14,44 @@
   <q-list no-border link inset-separator highlight>
     <!-- <q-list-header>Essential Links</q-list-header> -->
     <q-item to="/showcase" exact replace>
-      <q-item-side icon="home"/>
-      <q-item-main>{{ $t('categories.showcase') }} </q-item-main>
-      <q-item-side right icon="chevron_right" />
+      <q-item-section avatar>
+        <q-icon color="primary" name="home" />
+      </q-item-section>
+      <q-item-section>
+        <q-item-label >{{ $t('categories.showcase') }}</q-item-label>
+      </q-item-section>
+       <q-item-section side><q-icon color="primary" name="chevron_right" /></q-item-section>
     </q-item>
-
-    <q-item-separator />
+    <q-separator />
     <template v-for="(category, index) in categories">
-      <q-list-header :key="index" :icon="category.icon">
-        {{ $t(category.title) }}
-      </q-list-header>
-      <q-item :to="`/showcase/${category.path}/${feature.path}`" exact replace :key="index+'-'+subIndex" v-for="(feature, subIndex) in category.features">
-        <q-item-side :icon="feature.icon" />
-        <q-item-main :label=" $t(feature.title)" />
-        <q-item-side right icon="chevron_right" />
+      <q-item :key="index">
+        <q-item-section>{{ $t(category.title) }}</q-item-section>
       </q-item>
-      <q-item-separator :key="index+'-'+ 'q'" />
+
+      <q-item :to="`/showcase/${category.path}/${feature.path}`" exact replace :key="index+'-'+subIndex" v-for="(feature, subIndex) in category.features">
+        <q-item-section avatar>
+          <q-icon :name="feature.icon" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label >{{ $t(feature.title) }}</q-item-label>
+        </q-item-section>
+        <q-item-section side><q-icon color="primary" name="chevron_right" /></q-item-section>
+      </q-item>
+      <q-separator :key="index+'-'+ 'q'"/>
     </template>
   </q-list>
   </q-scroll-area>
 </template>
 
 <script>
-import VueCesium from 'vue-cesium'
-import categories from '@/pages/showcase/categories'
+import { VERSION } from 'vue-cesium'
+import categories from 'pages/showcase/categories'
 import { openURL } from 'quasar'
 export default {
   name: 'drawer',
   data () {
     return {
-      VueCesiumVersion: VueCesium.version,
+      VueCesiumVersion: VERSION,
       scrollAreaBackground: '#4e8ca8',
       categories: categories
     }

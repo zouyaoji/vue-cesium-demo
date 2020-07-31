@@ -3,7 +3,7 @@
     <q-toolbar-title>
       Layout Footer
     </q-toolbar-title>
-    <div class="gt-sm">Copyright &copy; {{getYear}} SuperMap All Rights Reserved</div>
+    <div class="gt-sm">Copyright &copy; {{getYear}}  All Rights Reserved</div>
   </q-toolbar>
 </template>
 
