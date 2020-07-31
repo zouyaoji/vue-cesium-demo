@@ -11,6 +11,7 @@
 
     <div class="float-right">
       <div class="row justify-center items-center q-gutter-md">
+        <q-btn icon="fab fa-github" dense round size="16px" flat @click="launch"></q-btn>
         <q-icon name="language" size="32px" />
         <q-select radio color="amber" v-model="lang" :options="selectListOptions" emit-value map-options />
       </div>
@@ -20,6 +21,7 @@
 
 <script>
 import showcaseStore from 'pages/showcase/showcase-store'
+import { openURL } from 'quasar'
 import {
   mapGetters
 } from 'vuex'
@@ -50,6 +52,9 @@ export default {
     // this.lang = this.$q.cookies.get('language')
   },
   methods: {
+    launch () {
+      openURL('https://github.com/zouyaoji/vue-cesium-demo')
+    },
     menuClick () {
       this.$parent.$parent.$parent.leftDrawerOpen = !this.$parent.$parent.$parent.leftDrawerOpen
     }
