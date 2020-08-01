@@ -48,8 +48,4 @@ appRouter.push({
   component: () => import('pages/Error404')
 })
 
-const routes = [...appRouter]
-
-console.log(routes)
-
-export default routes
+export default [...appRouter]

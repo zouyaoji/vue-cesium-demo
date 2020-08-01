@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import 'vue-cesium/lib/vc-navigation.css'
 import vHeader from 'components/Header'
 import vDrawer from 'components/Drawer'
 // import vFooter from 'components/Footer'
