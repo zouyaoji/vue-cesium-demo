@@ -42,5 +42,8 @@ export default {
     locationMaker: 'LocationMaker',
     measure: 'Measure',
     flyManager: 'FlyManager'
+  },
+  terrainAndImagery: {
+    layerControl: 'LayerControl'
   }
 }

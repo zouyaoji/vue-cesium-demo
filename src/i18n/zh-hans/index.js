@@ -37,5 +37,15 @@ export default {
     locationMaker: '定位标注',
     measure: '量算',
     flyManager: '飞行'
+  },
+  terrainAndImagery: {
+    layerControl: '图层管理',
+    tianditu: '天地图',
+    imagery: '影像',
+    vector: '矢量',
+    text: '注记',
+    alpha: '透明度',
+    brightness: '亮度',
+    contrast: '对比度'
   }
 }
