@@ -21,8 +21,8 @@
         <vc-provider-imagery-urltemplate url="http://192.168.1.247/raster/{z}/{x}/{y}.png"></vc-provider-imagery-urltemplate>
       </vc-layer-imagery> -->
     </vc-viewer>
-    <div class="absolute-top-left">
-      <div class="row q-pa-md q-col-gutter-sm layer-tree">
+    <div class="absolute-top-left row q-col-gutter-sm layer-tree">
+      <div class="row q-pa-md q-col-gutter-sm">
         <q-tree
           ref="qtree"
           dark
@@ -36,6 +36,20 @@
           @update:ticked="tickedMethod"
           @update:selected="selectedMethod"
         >
+          <template v-slot:default-header="prop">
+            <div class="row items-center">
+              <div class="text-weight-bold">
+                {{ prop.node.label }}
+                <q-menu touch-position context-menu>
+                  <q-list dense style="min-width: 100px">
+                    <q-item clickable v-close-popup>
+                      <q-item-section>属性...</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </div>
+            </div>
+          </template>
         </q-tree>
       </div>
     </div>
@@ -46,7 +60,8 @@
 export default {
   data () {
     return {
-      urlTileYC: 'http://192.168.1.247/cesium/3DTiles/ycBlue-noLOD/tileset.json',
+      urlTileYC:
+        'http://192.168.1.247/cesium/3DTiles/ycBlue-noLOD/tileset.json',
       cesiumCamera: {
         position: {
           lng: 105.926727,
@@ -95,7 +110,7 @@ export default {
   methods: {
     tickedMethod (e) {
       const { layers } = this
-      const getTree = (tree) => {
+      const getTree = tree => {
         tree.forEach(v => {
           if (v.children) {
             getTree(v.children)
