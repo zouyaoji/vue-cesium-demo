@@ -77,8 +77,17 @@ module.exports = function (/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 8080
-      // open: true // opens browser window automatically
+      port: 8080,
+      open: false, // opens browser window automatically
+      proxy: {
+        '/traffictile': {
+          target: 'https://tm.amap.com/trafficengine/mapabc/traffictile',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/traffictile': '/'
+          }
+        }
+      }
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

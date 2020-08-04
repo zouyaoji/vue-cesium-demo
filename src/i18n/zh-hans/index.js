@@ -40,10 +40,51 @@ export default {
   },
   terrainAndImagery: {
     layerControl: '图层管理',
-    tianditu: '天地图',
-    imagery: '影像',
-    vector: '矢量',
-    text: '注记',
+    tianditu: {
+      groupCaption: '天地图服务',
+      imagery: '影像底图',
+      vector: '矢量底图',
+      text: '影像注记'
+    },
+    arcgis: {
+      groupCaption: 'ArcGIS MapServer',
+      imagery: '影像底图',
+      chinaOnlineStreetPurplishBlue: '午夜地图(GeoQ)',
+      chinaOnlineStreetGray: '浅灰色地图(GeoQ)',
+      chinaOnlineStreetWarm: '彩色地图(GeoQ)'
+    },
+    bingmaps: {
+      groupCaption: '必应地图',
+      aerial: 'Aerial',
+      road: 'Road'
+    },
+    mapboxstyle: {
+      groupCaption: 'mapbox地图',
+      customStyle: '自定义风格'
+    },
+    openstreetmap: {
+      groupCaption: 'OpenStreetMap',
+      vector: '矢量底图'
+    },
+    supermap: {
+      groupCaption: '超图 iServer',
+      china4236: 'China4326'
+    },
+    urltemplate: {
+      groupCaption: '通用模板地图',
+      amapImagery: '高德影像',
+      amapVector: '高德矢量',
+      amapRoad: '高德路况',
+      google: '谷歌影像'
+    },
+    wmts: {
+      groupCaption: 'WMTS 地图',
+      argis: 'ArcGIS Online'
+    },
+    terrain: {
+      groupCaption: '地形',
+      cesiumTerrain: 'CesiumTerrain'
+    },
     alpha: '透明度',
     brightness: '亮度',
     contrast: '对比度'

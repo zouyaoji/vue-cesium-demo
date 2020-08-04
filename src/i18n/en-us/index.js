@@ -44,6 +44,54 @@ export default {
     flyManager: 'FlyManager'
   },
   terrainAndImagery: {
-    layerControl: 'LayerControl'
+    layerControl: 'LayerControl',
+    tianditu: {
+      groupCaption: 'Tianditu',
+      imagery: 'IMG_C',
+      vector: 'VEC_C',
+      text: 'CIA_C'
+    },
+    arcgis: {
+      groupCaption: 'ArcGIS MapServer',
+      imagery: 'Imagery',
+      chinaOnlineStreetPurplishBlue: 'StreetPurplishBlue',
+      chinaOnlineStreetGray: 'StreetGray',
+      chinaOnlineStreetWarm: 'StreetWarm'
+    },
+    bingmaps: {
+      groupCaption: 'BingMaps',
+      aerial: 'Aerial',
+      road: 'Road'
+    },
+    mapboxstyle: {
+      groupCaption: 'MapboxStyle',
+      customStyle: 'MapboxStudio'
+    },
+    openstreetmap: {
+      groupCaption: 'OpenStreetMap',
+      vector: 'vector'
+    },
+    supermap: {
+      groupCaption: 'SuperMap iServer',
+      china4236: 'China4326'
+    },
+    urltemplate: {
+      groupCaption: 'Urltemplate',
+      amapImagery: 'Aamp Imagery',
+      amapVector: 'Amap Vector',
+      amapRoad: 'Amap Road',
+      google: 'Google Imagery'
+    },
+    wmts: {
+      groupCaption: 'WMTS',
+      argis: 'ArcGIS Online'
+    },
+    terrain: {
+      groupCaption: 'Terrain',
+      cesiumTerrain: 'CesiumTerrain'
+    },
+    alpha: 'alpha',
+    brightness: 'brightness',
+    contrast: 'contrast'
   }
 }

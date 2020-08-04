@@ -14,7 +14,7 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
-    "vue-cesium": "^2.1.4",
+    "vue-cesium": "^2.1.5",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {

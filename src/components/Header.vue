@@ -25,6 +25,8 @@ import { openURL } from 'quasar'
 import {
   mapGetters
 } from 'vuex'
+import zh from 'vue-cesium/lang/zh-hans'
+import en from 'vue-cesium/lang/en-us'
 
 export default {
   name: 'vHeader',
@@ -65,6 +67,7 @@ export default {
         this.$q.lang.set(lang.default)
       })
       this.$i18n.locale = lang
+      this.$vc.lang.set(this.lang === 'zh-hans' ? zh : en)
     }
   }
 }
