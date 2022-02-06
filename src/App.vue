@@ -1,15 +1,14 @@
+<!--
+ * @Author: zouyaoji@https://github.com/zouyaoji
+ * @Date: 2021-12-08 23:26:13
+ * @LastEditTime: 2021-12-20 15:03:35
+ * @LastEditors: zouyaoji
+ * @Description:
+ * @FilePath: \vue-cesium-demo\src\App.vue
+-->
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
-<script>
-export default {
-  name: 'App',
-  mounted () {
-    setTimeout(() => {
-      document.body.removeChild(document.getElementById('StartLoading'))
-    }, 200)
-  }
-}
-</script>
+<style>
+@import '@src/assets/style/animate/animate.min.css';
+</style>

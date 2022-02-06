@@ -1,12 +1,12 @@
 {
   "recommendations": [
+    "johnsoncodehk.volar",
+    "johnsoncodehk.vscode-typescript-vue-plugin",
     "dbaeumer.vscode-eslint",
-    
-    "octref.vetur"
-  ],
-  "unwantedRecommendations": [
-    "hookyqr.beautify",
-    "dbaeumer.jshint",
-    "ms-vscode.vscode-typescript-tslint-plugin"
+    "esbenp.prettier-vscode",
+    "antfu.vite",
+    "obkoro1.korofileheader",
+    "donjayamanne.githistory",
+    "eamodio.gitlens"
   ]
 }

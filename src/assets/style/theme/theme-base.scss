@@ -1,0 +1,286 @@
+// 整体框架结构
+.main-layout {
+  width: 100%;
+  overflow: hidden;
+  &.gray-mode {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+  }
+  // header 头部菜单
+  header {
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    z-index: 9;
+    top: 10px;
+    left: 10px;
+    border-radius: 30px;
+    pointer-events: none;
+    .main-header {
+      position: relative;
+      display: flex;
+      width: 100vw;
+      height: 100%;
+      justify-content: space-between;
+      pointer-events: all;
+      .left {
+        // background: $dark;
+        border-radius: 30px;
+        .content {
+          // background: linear-gradient(180deg, rgba(239, 180, 8, 0) 0%, rgba(235, 177, 7, 0.62) 100%);
+          border-radius: 30px;
+          padding-right: 30px;
+          transition: all 0.2s ease 0.2s;
+          height: 100%;
+          display: flex;
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            background: $dark;
+            img {
+              width: 45px;
+              height: 45px;
+            }
+          }
+          .title {
+            // color: #fff;
+            font-family: ziticqtezhanti;
+            padding: 10px 20px 10px 10px;
+            font-style: oblique;
+            width: 510px;
+          }
+          .nav {
+            // color: #fff;
+            padding: 6px 0;
+          }
+        }
+      }
+      .right {
+        // background: $dark;
+        position: relative;
+        right: 10px;
+        // color: #fff;
+        z-index: 9;
+        border-radius: 30px;
+        line-height: 60px;
+        .content {
+          // background: linear-gradient(180deg, rgba(239, 180, 8, 0) 0%, rgba(235, 177, 7, 0.62) 100%);
+          border-radius: 30px;
+        }
+        .q-btn:before {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  // footer 底部菜单、版权技术支持等
+  // 暂时没有
+
+  // UI 交互容器， 包含
+  // 顶级容器：三维球、顶级对话框或者面板：图层管理
+  // 次级容器：各路由页面及它们的交互组件
+  .interaction-root {
+    height: 100vh;
+    position: relative;
+    flex-basis: 100%;
+    // 图层管理器
+    .layer-manager-wrapper {
+      z-index: $z-fab - 20;
+      position: relative;
+      // right: 0;
+      // bottom: 0;
+      // top: 0;
+      // pointer-events: none;
+      // left: 5px;
+
+      // & > div {
+      //   pointer-events: auto;
+      // }
+
+      // 图层切换按钮
+      .layer-switch {
+        z-index: $z-fab;
+        position: absolute;
+        top: 355px;
+        right: 42px;
+        .q-icon {
+          font-size: 3em;
+        }
+      }
+
+      .layer-manager {
+        z-index: $z-fab - 20;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        pointer-events: none;
+        left: 0;
+
+        height: calc(100vh - 115px);
+        width: calc(100% - $left-panel-width);
+
+        @media (min-width: $breakpoint-md) {
+          left: $left-panel-width + 20px;
+          top: 90px;
+          right: 110px;
+          bottom: 0;
+        }
+
+        & > div {
+          pointer-events: auto;
+        }
+
+        &.full-srceen {
+          left: 40px;
+        }
+
+        .drag-wrapper {
+          left: 42%;
+          top: 25%;
+          .layer-manager-panel {
+            pointer-events: auto;
+            width: 450px;
+            max-width: 95%;
+            min-width: 450px;
+            max-height: 80vh;
+          }
+        }
+      }
+    }
+
+    // 通过路由控制的交互组件
+    // 登录页面
+    .page-login {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background: #9053c7;
+      background: linear-gradient(-135deg, #c850c0, #4158d0);
+
+      .login-container {
+        max-width: 1080px;
+        .form-login {
+          border-radius: 10px;
+          padding: 1rem 2rem;
+          margin: 0 auto;
+          // box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+        }
+        .q-checkbox {
+          margin-top: 0px;
+          user-select: none;
+        }
+        .btn-submit {
+          height: 56px;
+          &::before {
+            border-color: rgba(0, 0, 0, 0.24);
+          }
+        }
+        .oath {
+          .icon {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    // 首页
+    .page-index {
+      z-index: $z-marginals;
+      height: 100%;
+      width: 100%;
+      pointer-events: none;
+      & > div {
+        pointer-events: auto;
+      }
+      // 左侧面板折叠按钮 floating action button
+      .left-panel-fab {
+        position: absolute;
+        left: 2px;
+        top: 90px;
+        .back-icon {
+          position: fixed;
+          top: 40px;
+          right: 20px;
+          z-index: 9;
+        }
+        // 左侧面板
+        .left-panel {
+          position: absolute;
+          transition: all 0.6s ease 0s;
+          // left: 10px;
+          // top: 105px;
+          left: 0;
+          top: 0;
+          z-index: 9;
+          width: 372px;
+          height: auto;
+          // 面板内容区域
+          .left-panel-content {
+            width: 100%;
+            height: auto;
+            max-height: 760px;
+            overflow: hidden;
+            border-radius: 0 0 10px 10px;
+            padding: 12px 10px;
+            box-sizing: border-box;
+            // 数据源分类容器
+            .datasources-container {
+              .category-icon {
+                text-align: center;
+                background-size: 100% 100%;
+                width: 88px;
+                height: 53px;
+                float: left;
+                margin-bottom: 2px;
+                padding-top: 8px;
+                box-sizing: border-box;
+                cursor: pointer;
+                .datasrouce-title {
+                  // color: rgba(255, 255, 255, 0.7);
+                  transform: scale(0.9);
+                  letter-spacing: 3px;
+                }
+              }
+              .category-icon:nth-child(4n) {
+                margin-right: 0;
+              }
+              .dataset-categories-list {
+                height: 616px;
+                overflow: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // 修改 quasar ui
+  // scrollarea 滚动条
+  .q-scrollarea__thumb {
+    right: 2px;
+    width: 3px;
+    border-radius: 3px;
+    opacity: 0.6;
+  }
+}

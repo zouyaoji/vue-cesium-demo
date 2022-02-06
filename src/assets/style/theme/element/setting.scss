@@ -1,0 +1,65 @@
+// 主题名称
+$theme-name: 'element';
+// 主题背景颜色
+$theme-bg-color: #314255;
+// 主题背景图片遮罩
+$theme-bg-mask: rgba(#000, 0);
+// 主题颜色
+$theme-color: #46a0fc;
+// 主题颜色-带透明度
+$theme-color-alpha: rgba(#46a0fc, 0.6);
+
+// 头部
+// 头部主要文字颜色
+$theme-header-color: #bfcbd9;
+// 头部标题颜色
+$theme-header-title-color: #bfcbd9;
+// 标题 logo 背景颜色
+$theme-header-logo-background-color: #314255;
+// 标题第一层背景颜色
+$theme-header-background-color: #202d3d;
+// 标题第二层(内容区域)背景颜色
+$theme-header-content-background-color: #314255;
+
+// 登录页面
+// 登录页面颜色
+$theme-page-login-color: #bfcbd9;
+// 登录页面背景色
+$theme-page-login-background-color: rgba(#202d3d, 0.5);
+
+// 首页
+$theme-page-index-datasrouce-title-color: rgba(#bfcbd9, 0.7);
+
+// 基于 common-panel 的面板
+// common-panel 面板 header 颜色
+$theme-common-panel-header-color: #bfcbd9;
+// common-panel 面板 header 背景颜色
+$theme-common-panel-header-background-color: rgba(#202d3d, 0.6);
+// common-panel 面板 content 颜色
+$theme-common-panel-content-color: #bfcbd9;
+// common-panel 面板 content 背景颜色
+$theme-common-panel-content-background-color: rgba(#202d3d, 0.6);
+// common-panel 面板中 q-list 颜色
+$theme-common-panel-list-color: #bfcbd9;
+// common-panel 面板中 q-list 分割线、border 颜色
+$theme-common-panel-list-border-color: rgba(255, 255, 255, 0.278);
+
+// 其他
+// 滚动到顶部按钮背景颜色
+$theme-scroll-top-background-color: rgba(0, 0, 0, 0);
+
+// quasar ui
+// 全局 q-input 颜色
+$theme-q-input-color: #bfcbd9;
+// 全局 q-input border颜色
+$theme-q-input-border-color: #fff9;
+// 全局 q-checkbox checked 颜色
+$theme-q-checkbox-truthy-color: $theme-color;
+// 全局 q-menu 颜色
+$theme-q-menu-color: #bfcbd9;
+$theme-q-menu-background-color: rgba($dark, 0.6);
+// 全局 q-card
+$theme-q-card-color: #bfcbd9;
+$theme-q-card-background-color: rgba($dark, 0.6);
+// q-scroll-area 滚动条颜色
+$theme-scroll-color: $theme-color;
