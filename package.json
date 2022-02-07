@@ -35,7 +35,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@commitlint/cz-commitlint": "^13.1.0",
-    "@quasar/vite-plugin": "^1.0.3",
+    "@quasar/vite-plugin": "^1.0.4",
     "@types/node": "^16.11.12",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",

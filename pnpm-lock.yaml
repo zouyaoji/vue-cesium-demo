@@ -5,7 +5,7 @@ specifiers:
   '@commitlint/config-conventional': ^13.1.0
   '@commitlint/cz-commitlint': ^13.1.0
   '@quasar/extras': ^1.12.2
-  '@quasar/vite-plugin': ^1.0.3
+  '@quasar/vite-plugin': ^1.0.4
   '@turf/turf': ^6.5.0
   '@types/node': ^16.11.12
   '@typescript-eslint/eslint-plugin': ^5.5.0
@@ -68,7 +68,7 @@ devDependencies:
   '@commitlint/cli': 13.2.1
   '@commitlint/config-conventional': 13.2.0
   '@commitlint/cz-commitlint': 13.2.1_commitizen@4.2.4
-  '@quasar/vite-plugin': 1.0.3_06bdf68f1aab0792e0184a36e2257fb6
+  '@quasar/vite-plugin': 1.0.4_06bdf68f1aab0792e0184a36e2257fb6
   '@types/node': 16.11.12
   '@typescript-eslint/eslint-plugin': 5.9.0_5870e1840bd68c61995d4c76d82bfcf0
   '@typescript-eslint/parser': 5.9.0_eslint@7.32.0+typescript@4.5.2
@@ -590,8 +590,8 @@ packages:
     resolution: {integrity: sha512-WDsmEdKJX5axXlkrVZUGAq++tsJ2jRwgSnZXt4TT6csyxM0rmDAoVbYNrc0KaQuEe9QXgHT2QDaaYzymfE616A==}
     dev: false
 
-  /@quasar/vite-plugin/1.0.3_06bdf68f1aab0792e0184a36e2257fb6:
-    resolution: {integrity: sha512-gpLdupSZ2e48P98P4h06QFh2qJjB1XPF6yxPvUZFZYR+28mhKRkzZKDG1A3fs2CK19ca1lJyZkASARtorIkfOw==}
+  /@quasar/vite-plugin/1.0.4_06bdf68f1aab0792e0184a36e2257fb6:
+    resolution: {integrity: sha512-rH3QKL1p1bvAki62m2Jovh4I84iQifcPSMverzvMxjzKAqRhaxcDqBwJLC5WxnzJ8DWy/rAPI7pQAWlImG7Q7Q==}
     engines: {node: '>=12'}
     peerDependencies:
       quasar: ^2.0.0

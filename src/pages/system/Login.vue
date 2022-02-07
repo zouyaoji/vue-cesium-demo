@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-01 17:36:48
- * @LastEditTime: 2022-02-06 15:10:34
+ * @LastEditTime: 2022-02-07 10:01:29
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\system\Login.vue
@@ -132,3 +132,10 @@ const onReset = () => {
   form.value = { username: '', password: '' }
 }
 </script>
+
+<style scoped>
+.form-login {
+  padding: 0;
+  width: 100%;
+}
+</style>

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-01-05 14:07:03
+ * @LastEditTime: 2022-02-07 09:50:34
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -9,6 +9,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('./package.json')
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
@@ -30,7 +31,7 @@ export default ({ mode }) => {
         template: { transformAssetUrls }
       }),
       quasar({
-        sassVariables: './src/assets/style/public.scss'
+        sassVariables: 'src/assets/style/public.scss'
       }),
       htmlPlugin()
     ],
@@ -83,6 +84,7 @@ export default ({ mode }) => {
     },
     define: {
       __APP_VERSION__: JSON.stringify(packageJson.version)
-    }
+    },
+    base: './'
   })
 }
