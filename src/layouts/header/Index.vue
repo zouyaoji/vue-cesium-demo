@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-01-10 16:53:07
+ * @LastEditTime: 2022-02-09 14:49:05
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -36,6 +36,7 @@
         <header-log v-if="isDevelopment" />
         <header-fullscreen />
         <header-theme />
+        <header-locale />
         <header-user />
       </div>
     </div>
@@ -46,6 +47,7 @@ import HeaderLog from './log/Index.vue'
 import HeaderFullscreen from './fullscreen/Index.vue'
 import HeaderTheme from './theme/Index.vue'
 import HeaderUser from './user/Index.vue'
+import HeaderLocale from './locale/Index.vue'
 
 import { reactive, ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
