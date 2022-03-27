@@ -1,10 +1,10 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-27 11:36:53
- * @LastEditTime: 2021-12-14 16:53:12
+ * @LastEditTime: 2022-02-09 14:31:28
  * @LastEditors: zouyaoji
  * @Description:
- * @FilePath: \vue-cesium-demo\src\store\modules\system\theme.js
+ * @FilePath: \vue-cesium-demo\src\store\modules\system\theme.ts
  */
 import { get } from 'lodash'
 import setting from '@src/config/setting.js'
@@ -15,7 +15,7 @@ export default {
     // 主题
     list: get(setting, 'theme.list', []),
     // 现在激活的主题 这应该是一个名字 不是对象
-    activeName: get(setting, 'theme.list[0].name', 'h2o')
+    activeName: get(setting, 'theme.list[0].name', 'classic')
   },
   getters: {
     /**

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-02-06 22:00:25
+ * @LastEditTime: 2022-02-09 14:13:22
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -196,11 +196,6 @@ export default defineComponent({
     const onPickEvt = picked => {
       if (picked) {
         if (picked.id !== '__Vc__Pick__Location__') {
-          // 暂未处理
-          if (picked.pickedFeature?.primitive?.properties?.name == '东湖大道祥中路口') {
-            // 调用外包内涝效果组件
-            // status.waterState = true
-          }
           selectedByPick = true
           // 隐藏要素信息面板
           toggleGlobalLayout({
