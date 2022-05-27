@@ -16,23 +16,23 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "baseUrl": "./",
+    "types": ["vue-cesium/global.d.ts", "vue-cesium/Cesium.d.ts", "vite/client"],
     "paths": {
-      "app/*": ["*"],
       "@src/*": ["src/*"],
+      "@api/*": ["src/api/*"],
+      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@composables/*": ["src/composables/*"],
+      "@config/*": ["src/config/*"],
+      "@i18n/*": ["src/i18n/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
-      "@assets/*": ["src/assets/*"],
-      "@boot/*": ["src/boot/*"],
-      "@api/*": ["src/api/*"],
-      "@config/*": ["src/config/*"],
-      "@plugins/*": ["src/plugins/*"],
-      "@utils/*": ["src/utils/*"],
-      "@store/*": ["src/store/*"],
       "@router/*": ["src/router/*"],
+      "@store/*": ["src/store/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
       "vue$": ["node_modules/vue/dist/vue.runtime.esm-bundler.js"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings/*"]
+  "include": ["src/**/*", "typings/*", "node_modules/vue-cesium/Cesium.d.ts", "node_modules/vue-cesium/global.d.ts"]
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-02-07 09:50:34
+ * @LastEditTime: 2022-05-27 15:45:16
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -38,17 +38,18 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         '@src': resolve(__dirname, './src'),
+        '@api': resolve(__dirname, './src/api'),
+        '@assets': resolve(__dirname, './src/assets'),
         '@components': resolve(__dirname, './src/components'),
         '@composables': resolve(__dirname, './src/composables'),
+        '@config': resolve(__dirname, './src/config'),
+        '@i18n': resolve(__dirname, './src/i18n'),
         '@layouts': resolve(__dirname, './src/layouts'),
         '@pages': resolve(__dirname, './src/pages'),
-        '@assets': resolve(__dirname, './src/assets'),
-        '@boot': resolve(__dirname, './src/boot'),
         '@router': resolve(__dirname, './src/router'),
         '@store': resolve(__dirname, './src/store'),
-        '@utils': resolve(__dirname, './src/utils'),
-        '@api': resolve(__dirname, './src/api'),
-        '@config': resolve(__dirname, './src/config')
+        '@types': resolve(__dirname, './src/types'),
+        '@utils': resolve(__dirname, './src/utils')
       }
     },
     server: {
@@ -56,14 +57,15 @@ export default ({ mode }) => {
       https: false,
       port: 3000,
       proxy: {
-        '/customimage': {
-          target: 'http://api0.map.bdimg.com/customimage',
+        '/traffictile': {
+          target: 'https://tm.amap.com/trafficengine/mapabc/traffictile',
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/customimage/, '/')
+          rewrite: path => path.replace(/^\/traffictile/, '/')
         }
       }
     },
     build: {
+      minify: 'terser',
       terserOptions: {
         compress: {
           drop_console: true
@@ -74,7 +76,7 @@ export default ({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('/node_modules/')) {
-              const modules = ['quasar']
+              const modules = ['quasar', 'vue-cesium', 'echarts']
               const chunk = modules.find(module => id.includes(`/node_modules/${module}`))
               return chunk ? `vendor-${chunk}` : 'vendor'
             }
