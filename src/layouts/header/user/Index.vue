@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:23:46
- * @LastEditTime: 2022-05-26 10:08:50
+ * @LastEditTime: 2022-05-27 19:07:57
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\user\Index.vue
 -->
 <template>
-  <q-btn dense rounded no-caps size="md" class="q-mr-sm" auto-close icon="person" :label="user.info?.sysUser?.username">
+  <q-btn dense rounded no-caps size="md" class="q-mr-sm" auto-close icon="person" :label="user.info?.username">
     <q-menu>
       <q-list dense>
         <q-item v-close-popup clickable dense @click="onItemClick">
