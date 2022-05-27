@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-02-09 14:49:05
+ * @LastEditTime: 2022-05-26 10:01:29
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -50,17 +50,17 @@ import HeaderUser from './user/Index.vue'
 import HeaderLocale from './locale/Index.vue'
 
 import { reactive, ref, computed, onMounted } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 
 const searchActive = ref(false)
-const $store = useStore()
 
 const title = computed(() => {
   return import.meta.env.VITE_VUE_APP_TITLE
 })
 
 const navMenus = computed(() => {
-  return $store.state.system.menu.header.length ? $store.state.system.menu.header[0].children : []
+  const header = store.system.useMenuStore().header
+  return header.length ? header[0].children : []
 })
 
 const isDevelopment = computed(() => {

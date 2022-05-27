@@ -1,14 +1,14 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-02-10 17:07:38
+ * @LastEditTime: 2022-05-26 14:27:21
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
 -->
 <template>
   <vc-config-provider :locale="vclocale">
-    <vc-viewer class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
+    <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
       <vc-navigation :offset="navOffset" :compass-opts="compassOpts" />
       <!-- 栅格数据图层 -->
       <template v-for="(item, index) in layerList" :key="'layer' + index">
@@ -47,10 +47,10 @@
 <script setup lang="ts">
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { ref, computed, toRaw, reactive } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 import { layout } from '@src/utils'
 import type { VcReadyObject } from 'vue-cesium/es/utils/types'
-import type { VcCompassProps, VcConfigProvider } from 'vue-cesium'
+import type { VcCompassProps, VcConfigProvider, VcViewerRef } from 'vue-cesium'
 import type { VcComponentInternalInstance, VcBtnTooltipProps, VcActionTooltipProps } from 'vue-cesium/lib/utils/types'
 import { VcDrawingOpts } from 'vue-cesium/es/utils/drawing-types'
 import { useI18n } from 'vue-i18n'
@@ -76,8 +76,8 @@ const camera = ref({
 })
 
 const { registerTimeout } = useTimeout()
-const viewerRef = ref(null)
-const navOffset = [0, 75]
+const viewerRef = ref<VcViewerRef>(null)
+const navOffset: [number, number] = [0, 75]
 const compassOpts = ref<VcCompassProps>({
   outerOptions: {
     icon: 'svguse:#vc-icons-compass-outer'
@@ -85,20 +85,20 @@ const compassOpts = ref<VcCompassProps>({
   duration: 5
 })
 
-const $store = useStore()
-const mouseOverNameOpts = $store.state.viewer.overlay.mouseOverNameOpts
-const selectedRenderData = $store.state.viewer.render.selectedRenderData
+const mouseOverNameOpts = store.viewer.useOverlayStore().mouseOverNameOpts
+const selectedRenderData = store.viewer.useRenderStore().selectedRenderData
 
 const measurementFabOptions: any = {
   direction: 'right'
 }
 
 // computed
-const layerList = computed(() => [...$store.state.viewer.layer.baseLayers, ...$store.state.viewer.layer.rasterLayers])
-const vectorLayers = computed(() => $store.state.viewer.layer.vectorLayers)
-const onOutlineReady = (a: VcReadyObject) => {
-  console.log(a)
-}
+const layerList = computed(() => [
+  ...store.viewer.useLayerStore().baseLayers,
+  ...store.viewer.useLayerStore().rasterLayers
+])
+const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
+
 // methods
 const onViewerReady = readyObj => {
   emit('viewerReady', readyObj)

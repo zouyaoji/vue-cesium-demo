@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:02:05
- * @LastEditTime: 2022-01-10 16:43:03
+ * @LastEditTime: 2022-05-26 10:06:29
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\log\LogTable.vue
@@ -29,12 +29,11 @@
 
 <script lang="ts" setup>
 import { ref, computed, reactive } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 import { Notify } from 'quasar'
 import * as logger from '@src/utils/logger'
 const webStoragePrefix = import.meta.env.VITE_VUE_APP_PREFIX
 
-const $store = useStore()
 const initialPagination = reactive({
   sortBy: 'desc',
   descending: false,
@@ -74,7 +73,7 @@ const columns = ref<any>([
 ])
 
 const logs = computed(() => {
-  return $store.state.system.log.log
+  return store.system.useLogStore().log
 })
 
 const handleShowMore = log => {

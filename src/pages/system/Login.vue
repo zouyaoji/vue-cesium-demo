@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-01 17:36:48
- * @LastEditTime: 2022-02-07 10:01:29
+ * @LastEditTime: 2022-05-26 14:29:36
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\system\Login.vue
@@ -9,7 +9,7 @@
 <template>
   <div class="q-pa-md page-login z-top">
     <div class="login-container col row">
-      <q-form greedy class="form-login col-md-5" @submit="onSubmit" @reset="onReset">
+      <q-form greedy class="form-login" @submit="onSubmit" @reset="onReset">
         <div class="text-h4 q-my-sm">登录</div>
         <q-input v-model="form.username" outlined label="用户名" lazy-rules :rules="rules.username">
           <template #prepend>
@@ -105,10 +105,9 @@ import qs from 'qs'
 import { useQuasar } from 'quasar'
 import { ref, reactive, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 
 const $q = useQuasar()
-const $store = useStore()
 const $router = useRouter()
 
 const form = ref({
@@ -122,10 +121,13 @@ const rules = {
   rememberMe: [val => !!val || 'You need to accept the license and terms first']
 }
 const onSubmit = async () => {
-  $store.dispatch('system/account/login', form.value).then(res => {
-    // 重定向对象不存在则返回顶层路径
-    $router.replace($router.currentRoute.value.query.redirect || ('/index' as any))
-  })
+  store.system
+    .useAccountStore()
+    .login(form.value)
+    .then(() => {
+      // 重定向对象不存在则返回顶层路径
+      $router.replace(($router.currentRoute.value.query.redirect as string) || '/index')
+    })
 }
 
 const onReset = () => {
@@ -133,7 +135,7 @@ const onReset = () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .form-login {
   padding: 0;
   width: 100%;

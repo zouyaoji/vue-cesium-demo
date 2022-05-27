@@ -1,13 +1,13 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-02-09 14:13:22
+ * @LastEditTime: 2022-05-26 10:18:54
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
  */
 import { defineComponent, h, watch, ref, nextTick } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 import { cloneDeep } from 'lodash'
 import {
   VcCollectionBillboard,
@@ -27,6 +27,7 @@ import { setMouseOverlayLabel, clearMouseOverlayLabel } from '@src/utils/overlay
 
 import { toggleGlobalLayout } from '@src/utils/layout'
 import { logger } from '@src/utils'
+import { VcRenderDataset } from '@src/types/render-data'
 
 const cmpMap = {
   VcCollectionPrimitive,
@@ -42,11 +43,10 @@ const cmpMap = {
 export default defineComponent({
   name: 'RenderData',
   setup(props, ctx) {
-    const $store = useStore()
     const $vc = useVueCesium()
 
-    const renderDatas = $store.state.viewer.render.renderDatas
-    const selectedRenderData = $store.state.viewer.render.selectedRenderData
+    const renderDatas = store.viewer.useRenderStore().renderDatas
+    const selectedRenderData = store.viewer.useRenderStore().selectedRenderData
     const selectionIndicatorRef = ref(null)
     let selectedByPick = false
     const { registerTimeout, removeTimeout } = useTimeout()
@@ -205,8 +205,6 @@ export default defineComponent({
           setTimeout(() => {
             const { viewer } = $vc
             const { defined, JulianDate, BoundingSphere } = Cesium
-
-            const renderingApi = $store.getters['viewer/render/renderingApi']
             // zouyaoji tips
             // 面图元 对象用的 PolygonPrimitive，feature 存 PolygonPrimitive 上面了
             // Cesium 拾取 API直接拾取到的是 PolygonPrimitive._primitive
@@ -214,7 +212,7 @@ export default defineComponent({
             const feature = picked.cesiumObject?.feature || picked.cesiumObject?._vcParent?.feature
             if (defined(feature)) {
               nextTick(() => {
-                const { actualRenderingType, datasetId, id } = feature.properties
+                const { actualRenderingType, datasetId, id, renderingApi } = feature.properties
                 highlightRenderData(actualRenderingType, datasetId, id).then(() => {
                   let boundingSphere, positions, position
                   const pickedFeature = picked.cesiumObject
@@ -270,6 +268,36 @@ export default defineComponent({
       dataset.cmpRef = el
     }
 
+    const getChildRenderContent = (datasets: Array<VcRenderDataset>) => {
+      const child = []
+      datasets?.forEach(dataset => {
+        const cmp = cmpMap[dataset.cmpName]
+        if (!cmp) {
+          logger.error(
+            `添加渲染数据集失败，原因：没要找到渲染组件名【${dataset.cmpName}】。`,
+            '渲染集合数据模型：',
+            dataset
+          )
+          return
+        }
+
+        child.push(
+          h(
+            cmp,
+            {
+              ...dataset.props,
+              ref: setRef.bind(dataset),
+              onMouseover: onMouserOver,
+              onMouseout: onMouseOut
+            },
+            () => getChildRenderContent(dataset?.children)
+          )
+        )
+      })
+
+      return child
+    }
+
     return () => {
       const renders = []
       // 拾取
@@ -292,12 +320,16 @@ export default defineComponent({
             return
           }
           renders.push(
-            h(cmp, {
-              ...dataset.props,
-              ref: setRef.bind(dataset),
-              onMouseover: onMouserOver,
-              onMouseout: onMouseOut
-            })
+            h(
+              cmp,
+              {
+                ...dataset.props,
+                ref: setRef.bind(dataset),
+                onMouseover: onMouserOver,
+                onMouseout: onMouseOut
+              },
+              () => getChildRenderContent(dataset?.children)
+            )
           )
         })
       })

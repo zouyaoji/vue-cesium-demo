@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:14:41
- * @LastEditTime: 2022-02-06 22:55:31
+ * @LastEditTime: 2022-05-26 09:50:42
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\interaction\Index.vue
@@ -21,22 +21,21 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 import LayerManager from '@src/components/layer-manager/Index.vue'
 import { layout } from '@src/utils'
 
 // state
-const $store = useStore()
-const indexLayout = $store.state.system.layout.index
 
 // computed
 const navMenus = computed(() => {
-  return $store.state.system.menu.header.length ? $store.state.system.menu.header[0].children : []
+  const header = store.system.useMenuStore().header
+  return header.length ? header[0].children : []
 })
 
 const onLayerManagerToggle = () => {
   layout.toggleGlobalLayout({
-    layerManager: !$store.state.system.layout.global.layerManager
+    layerManager: !store.system.useLayoutStore().global.layerManager
   })
 }
 </script>

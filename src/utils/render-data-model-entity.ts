@@ -1,88 +1,204 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-11-17 23:52:31
- * @LastEditTime: 2022-02-06 23:12:03
+ * @LastEditTime: 2022-05-26 14:00:37
  * @LastEditors: zouyaoji
  * @Description: 为 GeoJSON 数据生成  entity api 数据模型
  * @FilePath: \vue-cesium-demo\src\utils\render-data-model-entity.ts
  */
 import { toRef } from 'vue'
-import { polygonToLineString, lineStringToPolygon } from '@turf/turf'
+import type { Position, Polygon, MultiPolygon, Properties, Feature, FeatureCollection, LineString } from '@turf/turf'
+import { polygonToLineString, lineStringToPolygon, centroid, centerOfMass } from '@turf/turf'
 import { cloneDeep } from 'lodash'
+import { VcFeature } from '@src/types/render-data'
+import { VcEntityProps } from 'vue-cesium'
 
 /**
- * 创建 VcGraphicPoint 组件数据模型
- * @param {*} dataset 数据集
- * @param {*} coordinates 点坐标
- * @param {*} renderingType 渲染类型
- * @param {*} feature 要素
- * @returns 返回支持用 VcGraphicPoint 渲染的模型。
+ * 将 Point 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
  */
-function createVcGraphicPointModel(dataset, coordinates, renderingType, feature) {
-  const show = toRef(feature.properties, 'checked')
-  const gisshow = JSON.parse(dataset.gisshow) // todo 处理 gisshow 为空的情况
-  feature.properties.actualRenderingType = renderingType
-
-  const entity: any = {
-    position: coordinates,
-    show,
-    feature: cloneDeep(feature)
-  }
-  if (renderingType === 'billboard') {
-    entity.billboard = {
-      image: '',
-      color: '#ffc10',
-      scale: 1
-    }
-  } else {
-    entity.point = {
-      color: gisshow.giscolor,
-      pixelSize: 8
-    }
-  }
-  return entity
+export function processPoint2EntityModel(props, feature, renderingType) {
+  return createVcGraphicPointModel(props, feature.geometry.coordinates, renderingType, feature)
 }
 
 /**
- * 创建 VcGraphicPolyline 组件数据模型
- * @param {*} dataset 数据集。
- * @param {*} coordinates 线坐标
- * @param {*} renderingType 渲染类型
- * @param {*} feature 要素
- * @returns 返回支持用 VcGraphicPolyline 渲染的模型。
+ * 将 MultiPoint 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
  */
-function createVcGraphicPolylineModel(dataset, coordinates, renderingType, feature) {
-  const gisshow = JSON.parse(dataset.gisshow) // todo 处理 gisshow 为空的情况
+export function processMultiPoint2EntityModel(props, feature, renderingType) {
+  const models = []
+  const coordinates = feature.geometry.coordinates
+  for (let i = 0; i < coordinates.length; i++) {
+    models.push(createVcGraphicPointModel(props, coordinates[i], renderingType, feature))
+  }
+
+  return models
+}
+
+/**
+ * 将 LineString 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
+ */
+export function processLineString2EntityModel(props, feature, renderingType) {
+  return createVcGraphicPolylineModel(props, feature.geometry.coordinates, renderingType, feature)
+}
+
+/**
+ * 将 MultiLineString 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
+ */
+export function processMultiLineString2EntityModel(props, feature, renderingType) {
+  const models = []
+  const lineStrings = feature.geometry.coordinates
+  for (let i = 0; i < lineStrings.length; i++) {
+    models.push(createVcGraphicPolylineModel(props, lineStrings[i], renderingType, feature))
+  }
+  return models
+}
+
+/**
+ * 将 Polygon 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
+ */
+export function processPolygon2EntityModel(props, feature, renderingType) {
+  return createVcGraphicPolygonModel(props, feature.geometry.coordinates, renderingType, feature)
+}
+
+/**
+ * 将 MultiPolygon 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
+ * @param props 渲染参数
+ * @param feature 要素
+ * @param renderingType 渲染类型
+ * @returns
+ */
+export function processMultiPolygon2EntityModel(props, feature, renderingType) {
+  const models = []
+  const polygons = feature.geometry.coordinates
+  for (let i = 0; i < polygons.length; i++) {
+    const result = createVcGraphicPolygonModel(props, polygons[i], renderingType, feature)
+    const results = Array.isArray(result) ? result : [result]
+    models.push(...results)
+  }
+  return models
+}
+
+/**
+ * 创建 Point 类型的 GeoJSON 数据渲染模型。可以渲染为 point, billboard, label。
+ * @param props
+ * @param coordinates
+ * @param renderingType
+ * @param feature
+ * @returns
+ */
+function createVcGraphicPointModel(
+  props: VcEntityProps,
+  coordinates: Position,
+  renderingType: string,
+  feature: VcFeature
+) {
+  const show = toRef(feature.properties, 'checked')
+  feature.properties.actualRenderingType = renderingType
+
+  const entityModel: any = {
+    position: coordinates,
+    show: show,
+    feature: cloneDeep(feature)
+  }
+  if (renderingType === 'billboard') {
+    const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
+    entityModel.billboard = {
+      ...billboardProps
+    }
+  } else if (renderingType === 'point') {
+    const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
+    entityModel.point = {
+      ...pointProps
+    }
+  } else if (renderingType === 'label') {
+    const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
+    entityModel.label = {
+      text: feature.properties.text || feature.properties.name,
+      ...labelProps
+    }
+  }
+  return entityModel
+}
+
+/**
+ * 创建 LineString 类型的 GeoJSON 数据渲染模型。可以渲染为 polyline, polygon, point, billboard, label。
+ * @param props
+ * @param coordinates
+ * @param renderingType
+ * @param feature
+ * @returns
+ */
+function createVcGraphicPolylineModel(
+  props: VcEntityProps,
+  coordinates: Position[],
+  renderingType: string,
+  feature: VcFeature
+) {
   const show = toRef(feature.properties, 'checked')
   feature.properties.actualRenderingType = renderingType
 
   if (renderingType === 'polygon') {
-    // 线要素 用 VcGraphicPolygon 组件展示
-    const featurePolygon = lineStringToPolygon(feature)
-    return processPolygon2EntityModel(dataset, featurePolygon, renderingType)
-    // return
-  } else if (renderingType === 'billboard') {
-    // 线要素 用 VcGraphicBillboard 组件展示中心点
-    // 要求有中心点字段，目前取的是 feature.properties 有 longitude 和 latitude 字段值
-    const entity = {
+    const featurePolygon = lineStringToPolygon(feature as Feature<LineString, Properties>)
+    return processPolygon2EntityModel(props, featurePolygon, renderingType)
+  } else if (renderingType === 'billboard' || renderingType === 'point' || renderingType === 'label') {
+    // 计算中心点
+    const center = feature.geometry.type === 'MultiPolygon' ? centroid(feature) : centerOfMass(feature)
+    const entity: any = {
       show,
-      position: [feature.properties.longitude, feature.properties.latitude],
-      billboard: {
-        image: dataset.iconMapV2,
-        color: gisshow.giscolor,
-        scale: 1
-      },
+      position: center.geometry.coordinates,
       feature: cloneDeep(feature)
     }
+    switch (renderingType) {
+      case 'billboard': {
+        const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
+        entity.billboard = {
+          ...billboardProps
+        }
+        break
+      }
+      case 'point': {
+        const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
+        entity.point = {
+          ...pointProps
+        }
+        break
+      }
+      case 'label': {
+        const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
+        entity.label = {
+          text: feature.properties.text || feature.properties.name,
+          ...labelProps
+        }
+      }
+    }
+
     return entity
   } else {
-    // 线要素 用 VcPolyline 组件展示
+    const polylineProps = Object.assign({}, props.polyline, feature.properties?.props?.polyline)
     const entity = {
       show,
       polyline: {
         positions: coordinates,
-        material: gisshow.giscolor,
-        width: gisshow.width
+        ...polylineProps
       },
       feature: cloneDeep(feature)
     }
@@ -90,39 +206,47 @@ function createVcGraphicPolylineModel(dataset, coordinates, renderingType, featu
   }
 }
 
-function createVcGraphicPolygonModel(dataset, coordinates, renderingType, feature) {
-  const gisshow = JSON.parse(dataset.gisshow) // todo 处理 gisshow 为空的情况
+/**
+ * 创建 Polygon 类型的 GeoJSON 数据渲染模型。可以渲染为 polyline, polygon, point, billboard, label。
+ * @param props
+ * @param coordinates
+ * @param renderingType
+ * @param feature
+ * @returns
+ */
+function createVcGraphicPolygonModel(
+  props: VcEntityProps,
+  coordinates: Position[][] | Position[][][],
+  renderingType: string,
+  feature: VcFeature
+) {
   const show = toRef(feature.properties, 'checked')
   feature.properties.actualRenderingType = renderingType
 
   if (renderingType === 'polyline') {
-    // 面要素 用 VcGraphicPolyline 组件展示
-    // 需要转换一下
-    const featureLine = polygonToLineString(feature)
-    return processLineString2EntityModel(dataset, featureLine, renderingType)
-    // todo
-  } else if (renderingType === 'billboard') {
-    // 面要素 用 VcGraphicBillboard 展示中心点
-    // 要求有中心点字段，目前取的是 feature.properties 有 longitude 和  latitude字段值
-    const entity = {
-      show,
-      position: [feature.properties.longitude, feature.properties.latitude],
-      billboard: {
-        image: dataset.iconMapV2,
-        color: gisshow.giscolor,
-        scale: 1
-      },
-      feature: cloneDeep(feature)
+    // 面对象渲染成线对象，需要转换一下
+    // MultiPolygon 会得到 FeatureCollection
+    // Polygon 返回 Feature
+    if (feature.geometry.type === 'MultiPolygon') {
+      const featureCollection = polygonToLineString(feature as Feature<MultiPolygon, Properties>) as FeatureCollection
+      const models = []
+      featureCollection.features.forEach(featureLine => {
+        models.push(processLineString2EntityModel(props, featureLine, renderingType))
+      })
+
+      return models
+    } else if (feature.geometry.type === 'Polygon') {
+      // Todo 待测试
+      const featureLine = polygonToLineString(feature as Feature<Polygon, Properties>)
+      return processLineString2EntityModel(props, featureLine, renderingType)
     }
-    return entity
-  } else {
-    // 面要素 用 VcGraphicPolygon 展示
+  } else if (renderingType === 'polygon') {
     // 处理岛洞
     const holes = []
     for (let i = 1; i < coordinates.length; i++) {
       holes.push(coordinates[i])
     }
-
+    const polygonProps = Object.assign({}, props.polygon, feature.properties?.props?.polygon)
     const entity = {
       show,
       polygon: {
@@ -130,93 +254,44 @@ function createVcGraphicPolygonModel(dataset, coordinates, renderingType, featur
           positions: coordinates[0],
           holes
         },
-        material: gisshow.giscolor,
-        height: 0
+        height: 0,
+        ...polygonProps
       },
       feature: cloneDeep(feature)
     }
     return entity
+  } else if (renderingType === 'billboard' || renderingType === 'point' || renderingType === 'label') {
+    // 计算中心点
+    const center = feature.geometry.type === 'MultiPolygon' ? centroid(feature) : centerOfMass(feature)
+    const entity: any = {
+      show,
+      position: center.geometry.coordinates,
+      feature: cloneDeep(feature)
+    }
+    switch (renderingType) {
+      case 'billboard': {
+        const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
+        entity.billboard = {
+          ...billboardProps
+        }
+        break
+      }
+      case 'point': {
+        const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
+        entity.point = {
+          ...pointProps
+        }
+        break
+      }
+      case 'label': {
+        const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
+        entity.label = {
+          text: feature.properties.text || feature.properties.name,
+          ...labelProps
+        }
+      }
+    }
+
+    return entity
   }
-}
-
-/**
- * 将 GeoJSON Point 数据处理成 Entiy API 数据模型。
- * @param {*} dataset 数据集模型
- * @param {*} feature 要素
- * @param {*} renderingType 渲染类型
- * @returns
- */
-export function processPoint2EntityModel(dataset, feature, renderingType) {
-  return createVcGraphicPointModel(dataset, feature.geometry.coordinates, renderingType, feature)
-}
-
-/**
- * 将 GeoJSON Point 数据处理成 Entiy API 数据模型。
- * @param {*} dataset 数据集模型
- * @param {*} feature 要素
- * @param {*} renderingType 渲染类型
- * @returns
- */
-export function processMultiPoint2EntityModel(dataset, feature, renderingType) {
-  const models = []
-  const coordinates = feature.geometry.coordinates
-  for (let i = 0; i < coordinates.length; i++) {
-    models.push(createVcGraphicPointModel(dataset, coordinates[i], renderingType, feature))
-  }
-
-  return models
-}
-
-/**
- * 将 GeoJSON LineString 数据处理成 Entity API 数据模型。
- * @param {*} dataset
- * @param {*} feature
- * @param {*} renderingType
- * @returns
- */
-export function processLineString2EntityModel(dataset, feature, renderingType) {
-  return createVcGraphicPolylineModel(dataset, feature.geometry.coordinates, renderingType, feature)
-}
-
-/**
- * 将 GeoJSON MultiLineString 数据处理成 Entity API 数据模型。
- * @param {*} dataset
- * @param {*} feature
- * @param {*} renderingType
- * @returns
- */
-export function processMultiLineString2EntityModel(dataset, feature, renderingType) {
-  const models = []
-  const lineStrings = feature.geometry.coordinates
-  for (let i = 0; i < lineStrings.length; i++) {
-    models.push(createVcGraphicPolylineModel(dataset, lineStrings[i], renderingType, feature))
-  }
-  return models
-}
-
-/**
- * 将 GeoJSON Polygon 数据处理成 Entity API 数据模型。
- * @param {*} dataset
- * @param {*} feature
- * @param {*} renderingType
- * @returns
- */
-export function processPolygon2EntityModel(dataset, feature, renderingType) {
-  return createVcGraphicPolygonModel(dataset, feature.geometry.coordinates, renderingType, feature)
-}
-
-/**
- * 将 GeoJSON MultiPolygon 数据处理成 Entity API 数据模型。
- * @param {*} dataset
- * @param {*} feature
- * @param {*} renderingType
- * @returns
- */
-export function processMultiPolygon2EntityModel(dataset, feature, renderingType) {
-  const models = []
-  const lineStrings = feature.geometry.coordinates
-  for (let i = 0; i < lineStrings.length; i++) {
-    models.push(createVcGraphicPolygonModel(dataset, lineStrings[i], renderingType, feature))
-  }
-  return models
 }

@@ -1,13 +1,13 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-02 10:27:38
- * @LastEditTime: 2022-01-05 09:19:45
+ * @LastEditTime: 2022-05-26 10:48:03
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\tools.ts
  */
 import { Notify } from 'quasar'
-import store from '@store/index'
+import { store, pinia } from '@store/index'
 import { logger } from '@src/utils'
 
 /**
@@ -60,7 +60,7 @@ export function responseError(data = {}, msg = '请求失败', code = 500) {
  */
 export function errorLog(error) {
   // 添加到日志
-  store.dispatch('system/log/push', {
+  store.system.useLogStore(pinia).push({
     message: '数据请求异常',
     type: 'danger',
     meta: {

@@ -1,14 +1,14 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-27 15:30:13
- * @LastEditTime: 2022-01-17 11:17:47
+ * @LastEditTime: 2022-05-26 10:50:27
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\logger.ts
  */
 import { isString } from 'vue-cesium/es/utils/util'
 import { Notify } from 'quasar'
-import store from '@store/index'
+import { store, pinia } from '@store/index'
 const webStoragePrefix = import.meta.env.VITE_VUE_APP_PREFIX
 
 /**
@@ -130,7 +130,7 @@ const makeWarn = (prefix = '') => {
     console.warn(error.stack, ...args)
 
     // 添加到日志
-    store.dispatch('system/log/push', {
+    store.system.useLogStore(pinia).push({
       message: '业务逻辑警告',
       type: 'warning',
       meta: {
@@ -161,7 +161,7 @@ const makeError = (prefix = '') => {
     // 打印到控制台
     console.error(error.stack, ...args)
     // 添加到日志
-    store.dispatch('system/log/push', {
+    store.system.useLogStore(pinia).push({
       message: '业务逻辑异常',
       type: 'danger',
       meta: {

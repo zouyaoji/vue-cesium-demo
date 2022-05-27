@@ -1,21 +1,21 @@
 /*
- * @Author: zouyaoji@https://github.com/zouyaoji
- * @Date: 2021-09-06 16:52:09
- * @LastEditTime: 2022-01-10 17:17:56
+ * @Author: tanghuang-liu 916650458@qq.com
+ * @Date: 2022-05-13 16:47:56
  * @LastEditors: zouyaoji
- * @Description:
- * @FilePath: \vue-cesium-demo\src\store\modules\system\permission.ts
+ * @LastEditTime: 2022-05-25 21:40:28
+ * @FilePath: \vue-cesium-demo\src\store\system\permission.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import constantRoutes, { frameInRoutes } from '@src/router/routes'
 import mainLayout from '@src/layouts/MainLayout.vue'
 import router from '@src/router'
 import { menuHeader } from '@src/config/menu'
 import * as logger from '@src/utils/logger'
 import * as util from '@src/utils/util'
-import { Menu } from '@src/api/modules/system'
-// const defaultMenu = import.meta.env.VITE_VUE_APP_MENU_DEFAULT as string
-
+import { useDBStore } from './db'
+import { useMenuStore } from './menu'
+import { useSearchStore } from './search'
 const StaticMenuHeader = [...menuHeader] // 静态菜单暂存，重新登录后，需要重新加载动态菜单与此处的静态菜单合并
 
 function isEmpty(value) {
@@ -24,9 +24,9 @@ function isEmpty(value) {
   }
   return false
 }
-const pages = import.meta.globEager('../../../pages/**/*.vue')
+const pages = import.meta.globEager('../../pages/**/*.vue')
 const resolveComponent = path => {
-  const importPage = pages[`../../../pages${path}/Index.vue`]
+  const importPage = pages[`../../pages${path}/Index.vue`]
 
   if (!importPage) {
     logger.warn(`动态路由页面【${path}】加载失败。请检查页面文件是否存在。`)
@@ -118,7 +118,7 @@ function buildMenu(menuTree) {
   if (menuTree == null) {
     menuTree = []
   }
-  let menus: Array<Menu> = []
+  let menus = []
   menuTree.forEach(item => {
     if (item.type !== 10) {
       // 只有菜单类型才加入
@@ -132,64 +132,70 @@ function buildMenu(menuTree) {
     if (item.icon != null && item.icon !== '') {
       icon = item.icon
     }
-    menus.push({ ...item })
+    menus.push({ name: item.name, path: item.path, title: item.title, icon: icon, children: children })
   })
   if (menus.length === 0) {
     menus = undefined
   }
   return menus
 }
-
-const state = {
-  routes: [],
-  addRoutes: [],
-  permissions: [],
-  inited: false
-}
-
-const mutations = {
-  setRoutes: (state, { accessedRoutes: routes, permissions }) => {
-    state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
-    state.inited = true
-    state.permissions = permissions
+export const usePermissionStore = defineStore('permission', {
+  state: () => {
+    return {
+      routes: [],
+      addRoutes: [],
+      permissions: [],
+      inited: false
+    }
   },
-  clear: () => {
-    state.addRoutes = []
-    state.routes = []
-    state.inited = false
-    state.permissions = []
-  }
-}
+  getters: {
+    // inited(state) {
+    //   return state.inited
+    // },
+    // permissions(state) {
+    //   return state.permissions
+    // }
+  },
+  actions: {
+    setRoutes({ accessedRoutes: routes, permissions }) {
+      this.addRoutes = routes
+      this.routes = constantRoutes.concat(routes)
+      this.inited = true
+      this.permissions = permissions
+    },
+    clear() {
+      this.addRoutes = []
+      this.routes = []
+      this.inited = false
+      this.permissions = []
+    },
+    generateRoutes({ menuTree }) {
+      return new Promise(resolve => {
+        // 处理路由
+        const accessedRoutes = buildRouter(null, menuTree) // 根据后台获取到的资源树构建路由列表
+        const permissions = buildPermissions(menuTree, []) // 从资源树中抽取权限code列表
+        this.setRoutes({ accessedRoutes, permissions }) // 将菜单和权限存储到pinia里面
+        accessedRoutes.forEach(route => {
+          if (route.name === 'layout' && route.path === '/') {
+            route.children = route.children.concat(frameInRoutes[0].children)
+          }
+          router.addRoute(route)
+        }) // 添加动态路由
+        // 处理菜单
+        const menus = util.supplementPath(buildMenu(menuTree)) // 根据后台获取的资源树，构建菜单
+        menuHeader.splice(0, menuHeader.length)
+        menuHeader.push(...StaticMenuHeader) // 重新构建菜单列表
+        menuHeader.push(...menus) // 将动态菜单放进去
 
-const actions = {
-  generateRoutes({ rootState, state, commit }, { menuTree }) {
-    return new Promise(resolve => {
-      // 处理路由
-      const accessedRoutes = buildRouter(null, menuTree) // 根据后台获取到的资源树构建路由列表
-      const permissions = buildPermissions(menuTree, []) // 从资源树中抽取权限code列表
-      commit('setRoutes', { accessedRoutes, permissions }) // 将菜单和权限存储到vuex里面
-      accessedRoutes.forEach(route => {
-        if (route.name === 'layout' && route.path === '/') {
-          route.children = route.children.concat(frameInRoutes[0].children)
-        }
-        router.addRoute(route)
-      }) // 添加动态路由
-      // 处理菜单
-      const menus = util.supplementPath(buildMenu(menuTree)) // 根据后台获取的资源树，构建菜单
-      menuHeader.splice(0, menuHeader.length)
-      menuHeader.push(...StaticMenuHeader) // 重新构建菜单列表
-      menuHeader.push(...menus) // 将动态菜单放进去
-
-      // 重新设置顶栏菜单
-      commit('system/menu/headerSet', menuHeader, { root: true })
-      // 重新设置侧边栏菜单
-      if (rootState.system.menu.asideSet == null) {
-        // let menuDefault = defaultMenu
-        // console.log(defaultMenu)
+        // 重新设置顶栏菜单
+        const menuStore = useMenuStore()
+        menuStore.headerSet(menuHeader)
+        // 重新设置侧边栏菜单
+        // if (rootState.system.menu.asideSet == null) {
+        // let menuDefault = import.meta.env.VITE_VUE_APP_MENU_DEFAULT
         // if (menuDefault == null) {
-        //   logger.warn(`VITE_VUE_APP_MENU_DEFAULT=${defaultMenu}`)
-        //   menuDefault = (menuHeader.length - 1).toString()
+        //   logger.warn(`VITE_VUE_APP_MENU_DEFAULT=${import.meta.env.MODE.VITE_VUE_APP_MENU_DEFAULT}`)
+        //   menuDefault = menuHeader.length - 1
         // }
         // const defaultMenuIndex = parseInt(menuDefault)
         // if (defaultMenuIndex >= 0) {
@@ -197,34 +203,19 @@ const actions = {
         //   logger.debug('加载菜单成功：第', defaultMenuIndex, '个, 菜单数据：', menus)
         //   commit('system/menu/asideSet', menus, { root: true })
         // }
-      }
-      // 重新初始化菜单搜索功能
-      commit('system/search/init', menuHeader, { root: true })
-
-      resolve(true)
-    })
-  },
-  async getAccessibleMenus({ state, dispatch }) {
-    //
-  },
-  clear({ commit }) {
-    commit('clear')
+        // }
+        // 重新初始化菜单搜索功能
+        const searchStore = useSearchStore()
+        searchStore.init(menuHeader)
+        resolve(true)
+      })
+    },
+    async getAccessibleMenus({ state, dispatch }) {
+      //
+    }
   }
-}
+})
 
-const getters = {
-  inited(state) {
-    return state.inited
-  },
-  permissions(state) {
-    return state.permissions
-  }
-}
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions,
-  getters
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(usePermissionStore, import.meta.hot))
 }

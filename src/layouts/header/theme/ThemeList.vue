@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:25:04
- * @LastEditTime: 2022-01-05 17:28:13
+ * @LastEditTime: 2022-05-26 10:07:27
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\theme\ThemeList.vue
@@ -23,8 +23,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-const $store = useStore()
+import { store } from '@src/store'
 
 const columns = ref<any>([
   {
@@ -46,14 +45,14 @@ const columns = ref<any>([
   }
 ])
 const rows = computed(() => {
-  return $store.state.system.theme.list
+  return store.system.useThemeStore().list
 })
 const activeName = computed(() => {
-  return $store.state.system.theme.activeName
+  return store.system.useThemeStore().activeName
 })
 
 const handleSelectTheme = name => {
-  $store.dispatch('system/theme/set', name)
+  store.system.useThemeStore().set(name)
 }
 </script>
 

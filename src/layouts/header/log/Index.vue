@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:01:39
- * @LastEditTime: 2022-01-04 16:03:54
+ * @LastEditTime: 2022-05-26 10:05:41
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\log\Index.vue
@@ -29,16 +29,14 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
 import LogTable from './LogTable.vue'
-
-const $store = useStore()
+import { store } from '@src/store'
 
 const logLength = computed(() => {
-  return $store.getters['system/log/length']
+  return store.system.useLogStore().length
 })
 const logLengthError = computed(() => {
-  return $store.getters['system/log/lengthError']
+  return store.system.useLogStore().lengthError
 })
 const dialogVisible = ref(false)
 

@@ -1,26 +1,26 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2021-12-20 17:32:33
+ * @LastEditTime: 2022-05-25 22:40:55
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\index.ts
  */
-// import { store } from 'quasar/wrappers'
-import { createStore } from 'vuex'
-import system from './modules/system'
-import viewer from './modules/viewer'
+import { createPinia } from 'pinia'
+import { systemStore } from './system/index'
+import { viewerStore } from './viewer/index'
 
-const store = createStore({
-  modules: {
-    system,
-    viewer
+export const pinia = createPinia()
+
+/**
+ * 项目全局 store。
+ * 组件内使用不需要传 pinia，组件外使用需要传 pinia。
+ */
+export const store = {
+  system: {
+    ...systemStore
   },
-
-  // enable strict mode (adds overhead!)
-  // for dev mode and --debug builds only
-  // strict: import.meta.env.MODE === 'development'
-  strict: false
-})
-
-export default store
+  viewer: {
+    ...viewerStore
+  }
+}

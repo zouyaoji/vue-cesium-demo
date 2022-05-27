@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:23:46
- * @LastEditTime: 2022-01-20 11:47:29
+ * @LastEditTime: 2022-05-26 10:08:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\user\Index.vue
@@ -26,18 +26,18 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { onMounted } from 'vue'
-import { useStore } from 'vuex'
+import { store } from '@src/store'
 import { useVueCesium } from 'vue-cesium'
 import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
 import { layer, layout, renderData } from '@src/utils'
 
-const $store = useStore()
-const user = $store.state.system.user
+const user = store.system.useUserStore()
 const $vc = useVueCesium()
 
 const onItemClick = () => {
-  $store
-    .dispatch('system/account/logout', {
+  store.system
+    .useAccountStore()
+    .logout({
       confirm: true
     })
     .then(isLogout => {

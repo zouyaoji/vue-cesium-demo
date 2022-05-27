@@ -1,18 +1,21 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
- * @Date: 2021-09-01 17:44:35
- * @LastEditTime: 2022-01-04 22:04:48
+ * @Date: 2022-05-13 16:42:41
+ * @LastEditTime: 2022-05-25 21:39:55
  * @LastEditors: zouyaoji
  * @Description:
- * @FilePath: \vue-cesium-demo\src\store\modules\system\log.ts
+ * @FilePath: \vue-cesium-demo\src\store\system\log.ts
  */
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import dayjs from 'dayjs'
 import { get } from 'lodash'
 import { webStorage } from '@src/utils'
 
-export default {
-  namespaced: true,
-  state: {
+// main is the name of the store. It is unique across your application
+// and will appear in devtools
+export const useLogStore = defineStore('log', {
+  // a function that returns a fresh state
+  state: () => ({
     // 错误日志
     // + 日志条目的属性
     //   - message 必须 日志信息
@@ -20,7 +23,8 @@ export default {
     //   - time 必须 日志记录时间
     //   - meta 非必须 其它携带信息
     log: []
-  },
+  }),
+  // optional getters
   getters: {
     /**
      * @description 返回现存 log (all) 的条数
@@ -37,6 +41,7 @@ export default {
       return state.log.filter(log => log.type === 'danger').length
     }
   },
+  // optional actions
   actions: {
     /**
      * @description 添加一个日志
@@ -45,14 +50,14 @@ export default {
      * @param {String} param type {String} 类型
      * @param {Object} payload meta {Object} 附带的信息
      */
-    push({ rootState, commit }, { message, type = 'info', meta }) {
-      commit('push', {
+    push({ message, type = 'info', meta }) {
+      this.log.push({
         message,
         type,
         time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         meta: {
           // 当前用户信息
-          user: rootState.system.user.info,
+          // user: rootState.system.user.info,
           // 当前用户的 uuid
           uuid: webStorage.getLocalStorage('uuid'),
           // 当前的 token
@@ -63,24 +68,14 @@ export default {
           ...meta
         }
       })
-    }
-  },
-  mutations: {
-    /**
-     * @description 添加日志
-     * @param {Object} state state
-     * @param {Object} log data
-     */
-    push(state, log) {
-      state.log.push(log)
     },
-    /**
-     * @description 清空日志
-     * @param {Object} state state
-     */
-    clean(state) {
+    clean() {
       // store 赋值
-      state.log = []
+      this.log = []
     }
   }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useLogStore, import.meta.hot))
 }

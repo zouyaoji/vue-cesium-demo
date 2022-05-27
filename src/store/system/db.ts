@@ -1,18 +1,22 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
- * @Date: 2021-08-27 13:31:18
- * @LastEditTime: 2022-02-06 14:35:12
+ * @Date: 2022-05-13 16:13:37
+ * @LastEditTime: 2022-05-25 21:40:03
  * @LastEditors: zouyaoji
  * @Description:
- * @FilePath: \vue-cesium-demo\src\store\modules\system\db.ts
+ * @FilePath: \vue-cesium-demo\src\store\system\db.ts
  */
-
-import router from '@src/router'
-import { cloneDeep } from 'lodash'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { database as getDatabase, dbGet, dbSet } from '@src/utils/db'
 
-export default {
-  namespaced: true,
+// main is the name of the store. It is unique across your application
+// and will appear in devtools
+export const useDBStore = defineStore('db', {
+  // a function that returns a fresh state
+  state: () => ({}),
+  // optional getters
+  getters: {},
+  // optional actions
   actions: {
     /**
      * @description 将数据存储到指定位置 | 路径不存在会自动初始化
@@ -23,7 +27,7 @@ export default {
      * @param {Object} payload value {*} 需要存储的值
      * @param {Object} payload user {Boolean} 是否区分用户
      */
-    set(context, { dbName = 'database', path = '', value = '', user = false }) {
+    set({ dbName = 'database', path = '', value = '', user = false }) {
       dbSet({ dbName, path, value, user })
     },
     /**
@@ -35,7 +39,7 @@ export default {
      * @param {Object} payload defaultValue {*} 取值失败的默认值
      * @param {Object} payload user {Boolean} 是否区分用户
      */
-    get(context, { dbName = 'database', path = '', defaultValue = '', user = false }) {
+    get({ dbName = 'database', path = '', defaultValue = '', user = false }) {
       return dbGet({ dbName, path, defaultValue, user })
     },
     /**
@@ -43,7 +47,7 @@ export default {
      * @param {Object} context
      * @param {Object} payload user {Boolean} 是否区分用户
      */
-    database(context, { user = false } = {}) {
+    database({ user = false } = {}) {
       return getDatabase({
         user,
         defaultValue: ''
@@ -54,7 +58,7 @@ export default {
      * @param {Object} context
      * @param {Object} payload user {Boolean} 是否区分用户
      */
-    databaseClear(context, { user = false } = {}) {
+    databaseClear({ user = false } = {}) {
       return getDatabase({
         user,
         validator: () => true,
@@ -132,4 +136,8 @@ export default {
     //   })
     // }
   }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useDBStore, import.meta.hot))
 }

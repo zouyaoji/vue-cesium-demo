@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-02-06 22:59:06
+ * @LastEditTime: 2022-05-26 21:02:05
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
 -->
 <template>
-  <div class="layer-manager" :class="indexLayout.leftPanel ? '' : 'full-srceen'">
+  <div class="layer-manager" :class="indexLayout.workBench ? '' : 'full-srceen'">
     <drag-wrapper ref="dragWrapperRef">
       <common-panel
         v-show="globalLayout.layerManager"
@@ -63,20 +63,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch, nextTick } from 'vue'
-import { useStore } from 'vuex'
+import { computed, ref, watch, nextTick } from 'vue'
+import { store } from '@src/store'
 import CommonPanel from '@components/common-panel/Index.vue'
 import DragWrapper from '@components/drag-wrapper'
 import { layer, layout } from '@src/utils'
+import { storeToRefs } from 'pinia'
 
 // state
 const dragWrapperRef = ref<typeof DragWrapper | null>(null)
-const $store = useStore()
 
-const defaultbaseLayer = ref('tianditu_img')
-
-const globalLayout = $store.state.system.layout.global
-const indexLayout = $store.state.system.layout.index
+const layoutStore = store.system.useLayoutStore()
+const { global: globalLayout, index: indexLayout } = storeToRefs(layoutStore)
+const { rasterLayers, baseLayers, vectorLayers } = store.viewer.useLayerStore()
 
 // watch
 watch(
@@ -93,10 +92,14 @@ watch(
 
 // computed
 const layerList = computed(() => ({
-  rasterLayers: $store.state.viewer.layer.rasterLayers,
-  baseLayers: $store.state.viewer.layer.baseLayers,
-  vectorLayers: $store.state.viewer.layer.vectorLayers
+  rasterLayers,
+  baseLayers,
+  vectorLayers
 }))
+
+const defaultbaseLayer = computed(() => {
+  return layerList.value.baseLayers.filter(v => v.show)?.[0]?.name
+})
 
 //底图切换
 const baseLayerSwitch = (data, evt) => {
@@ -116,8 +119,8 @@ const overlayLayerSwitch = (data, evt) => {
 }
 
 const onLayerManagerToggle = () => {
-  layout.toggleGlobalLayout({
-    layerManager: !$store.state.system.layout.global.layerManager
+  layoutStore.toggleGlobalLayout({
+    layerManager: !globalLayout.value.layerManager
   })
 }
 </script>

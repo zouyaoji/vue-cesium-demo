@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-01-05 17:15:27
+ * @LastEditTime: 2022-05-26 10:44:12
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -30,32 +30,27 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { useStore } from 'vuex'
 import { get } from 'lodash'
 import MainHeader from '@src/layouts/header/Index.vue'
 import MainInteraction from '@src/components/interaction/Index.vue'
 import MainViewer from '@src/components/viewer/Index.vue'
-
+import { pinia } from '@src/store'
+import { store } from '@src/store'
 import { layout } from '@src/utils'
+import { storeToRefs } from 'pinia'
 
 // state
-const $store = useStore()
-const globalLayout = $store.state.system.layout.global
-
-// computed
-const grayActive = computed(() => {
-  return $store.state.system.gray.active
-})
+const globalLayout = storeToRefs(store.system.useLayoutStore()).global
+const { active: grayActive } = storeToRefs(store.system.useGrayStore())
 
 // lifecyle
 onMounted(() => {
   // 用户登录后从本地数据库加载一系列的设置
-  $store.dispatch('system/account/load', null, { root: true })
+  store.system.useAccountStore().load()
   // 初始化全屏监听
-  $store.dispatch('system/fullscreen/listen', null, { root: true })
-
+  store.system.useFullscreenStore().listen()
   window.onunhandledrejection = error => {
-    $store.dispatch('system/log/push', {
+    store.system.useLogStore(pinia).push({
       message: get(error, 'reason.message', 'Unknown error'),
       type: 'danger',
       meta: {
@@ -65,7 +60,7 @@ onMounted(() => {
     })
   }
   window.onerror = (event, source, lineno, colno, error) => {
-    $store.dispatch('system/log/push', {
+    store.system.useLogStore(pinia).push({
       message: get(error, 'message', 'Unknown error'),
       type: 'danger',
       meta: {
