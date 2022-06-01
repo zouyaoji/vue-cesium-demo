@@ -9,7 +9,7 @@
 
 # vue-cesium-demo
 
-## About
+## About | [简体中文](./README.zh.md)
 
 This project is a completely **open source free** front-end integration solution for VueCesium, using the latest front-end technology stack. The basic preparatory work in the early stage of the project has been done, and the sample code is attached to help the rapid development of the 3D WebGIS project.
 
