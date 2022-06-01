@@ -1,13 +1,12 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-05-31 11:48:24
+ * @LastEditTime: 2022-06-01 17:24:49
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\main.ts
  */
 import { createApp } from 'vue'
-import { createI18n } from 'vue-i18n'
 import { Quasar, Notify, Dialog, LocalStorage } from 'quasar'
 import quasarLang from 'quasar/lang/zh-CN'
 import VueCesium from 'vue-cesium'
@@ -23,18 +22,8 @@ import 'quasar/src/css/index.sass'
 
 import '@src/assets/style/index.scss'
 
-import messages from '@src/i18n'
+import { i18n } from '@src/i18n'
 import App from './App.vue'
-import { getLocalStorage } from './utils/web-storage'
-
-const locale = getLocalStorage('locale')
-const i18n = createI18n({
-  legacy: false,
-  locale: locale as string,
-  fallbackLocale: 'zh-CN',
-  globalInjection: true,
-  messages
-})
 
 const app = createApp(App)
 app.use(Quasar, {

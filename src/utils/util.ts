@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-27 15:26:12
- * @LastEditTime: 2022-01-05 17:35:22
+ * @LastEditTime: 2022-06-01 17:37:56
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\util.ts
@@ -59,7 +59,7 @@ export function randomLenNum(len, date) {
   let random = ''
   random = Math.ceil(Math.random() * 100000000000000)
     .toString()
-    .substr(0, len || 4)
+    .substring(0, len || 4)
   if (date) random = random + Date.now()
   return random
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2022-05-26 10:22:56
+ * @LastEditTime: 2022-06-01 17:28:48
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\router\index.ts
@@ -14,6 +14,7 @@ import 'nprogress/nprogress.css'
 import * as api from '@src/api'
 import * as webStorage from '@src/utils/web-storage'
 import * as util from '@src/utils/util'
+import { i18n } from '@src/i18n'
 
 const createHistory = import.meta.env.SERVER
   ? createMemoryHistory
@@ -80,6 +81,6 @@ Router.afterEach(to => {
   // 进度条
   NProgress.done()
   // 更改标题
-  util.title(to.meta.title)
+  util.title(i18n.global.t(to.meta.title as string))
 })
 export default Router
