@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:25:04
- * @LastEditTime: 2022-05-26 10:07:27
+ * @LastEditTime: 2022-06-01 16:38:15
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\theme\ThemeList.vue
@@ -24,6 +24,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { store } from '@src/store'
+import { ThemeOptions } from '@src/types/theme'
 
 const columns = ref<any>([
   {
@@ -50,20 +51,22 @@ const rows = computed(() => {
 const activeName = computed(() => {
   return store.system.useThemeStore().activeName
 })
-
+const theme = computed<ThemeOptions>(() => {
+  const themeStore = store.system.useThemeStore()
+  return themeStore.themeConfig[themeStore.activeName]
+})
 const handleSelectTheme = name => {
   store.system.useThemeStore().set(name)
 }
 </script>
 
 <style lang="scss">
-.theme-#{$theme-name} {
-  .theme-table-list {
-    width: 100%;
-
-    .q-btn.active {
-      color: $theme-color;
-    }
+.theme-table-list {
+  width: 100%;
+  color: v-bind('theme.global.themeQCardColor') !important;
+  background: transparent !important;
+  .q-btn.active {
+    color: v-bind('theme.global.themeColorActive');
   }
 }
 </style>

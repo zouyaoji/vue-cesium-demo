@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:02:05
- * @LastEditTime: 2022-05-26 10:06:29
+ * @LastEditTime: 2022-06-01 16:37:01
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\log\LogTable.vue
@@ -32,6 +32,7 @@ import { ref, computed, reactive } from 'vue'
 import { store } from '@src/store'
 import { Notify } from 'quasar'
 import * as logger from '@src/utils/logger'
+import { ThemeOptions } from '@src/types/theme'
 const webStoragePrefix = import.meta.env.VITE_VUE_APP_PREFIX
 
 const initialPagination = reactive({
@@ -76,6 +77,11 @@ const logs = computed(() => {
   return store.system.useLogStore().log
 })
 
+const theme = computed<ThemeOptions>(() => {
+  const themeStore = store.system.useThemeStore()
+  return themeStore.themeConfig[themeStore.activeName]
+})
+
 const handleShowMore = log => {
   // 打印一条日志的所有信息到控制台
   Notify.create({
@@ -92,14 +98,14 @@ const handleShowMore = log => {
 }
 </script>
 
-<style lang="scss">
-.theme-#{$theme-name} {
-  .log-table-list {
-    width: 100%;
-
-    .q-btn.active {
-      color: $theme-color;
-    }
+<style lang="scss" scoped>
+.log-table-list {
+  width: 100%;
+  color: v-bind('theme.global.themeQCardColor') !important;
+  // background: v-bind('theme.global.themeQCardBackgroundColor') !important;
+  background: transparent !important;
+  :deep(.q-btn.active) {
+    color: v-bind('theme.global.themeColorActive');
   }
 }
 </style>

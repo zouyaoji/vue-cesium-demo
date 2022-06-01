@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:01:39
- * @LastEditTime: 2022-05-26 10:05:41
+ * @LastEditTime: 2022-05-31 14:51:14
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\log\Index.vue
@@ -12,7 +12,7 @@
   </q-btn>
   <q-dialog v-model="dialogVisible">
     <q-card style="width: 1440px; max-width: 960px">
-      <q-card-section class="row items-center q-pb-none">
+      <q-card-section class="row items-center q-pb-none q-pt-xs card-header">
         <div class="text-h6">日志列表</div>
         <q-space />
         <q-btn v-close-popup icon="close" flat round dense>
@@ -32,13 +32,14 @@ import { computed, ref } from 'vue'
 import LogTable from './LogTable.vue'
 import { store } from '@src/store'
 
+const dialogVisible = ref(false)
+
 const logLength = computed(() => {
   return store.system.useLogStore().length
 })
 const logLengthError = computed(() => {
   return store.system.useLogStore().lengthError
 })
-const dialogVisible = ref(false)
 
 const tooltipContent = computed(() => {
   return logLength.value === 0

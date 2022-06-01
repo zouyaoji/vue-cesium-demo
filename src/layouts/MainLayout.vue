@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-05-26 10:44:12
+ * @LastEditTime: 2022-05-31 13:58:49
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -73,3 +73,34 @@ onMounted(() => {
   }
 })
 </script>
+<style lang="scss" scoped>
+.main-layout {
+  width: 100%;
+  overflow: hidden;
+  &.gray-mode {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+  }
+
+  header {
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    z-index: 9;
+    top: 10px;
+    left: 10px;
+    border-radius: 30px;
+    pointer-events: none;
+  }
+
+  .interaction-root {
+    height: 100vh;
+    position: relative;
+    flex-basis: 100%;
+  }
+}
+</style>

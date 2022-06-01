@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-01 17:36:48
- * @LastEditTime: 2022-05-26 14:29:36
+ * @LastEditTime: 2022-05-31 14:46:26
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\system\Login.vue
@@ -103,9 +103,10 @@
 <script lang="ts" setup>
 import qs from 'qs'
 import { useQuasar } from 'quasar'
-import { ref, reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { store } from '@src/store'
+import { ThemeOptions } from '@src/types/theme'
 
 const $q = useQuasar()
 const $router = useRouter()
@@ -120,6 +121,12 @@ const rules = {
   password: [val => (val && val.length > 0) || '请输入用户名'],
   rememberMe: [val => !!val || 'You need to accept the license and terms first']
 }
+
+const theme = computed<ThemeOptions>(() => {
+  const themeStore = store.system.useThemeStore()
+  return themeStore.themeConfig[themeStore.activeName]
+})
+
 const onSubmit = async () => {
   store.system
     .useAccountStore()
@@ -136,8 +143,54 @@ const onReset = () => {
 </script>
 
 <style lang="scss" scoped>
-.form-login {
-  padding: 0;
-  width: 100%;
+.page-login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #9053c7;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+
+  .login-container {
+    max-width: 1080px;
+    .form-login {
+      background: v-bind('theme.pageLogin.themePageLoginBackground');
+      color: v-bind('theme.pageLogin.themePageLoginColor');
+      padding: 0;
+      width: 100%;
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      margin: 0 auto;
+      // box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+    }
+    .q-checkbox {
+      margin-top: 0px;
+      user-select: none;
+    }
+    .btn-submit {
+      height: 56px;
+      background: v-bind('theme.global.themeColorAlpha');
+      &::before {
+        border-color: rgba(0, 0, 0, 0.24);
+      }
+    }
+    .oath {
+      :deep(.icon) {
+        background: v-bind('theme.global.themeColor');
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>

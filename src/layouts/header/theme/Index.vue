@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:24:45
- * @LastEditTime: 2022-01-04 15:25:54
+ * @LastEditTime: 2022-05-31 14:51:36
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\theme\Index.vue
@@ -12,7 +12,7 @@
   </q-btn>
   <q-dialog v-model="dialogVisible">
     <q-card style="width: 650px">
-      <q-card-section class="row items-center q-pb-none">
+      <q-card-section class="row items-center q-pb-none q-pt-xs card-header">
         <div class="text-h6">主题</div>
         <q-space />
         <q-btn v-close-popup icon="close" flat round dense>

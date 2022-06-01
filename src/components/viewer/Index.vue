@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-05-26 14:27:21
+ * @LastEditTime: 2022-06-01 16:25:05
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -9,7 +9,14 @@
 <template>
   <vc-config-provider :locale="vclocale">
     <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
-      <vc-navigation :offset="navOffset" :compass-opts="compassOpts" />
+      <vc-navigation
+        :offset="navOffset"
+        :compass-opts="compassOpts"
+        :zoom-opts="zoomOpts"
+        :print-opts="printOpts"
+        :location-opts="locationOpts"
+        :other-opts="otherOpts"
+      />
       <!-- 栅格数据图层 -->
       <template v-for="(item, index) in layerList" :key="'layer' + index">
         <vc-layer-imagery
@@ -46,16 +53,24 @@
 </template>
 <script setup lang="ts">
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
-import { ref, computed, toRaw, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import { store } from '@src/store'
 import { layout } from '@src/utils'
-import type { VcReadyObject } from 'vue-cesium/es/utils/types'
-import type { VcCompassProps, VcConfigProvider, VcViewerRef } from 'vue-cesium'
+import {
+  VcCompassProps,
+  VcConfigProvider,
+  VcMyLocationProps,
+  VcPrintProps,
+  VcViewerRef,
+  VcZoomControlProps
+} from 'vue-cesium'
 import type { VcComponentInternalInstance, VcBtnTooltipProps, VcActionTooltipProps } from 'vue-cesium/lib/utils/types'
 import { VcDrawingOpts } from 'vue-cesium/es/utils/drawing-types'
 import { useI18n } from 'vue-i18n'
 import enUS from 'vue-cesium/es/locale/lang/en-us'
 import zhCN from 'vue-cesium/es/locale/lang/zh-hans'
+import { ThemeOptions } from '@src/types/theme'
+import { VcNavigationOtherOpts } from 'vue-cesium/es/components/controls/navigation/defaultProps'
 const language = {
   'en-US': enUS,
   'zh-CN': zhCN
@@ -75,22 +90,83 @@ const camera = ref({
   }
 })
 
+const themeStore = store.system.useThemeStore()
+const theme = computed<ThemeOptions>(() => {
+  return themeStore.themeConfig[themeStore.activeName]
+})
+
 const { registerTimeout } = useTimeout()
 const viewerRef = ref<VcViewerRef>(null)
-const navOffset: [number, number] = [0, 75]
-const compassOpts = ref<VcCompassProps>({
-  outerOptions: {
-    icon: 'svguse:#vc-icons-compass-outer'
-  },
-  duration: 5
+const navOffset = ref<[number, number]>([0, 75])
+
+const compassOpts = computed<VcCompassProps>(() => {
+  return {
+    outerOptions: {
+      icon: theme.value.navigation.themeVcCompassOuterIcon,
+      color: theme.value.navigation.themeVcCompassOuterColor
+    },
+    innerOptions: {
+      icon: theme.value.navigation.themeVcCompassInnerIcon,
+      color: theme.value.navigation.themeVcCompassInnerColor,
+      background: theme.value.navigation.themeVcCompassInnerBackgroundColor
+    },
+    markerOptions: {
+      color: theme.value.global.themeColorAlpha
+    },
+    duration: 5
+  }
+})
+
+const zoomOpts = computed<VcZoomControlProps>(() => {
+  return {
+    background: theme.value.navigation.themeVcZoomControlBackgroundColor,
+    color: theme.value.global.themeColor,
+    border: `solid 1px ${theme.value.commonPanel.themeCommonPanelListBorderColor}`,
+    zoomInOptions: {
+      color: theme.value.global.themeColor
+    },
+    zoomOutOptions: {
+      color: theme.value.global.themeColor
+    },
+    zoomResetOptions: {
+      color: theme.value.global.themeColor
+    }
+  }
+})
+
+const printOpts = computed<VcPrintProps>(() => {
+  return {
+    color: theme.value.global.themeColor,
+    background: theme.value.navigation.themeVcPrintBackgroundColor,
+    round: true
+  }
+})
+
+const locationOpts = computed<VcMyLocationProps>(() => {
+  return {
+    color: theme.value.global.themeColor,
+    background: theme.value.navigation.themeVcPrintBackgroundColor,
+    round: true
+  }
+})
+
+const otherOpts = computed<VcNavigationOtherOpts>(() => {
+  return {
+    position: 'bottom-right',
+    offset: [0, 10],
+    statusBarOpts: {
+      color: theme.value.global.themeColor,
+      background: theme.value.navigation.themeVcStatusBarBackgroundColor
+    },
+    distancelegendOpts: {
+      color: theme.value.global.themeColor,
+      background: theme.value.navigation.themeVcDistanceLegendBackgroundColor
+    }
+  }
 })
 
 const mouseOverNameOpts = store.viewer.useOverlayStore().mouseOverNameOpts
 const selectedRenderData = store.viewer.useRenderStore().selectedRenderData
-
-const measurementFabOptions: any = {
-  direction: 'right'
-}
 
 // computed
 const layerList = computed(() => [

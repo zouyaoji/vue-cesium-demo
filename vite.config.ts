@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-05-27 15:45:16
+ * @LastEditTime: 2022-06-01 16:26:46
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -31,7 +31,7 @@ export default ({ mode }) => {
         template: { transformAssetUrls }
       }),
       quasar({
-        sassVariables: 'src/assets/style/public.scss'
+        sassVariables: true
       }),
       htmlPlugin()
     ],
@@ -50,6 +50,13 @@ export default ({ mode }) => {
         '@store': resolve(__dirname, './src/store'),
         '@types': resolve(__dirname, './src/types'),
         '@utils': resolve(__dirname, './src/utils')
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "@src/assets/style/variables.scss";'
+        }
       }
     },
     server: {

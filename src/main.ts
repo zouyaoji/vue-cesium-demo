@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-05-25 22:42:56
+ * @LastEditTime: 2022-05-31 11:48:24
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\main.ts
@@ -20,6 +20,8 @@ import 'vue-cesium/dist/index.css'
 import '@quasar/extras/material-icons/material-icons.css'
 // Import Quasar css
 import 'quasar/src/css/index.sass'
+
+import '@src/assets/style/index.scss'
 
 import messages from '@src/i18n'
 import App from './App.vue'

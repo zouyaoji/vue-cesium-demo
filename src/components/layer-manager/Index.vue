@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-05-26 21:02:05
+ * @LastEditTime: 2022-05-30 09:31:03
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
@@ -124,3 +124,45 @@ const onLayerManagerToggle = () => {
   })
 }
 </script>
+
+<style lang="scss" scoped>
+.layer-manager {
+  z-index: $z-fab - 20;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  pointer-events: none;
+  left: 0;
+
+  height: calc(100vh - 115px);
+  width: calc(100% - $left-panel-width);
+
+  @media (min-width: $breakpoint-md) {
+    left: $left-panel-width + 20px;
+    top: 90px;
+    right: 110px;
+    bottom: 0;
+  }
+
+  & > div {
+    pointer-events: auto;
+  }
+
+  &.full-srceen {
+    left: 40px;
+  }
+
+  :deep(.drag-wrapper) {
+    left: 42%;
+    top: 25%;
+    .layer-manager-panel {
+      pointer-events: auto;
+      width: 450px;
+      max-width: 95%;
+      min-width: 450px;
+      max-height: 80vh;
+    }
+  }
+}
+</style>

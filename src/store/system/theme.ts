@@ -2,22 +2,29 @@
  * @Author: tanghuang-liu 916650458@qq.com
  * @Date: 2022-05-13 17:06:55
  * @LastEditors: zouyaoji
- * @LastEditTime: 2022-05-25 21:40:34
+ * @LastEditTime: 2022-05-31 13:51:09
  * @FilePath: \vue-cesium-demo\src\store\system\theme.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import setting from '@src/config/setting.js'
-let oldThemeName = ''
 import { get } from 'lodash'
 import { useDBStore } from './db'
+import { themeClassic as classic, themeElement as element } from '@src/config/theme'
+import { ThemeOptions } from '@src/types/theme'
+
+let oldThemeName = ''
 export const useThemeStore = defineStore('theme', {
   state: () => {
     return {
       // 主题
       list: get(setting, 'theme.list', []),
       // 现在激活的主题 这应该是一个名字 不是对象
-      activeName: get(setting, 'theme.list[0].name', 'h2o')
+      activeName: get(setting, 'theme.list[0].name', 'h2o'),
+      themeConfig: {
+        classic,
+        element
+      }
     }
   },
   getters: {
@@ -42,6 +49,12 @@ export const useThemeStore = defineStore('theme', {
       } else {
         document.body.className += ' ' + themeClass
       }
+
+      const theme: ThemeOptions = this.themeConfig[this.activeName]
+      const keys = Object.keys(theme.global)
+      keys.forEach(key => {
+        document.body.style.setProperty(`--${key}`, theme.global[key])
+      })
     },
     /**
      * @description 激活一个主题
