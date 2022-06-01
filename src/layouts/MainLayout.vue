@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-05-31 13:58:49
+ * @LastEditTime: 2022-06-01 18:09:13
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -29,14 +29,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { get } from 'lodash'
 import MainHeader from '@src/layouts/header/Index.vue'
 import MainInteraction from '@src/components/interaction/Index.vue'
 import MainViewer from '@src/components/viewer/Index.vue'
 import { pinia } from '@src/store'
 import { store } from '@src/store'
-import { layout } from '@src/utils'
 import { storeToRefs } from 'pinia'
 
 // state
