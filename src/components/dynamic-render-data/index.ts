@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-05-26 10:18:54
+ * @LastEditTime: 2022-06-01 16:56:41
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -23,9 +23,6 @@ import {
 import { useVueCesium } from 'vue-cesium'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { clearSelectedRenderData, highlightRenderData } from '@src/utils/render-data'
-import { setMouseOverlayLabel, clearMouseOverlayLabel } from '@src/utils/overlay'
-
-import { toggleGlobalLayout } from '@src/utils/layout'
 import { logger } from '@src/utils'
 import { VcRenderDataset } from '@src/types/render-data'
 
@@ -50,6 +47,8 @@ export default defineComponent({
     const selectionIndicatorRef = ref(null)
     let selectedByPick = false
     const { registerTimeout, removeTimeout } = useTimeout()
+    const { toggleGlobalLayout } = store.system.useLayoutStore()
+    const { setMouseOverlayLabel, clearMouseOverlayLabel } = store.viewer.useOverlayStore()
 
     // watch
     let canDepart = false
@@ -198,6 +197,7 @@ export default defineComponent({
         if (picked.id !== '__Vc__Pick__Location__') {
           selectedByPick = true
           // 隐藏要素信息面板
+
           toggleGlobalLayout({
             featureInfo: false
           })

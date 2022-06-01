@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-06-01 15:30:50
- * @LastEditTime: 2022-06-01 16:30:45
+ * @LastEditTime: 2022-06-01 16:44:47
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\layer\Index.vue
@@ -14,11 +14,11 @@
 
 <script lang="ts" setup>
 import { store } from '@src/store'
-import { layout } from '@src/utils'
-import { computed } from 'vue'
+
+const { toggleGlobalLayout } = store.system.useLayoutStore()
 
 const onLayerManagerToggle = () => {
-  layout.toggleGlobalLayout({
+  toggleGlobalLayout({
     layerManager: !store.system.useLayoutStore().global.layerManager
   })
 }

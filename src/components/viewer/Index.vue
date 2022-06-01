@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-06-01 16:25:05
+ * @LastEditTime: 2022-06-01 16:43:59
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -55,7 +55,6 @@
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { ref, computed } from 'vue'
 import { store } from '@src/store'
-import { layout } from '@src/utils'
 import {
   VcCompassProps,
   VcConfigProvider,
@@ -64,8 +63,6 @@ import {
   VcViewerRef,
   VcZoomControlProps
 } from 'vue-cesium'
-import type { VcComponentInternalInstance, VcBtnTooltipProps, VcActionTooltipProps } from 'vue-cesium/lib/utils/types'
-import { VcDrawingOpts } from 'vue-cesium/es/utils/drawing-types'
 import { useI18n } from 'vue-i18n'
 import enUS from 'vue-cesium/es/locale/lang/en-us'
 import zhCN from 'vue-cesium/es/locale/lang/zh-hans'
@@ -81,19 +78,14 @@ const emit = defineEmits(['viewerReady', 'cesiumReady', 'leftClick', 'destroyed'
 const vclocale = computed(() => {
   return language[locale.value]
 })
-// data
-const camera = ref({
-  position: {
-    lng: 105,
-    lat: 31,
-    height: 21634101
-  }
-})
 
+// state
 const themeStore = store.system.useThemeStore()
 const theme = computed<ThemeOptions>(() => {
   return themeStore.themeConfig[themeStore.activeName]
 })
+
+const { toggleGlobalLayout } = store.system.useLayoutStore()
 
 const { registerTimeout } = useTimeout()
 const viewerRef = ref<VcViewerRef>(null)
@@ -179,11 +171,11 @@ const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
 const onViewerReady = readyObj => {
   emit('viewerReady', readyObj)
 
-  layout.toggleGlobalLayout({
+  toggleGlobalLayout({
     header: true
   })
   registerTimeout(() => {
-    layout.toggleGlobalLayout({
+    toggleGlobalLayout({
       content: true
     })
   }, 500)
@@ -200,7 +192,7 @@ const onLeftClick = e => {
 const onDestroyed = e => {
   emit('destroyed', e)
   // 球销毁了头部和路由都隐藏
-  layout.toggleGlobalLayout({
+  toggleGlobalLayout({
     content: false,
     header: false,
     layerManager: false,

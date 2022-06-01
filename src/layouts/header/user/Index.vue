@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:23:46
- * @LastEditTime: 2022-05-27 19:07:57
+ * @LastEditTime: 2022-06-01 16:46:59
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\user\Index.vue
@@ -24,13 +24,13 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { onMounted } from 'vue'
 import { store } from '@src/store'
 import { useVueCesium } from 'vue-cesium'
 import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
-import { layer, layout, renderData } from '@src/utils'
+import { renderData } from '@src/utils'
 
+const { toggleGlobalLayout, toggleIndexPageLayout } = store.system.useLayoutStore()
+const { loadDefaultLayers } = store.viewer.useLayerStore()
 const user = store.system.useUserStore()
 const $vc = useVueCesium()
 
@@ -43,10 +43,10 @@ const onItemClick = () => {
     .then(isLogout => {
       if (isLogout) {
         // 注销后默认显示的图层
-        layer.loadDefaultLayers(false)
+        loadDefaultLayers(false)
 
-        layout.toggleIndexPageLayout({ leftPanel: false })
-        layout.toggleGlobalLayout({ featureInfo: false, layerManager: false })
+        toggleIndexPageLayout({ workBench: false })
+        toggleGlobalLayout({ featureInfo: false, layerManager: false })
 
         renderData.removeAllRenderData()
 

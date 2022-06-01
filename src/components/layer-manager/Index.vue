@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-05-30 09:31:03
+ * @LastEditTime: 2022-06-01 16:56:59
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
@@ -67,7 +67,6 @@ import { computed, ref, watch, nextTick } from 'vue'
 import { store } from '@src/store'
 import CommonPanel from '@components/common-panel/Index.vue'
 import DragWrapper from '@components/drag-wrapper'
-import { layer, layout } from '@src/utils'
 import { storeToRefs } from 'pinia'
 
 // state
@@ -75,7 +74,7 @@ const dragWrapperRef = ref<typeof DragWrapper | null>(null)
 
 const layoutStore = store.system.useLayoutStore()
 const { global: globalLayout, index: indexLayout } = storeToRefs(layoutStore)
-const { rasterLayers, baseLayers, vectorLayers } = store.viewer.useLayerStore()
+const { rasterLayers, baseLayers, vectorLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
 
 // watch
 watch(
@@ -105,9 +104,12 @@ const defaultbaseLayer = computed(() => {
 const baseLayerSwitch = (data, evt) => {
   layerList.value.baseLayers.forEach(item => {
     if (item.name === data) {
-      layer.toggleLayerVisible(item.name, true)
+      toggleLayerVisible({
+        names: item.name,
+        show: true
+      })
     } else {
-      layer.toggleLayerVisible(item.name, false)
+      toggleLayerVisible({ names: item.name, show: false })
     }
   })
 }
@@ -115,7 +117,10 @@ const baseLayerSwitch = (data, evt) => {
 //图层切换
 const overlayLayerSwitch = (data, evt) => {
   const name = data.name
-  layer.toggleLayerVisible(name, evt)
+  toggleLayerVisible({
+    names: name,
+    show: evt
+  })
 }
 
 const onLayerManagerToggle = () => {

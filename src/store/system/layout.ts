@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-13 16:40:38
- * @LastEditTime: 2022-05-26 10:26:01
+ * @LastEditTime: 2022-06-01 16:46:05
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\system\layout.ts
@@ -49,10 +49,10 @@ export const useLayoutStore = defineStore('layout', {
      * @param {*} state
      * @param {*} layoutOpts
      */
-    toggleIndexPageLayout(state, layoutOpts) {
+    toggleIndexPageLayout(layoutOpts) {
       const optsArray = Object.keys(layoutOpts)
       optsArray.forEach(opt => {
-        isBoolean(layoutOpts[opt]) && (state.index[opt] = layoutOpts[opt])
+        isBoolean(layoutOpts[opt]) && (this.index[opt] = layoutOpts[opt])
       })
     }
   }

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 19:53:45
- * @LastEditTime: 2022-05-25 19:55:55
+ * @LastEditTime: 2022-06-01 16:56:36
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\overlay.ts
@@ -26,6 +26,11 @@ export const useOverlayStore = defineStore('overlay', {
       this.mouseOverNameOpts.show = show
       this.mouseOverNameOpts.text = text
       this.mouseOverNameOpts.pixelOffset = pixelOffset
+    },
+    clearMouseOverlayLabel() {
+      this.mouseOverNameOpts.position = undefined
+      this.mouseOverNameOpts.show = false
+      this.mouseOverNameOpts.text = undefined
     }
   }
 })

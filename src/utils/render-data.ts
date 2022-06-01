@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-05-26 14:26:21
+ * @LastEditTime: 2022-06-01 16:49:18
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
@@ -14,7 +14,6 @@ import { VcDatasourceCustomProps, VcDatasourceGeojsonProps, VcEntityProps } from
 import { AllGeoJSON, Feature, FeatureCollection } from '@turf/turf'
 import * as logger from './logger'
 import { entityModelHandler } from './model-helper'
-import { toggleGlobalLayout } from './layout'
 
 /**
  * 添加渲染数据到场景。
@@ -488,6 +487,7 @@ export async function flyToFeature<T = {}>(
   }
   const featureId = feature.properties.id
   options.isHighlightRenderData && highlightRenderData(renderingType, datasetId, featureId)
+  const { toggleGlobalLayout } = store.system.useLayoutStore(pinia)
   switch (renderingType) {
     case 'billboard':
     case 'point':
