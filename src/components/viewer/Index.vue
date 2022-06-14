@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-06-01 16:43:59
+ * @LastEditTime: 2022-06-14 09:29:25
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -163,7 +163,7 @@ const selectedRenderData = store.viewer.useRenderStore().selectedRenderData
 // computed
 const layerList = computed(() => [
   ...store.viewer.useLayerStore().baseLayers,
-  ...store.viewer.useLayerStore().rasterLayers
+  ...store.viewer.useLayerStore().overlayLayers
 ])
 const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
 

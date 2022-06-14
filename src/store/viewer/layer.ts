@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-15 11:06:15
- * @LastEditTime: 2022-05-31 15:54:23
+ * @LastEditTime: 2022-06-14 09:37:08
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\layer.ts
@@ -217,7 +217,7 @@ export const useLayerStore = defineStore('layer', {
         show: false
       }
     ],
-    rasterLayers: [
+    overlayLayers: [
       {
         name: 'tianditu_cva',
         text: '天地图注记',
@@ -310,7 +310,7 @@ export const useLayerStore = defineStore('layer', {
   // optional actions
   actions: {
     toggle({ names, show }) {
-      const allLayers = [...this.baseLayers, ...this.rasterLayers, ...this.vectorLayers]
+      const allLayers = [...this.baseLayers, ...this.overlayLayers, ...this.vectorLayers]
       names = Array.isArray(names) ? names : [names]
       names.forEach(name => {
         const layer = find(allLayers, v => v.name === name)
@@ -319,7 +319,7 @@ export const useLayerStore = defineStore('layer', {
       })
     },
     loadDefaultLayers(logined?) {
-      const allLayerNames = [...this.baseLayers, ...this.rasterLayers, ...this.vectorLayers].map(v => v.name)
+      const allLayerNames = [...this.baseLayers, ...this.overlayLayers, ...this.vectorLayers].map(v => v.name)
       this.toggle({
         names: allLayerNames,
         show: false

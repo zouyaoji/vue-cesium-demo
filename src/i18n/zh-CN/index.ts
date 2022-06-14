@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-01-05 13:42:29
+ * @LastEditTime: 2022-06-14 09:38:07
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\zh-CN\index.ts
@@ -19,7 +19,7 @@ export default {
       layerManager: '图层管理'
     },
     baseLayer: '底图图层',
-    rasterLayer: '栅格图层',
+    overlayLayer: '叠加图层',
     vectorLayer: '矢量图层'
   }
 }

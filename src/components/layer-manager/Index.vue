@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-06-01 16:56:59
+ * @LastEditTime: 2022-06-14 09:38:22
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
@@ -31,10 +31,10 @@
         </q-card-section>
         <q-separator inset />
         <q-card-section class="q-pt-sm">
-          <div class="text-subtitle2">{{ $t('message.rasterLayer') }}</div>
+          <div class="text-subtitle2">{{ $t('message.overlayLayer') }}</div>
           <div class="q-gutter-sm">
             <q-checkbox
-              v-for="(item, index) of layerList.rasterLayers"
+              v-for="(item, index) of layerList.overlayLayers"
               :key="index"
               v-model="item.show"
               :val="item.name"
@@ -74,7 +74,7 @@ const dragWrapperRef = ref<typeof DragWrapper | null>(null)
 
 const layoutStore = store.system.useLayoutStore()
 const { global: globalLayout, index: indexLayout } = storeToRefs(layoutStore)
-const { rasterLayers, baseLayers, vectorLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
+const { overlayLayers, baseLayers, vectorLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
 
 // watch
 watch(
@@ -91,13 +91,18 @@ watch(
 
 // computed
 const layerList = computed(() => ({
-  rasterLayers,
+  overlayLayers,
   baseLayers,
   vectorLayers
 }))
 
-const defaultbaseLayer = computed(() => {
-  return layerList.value.baseLayers.filter(v => v.show)?.[0]?.name
+const defaultbaseLayer = computed<string>({
+  get() {
+    return layerList.value.baseLayers.filter(v => v.show)?.[0]?.name
+  },
+  set(val) {
+    //
+  }
 })
 
 //底图切换
