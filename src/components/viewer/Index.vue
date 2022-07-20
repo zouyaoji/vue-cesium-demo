@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-06-14 09:29:25
+ * @LastEditTime: 2022-07-20 13:28:22
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -9,6 +9,7 @@
 <template>
   <vc-config-provider :locale="vclocale">
     <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
+      <!-- 导航罗盘控件 -->
       <vc-navigation
         :offset="navOffset"
         :compass-opts="compassOpts"
@@ -17,6 +18,10 @@
         :location-opts="locationOpts"
         :other-opts="otherOpts"
       />
+      <!-- 请求进度条 -->
+      <vc-ajax-bar position="bottom" color="#21BA45" size="3px" positioning="fixed"></vc-ajax-bar>
+      <!-- 动态渲染的数据 -->
+      <dynamic-render-data></dynamic-render-data>
       <!-- 栅格数据图层 -->
       <template v-for="(item, index) in layerList" :key="'layer' + index">
         <vc-layer-imagery
@@ -64,10 +69,13 @@ import {
   VcZoomControlProps
 } from 'vue-cesium'
 import { useI18n } from 'vue-i18n'
+import DynamicRenderData from '../dynamic-render-data'
 import enUS from 'vue-cesium/es/locale/lang/en-us'
 import zhCN from 'vue-cesium/es/locale/lang/zh-hans'
 import { ThemeOptions } from '@src/types/theme'
 import { VcNavigationOtherOpts } from 'vue-cesium/es/components/controls/navigation/defaultProps'
+import { VcReadyObject } from 'vue-cesium/es/utils/types'
+
 const language = {
   'en-US': enUS,
   'zh-CN': zhCN
@@ -168,8 +176,10 @@ const layerList = computed(() => [
 const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
 
 // methods
-const onViewerReady = readyObj => {
+const onViewerReady = (readyObj: VcReadyObject) => {
   emit('viewerReady', readyObj)
+  readyObj.viewer.imageryLayers.removeAll()
+  window.viewer = readyObj.viewer
 
   toggleGlobalLayout({
     header: true

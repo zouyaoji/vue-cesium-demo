@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-01-10 16:58:06
+ * @LastEditTime: 2022-07-04 16:55:23
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
@@ -78,18 +78,33 @@ const menus: Array<Menu> = [
       },
       {
         id: faker.datatype.uuid(),
-        component: '/demo',
+        component: '/dynamic-overlay',
         icon: 'cog',
         islock: false,
         hidden: false,
-        name: 'demo',
-        path: '/demo',
-        permission: 'permission-demo',
+        name: 'dynamic-overlay',
+        path: '/dynamic-overlay',
+        permission: 'permission-dynamic-overlay',
         sort: 1000,
         caption: '示例',
-        title: 'message.header.demo',
+        title: 'message.header.dynamicOverlay',
         type: 10,
-        children: []
+        children: [
+          {
+            id: faker.datatype.uuid(),
+            component: '/dynamic-overlay/historical-track',
+            icon: 'inbox',
+            islock: false,
+            hidden: false,
+            name: 'historical-track',
+            path: '/dynamic-overlay/historical-track',
+            permission: 'permission-historical-track',
+            sort: 1000,
+            caption: 'dynamicOverlay',
+            title: 'message.sideBar.dynamicOverlay.historicalTrack',
+            type: 10
+          }
+        ]
       }
     ]
   }

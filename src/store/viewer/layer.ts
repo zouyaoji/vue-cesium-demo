@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-15 11:06:15
- * @LastEditTime: 2022-06-14 09:37:08
+ * @LastEditTime: 2022-07-04 16:44:32
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\layer.ts
@@ -292,7 +292,7 @@ export const useLayerStore = defineStore('layer', {
           stroke: '#ffc107',
           fill: 'transparent',
           show: false,
-          data: './datas/china.json'
+          data: '/datas/china.json'
         }
       },
       {

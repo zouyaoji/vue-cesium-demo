@@ -11,7 +11,7 @@
     "preinstall": "npx only-allow pnpm -y"
   },
   "dependencies": {
-    "@quasar/extras": "^1.12.5",
+    "@quasar/extras": "^1.14.2",
     "@turf/turf": "^6.5.0",
     "axios": "^0.24.0",
     "axios-mock-adapter": "^1.20.0",
@@ -24,12 +24,12 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "qs": "^6.10.2",
-    "quasar": "^2.7.1",
+    "quasar": "^2.7.5",
     "screenfull": "^6.0.0",
-    "vue": "3.2.30",
-    "vue-cesium": "^3.0.13",
+    "vue": "3.2.37",
+    "vue-cesium": "^3.0.14",
     "vue-i18n": "^9.1.10",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -52,8 +52,8 @@
     "pretty-quick": "3.1.2",
     "sass": "1.32.0",
     "typescript": "^4.4.4",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.34.16"
+    "vite": "^2.9.13",
+    "vue-tsc": "^0.38.2"
   },
   "browserslist": [
     "> 1%",

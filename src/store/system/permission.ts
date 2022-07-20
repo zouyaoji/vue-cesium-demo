@@ -2,7 +2,7 @@
  * @Author: tanghuang-liu 916650458@qq.com
  * @Date: 2022-05-13 16:47:56
  * @LastEditors: zouyaoji
- * @LastEditTime: 2022-05-25 21:40:28
+ * @LastEditTime: 2022-06-14 16:34:10
  * @FilePath: \vue-cesium-demo\src\store\system\permission.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -132,7 +132,11 @@ function buildMenu(menuTree) {
     if (item.icon != null && item.icon !== '') {
       icon = item.icon
     }
-    menus.push({ name: item.name, path: item.path, title: item.title, icon: icon, children: children })
+    menus.push({
+      icon: icon,
+      children: children,
+      ...item
+    })
   })
   if (menus.length === 0) {
     menus = undefined

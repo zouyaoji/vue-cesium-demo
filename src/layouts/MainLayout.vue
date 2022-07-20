@@ -1,20 +1,46 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-06-01 18:09:13
+ * @LastEditTime: 2022-07-04 16:40:06
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
 -->
 <template>
-  <q-layout view="lhh Lpr lFf" class="main-layout" :class="{ 'gray-mode': grayActive }">
+  <q-layout view="hHh Lpr fFf" class="main-layout" :class="{ 'gray-mode': grayActive }">
+    <q-drawer
+      v-if="asideMenus?.length"
+      v-model="drawer"
+      show-if-above
+      :width="200"
+      :breakpoint="500"
+      bordered
+      class="bg-grey-3"
+      :mini="mini"
+    >
+      <q-scroll-area class="fit">
+        <q-list>
+          <template v-for="(menuItem, index) in asideMenus" :key="index">
+            <q-item v-ripple clickable :active="menuItem.label === 'Outbox'" @click="$router.push(menuItem.path)">
+              <q-item-section avatar>
+                <q-icon :name="menuItem.icon" />
+              </q-item-section>
+              <q-item-section>
+                {{ $t(menuItem.title) || menuItem.caption }}
+              </q-item-section>
+            </q-item>
+            <q-separator v-if="menuItem.separator" :key="'sep' + index" />
+          </template>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
     <q-page-container class="no-padding">
       <q-page class="interaction-root">
         <!-- vc-viewer -->
         <main-viewer>
           <!-- header -->
           <header v-show="globalLayout.header" elevated reveal class="absolute text-h4 text-center">
-            <main-header />
+            <main-header @logo-clicked="onLogoClicked" />
           </header>
           <!-- overylay-content / router-view -->
           <div v-if="globalLayout.content" class="content">
@@ -29,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { get } from 'lodash'
 import MainHeader from '@src/layouts/header/Index.vue'
 import MainInteraction from '@src/components/interaction/Index.vue'
@@ -37,10 +63,66 @@ import MainViewer from '@src/components/viewer/Index.vue'
 import { pinia } from '@src/store'
 import { store } from '@src/store'
 import { storeToRefs } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
 
+const $route = useRoute()
+const mini = ref(true)
 // state
 const globalLayout = storeToRefs(store.system.useLayoutStore()).global
 const { active: grayActive } = storeToRefs(store.system.useGrayStore())
+const menuStore = store.system.useMenuStore()
+const menuList = [
+  {
+    icon: 'inbox',
+    label: 'Inbox',
+    separator: true
+  },
+  {
+    icon: 'send',
+    label: 'Outbox',
+    separator: false
+  },
+  {
+    icon: 'delete',
+    label: 'Trash',
+    separator: false
+  }
+]
+
+const drawer = ref(false)
+
+// computed
+const headerMenus = computed(() => {
+  const header = menuStore.header
+  return header.length ? header[0].children : []
+})
+
+const asideMenus = computed(() => {
+  return menuStore.aside
+})
+
+// watch
+watch(
+  () => $route.matched,
+  val => {
+    if (val.length > 1) {
+      const side = headerMenus.value.filter(menu => menu.path === val[1].path)
+      if (side.length) {
+        const children = side[0].children.filter(v => v.type === 10)
+        if (children.length) {
+          menuStore.asideSet(children)
+        } else {
+          menuStore.asideSet([])
+        }
+      } else {
+        menuStore.asideSet([])
+      }
+    }
+  },
+  {
+    immediate: true
+  }
+)
 
 // lifecyle
 onMounted(() => {
@@ -71,11 +153,24 @@ onMounted(() => {
     })
   }
 })
+
+const onLogoClicked = () => {
+  mini.value = !mini.value
+}
 </script>
 <style lang="scss" scoped>
 .main-layout {
   width: 100%;
   overflow: hidden;
+
+  ::v-deep(.q-page-container) {
+    padding-top: 70px;
+  }
+  ::v-deep(.q-drawer) {
+    height: 350px;
+    top: 120px;
+    left: 12px;
+  }
   &.gray-mode {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);

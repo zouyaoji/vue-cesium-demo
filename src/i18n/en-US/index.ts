@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-06-14 09:38:15
+ * @LastEditTime: 2022-07-04 16:54:34
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\en-US\index.ts
@@ -13,7 +13,13 @@ export default {
   message: {
     header: {
       index: 'Index',
-      demo: 'Demo'
+      demo: 'Demo',
+      dynamicOverlay: 'DynamicOverlay'
+    },
+    sideBar: {
+      dynamicOverlay: {
+        historicalTrack: 'HistoricalTrack'
+      }
     },
     panel: {
       layerManager: 'LayerManager'

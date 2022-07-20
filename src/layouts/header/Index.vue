@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-06-01 16:34:14
+ * @LastEditTime: 2022-06-14 16:28:37
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -10,7 +10,7 @@
   <div class="main-header" :style="{ opacity: searchActive ? 0.5 : 1 }">
     <div class="left">
       <div class="content">
-        <div size="60px" class="logo-img float">
+        <div size="60px" class="logo-img float cursor-pointer" @click="onLogoClicked">
           <img src="https://zouyaoji.top/vue-cesium/favicon.png" />
         </div>
         <div class="title text-h4 float">
@@ -19,7 +19,7 @@
         <div class="nav float">
           <q-tabs>
             <q-route-tab
-              v-for="(menu, index) in navMenus"
+              v-for="(menu, index) in headerMenus"
               :key="index"
               :to="menu.path"
               exact
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="right q-ml-sm q-mr-sm">
-      <div v-if="navMenus.length" class="content">
+      <div v-if="headerMenus.length" class="content">
         <q-btn size="md" flat round color="#fff" @click="onNavigation">
           <q-icon name="fa fa-github"></q-icon>
         </q-btn>
@@ -60,13 +60,15 @@ import { reactive, ref, computed, onMounted } from 'vue'
 import { store } from '@src/store'
 import { ThemeOptions } from '@src/types/theme'
 
+const emits = defineEmits(['logoClicked'])
+
 const searchActive = ref(false)
 
 const title = computed(() => {
   return import.meta.env.VITE_VUE_APP_TITLE
 })
 
-const navMenus = computed(() => {
+const headerMenus = computed(() => {
   const header = store.system.useMenuStore().header
   return header.length ? header[0].children : []
 })
@@ -78,6 +80,10 @@ const theme = computed<ThemeOptions>(() => {
 
 const onNavigation = () => {
   openURL('https://github.com/zouyaoji/vue-cesium-demo')
+}
+
+const onLogoClicked = () => {
+  emits('logoClicked')
 }
 </script>
 
