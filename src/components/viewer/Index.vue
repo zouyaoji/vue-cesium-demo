@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-20 13:28:22
+ * @LastEditTime: 2022-07-20 13:36:19
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -179,7 +179,6 @@ const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
 const onViewerReady = (readyObj: VcReadyObject) => {
   emit('viewerReady', readyObj)
   readyObj.viewer.imageryLayers.removeAll()
-  window.viewer = readyObj.viewer
 
   toggleGlobalLayout({
     header: true

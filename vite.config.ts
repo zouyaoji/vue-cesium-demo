@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-06-01 16:26:46
+ * @LastEditTime: 2022-07-20 13:40:41
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -78,7 +78,7 @@ export default ({ mode }) => {
           drop_console: true
         }
       },
-      brotliSize: false,
+      reportCompressedSize: false,
       rollupOptions: {
         output: {
           manualChunks(id) {

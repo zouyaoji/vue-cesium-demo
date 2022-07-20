@@ -2,7 +2,7 @@
  * @Author: tanghuang-liu 916650458@qq.com
  * @Date: 2022-05-13 16:47:56
  * @LastEditors: zouyaoji
- * @LastEditTime: 2022-06-14 16:34:10
+ * @LastEditTime: 2022-07-20 13:38:46
  * @FilePath: \vue-cesium-demo\src\store\system\permission.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,7 +24,8 @@ function isEmpty(value) {
   }
   return false
 }
-const pages = import.meta.globEager('../../pages/**/*.vue')
+const pages = import.meta.glob<any>('../../pages/**/*.vue', { eager: true })
+
 const resolveComponent = path => {
   const importPage = pages[`../../pages${path}/Index.vue`]
 

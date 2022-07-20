@@ -153,5 +153,4 @@ const zoomToOverlay = TYPHOON_ID => {
   }
 }
 
-window.zoomToOverlay = zoomToOverlay
 </script>
