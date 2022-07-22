@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-06-14 11:08:07
- * @LastEditTime: 2022-07-23 00:26:36
+ * @LastEditTime: 2022-07-23 00:52:55
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\historical-track\Index.vue
@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import faker from 'faker'
 import { onMounted, onUnmounted, ref, toRef } from 'vue'
 import { store } from '@src/store'
 import { addRenderDatas, getRenderDataByDatasetId, removeRenderDataByPage } from '@src/utils/render-data'
@@ -20,6 +19,7 @@ import * as api from '@src/api'
 import { VcOverlayDynamicRef, VcPointProps } from 'vue-cesium'
 import { DynamicOverlayOpts, SampledPosition } from 'vue-cesium/es/utils/types'
 import { logger } from '@src/utils'
+import { v4 as uuidv4 } from 'uuid'
 
 const { loadDefaultLayers } = store.viewer.useLayerStore()
 const overlayDynamicRef = ref<any>(null)
@@ -100,12 +100,12 @@ const generateOverlaysAndStops = routes => {
       sampledPositions.push({
         position: [stop.lon, stop.lat],
         time: stop.DATE_TIME,
-        id: faker.datatype.uuid()
+        id: uuidv4()
       })
       linePositions.push([stop.lon, stop.lat])
 
       stops.push({
-        id: faker.datatype.uuid(),
+        id: uuidv4(),
         position: [stop.lon, stop.lat],
         color: 'rgb(255,229,0)',
         show: show,

@@ -1,14 +1,14 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-07-21 09:19:13
+ * @LastEditTime: 2022-07-23 00:49:52
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
  */
+import { v4 as uuidv4 } from 'uuid'
 import { find, assign } from 'lodash'
 import qs from 'qs'
-import faker from 'faker'
 import * as webStorage from '@src/utils/web-storage'
 import router from '@src/router'
 
@@ -36,7 +36,7 @@ const users = [
 
 const menus: Array<Menu> = [
   {
-    id: faker.datatype.uuid(),
+    id: uuidv4(),
     component: 'MainLayout',
     icon: 'cog',
     islock: false,
@@ -49,7 +49,7 @@ const menus: Array<Menu> = [
     type: 10,
     children: [
       {
-        id: faker.datatype.uuid(),
+        id: uuidv4(),
         component: '/index',
         icon: 'cog',
         islock: false,
@@ -63,7 +63,7 @@ const menus: Array<Menu> = [
         type: 10,
         children: [
           {
-            id: faker.datatype.uuid(),
+            id: uuidv4(),
             component: '',
             icon: 'eye',
             islock: false,
@@ -78,7 +78,7 @@ const menus: Array<Menu> = [
         ]
       },
       {
-        id: faker.datatype.uuid(),
+        id: uuidv4(),
         component: '/dynamic-render',
         icon: 'cog',
         islock: false,
@@ -93,7 +93,7 @@ const menus: Array<Menu> = [
         redirect: '/dynamic-render/datasource',
         children: [
           {
-            id: faker.datatype.uuid(),
+            id: uuidv4(),
             component: '/dynamic-render/datasource',
             icon: 'dataset',
             islock: false,
@@ -107,7 +107,7 @@ const menus: Array<Menu> = [
             type: 10
           },
           {
-            id: faker.datatype.uuid(),
+            id: uuidv4(),
             component: '/dynamic-render/historical-track',
             icon: 'inbox',
             islock: false,
@@ -126,7 +126,7 @@ const menus: Array<Menu> = [
   }
 ]
 
-export default ({ service, request, serviceForMock, requestForMock, mock, faker, tools }) => ({
+export default ({ service, request, serviceForMock, requestForMock, mock, tools }) => ({
   /**
    * @description 登录
    * @param {Object} data 登录携带的信息

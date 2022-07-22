@@ -1,15 +1,15 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:27:55
- * @LastEditTime: 2022-07-23 00:00:20
+ * @LastEditTime: 2022-07-23 00:50:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\tree-data.ts
  */
-import faker from 'faker'
+import { v4 as uuidv4 } from 'uuid'
 export default [
   {
-    id: faker.datatype.uuid(),
+    id: uuidv4(),
     name: 'DataSource',
     label: '数据源',
     icon: '',

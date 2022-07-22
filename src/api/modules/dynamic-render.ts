@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:19:48
- * @LastEditTime: 2022-07-21 17:35:09
+ * @LastEditTime: 2022-07-23 00:50:03
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\dynamic-render.ts
@@ -9,7 +9,7 @@
 import qs from 'qs'
 const baseURL = import.meta.env.MODE === 'development' ? '/' : import.meta.env.VITE_VUE_APP_API
 import treeData from './tree-data'
-export default ({ service, request, serviceForMock, requestForMock, mock, faker, tools }) => ({
+export default ({ service, request, serviceForMock, requestForMock, mock, tools }) => ({
   /**
    * 获取静态资源（JSON）等
    * @param {*} fetchStr

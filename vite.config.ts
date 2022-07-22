@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-07-21 21:42:44
+ * @LastEditTime: 2022-07-23 00:51:08
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -88,7 +88,7 @@ export default ({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('/node_modules/')) {
-              const modules = ['quasar', 'vue-cesium', 'echarts']
+              const modules = ['quasar', 'vue-cesium', 'echarts', 'lodash']
               const chunk = modules.find(module => id.includes(`/node_modules/${module}`))
               return chunk ? `vendor-${chunk}` : 'vendor'
             }
