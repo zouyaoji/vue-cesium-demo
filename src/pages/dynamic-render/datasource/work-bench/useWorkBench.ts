@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:03:02
- * @LastEditTime: 2022-07-23 00:21:51
+ * @LastEditTime: 2022-07-23 00:35:00
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\useWorkBench.ts
@@ -39,8 +39,6 @@ export default function () {
     hasLoadingError: false,
     filterText: ''
   })
-
-  window.workBenchModel = workBenchModel
 
   const dynamicRenderLayout = store.system.useLayoutStore().dynamicRender
 

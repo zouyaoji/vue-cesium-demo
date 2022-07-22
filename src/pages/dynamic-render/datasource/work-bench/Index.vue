@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:02:25
- * @LastEditTime: 2022-07-23 00:21:57
+ * @LastEditTime: 2022-07-23 00:35:11
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\Index.vue
@@ -132,7 +132,6 @@ const {
   dynamicRenderLayout,
   selectedDatasetCategories,
   init,
-  toggleLayout,
   addOrRemoveDataset,
   showFeatureInfo,
   flyToFeature,

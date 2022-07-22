@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "baseUrl": "./",
-    "types": ["vue-cesium/global.d.ts", "vue-cesium/Cesium.d.ts", "vite/client"],
+    "types": ["vue-cesium/global", "vue-cesium/Cesium", "vite/client"],
     "paths": {
       "@src/*": ["src/*"],
       "@api/*": ["src/api/*"],
