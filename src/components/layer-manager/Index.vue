@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-06-14 09:38:22
+ * @LastEditTime: 2022-07-21 18:43:55
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
 -->
 <template>
-  <div class="layer-manager" :class="indexLayout.workBench ? '' : 'full-srceen'">
+  <div class="layer-manager" :class="dynamicRenderLayout.datasource.workBench ? '' : 'full-srceen'">
     <drag-wrapper ref="dragWrapperRef">
       <common-panel
         v-show="globalLayout.layerManager"
@@ -73,12 +73,12 @@ import { storeToRefs } from 'pinia'
 const dragWrapperRef = ref<typeof DragWrapper | null>(null)
 
 const layoutStore = store.system.useLayoutStore()
-const { global: globalLayout, index: indexLayout } = storeToRefs(layoutStore)
+const { global: globalLayout, dynamicRender: dynamicRenderLayout } = storeToRefs(layoutStore)
 const { overlayLayers, baseLayers, vectorLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
 
 // watch
 watch(
-  indexLayout,
+  dynamicRenderLayout,
   val => {
     nextTick(() => {
       dragWrapperRef.value && dragWrapperRef.value.resizeListener?.()

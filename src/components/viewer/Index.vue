@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-20 13:36:19
+ * @LastEditTime: 2022-07-21 21:40:39
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
 -->
 <template>
-  <vc-config-provider :locale="vclocale">
+  <vc-config-provider :locale="vclocale" cesium-path="/Cesium/Cesium.js">
     <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
       <!-- 导航罗盘控件 -->
       <vc-navigation
@@ -52,12 +52,14 @@
           {{ mouseOverNameOpts.text }}
         </div>
       </vc-overlay-html>
+      <vc-geocoder></vc-geocoder>
       <slot />
     </vc-viewer>
   </vc-config-provider>
 </template>
 <script setup lang="ts">
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
+import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
 import { ref, computed } from 'vue'
 import { store } from '@src/store'
 import {

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-28 17:42:33
- * @LastEditTime: 2022-06-01 15:56:13
+ * @LastEditTime: 2022-07-21 10:32:24
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\config\theme\classic.ts
@@ -99,5 +99,10 @@ export const themeClassic = {
   pageLogin: {
     themePageLoginColor: '#fff',
     themePageLoginBackground: 'rgba(29,29,29, 0.5)'
+  },
+  menu: {
+    themeMenuColor: '#cbe1e5',
+    themeMenuActiveColor: '#fff',
+    themeMenuActiveBackgroundColor: '#F2C037'
   }
 }

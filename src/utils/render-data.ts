@@ -1,20 +1,21 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-06-01 16:49:18
+ * @LastEditTime: 2022-07-22 23:47:42
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
  */
 
 import { store, pinia } from '@src/store'
-import { find } from 'lodash'
-import { VcRenderData, VcFeature, VcSelectedRenderData } from '@src/types/render-data'
-import { VcDatasourceCustomProps, VcDatasourceGeojsonProps, VcEntityProps } from 'vue-cesium'
+import { VcRenderData, VcFeature, VcSelectedRenderData, VcDatasetGetMethod, VcDataset } from '@src/types/render-data'
+import { VcDatasourceCustomProps, VcDatasourceGeojsonProps, VcEntityProps, VcPrimitiveTilesetProps } from 'vue-cesium'
 import { AllGeoJSON, Feature, FeatureCollection } from '@turf/turf'
 import * as logger from './logger'
 import { entityModelHandler } from './model-helper'
-
+import { isPlainObject } from 'vue-cesium/es/utils/util'
+import { find, intersectionWith, uniqWith } from 'lodash'
+import { markRaw, toRef } from 'vue'
 /**
  * 添加渲染数据到场景。
  * @param {VcRenderData|Array<VcRenderData>} renderDatas 待添加的渲染数据或数据组
@@ -92,97 +93,97 @@ export function highlightRenderData(
   renderingApi?
 ) {
   clearSelectedRenderData()
-  return getFeatureModel(renderingType, datasetId, featureId).then(model => {
-    if (!model) {
-      return false
-    }
 
-    if (renderingType === 'point') {
-      const point = renderingApi === 'primitive' ? model : model.point
-      const restorePixelSize = point.pixelSize || 1
-      const restoreColor = point.color || [255, 255, 255, 0]
-      point.pixelSize = restorePixelSize * 1.5
-      // billboard.color = '#ffc107'
+  const model = getFeatureModel(renderingType, datasetId, featureId)
+  if (!model) {
+    return false
+  }
 
+  if (renderingType === 'point') {
+    const point = renderingApi === 'primitive' ? model : model.point
+    const restorePixelSize = point.pixelSize || 1
+    const restoreColor = point.color || [255, 255, 255, 0]
+    point.pixelSize = restorePixelSize * 1.5
+    // billboard.color = '#ffc107'
+
+    setSelectedRenderData({
+      model: point,
+      renderingType,
+      restoreHandler: () => {
+        point.pixelSize = restorePixelSize
+        point.color = restoreColor
+      },
+      feature: model.feature,
+      featureInfoListItems
+    })
+  } else if (renderingType === 'billboard') {
+    const billboard = renderingApi === 'primitive' ? model : model.billboard
+    // const restoreColor = billboard.color || [255, 255, 255, 0]
+    const restoreScale = billboard.scale || 1
+    billboard.scale = restoreScale * 1.5
+    // billboard.color = '#ffc107'
+
+    setSelectedRenderData({
+      model: billboard,
+      renderingType,
+      restoreHandler: () => {
+        billboard.scale = restoreScale
+        // billboard.color = restoreColor
+      },
+      feature: model.feature,
+      featureInfoListItems
+    })
+  } else if (renderingType === 'polyline') {
+    const polyline = renderingApi === 'primitive' ? model : model.polyline
+    const restoreMaterial = polyline.material || 'white'
+    const restoreWidth = polyline.width || 1
+    polyline.width = restoreWidth * 1.5
+    polyline.material = '#ffc107'
+    setSelectedRenderData({
+      model: polyline,
+      renderingType: 'polyline',
+      restoreHandler: () => {
+        polyline.width = restoreWidth
+        polyline.material = restoreMaterial
+      },
+      feature: model.feature,
+      featureInfoListItems
+    })
+  } else if (renderingType === 'polygon') {
+    if (renderingApi === 'primitive') {
+      const polygon = model
+      const restoreColor = polygon.color || 'white'
+      polygon.color = '#ffc107'
       setSelectedRenderData({
-        model: point,
-        renderingType,
+        model: polygon,
+        renderingType: 'polygon',
         restoreHandler: () => {
-          point.pixelSize = restorePixelSize
-          point.color = restoreColor
+          polygon.color = restoreColor
         },
         feature: model.feature,
         featureInfoListItems
       })
-    } else if (renderingType === 'billboard') {
-      const billboard = renderingApi === 'primitive' ? model : model.billboard
-      // const restoreColor = billboard.color || [255, 255, 255, 0]
-      const restoreScale = billboard.scale || 1
-      billboard.scale = restoreScale * 1.5
-      // billboard.color = '#ffc107'
-
-      setSelectedRenderData({
-        model: billboard,
-        renderingType,
-        restoreHandler: () => {
-          billboard.scale = restoreScale
-          // billboard.color = restoreColor
-        },
-        feature: model.feature,
-        featureInfoListItems
-      })
-    } else if (renderingType === 'polyline') {
-      const polyline = renderingApi === 'primitive' ? model : model.polyline
-      const restoreMaterial = polyline.material || 'white'
-      const restoreWidth = polyline.width || 1
-      polyline.width = restoreWidth * 1.5
-      polyline.material = '#ffc107'
-      setSelectedRenderData({
-        model: polyline,
-        renderingType: 'polyline',
-        restoreHandler: () => {
-          polyline.width = restoreWidth
-          polyline.material = restoreMaterial
-        },
-        feature: model.feature,
-        featureInfoListItems
-      })
-    } else if (renderingType === 'polygon') {
-      if (renderingApi === 'primitive') {
-        const polygon = model
-        const restoreColor = polygon.color || 'white'
-        polygon.color = '#ffc107'
-        setSelectedRenderData({
-          model: polygon,
-          renderingType: 'polygon',
-          restoreHandler: () => {
-            polygon.color = restoreColor
-          },
-          feature: model.feature,
-          featureInfoListItems
-        })
-      } else {
-        const polygon = model.polygon
-        const restoreMaterial = polygon.material || 'white'
-        if (model.feature.properties?.datasetId === 'observationElementPattern') {
-          polygon.extrudedHeight = 1000
-        }
-        polygon.material = '#ffc107'
-        setSelectedRenderData({
-          model: polygon,
-          renderingType: 'polygon',
-          restoreHandler: () => {
-            polygon.material = restoreMaterial
-            polygon.extrudedHeight = undefined
-          },
-          feature: model.feature,
-          featureInfoListItems
-        })
+    } else {
+      const polygon = model.polygon
+      const restoreMaterial = polygon.material || 'white'
+      if (model.feature.properties?.datasetId === 'observationElementPattern') {
+        polygon.extrudedHeight = 1000
       }
-    } else if (renderingType === 'geojson') {
-      const polygon = renderingApi === 'primitive' ? model.polygon : model.polygon
+      polygon.material = '#ffc107'
+      setSelectedRenderData({
+        model: polygon,
+        renderingType: 'polygon',
+        restoreHandler: () => {
+          polygon.material = restoreMaterial
+          polygon.extrudedHeight = undefined
+        },
+        feature: model.feature,
+        featureInfoListItems
+      })
     }
-  })
+  } else if (renderingType === 'geojson') {
+    const polygon = renderingApi === 'primitive' ? model.polygon : model.polygon
+  }
 }
 
 export function getRenderDataDatasetModel(datasetId: string | number, cmpName: string) {
@@ -222,6 +223,7 @@ export function getFeatureModel(
     case 'label':
     case 'point':
     case 'billboard':
+    case 'model':
       cmpName = renderingApi === 'primitive' ? 'VcCollectionBillboard' : 'VcDatasourceCustom'
       propName = renderingApi === 'primitive' ? 'billboards' : 'entities'
       break
@@ -237,6 +239,9 @@ export function getFeatureModel(
       // zouyaoji tips geojson 不支持取子要素数据模型
       cmpName = renderingApi === 'primitive' ? 'VcDatasourceGeojson' : 'VcDatasourceGeojson'
       propName = renderingApi === 'primitive' ? 'data' : 'data'
+      break
+    case 'tileset':
+      cmpName = 'VcPrimitiveTileset'
       break
   }
 
@@ -333,9 +338,9 @@ export function processVcEntityModels(
  *     // 用 VcDatasourceGeojson 渲染数据。
  *     // addRenderDataGeojson(
  *     //   'risk-admin',
- *     //   '/flood-and-typhoon-prevention/risk-judgment',
+ *     //   '/datasource,
  *     //   {
- *     //     data: `https://devapi.weatherone.net/${e.jsonfile}`,
+ *     //     data: `https://zouyaoji.top/vue-cesium/test.json`,
  *     //     fill: 'rgba(64,158,255,.4)',
  *     //     stroke: 'red',
  *     //     strokeWidth: 5.0,
@@ -510,6 +515,28 @@ export async function flyToFeature<T = {}>(
             ...options
           })
           .then(() => {
+            // 菜单展示逻辑
+          })
+      }
+      break
+    case 'tileset':
+      // 关闭上次的布告板菜单（如果有的话）
+      // clearBillboardOverlayMenu()
+      // 关闭属性详情面板
+      toggleGlobalLayout({
+        featureInfo: false
+      })
+      if (renderData?.datasets?.length) {
+        const datasets = renderData.datasets.filter(
+          dataset => dataset.props.url === feature.properties.props.tileset.url
+        )
+        const target = datasets[0].cmpRef.cesiumObject
+        viewer
+          .flyTo(target, {
+            ...options
+          })
+          .then(() => {
+            // 菜单展示逻辑
             // options.showBillboardOverlayMenu &&
             //   setBillboardOverlayMenu({
             //     position: target.position.getValue(Cesium.JulianDate.now()),
@@ -521,4 +548,235 @@ export async function flyToFeature<T = {}>(
     case 'geojson':
       break
   }
+}
+
+export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGetMethod) {
+  return fetchingMethod()
+    .then(res => {
+      if (res.code !== 0) {
+        logger.error(`添加渲染数据集失败，原因：数据请求失败。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`)
+        dataset.loading = false
+        dataset.checked = false
+        return false
+      }
+
+      if (res.data) {
+        if (res.data?.type) {
+          const geoJsonObjectType = res.data?.type
+          switch (geoJsonObjectType) {
+            case 'Feature':
+              dataset.children = [res.data]
+              break
+            case 'FeatureCollection':
+              dataset.children = res.data.features
+              dataset.children.forEach(v => {
+                if (!Cesium.defined(v.properties.renderingType)) {
+                  v.properties.renderingType = dataset.renderingType || 'billboard'
+                }
+                if (!Cesium.defined(v.properties.id)) {
+                  v.properties.id = Cesium.createGuid()
+                }
+                if (!Cesium.defined(v.properties.checked)) {
+                  v.properties.checked = false
+                }
+              })
+              break
+            default:
+              logger.error(
+                `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+              )
+              dataset.loading = false
+              dataset.checked = false
+              return
+          }
+        } else if (dataset.renderingType === 'heatmap') {
+          // 人口分布的热力图
+          dataset.children = [res.data]
+        }
+      } else {
+        logger.error(
+          `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+        )
+        dataset.loading = false
+        dataset.checked = false
+        return false
+      }
+      if (!dataset.children?.length) {
+        logger.error(
+          `添加渲染数据集失败，原因：请求数据成功，但结果为空。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+        )
+        dataset.loading = false
+        dataset.checked = false
+        return false
+      }
+      return true
+    })
+    .catch(e => {
+      logger.error('添加渲染数据集失败，原因：数据请求异常。', e)
+      dataset.loading = false
+      dataset.checked = false
+      return false
+    })
+}
+
+/**
+ * 根据渲染类型添加数据集到动态渲染数组。
+ * @param dataset 渲染的数据集
+ * @param fetchCallback 数据集请求参数
+ * @param page 渲染数据所在的路由页面
+ * @param type 渲染数据的类型
+ * @returns
+ */
+export function addDatasetByRenderingType(
+  dataset: VcDataset,
+  fetchingMethod: VcDatasetGetMethod,
+  page: string,
+  type?: string
+) {
+  dataset.loading = true
+  if (!dataset.children?.length) {
+    try {
+      return fetchDatasetList(dataset, fetchingMethod).then(flag => {
+        if (flag) {
+          return addRenderDataset(dataset, page, type)
+        }
+      })
+    } catch (error) {
+      logger.error(
+        `添加渲染数据集失败，原因：数据请求发生错误。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`,
+        '数据模型：',
+        dataset
+      )
+      dataset.loading = false
+      dataset.checked = false
+      return
+    }
+  } else {
+    return Promise.resolve(addRenderDataset(dataset, page, type))
+  }
+}
+
+/**
+ * 添加渲染数据源。
+ * @param {*} dataset
+ * @param {*} page
+ * @param {*} type
+ * @returns
+ */
+const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
+  dataset.cesiumObjects = dataset.cesiumObjects || []
+  const renderData: VcRenderData = {
+    id: dataset.id,
+    name: dataset.name,
+    page,
+    type,
+    datasets: []
+  }
+
+  const renderingApi = 'entity'
+
+  let entities: Array<
+    VcEntityProps & {
+      feature: VcFeature
+    }
+  > = [] // 实体集合
+
+  if (dataset.renderingType === 'tileset') {
+    for (let i = 0; i < dataset.children.length; i++) {
+      const feature = dataset.children[i]
+      const properties = feature.properties
+      properties.datasetId = dataset.id
+      const props =
+        dataset.props && isPlainObject(dataset?.props)
+          ? dataset?.props
+          : dataset.props
+          ? JSON.parse(dataset?.props)
+          : {}
+
+      const vcProps = Object.assign(
+        {},
+        props[dataset.renderingType],
+        feature.properties?.props?.[dataset.renderingType]
+      )
+
+      feature.properties.actualRenderingType = dataset.renderingType
+
+      renderData.datasets.push({
+        cmpName: 'VcPrimitiveTileset',
+        props: {
+          ...vcProps,
+          show: toRef(feature.properties, 'checked'),
+          maximumMemoryUsage: 128,
+          maximumScreenSpaceError: 64,
+          onReady: () => {
+            dataset.loading = false
+          }
+        } as VcPrimitiveTilesetProps
+      })
+    }
+
+    addRenderDatas(renderData)
+  } else {
+    for (let i = 0; i < dataset.children.length; i++) {
+      const feature = dataset.children[i]
+      const properties = feature.properties
+      properties.datasetId = dataset.id
+      const props =
+        dataset.props && isPlainObject(dataset?.props)
+          ? dataset?.props
+          : dataset.props
+          ? JSON.parse(dataset?.props)
+          : {}
+      const models = processVcEntityModels(feature, props)
+      if (typeof models === 'string') {
+        continue
+      }
+      const intersections = intersectionWith(models, entities, (arrVal: any, othVal: any) => {
+        return (
+          arrVal.feature.properties.id === othVal.feature.properties.id &&
+          arrVal.feature.geometry.type === othVal.feature.geometry.type
+        )
+      })
+      entities.push(...models)
+      if (intersections.length) {
+        intersections.forEach(intersection => {
+          logger.warn(
+            `已添加相同id和类型的渲染数据集，可能有重复数据，请核实。对象 id: ${intersection.feature.properties.id}，对象类型: ${intersection.feature.geometry.type}`,
+            '数据模型：',
+            intersection
+          )
+        })
+        // 去重
+        entities = uniqWith(entities, (arrVal: any, othVal: any) => {
+          return (
+            arrVal.feature.properties.id === othVal.feature.properties.id &&
+            arrVal.feature.geometry.type === othVal.feature.geometry.type
+          )
+        })
+      }
+    }
+
+    if (renderingApi === 'entity') {
+      entities.length &&
+        renderData.datasets.push({
+          cmpName: 'VcDatasourceCustom',
+          props: {
+            entities,
+            onReady: ({ cesiumObject }) => {
+              const id = `VcDatasourceCustom_${dataset.id}`
+              cesiumObject.datasetId = id
+              const findResult = find(dataset.cesiumObjects, v => v.datasetId === id)
+              !findResult && dataset.cesiumObjects.push(markRaw(cesiumObject))
+              dataset.loading = false
+            }
+          }
+        })
+    } else if (renderingApi === 'primitive') {
+      //
+    }
+
+    addRenderDatas(renderData)
+  }
+
+  return true
 }

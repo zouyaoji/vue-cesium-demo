@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-02 10:00:08
- * @LastEditTime: 2022-07-04 17:00:46
+ * @LastEditTime: 2022-07-21 17:36:11
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\index.ts
@@ -13,6 +13,7 @@ import { service, request, serviceForMock, requestForMock, mock } from './servic
 import * as tools from './tools'
 import systemApi from './modules/system'
 import commonApi from './modules/common'
+import dynamicRenderApi from './modules/dynamic-render'
 
 const params = { service, request, serviceForMock, requestForMock, mock, faker, tools }
 /**
@@ -20,5 +21,6 @@ const params = { service, request, serviceForMock, requestForMock, mock, faker, 
  */
 const system = systemApi(params)
 const common = commonApi(params)
+const dynamicRender = dynamicRenderApi(params)
 
-export { system, common }
+export { system, common, dynamicRender }

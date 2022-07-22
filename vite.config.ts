@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-07-20 13:40:41
+ * @LastEditTime: 2022-07-21 21:42:44
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -68,6 +68,11 @@ export default ({ mode }) => {
           target: 'https://tm.amap.com/trafficengine/mapabc/traffictile',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/traffictile/, '/')
+        },
+        '/v3': {
+          target: 'https://restapi.amap.com/v3',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/v3/, '/')
         }
       }
     },

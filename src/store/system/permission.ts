@@ -2,7 +2,7 @@
  * @Author: tanghuang-liu 916650458@qq.com
  * @Date: 2022-05-13 16:47:56
  * @LastEditors: zouyaoji
- * @LastEditTime: 2022-07-20 13:38:46
+ * @LastEditTime: 2022-07-21 01:16:44
  * @FilePath: \vue-cesium-demo\src\store\system\permission.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,8 @@ import * as util from '@src/utils/util'
 import { useDBStore } from './db'
 import { useMenuStore } from './menu'
 import { useSearchStore } from './search'
+import { RouteRecordRaw } from 'vue-router'
+import { Menu } from '@src/api/modules/system'
 const StaticMenuHeader = [...menuHeader] // 静态菜单暂存，重新登录后，需要重新加载动态菜单与此处的静态菜单合并
 
 function isEmpty(value) {
@@ -45,9 +47,10 @@ const resolveComponent = path => {
  * @param list
  * @returns {[]}
  */
-function buildRouter(parent, list) {
+// eslint-disable-next-line @typescript-eslint/member-delimiter-style
+function buildRouter(parent: RouteRecordRaw, list: Menu[]): RouteRecordRaw[] {
   if (parent == null) {
-    parent = { children: [] }
+    parent = { path: '/', children: [] }
   }
   list.forEach(item => {
     let newRouter = parent
@@ -66,7 +69,6 @@ function buildRouter(parent, list) {
       newRouter = {
         path: item.path,
         name: item.name,
-        hidden: item.hidden,
         // 动态路由支持懒加载
         component: component,
         meta: {
@@ -74,7 +76,8 @@ function buildRouter(parent, list) {
           auth: true,
           cache: true
         }
-      }
+      } as RouteRecordRaw
+      item.redirect && (newRouter.redirect = item.redirect)
       children.push(newRouter)
     }
     if (item.children != null && item.children.length > 0) {

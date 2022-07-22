@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-07-04 16:55:23
+ * @LastEditTime: 2022-07-21 09:19:13
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
@@ -25,6 +25,7 @@ export type Menu = {
   title: string
   caption?: string
   type: number
+  redirect?: string
   children?: Array<Menu>
 }
 
@@ -78,30 +79,45 @@ const menus: Array<Menu> = [
       },
       {
         id: faker.datatype.uuid(),
-        component: '/dynamic-overlay',
+        component: '/dynamic-render',
         icon: 'cog',
         islock: false,
         hidden: false,
-        name: 'dynamic-overlay',
-        path: '/dynamic-overlay',
-        permission: 'permission-dynamic-overlay',
+        name: 'dynamic-render',
+        path: '/dynamic-render',
+        permission: 'permission-dynamic-render',
         sort: 1000,
-        caption: '示例',
-        title: 'message.header.dynamicOverlay',
+        caption: '动态渲染',
+        title: 'message.header.dynamicRender',
         type: 10,
+        redirect: '/dynamic-render/datasource',
         children: [
           {
             id: faker.datatype.uuid(),
-            component: '/dynamic-overlay/historical-track',
+            component: '/dynamic-render/datasource',
+            icon: 'dataset',
+            islock: false,
+            hidden: false,
+            name: 'datasource',
+            path: '/dynamic-render/datasource',
+            permission: 'permission-datasource',
+            sort: 1000,
+            caption: 'dynamicRender',
+            title: 'message.sideBar.dynamicRender.datasource',
+            type: 10
+          },
+          {
+            id: faker.datatype.uuid(),
+            component: '/dynamic-render/historical-track',
             icon: 'inbox',
             islock: false,
             hidden: false,
             name: 'historical-track',
-            path: '/dynamic-overlay/historical-track',
+            path: '/dynamic-render/historical-track',
             permission: 'permission-historical-track',
             sort: 1000,
-            caption: 'dynamicOverlay',
-            title: 'message.sideBar.dynamicOverlay.historicalTrack',
+            caption: 'dynamicRender',
+            title: 'message.sideBar.dynamicRender.historicalTrack',
             type: 10
           }
         ]

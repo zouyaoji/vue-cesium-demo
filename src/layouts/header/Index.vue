@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-06-14 16:28:37
+ * @LastEditTime: 2022-07-21 20:16:12
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -10,17 +10,27 @@
   <div class="main-header" :style="{ opacity: searchActive ? 0.5 : 1 }">
     <div class="left">
       <div class="content">
-        <div size="60px" class="logo-img float cursor-pointer" @click="onLogoClicked">
+        <div size="60px" class="logo-img float">
           <img src="https://zouyaoji.top/vue-cesium/favicon.png" />
         </div>
+        <q-btn
+          v-if="asideMenus.length"
+          flat
+          icon="menu"
+          class="text-white"
+          round
+          style="height: 24px"
+          @click="onToggleLeftDrawer"
+        ></q-btn>
         <div class="title text-h4 float">
           <div>{{ title }}</div>
         </div>
         <div class="nav float">
-          <q-tabs>
+          <q-tabs v-model:model-value="selectedTab" @update:model-value.once="onUpdateSelectedTab">
             <q-route-tab
               v-for="(menu, index) in headerMenus"
               :key="index"
+              :name="menu.name"
               :to="menu.path"
               exact
               :label="$t(menu.title)"
@@ -55,22 +65,33 @@ import HeaderUser from './user/Index.vue'
 import HeaderLocale from './locale/Index.vue'
 import HeaderLayer from './layer/Index.vue'
 import { openURL } from 'quasar'
-
-import { reactive, ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { ref, computed, onMounted, watch } from 'vue'
 import { store } from '@src/store'
 import { ThemeOptions } from '@src/types/theme'
+import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
+import { storeToRefs } from 'pinia'
 
-const emits = defineEmits(['logoClicked'])
-
+const $route = useRoute()
 const searchActive = ref(false)
+const selectedTab = ref('')
+const { registerTimeout } = useTimeout()
+const delay = ref(100)
+const menuStore = store.system.useMenuStore()
+const layoutStore = store.system.useLayoutStore()
+const { global: globalLayout } = storeToRefs(layoutStore)
 
 const title = computed(() => {
   return import.meta.env.VITE_VUE_APP_TITLE
 })
 
 const headerMenus = computed(() => {
-  const header = store.system.useMenuStore().header
+  const header = menuStore.header
   return header.length ? header[0].children : []
+})
+
+const asideMenus = computed(() => {
+  return menuStore.aside
 })
 
 const theme = computed<ThemeOptions>(() => {
@@ -78,12 +99,43 @@ const theme = computed<ThemeOptions>(() => {
   return themeStore.themeConfig[themeStore.activeName]
 })
 
+watch(
+  () => $route.matched,
+  val => {
+    registerTimeout(() => {
+      if (val.length > 1) {
+        const moduleName = val[1].path.substring(1, val[1].path.length)
+        moduleName && (selectedTab.value = moduleName)
+      } else {
+        selectedTab.value = 'index'
+      }
+    }, delay.value)
+  },
+  {
+    immediate: true
+  }
+)
+
+onMounted(() => {
+  delay.value = 5
+})
+
 const onNavigation = () => {
   openURL('https://github.com/zouyaoji/vue-cesium-demo')
 }
 
-const onLogoClicked = () => {
-  emits('logoClicked')
+const onToggleLeftDrawer = () => {
+  layoutStore.toggleGlobalLayout({
+    leftDrawerMini: !globalLayout.value.leftDrawerMini
+  })
+}
+
+const onUpdateSelectedTab = e => {
+  if (e === null && $route.matched.length > 1) {
+    selectedTab.value = $route.matched[1].path.substring(1, $route.matched[1].path.length)
+  } else {
+    selectedTab.value = e
+  }
 }
 </script>
 
@@ -107,6 +159,7 @@ const onLogoClicked = () => {
       transition: all 0.2s ease 0.2s;
       height: 100%;
       display: flex;
+      align-items: center;
       .logo-img {
         background: v-bind('theme.header.themeHeaderLogoBackgroundColor');
         width: 60px;

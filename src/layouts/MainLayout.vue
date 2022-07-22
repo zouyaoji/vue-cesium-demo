@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-07-04 16:40:06
+ * @LastEditTime: 2022-07-21 20:13:06
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -9,25 +9,39 @@
 <template>
   <q-layout view="hHh Lpr fFf" class="main-layout" :class="{ 'gray-mode': grayActive }">
     <q-drawer
-      v-if="asideMenus?.length"
+      v-if="asideMenus?.length && globalLayout.header"
       v-model="drawer"
       show-if-above
-      :width="200"
+      :width="180"
       :breakpoint="500"
       bordered
-      class="bg-grey-3"
-      :mini="mini"
+      :mini="globalLayout.leftDrawerMini"
     >
       <q-scroll-area class="fit">
-        <q-list>
+        <q-list class="drawer-menu-list">
           <template v-for="(menuItem, index) in asideMenus" :key="index">
-            <q-item v-ripple clickable :active="menuItem.label === 'Outbox'" @click="$router.push(menuItem.path)">
+            <q-item
+              v-ripple
+              clickable
+              active-class="menu-active-item"
+              :active="menuItem.name === currentRouteName"
+              @click="$router.push(menuItem.path)"
+            >
               <q-item-section avatar>
                 <q-icon :name="menuItem.icon" />
               </q-item-section>
               <q-item-section>
                 {{ $t(menuItem.title) || menuItem.caption }}
               </q-item-section>
+              <q-tooltip
+                v-if="globalLayout.leftDrawerMini"
+                transition-show="scale"
+                transition-hide="scale"
+                anchor="center right"
+                self="center left"
+              >
+                {{ $t(menuItem.title) || menuItem.caption }}
+              </q-tooltip>
             </q-item>
             <q-separator v-if="menuItem.separator" :key="'sep' + index" />
           </template>
@@ -40,7 +54,7 @@
         <main-viewer>
           <!-- header -->
           <header v-show="globalLayout.header" elevated reveal class="absolute text-h4 text-center">
-            <main-header @logo-clicked="onLogoClicked" />
+            <main-header />
           </header>
           <!-- overylay-content / router-view -->
           <div v-if="globalLayout.content" class="content">
@@ -64,30 +78,13 @@ import { pinia } from '@src/store'
 import { store } from '@src/store'
 import { storeToRefs } from 'pinia'
 import { useRouter, useRoute } from 'vue-router'
+import { ThemeOptions } from '@src/types/theme'
 
 const $route = useRoute()
-const mini = ref(true)
 // state
 const globalLayout = storeToRefs(store.system.useLayoutStore()).global
 const { active: grayActive } = storeToRefs(store.system.useGrayStore())
 const menuStore = store.system.useMenuStore()
-const menuList = [
-  {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true
-  },
-  {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false
-  },
-  {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false
-  }
-]
 
 const drawer = ref(false)
 
@@ -99,6 +96,15 @@ const headerMenus = computed(() => {
 
 const asideMenus = computed(() => {
   return menuStore.aside
+})
+
+const currentRouteName = computed(() => {
+  return $route.name
+})
+
+const theme = computed<ThemeOptions>(() => {
+  const themeStore = store.system.useThemeStore()
+  return themeStore.themeConfig[themeStore.activeName]
 })
 
 // watch
@@ -153,10 +159,6 @@ onMounted(() => {
     })
   }
 })
-
-const onLogoClicked = () => {
-  mini.value = !mini.value
-}
 </script>
 <style lang="scss" scoped>
 .main-layout {
@@ -170,6 +172,9 @@ const onLogoClicked = () => {
     height: 350px;
     top: 120px;
     left: 12px;
+  }
+  ::v-deep(.q-drawer--left) {
+    background: var(--themeQMenuBackgroundColor);
   }
   &.gray-mode {
     -webkit-filter: grayscale(100%);
@@ -189,6 +194,15 @@ const onLogoClicked = () => {
     left: 10px;
     border-radius: 30px;
     pointer-events: none;
+  }
+
+  .drawer-menu-list {
+    color: v-bind('theme.menu.themeMenuColor') !important;
+    .menu-active-item {
+      color: v-bind('theme.menu.themeMenuActiveColor');
+      font-size: 16px;
+      // background-color: v-bind('theme.menu.themeMenuActiveBackgroundColor');
+    }
   }
 
   .interaction-root {

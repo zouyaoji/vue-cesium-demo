@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-11-17 23:52:31
- * @LastEditTime: 2022-05-26 14:00:37
+ * @LastEditTime: 2022-07-23 00:00:09
  * @LastEditors: zouyaoji
  * @Description: 为 GeoJSON 数据生成  entity api 数据模型
  * @FilePath: \vue-cesium-demo\src\utils\render-data-model-entity.ts
@@ -12,6 +12,8 @@ import { polygonToLineString, lineStringToPolygon, centroid, centerOfMass } from
 import { cloneDeep } from 'lodash'
 import { VcFeature } from '@src/types/render-data'
 import { VcEntityProps } from 'vue-cesium'
+import { isPlainObject } from 'vue-cesium/es/utils/util'
+import { makeCartesian3 } from 'vue-cesium/es/utils/cesium-helpers'
 
 /**
  * 将 Point 类型的 GeoJSON 数据处理为 Cesium.Entity 数据模型。
@@ -119,21 +121,20 @@ function createVcGraphicPointModel(
     show: show,
     feature: cloneDeep(feature)
   }
-  if (renderingType === 'billboard') {
-    const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
-    entityModel.billboard = {
-      ...billboardProps
-    }
-  } else if (renderingType === 'point') {
-    const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
-    entityModel.point = {
-      ...pointProps
-    }
-  } else if (renderingType === 'label') {
-    const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
-    entityModel.label = {
-      text: feature.properties.text || feature.properties.name,
-      ...labelProps
+
+  const childProps = feature.properties?.props
+  const childPropsR = childProps && isPlainObject(childProps) ? childProps : childProps ? JSON.parse(childProps) : {}
+  const vcProps = Object.assign({}, props[renderingType], childPropsR[renderingType])
+  entityModel[renderingType] = {
+    ...vcProps
+  }
+
+  if (renderingType === 'model') {
+    const hprOpts = JSON.parse(feature.properties?.hpr || '{}')
+    if (Array.isArray(hprOpts)) {
+      const position = makeCartesian3(coordinates) as Cesium.Cartesian3
+      const hpr = new Cesium.HeadingPitchRoll(...hprOpts)
+      entityModel.orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr)
     }
   }
   return entityModel
@@ -194,6 +195,7 @@ function createVcGraphicPolylineModel(
     return entity
   } else {
     const polylineProps = Object.assign({}, props.polyline, feature.properties?.props?.polyline)
+
     const entity = {
       show,
       polyline: {
@@ -231,7 +233,11 @@ function createVcGraphicPolygonModel(
       const featureCollection = polygonToLineString(feature as Feature<MultiPolygon, Properties>) as FeatureCollection
       const models = []
       featureCollection.features.forEach(featureLine => {
-        models.push(processLineString2EntityModel(props, featureLine, renderingType))
+        if (featureLine.geometry.type === 'LineString') {
+          models.push(processLineString2EntityModel(props, featureLine, renderingType))
+        } else {
+          models.push(...processMultiLineString2EntityModel(props, featureLine, renderingType))
+        }
       })
 
       return models
@@ -244,7 +250,9 @@ function createVcGraphicPolygonModel(
     // 处理岛洞
     const holes = []
     for (let i = 1; i < coordinates.length; i++) {
-      holes.push(coordinates[i])
+      holes.push({
+        positions: coordinates[i]
+      })
     }
     const polygonProps = Object.assign({}, props.polygon, feature.properties?.props?.polygon)
     const entity = {

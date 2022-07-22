@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-04 16:59:07
- * @LastEditTime: 2022-07-04 16:59:22
+ * @LastEditTime: 2022-07-21 21:39:37
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\common.ts
@@ -38,6 +38,14 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
     return request({
       baseURL: import.meta.env.BASE_URL,
       url: '/reverse_geocoding/v3',
+      method: 'get',
+      params: query
+    })
+  },
+  getLocationList(query) {
+    return request({
+      baseURL: import.meta.env.BASE_URL,
+      url: '/v3/place/text',
       method: 'get',
       params: query
     })

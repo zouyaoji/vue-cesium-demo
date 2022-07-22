@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-06-01 16:56:41
+ * @LastEditTime: 2022-07-23 00:15:51
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -18,7 +18,8 @@ import {
   VcDatasourceGeojson,
   VcDatasourceCustom,
   VcOverlayDynamic,
-  VcOverlayHeatmap
+  VcOverlayHeatmap,
+  VcPrimitiveTileset
 } from 'vue-cesium'
 import { useVueCesium } from 'vue-cesium'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
@@ -34,7 +35,8 @@ const cmpMap = {
   VcDatasourceGeojson,
   VcDatasourceCustom,
   VcOverlayDynamic,
-  VcOverlayHeatmap
+  VcOverlayHeatmap,
+  VcPrimitiveTileset
 }
 
 export default defineComponent({
@@ -149,7 +151,10 @@ export default defineComponent({
           const actualRenderingType = properties?.actualRenderingType
           let boundingSphere, positions
           switch (actualRenderingType) {
+            case 'label':
+            case 'point':
             case 'billboard':
+            case 'model':
               position = pickedEntity.position.getValue(JulianDate.now())
               break
             case 'polyline':
@@ -213,44 +218,56 @@ export default defineComponent({
             if (defined(feature)) {
               nextTick(() => {
                 const { actualRenderingType, datasetId, id, renderingApi } = feature.properties
-                highlightRenderData(actualRenderingType, datasetId, id).then(() => {
-                  let boundingSphere, positions, position
-                  const pickedFeature = picked.cesiumObject
-                  switch (actualRenderingType) {
-                    case 'billboard':
-                      // 从对象取
-                      position =
-                        renderingApi === 'primitive'
-                          ? pickedFeature.position
-                          : pickedFeature.position.getValue(JulianDate.now())
-                      break
-                    case 'polyline':
-                      // 从对象取
-                      positions =
-                        renderingApi === 'primitive'
-                          ? pickedFeature.positions
-                          : pickedFeature.polyline.positions.getValue()
-                      boundingSphere = BoundingSphere.fromPoints(positions)
-                      position = boundingSphere.center
-                      break
-                    case 'polygon':
-                      // 从对象取
-                      positions =
-                        renderingApi === 'primitive'
-                          ? pickedFeature._vcParent?.polygonHierarchy.positions
-                          : pickedFeature.polygon.hierarchy.getValue().positions
-                      boundingSphere = BoundingSphere.fromPoints(positions)
-                      position = boundingSphere.center
-                      // 从属性取
-                      break
-                    case 'geojson': // 区划数据
-                      // 中心点算法二
-                      boundingSphere = new Cesium.BoundingSphere()
-                      ;(viewer.dataSourceDisplay as any).getBoundingSphere(pickedFeature, true, boundingSphere)
-                      position = boundingSphere.center
-                      break
-                  }
-                })
+                highlightRenderData(actualRenderingType, datasetId, id)
+                let boundingSphere, positions, position
+                const pickedFeature = picked.cesiumObject
+                switch (actualRenderingType) {
+                  case 'label':
+                  case 'point':
+                  case 'billboard':
+                  case 'model':
+                    // 从对象取
+                    position =
+                      renderingApi === 'primitive'
+                        ? pickedFeature.position
+                        : pickedFeature.position.getValue(JulianDate.now())
+                    break
+                  case 'polyline':
+                    // 从对象取
+                    positions =
+                      renderingApi === 'primitive'
+                        ? pickedFeature.positions
+                        : pickedFeature.polyline.positions.getValue()
+                    boundingSphere = BoundingSphere.fromPoints(positions)
+                    position = boundingSphere.center
+                    break
+                  case 'polygon':
+                    // 从对象取
+                    positions =
+                      renderingApi === 'primitive'
+                        ? pickedFeature._vcParent?.polygonHierarchy.positions
+                        : pickedFeature.polygon.hierarchy.getValue().positions
+                    boundingSphere = BoundingSphere.fromPoints(positions)
+                    position = boundingSphere.center
+                    // 从属性取
+                    break
+                  case 'geojson': // 区划数据
+                    // 中心点算法二
+                    boundingSphere = new Cesium.BoundingSphere()
+                    ;(viewer.dataSourceDisplay as any).getBoundingSphere(pickedFeature, true, boundingSphere)
+                    position = boundingSphere.center
+                    break
+                }
+
+                const canShowDetail = Cesium.defined(feature?.properties?.showBillboardMenu)
+                  ? feature.properties.showBillboardMenu
+                  : true
+                canShowDetail && onShowFeatureDetail()
+              })
+            } else {
+              clearSelectedRenderData()
+              toggleGlobalLayout({
+                featureInfo: false
               })
             }
           }, 100)
@@ -261,6 +278,17 @@ export default defineComponent({
           featureInfo: false
         })
       }
+    }
+
+    const onShowFeatureDetail = () => {
+      const feature = selectedRenderData.feature
+      const id = feature.properties.id
+      if (!id) {
+        logger.warn('显示详情数据失败，原因：要素 id 值为空。', '要素model：', selectedRenderData.model)
+        return
+      }
+      // showFeatureInfoPanel(feature, selectedRenderData)
+      logger.debug('属性展示逻辑待完善')
     }
 
     function setRef(this, el) {

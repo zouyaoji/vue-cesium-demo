@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-15 11:06:15
- * @LastEditTime: 2022-07-04 16:44:32
+ * @LastEditTime: 2022-07-20 14:00:47
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\layer.ts
@@ -309,7 +309,8 @@ export const useLayerStore = defineStore('layer', {
   getters: {},
   // optional actions
   actions: {
-    toggle({ names, show }) {
+    // eslint-disable-next-line @typescript-eslint/member-delimiter-style
+    toggle({ names, show }: { names: string | Array<string>; show: boolean }) {
       const allLayers = [...this.baseLayers, ...this.overlayLayers, ...this.vectorLayers]
       names = Array.isArray(names) ? names : [names]
       names.forEach(name => {

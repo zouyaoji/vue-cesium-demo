@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-07-04 16:54:14
+ * @LastEditTime: 2022-07-21 09:19:58
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\zh-CN\index.ts
@@ -13,11 +13,11 @@ export default {
   message: {
     header: {
       index: '首页',
-      demo: '示例',
-      dynamicOverlay: '动态对象'
+      dynamicRender: '动态渲染'
     },
     sideBar: {
-      dynamicOverlay: {
+      dynamicRender: {
+        datasource: '数据源',
         historicalTrack: '历史轨迹'
       }
     },

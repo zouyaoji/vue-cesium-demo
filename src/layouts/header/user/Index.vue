@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:23:46
- * @LastEditTime: 2022-06-01 16:46:59
+ * @LastEditTime: 2022-07-21 13:30:12
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\user\Index.vue
@@ -29,7 +29,7 @@ import { useVueCesium } from 'vue-cesium'
 import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
 import { renderData } from '@src/utils'
 
-const { toggleGlobalLayout, toggleIndexPageLayout } = store.system.useLayoutStore()
+const { toggleGlobalLayout } = store.system.useLayoutStore()
 const { loadDefaultLayers } = store.viewer.useLayerStore()
 const user = store.system.useUserStore()
 const $vc = useVueCesium()
@@ -45,7 +45,6 @@ const onItemClick = () => {
         // 注销后默认显示的图层
         loadDefaultLayers(false)
 
-        toggleIndexPageLayout({ workBench: false })
         toggleGlobalLayout({ featureInfo: false, layerManager: false })
 
         renderData.removeAllRenderData()

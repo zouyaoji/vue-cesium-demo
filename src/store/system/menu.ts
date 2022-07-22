@@ -1,3 +1,4 @@
+import { Menu } from '@src/api/modules/system'
 import setting from '@src/config/setting.js'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useDBStore } from './db'
@@ -5,7 +6,7 @@ export const useMenuStore = defineStore('menu', {
   state: () => {
     return {
       // 顶栏菜单(所有顶部菜单)
-      header: [],
+      header: [] as Menu[],
       // 侧栏菜单
       aside: [],
       // 侧边栏收缩

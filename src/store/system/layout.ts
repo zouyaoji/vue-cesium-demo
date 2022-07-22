@@ -1,13 +1,14 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-13 16:40:38
- * @LastEditTime: 2022-06-01 16:46:05
+ * @LastEditTime: 2022-07-21 19:54:27
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\system\layout.ts
  */
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { isBoolean } from 'lodash'
+import { isPlainObject } from 'vue-cesium/es/utils/util'
 
 // main is the name of the store. It is unique across your application
 // and will appear in devtools
@@ -16,6 +17,7 @@ export const useLayoutStore = defineStore('layout', {
   state: () => ({
     global: {
       header: false,
+      leftDrawerMini: true,
       content: false,
       footer: false,
       layerManager: false,
@@ -25,8 +27,10 @@ export const useLayoutStore = defineStore('layout', {
     /**
      * index 页面布局参数
      */
-    index: {
-      workBench: false
+    dynamicRender: {
+      datasource: {
+        workBench: false
+      }
     }
   }),
   // optional getters
@@ -45,15 +49,23 @@ export const useLayoutStore = defineStore('layout', {
       })
     },
     /**
-     * 切换 Index 页面布局
+     * 切换 DynamicRender 页面布局
      * @param {*} state
      * @param {*} layoutOpts
      */
-    toggleIndexPageLayout(layoutOpts) {
-      const optsArray = Object.keys(layoutOpts)
-      optsArray.forEach(opt => {
-        isBoolean(layoutOpts[opt]) && (this.index[opt] = layoutOpts[opt])
-      })
+    toggleDynamicRenderPageLayout(layoutOpts) {
+      const fn = (opts, layout) => {
+        const optsArray = Object.keys(opts)
+        optsArray.forEach(opt => {
+          if (isPlainObject(opts[opt])) {
+            fn(opts[opt], layout[opt])
+          } else {
+            isBoolean(opts[opt]) && (layout[opt] = opts[opt])
+          }
+        })
+      }
+
+      fn(layoutOpts, this.dynamicRender)
     }
   }
 })

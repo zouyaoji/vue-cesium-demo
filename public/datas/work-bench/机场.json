@@ -1,0 +1,5912 @@
+{
+  "type": "FeatureCollection",
+  "name": "airport",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "黄山屯溪国际机场",
+        "pyname": "hstxgjjc",
+        "kind": "8100",
+        "id": "689ae99d-ed66-47b4-8338-1557e09aa111",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.253394,
+            29.730675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安庆天柱山机场",
+        "pyname": "aqtzsjc",
+        "kind": "8100",
+        "id": "f733c0ee-05c7-49c3-99f5-d768d2aa642a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.047072,
+            30.585208
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "合肥新桥国际机场",
+        "pyname": "hfxqgjjc",
+        "kind": "8100",
+        "id": "bfa5b16a-4136-45cc-9b95-71e7c1a7baed",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.964259,
+            31.989061
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阜阳机场",
+        "pyname": "fyjc",
+        "kind": "8100",
+        "id": "d70c0dc4-155c-4bb6-99d4-736db1991c95",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.738434,
+            32.879164
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京南苑机场",
+        "pyname": "bjnyjc",
+        "kind": "8100",
+        "id": "11344352-dc40-4fa1-a68d-e35cbf81a498",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.390934,
+            39.789837
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京首都国际机场一号航站楼",
+        "pyname": "bjsdgjjcyhhzl",
+        "kind": "8100",
+        "id": "1d2eb2ce-f306-444c-88b5-db4b60bd153c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.58215,
+            40.07969
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京首都国际机场",
+        "pyname": "bjsdgjjc",
+        "kind": "8100",
+        "id": "564593bb-dbb6-4fa3-927b-9bea0cd64117",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.591015,
+            40.081375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京首都国际机场二号航站楼",
+        "pyname": "bjsdgjjcehhzl",
+        "kind": "8100",
+        "id": "ccca97bf-83c6-445e-a6b1-8d9bb6947b84",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.588976,
+            40.077846
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京首都国际机场三号航站楼",
+        "pyname": "bjsdgjjcshhzl",
+        "kind": "8100",
+        "id": "5ac6de49-311f-4822-9d45-394c5f9be19e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.609796,
+            40.053874
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北京平谷金海湖机场",
+        "pyname": "bjpgjhhjc",
+        "kind": "8100",
+        "id": "5dcf089a-559d-4a4e-af78-94c184300ce4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.233048,
+            40.189238
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "密云机场",
+        "pyname": "myjc",
+        "kind": "8100",
+        "id": "0757a10a-828b-4fb1-b6f2-962f95f8b20a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.886356,
+            40.399946
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "定陵机场",
+        "pyname": "dljc",
+        "kind": "8100",
+        "id": "e511829d-e058-4de9-9576-c628039b3e5b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.233651,
+            40.287796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "黔江武陵山机场",
+        "pyname": "qjwlsjc",
+        "kind": "8100",
+        "id": "3320770d-c09d-4581-8b80-4bc2c6f52c03",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.82929,
+            29.517347
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "重庆江北国际机场国内候机楼T2A航站楼",
+        "pyname": "cqjbgjjcgnhjlt2hzl",
+        "kind": "8100",
+        "id": "9b835187-9cca-4302-8e6b-2aa62da864cc",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.633361,
+            29.717202
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "重庆江北国际机场",
+        "pyname": "cqjbgjjc",
+        "kind": "8100",
+        "id": "553428f7-d7d3-4a78-b5b5-ffa33a79b765",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.641253,
+            29.719279
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "万州机场",
+        "pyname": "wzjc",
+        "kind": "8100",
+        "id": "e861ad5c-ef30-4b5f-9508-02410c719f34",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.42753,
+            30.800676
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "重庆江北国际机场国内候机楼T2B航站楼",
+        "pyname": "cqjbgjjcgnhjlt2hzl",
+        "kind": "8100",
+        "id": "1c01362f-7a1d-446a-b900-cd9b50cdc544",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.634379,
+            29.72028
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "重庆江北国际机场国际候机楼T1航站楼",
+        "pyname": "cqjbgjjcgjhjlt1hzl",
+        "kind": "8100",
+        "id": "feaea404-cb84-47d0-8d8d-c4e5b787d917",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.637443,
+            29.724855
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "厦门高崎国际机场贵宾候机室",
+        "pyname": "xmgqgjjcgbhjs",
+        "kind": "8100",
+        "id": "e9b9e994-496c-4d8f-9121-ff08e86e6811",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.124071,
+            24.53583
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "福州长乐国际机场",
+        "pyname": "fzclgjjc",
+        "kind": "8100",
+        "id": "edb287cc-68f6-4add-8f81-d5d3f8f18db4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.668435,
+            25.931641
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "泉州晋江国际机场",
+        "pyname": "qzjjgjjc",
+        "kind": "8100",
+        "id": "7c3c754b-b9d9-446d-bd49-abf1d12c062c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.588667,
+            24.803414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "厦门高崎国际机场",
+        "pyname": "xmgqgjjc",
+        "kind": "8100",
+        "id": "0d205b3d-2155-4ac8-bded-ce780009d327",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.126727,
+            24.537265
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武夷山机场",
+        "pyname": "wysjc",
+        "kind": "8100",
+        "id": "cce21d23-f96c-4571-9485-9e9c7b7deca1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.999916,
+            27.708085
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "福州长乐国际机场贵宾候机厅",
+        "pyname": "fzclgjjcgbhjt",
+        "kind": "8100",
+        "id": "23e827cb-29b6-4a32-b61d-7b7eb849ba0e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.666238,
+            25.928773
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武夷山机场－国际候机楼",
+        "pyname": "wysjc-gjhjl",
+        "kind": "8100",
+        "id": "2e61ca27-ad95-4931-aee3-6312d66c876c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.999737,
+            27.709616
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "厦金湾直升机场",
+        "pyname": "sjwzsjc",
+        "kind": "8100",
+        "id": "b5ed4fa9-b22f-49d1-a242-d86cf79bee18",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.193539,
+            24.50633
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "福州竹歧直升机场",
+        "pyname": "fzzqzsjc",
+        "kind": "8100",
+        "id": "b0fb9f48-6795-49da-a398-69fe9b58fb3b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.114797,
+            26.122578
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "龙岩冠豸山机场",
+        "pyname": "lygzsjc",
+        "kind": "8100",
+        "id": "e7e61e16-37df-4aa1-9be8-4fb12e4b9c75",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.754395,
+            25.681956
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "金昌机场",
+        "pyname": "jcjc",
+        "kind": "8100",
+        "id": "722a69aa-9f2f-4c47-8ff0-ae2065d063ce",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.344416,
+            38.539925
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "庆阳机场",
+        "pyname": "qyjc",
+        "kind": "8100",
+        "id": "f3e26505-4a5a-4c73-acd6-14b56520d367",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.605762,
+            35.801268
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "兰州中川机场",
+        "pyname": "lzzcjc",
+        "kind": "8100",
+        "id": "4f4c4ba6-473b-4677-bcf9-f79fae7a53be",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.615747,
+            36.508129
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "嘉峪关国际机场",
+        "pyname": "jyggjjc",
+        "kind": "8100",
+        "id": "4b124f3f-5d03-4dc3-8540-e2b464057628",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            98.340089,
+            39.863633
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "敦煌机场",
+        "pyname": "dhjc",
+        "kind": "8100",
+        "id": "4d362a85-4f79-45ef-96c9-77e70d5a5fab",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            94.803645,
+            40.165562
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "天水机场",
+        "pyname": "tsjc",
+        "kind": "8100",
+        "id": "1ed93771-40c7-4fd2-8068-06d552f0bcc7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.864982,
+            34.556555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "张掖甘州机场",
+        "pyname": "zygzjc",
+        "kind": "8100",
+        "id": "0cdfdfba-8263-49f9-a110-b2256fb656fa",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.654741,
+            38.814032
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "深圳宝安国际机场",
+        "pyname": "szbagjjc",
+        "kind": "8100",
+        "id": "4d8e36e7-e465-49d1-9386-f4632c064fb8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.806925,
+            22.629965
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "梅县机场",
+        "pyname": "mxjc",
+        "kind": "8100",
+        "id": "2a63228e-1490-4acc-b17e-f4955f21d5a4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.104096,
+            24.26622
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "深圳宝安国际机场T3航站楼",
+        "pyname": "szbagjjct3hzl",
+        "kind": "8100",
+        "id": "5aae7f8b-5a9d-4dc6-83b1-63cd049e0d61",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.807778,
+            22.628439
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "揭阳潮汕国际机场",
+        "pyname": "jycsgjjc",
+        "kind": "8100",
+        "id": "1b5e66b2-13f3-4007-afa2-f9b8e1bd99be",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.50827,
+            23.55106
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "深圳南头直升机场",
+        "pyname": "szntzsjc",
+        "kind": "8100",
+        "id": "35f1bb08-eb8e-422e-aa5f-116cd358399e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.926237,
+            22.561404
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "深圳宝安国际机场商务贵宾楼",
+        "pyname": "szbagjjcswgbl",
+        "kind": "8100",
+        "id": "fe93d022-0e79-4d54-a5fe-8846953e2b92",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.81032,
+            22.628415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "珠海金湾机场",
+        "pyname": "zhjwjc",
+        "kind": "8100",
+        "id": "903a1cb5-c8cf-4389-971a-00b47ac5095f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.371815,
+            22.011603
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "湛江机场",
+        "pyname": "zjjc",
+        "kind": "8100",
+        "id": "423ded85-f34e-4378-ac14-651c0af588bd",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.361785,
+            21.214632
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "珠海九洲直升机场",
+        "pyname": "zhjzzsjc",
+        "kind": "8100",
+        "id": "3cdda778-187b-4a8f-bddd-cb8b500239b8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.588789,
+            22.251262
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "中山通用机场",
+        "pyname": "zstyjc",
+        "kind": "8100",
+        "id": "56b971fd-43dc-42c5-8932-4834f366efe8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.472931,
+            22.669174
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阳江合山机场",
+        "pyname": "yjhsjc",
+        "kind": "8100",
+        "id": "e42160db-ac31-4405-b01b-1ed3989eaeb4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.103249,
+            21.961376
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "湛江新塘机场",
+        "pyname": "zjxtjc",
+        "kind": "8100",
+        "id": "e746542b-9af5-430c-b8cc-9b1de471c9ab",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.475169,
+            21.24379
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "湛江中信海直坡头直升机场",
+        "pyname": "zjzxhzptzsjc",
+        "kind": "8100",
+        "id": "8f0458be-06a1-4917-9c65-4d838a5a5d6a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.469785,
+            21.239664
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "罗定机场",
+        "pyname": "ldjc",
+        "kind": "8100",
+        "id": "79cfc3b9-f7dd-41bb-923a-ed22287c2ec3",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.603306,
+            22.71197
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "百色巴马机场",
+        "pyname": "bsbmjc",
+        "kind": "8100",
+        "id": "9a9f8314-49ef-463d-abd9-eaae632dc713",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.96757,
+            23.719095
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "北海福成机场",
+        "pyname": "bhfcjc",
+        "kind": "8100",
+        "id": "7c4e677d-d117-4f0d-b1e2-6f1737b3011f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.289697,
+            21.543007
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "柳州白莲机场",
+        "pyname": "lzbljc",
+        "kind": "8100",
+        "id": "db03dcd2-bc4b-4407-b274-a026de10ace9",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.398412,
+            24.205885
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "桂林两江国际机场",
+        "pyname": "glljgjjc",
+        "kind": "8100",
+        "id": "a266ed80-f071-4f08-b370-482d2017e3c7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.047062,
+            25.217804
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "梧州长洲岛机场",
+        "pyname": "wzczdjc",
+        "kind": "8100",
+        "id": "a84e7486-eaf0-48a9-8773-b2b7eb8ed3db",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.250497,
+            23.456118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南宁吴圩国际机场新航站楼",
+        "pyname": "nnwxgjjcxhzl",
+        "kind": "8100",
+        "id": "02412c54-5a4c-4f8c-91ec-e05bc0307347",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.181988,
+            22.604646
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南宁吴圩国际机场",
+        "pyname": "nnwxgjjc",
+        "kind": "8100",
+        "id": "31befab4-625c-4f07-8338-d49807c12760",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.167729,
+            22.612142
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "佛山机场",
+        "pyname": "fsjc",
+        "kind": "8100",
+        "id": "9659e578-06c6-493d-b203-88f1f6c64cf3",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.065091,
+            23.070386
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "广州白云国际机场",
+        "pyname": "gzbygjjc",
+        "kind": "8100",
+        "id": "e1da9b59-cbed-4bfe-84fa-30102fc45dba",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.297027,
+            23.38883
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "贵阳龙洞堡国际机场",
+        "pyname": "gyldbgjjc",
+        "kind": "8100",
+        "id": "f8aceb5d-2ee5-440c-8bc3-dda5c8c5890b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.797511,
+            26.544625
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "兴义万峰林机场",
+        "pyname": "xywfljc",
+        "kind": "8100",
+        "id": "8da151b0-2f58-498d-9f99-a39e0d137469",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            104.956733,
+            25.084214
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "黔南州荔波机场",
+        "pyname": "qnzlbjc",
+        "kind": "8100",
+        "id": "0336b34e-f6bb-4cb3-a607-9594ea3247bc",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.963405,
+            25.446551
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "黎平机场",
+        "pyname": "lpjc",
+        "kind": "8100",
+        "id": "7de2e5d3-fad6-47ff-af01-3b58c7bf4b12",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.153862,
+            26.320388
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "遵义新舟机场",
+        "pyname": "zyxzjc",
+        "kind": "8100",
+        "id": "c4278b7c-c0b9-4d35-afb2-a13055094e0b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.248944,
+            27.803429
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安顺黄果树机场",
+        "pyname": "ashgsjc",
+        "kind": "8100",
+        "id": "33e43ae5-1dbb-4b33-9e0d-4605e521ecce",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.873129,
+            26.257541
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "贵阳龙洞堡国际机场2号航站楼",
+        "pyname": "gyldbgjjc2hhzl",
+        "kind": "8100",
+        "id": "7ca68bc7-bdcd-4dd9-b7bb-12cc009d7aa5",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.79657,
+            26.546784
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "昭通机场",
+        "pyname": "ztjc",
+        "kind": "8100",
+        "id": "a40215fa-eaaa-4c44-8cc1-1c55ab794f1b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.752477,
+            27.32779
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "贵阳龙洞堡国际机场1号航站楼",
+        "pyname": "gyldbgjjc1hhzl",
+        "kind": "8100",
+        "id": "25d1075b-0781-4764-bcee-6dad7a4a5484",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.79637,
+            26.544343
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "三亚凤凰国际机场",
+        "pyname": "syfhgjjc",
+        "kind": "8100",
+        "id": "6526270f-3736-4958-99e2-decc88158c92",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.408483,
+            18.306512
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "三亚凤凰国际机场国内候机楼",
+        "pyname": "syfhgjjcgnhjl",
+        "kind": "8100",
+        "id": "f5672f6f-f1e6-4110-badf-d3e73c76e8fa",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.408074,
+            18.309193
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "海口美兰国际机场国内航站楼",
+        "pyname": "hkmlgjjcgnhzl",
+        "kind": "8100",
+        "id": "7e3f6ec7-48f8-4d51-ae34-4084cfd619ec",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.45764,
+            19.940807
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "三亚凤凰国际机场国际候机楼",
+        "pyname": "syfhgjjcgjhjl",
+        "kind": "8100",
+        "id": "24f3f97d-69aa-445e-822d-db0c47bb22a7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.403943,
+            18.30902
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "海口美兰国际机场",
+        "pyname": "hkmlgjjc",
+        "kind": "8100",
+        "id": "8c9c2b72-ac22-4456-9537-a1ae469f122c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.459012,
+            19.938898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "中国南方航空珠海直升机分公司三亚基地",
+        "pyname": "zgnfhkzhzsjfgssyjd",
+        "kind": "8100",
+        "id": "24e58ec6-1314-4cb6-acbf-44f45295acae",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.420947,
+            18.300758
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南航三亚珠海直升机起降场",
+        "pyname": "nhsyzhzsjqjc",
+        "kind": "8100",
+        "id": "8a58eac0-d35e-41cd-bcec-66ec83959685",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.420947,
+            18.300758
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "交通运输部南海第一救助飞行队三亚基地",
+        "pyname": "jtysbnhdyjzfxdsyjd",
+        "kind": "8100",
+        "id": "e11dae96-84d8-4dd9-99c7-5abfe1c3d40d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.420947,
+            18.300758
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "海南东方航空通用机场",
+        "pyname": "hndfhktyjc",
+        "kind": "8100",
+        "id": "9f233f8c-599f-4441-82a0-e84a7632ac9b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.671245,
+            19.136969
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "海口美兰国际机场新国际航站楼",
+        "pyname": "hkmlgjjcxgjhzl",
+        "kind": "8100",
+        "id": "e1ce72ba-5edd-4338-b039-706e57b35866",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.464371,
+            19.941371
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "秦皇岛机场",
+        "pyname": "qhdjc",
+        "kind": "8100",
+        "id": "c7b51da1-5965-4b45-aa1d-1ad2c270f442",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.717349,
+            39.965183
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "邯郸机场",
+        "pyname": "hdjc",
+        "kind": "8100",
+        "id": "ae06d498-e12d-47f4-a6db-e5f4387bb059",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.428469,
+            36.52395
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "石家庄正定国际机场",
+        "pyname": "sjzzdgjjc",
+        "kind": "8100",
+        "id": "891abc1d-84c3-4832-acbc-6b88619bb20d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.691977,
+            38.281098
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "河北黄骅防蝗机场",
+        "pyname": "hbhhfhjc",
+        "kind": "8100",
+        "id": "da6a5c5d-9462-4a7d-81ba-fa18712ec07d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.299566,
+            38.420762
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "石家庄正定国际机场T2航站楼",
+        "pyname": "sjzzdgjjct2hzl",
+        "kind": "8100",
+        "id": "68783f85-a5a6-416f-bce3-9fd40c206832",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.686508,
+            38.282348
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "石家庄正定国际机场T1航站楼",
+        "pyname": "sjzzdgjjct1hzl",
+        "kind": "8100",
+        "id": "467a5651-f268-430a-b0a4-03313fba9d46",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.692995,
+            38.277806
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "唐山三女河机场",
+        "pyname": "tssnhjc",
+        "kind": "8100",
+        "id": "a3f9199e-a526-425c-8386-b948d31f5e8e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.993416,
+            39.723107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "五重安机场",
+        "pyname": "wzajc",
+        "kind": "8100",
+        "id": "cf7151da-f1a5-4805-8a26-09071ff49495",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.61941,
+            40.182755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "齐齐哈尔三家子机场",
+        "pyname": "qqhesjzjc",
+        "kind": "8100",
+        "id": "d570d4fa-f75a-4b4e-b74b-836ea680a0c1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.917223,
+            47.251997
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "哈尔滨太平国际机场",
+        "pyname": "hebtpgjjc",
+        "kind": "8100",
+        "id": "5364cc8e-8fb9-4abc-b151-91155a37ca67",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            126.236954,
+            45.620323
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "伊春机场",
+        "pyname": "ycjc",
+        "kind": "8100",
+        "id": "1534cecd-2e68-4475-97ca-27984e87cda7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            129.015243,
+            47.749274
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "牡丹江海浪国际机场",
+        "pyname": "mdjhlgjjc",
+        "kind": "8100",
+        "id": "a66fec12-103f-41ed-b8cd-753fc062c799",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            129.580724,
+            44.53329
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大庆萨尔图机场",
+        "pyname": "dqsetjc",
+        "kind": "8100",
+        "id": "02304d15-3715-41ba-99f8-a5ec0b305c79",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            125.13231,
+            46.746776
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "黑河机场",
+        "pyname": "hhjc",
+        "kind": "8100",
+        "id": "201e257a-1a82-4e50-b6f9-c07e8745f83a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            127.312872,
+            50.177763
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "兴凯湖机场",
+        "pyname": "xkhjc",
+        "kind": "8100",
+        "id": "26add24a-b2fb-47cf-99d3-677b2baef0d0",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            131.178348,
+            45.300258
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "哈尔滨太平国际机场T0航站楼",
+        "pyname": "hebtpgjjct0hzl",
+        "kind": "8100",
+        "id": "ee3bb522-f268-42e1-829e-30b26bd233be",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            126.248266,
+            45.62927
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "哈尔滨太平国际机场T1航站楼",
+        "pyname": "hebtpgjjct1hzl",
+        "kind": "8100",
+        "id": "f35250c3-7461-45dd-b2ae-cf6d338fed30",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            126.236954,
+            45.620323
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "漠河机场",
+        "pyname": "mhjc",
+        "kind": "8100",
+        "id": "80d7a5a9-a42e-443a-a13e-598cc61293d1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.419393,
+            52.92414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "佳木斯东郊机场",
+        "pyname": "jmsdjjc",
+        "kind": "8100",
+        "id": "ad1a2d15-0696-40d5-bb7e-0d9fc0985a22",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            130.456367,
+            46.844774
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "郑州新郑国际机场",
+        "pyname": "zzxzgjjc",
+        "kind": "8100",
+        "id": "1b8af481-5b35-4997-bd71-03e5d60ce7b8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.84022,
+            34.526207
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "洛阳北郊机场",
+        "pyname": "lybjjc",
+        "kind": "8100",
+        "id": "1a3cc03b-68a7-40c5-8c5e-7829752a3867",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.385427,
+            34.736791
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安阳北郊机场",
+        "pyname": "aybjjc",
+        "kind": "8100",
+        "id": "9acd584a-8b9d-4f4d-8f27-36b839c01d3e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.346452,
+            36.128038
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上街机场",
+        "pyname": "sjjc",
+        "kind": "8100",
+        "id": "4cfc20e5-df12-4940-8efe-f89eb6b97a22",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.27093,
+            34.838355
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南阳机场",
+        "pyname": "nyjc",
+        "kind": "8100",
+        "id": "430ea90f-f49a-4565-b5b0-fea24092b3d2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.614074,
+            32.983526
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武汉天河国际机场2号航站楼",
+        "pyname": "whthgjjc2hhzl",
+        "kind": "8100",
+        "id": "5008ec67-3660-41b5-8780-1b4e20100b65",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.205273,
+            30.772675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "恩施许家坪机场",
+        "pyname": "esxjpjc",
+        "kind": "8100",
+        "id": "a3e3642f-47cc-49c9-9bf2-0266b4ca1e72",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.484805,
+            30.321586
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武汉天河国际机场国际航站楼",
+        "pyname": "whthgjjcgjhzl",
+        "kind": "8100",
+        "id": "09f5980c-26c5-48d2-98c4-a58cea7a739f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.202377,
+            30.769102
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "沙市机场",
+        "pyname": "ssjc",
+        "kind": "8100",
+        "id": "b56046c6-2357-4a95-951e-7c2a85a634a2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.276615,
+            30.322292
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "漳河机场",
+        "pyname": "zhjc",
+        "kind": "8100",
+        "id": "5e78806c-a77e-41c8-9856-c7b533a80c83",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.066105,
+            30.990737
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "武汉天河国际机场",
+        "pyname": "whthgjjc",
+        "kind": "8100",
+        "id": "fbe16fb0-3201-4184-a605-e69109a0d35f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.20823,
+            30.777287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宜昌三峡机场",
+        "pyname": "ycsxjc",
+        "kind": "8100",
+        "id": "e9949bd0-82b6-431e-8e37-05df18035bb0",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.48005,
+            30.550401
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "襄阳刘集机场",
+        "pyname": "xyljjc",
+        "kind": "8100",
+        "id": "eb66053c-ee07-4599-a831-bc561d76c0b8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.289189,
+            32.151549
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "铜仁凤凰机场",
+        "pyname": "trfhjc",
+        "kind": "8100",
+        "id": "5f19b0ce-0f5c-4800-8e92-ea8ef644b363",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.30576,
+            27.885218
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "永州零陵机场",
+        "pyname": "yzlljc",
+        "kind": "8100",
+        "id": "2d173079-c716-4769-9b1e-2f630292c96e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.612654,
+            26.344854
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "常德桃花源机场",
+        "pyname": "cdthyjc",
+        "kind": "8100",
+        "id": "db7af247-40ca-4231-9fd5-42742733ff96",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.638405,
+            28.924107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "张家界荷花国际机场",
+        "pyname": "zjjhhgjjc",
+        "kind": "8100",
+        "id": "cd81fbb9-6abc-4742-9e61-1645ed0e69ba",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            110.445948,
+            29.107043
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长沙黄花国际机场T1航站楼",
+        "pyname": "cshhgjjct1hzl",
+        "kind": "8100",
+        "id": "2b533579-83bf-4ae9-afb7-4cc69cd79236",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.214125,
+            28.196824
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长沙黄花国际机场T2航站楼",
+        "pyname": "cshhgjjct2hzl",
+        "kind": "8100",
+        "id": "2737db28-71b6-4807-97e2-ddc5587df30c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.214116,
+            28.189874
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长沙黄花国际机场",
+        "pyname": "cshhgjjc",
+        "kind": "8100",
+        "id": "3be76585-7d28-44fd-a36d-b44762df54d6",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.215527,
+            28.192056
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "芷江机场",
+        "pyname": "zjjc",
+        "kind": "8100",
+        "id": "3177fee8-aa87-40f0-8c5f-01e659a3de8f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.701012,
+            27.444914
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南通兴东机场",
+        "pyname": "ntxdjc",
+        "kind": "8100",
+        "id": "7ae41f84-7a5f-41ee-a061-976e23b5ef81",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.976259,
+            32.072925
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "常州奔牛机场",
+        "pyname": "czbnjc",
+        "kind": "8100",
+        "id": "40d07123-7960-4d84-b9fd-886c22859ffd",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.782181,
+            31.91443
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "苏南硕放国际机场",
+        "pyname": "snsfgjjc",
+        "kind": "8100",
+        "id": "99b96d3b-d6fb-47d0-990a-6f078d95984f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.42816,
+            31.504985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "华西直升飞机场",
+        "pyname": "hxzsfjc",
+        "kind": "8100",
+        "id": "22c1f1aa-73e2-40f1-8822-9bf6b41a0aea",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.435382,
+            31.845967
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南京禄口国际机场",
+        "pyname": "njlkgjjc",
+        "kind": "8100",
+        "id": "9e90d49a-ce55-4a16-bf6a-8fa882c7e26a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.866087,
+            31.735308
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "连云港白塔埠机场",
+        "pyname": "lygbtbjc",
+        "kind": "8100",
+        "id": "ff6a390f-3bea-4ea3-8372-86798aca9d44",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.876583,
+            34.565971
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "金汇通航泰州春兰直升机场",
+        "pyname": "jhthtzclzsjc",
+        "kind": "8100",
+        "id": "2c99d4e9-de1b-46d2-ae3c-ba908ff5d0a7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.952081,
+            32.492691
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "扬州泰州机场",
+        "pyname": "yztzjc",
+        "kind": "8100",
+        "id": "7a21a466-5618-48a4-b10f-b1c4a4615480",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.713445,
+            32.562584
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "徐州观音国际机场",
+        "pyname": "xzgygjjc",
+        "kind": "8100",
+        "id": "62907990-71ac-4884-a5ce-dc8b99ba5fb9",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.554744,
+            34.054843
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "盐城南洋国际机场",
+        "pyname": "ycnygjjc",
+        "kind": "8100",
+        "id": "7ec19547-063d-434f-b7d5-9f43d07560ea",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.204006,
+            33.431202
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "淮安涟水机场",
+        "pyname": "halsjc",
+        "kind": "8100",
+        "id": "4f037e78-bd9b-4f52-98b1-0fd948a5d687",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.129324,
+            33.789072
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南京禄口国际机场2号航站楼",
+        "pyname": "njlkgjjc2hhzl",
+        "kind": "8100",
+        "id": "379a266a-be50-4079-8c6a-23f8fe292be4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.871727,
+            31.732787
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南京禄口国际机场1号航站楼",
+        "pyname": "njlkgjjc1hhzl",
+        "kind": "8100",
+        "id": "4fabbc02-5ef5-4ecc-92df-973ff4c40f00",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.866087,
+            31.735308
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "景德镇机场贵宾楼",
+        "pyname": "jdzjcgbl",
+        "kind": "8100",
+        "id": "710a6997-3a5a-41b0-8c0e-dee0e03a7c34",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.178855,
+            29.336488
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "九江威家直升机场",
+        "pyname": "jjwjzsjc",
+        "kind": "8100",
+        "id": "62ad3e8f-02e3-428d-93ed-e67310e476d4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.079286,
+            29.665118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南昌昌北国际机场T1航站楼",
+        "pyname": "nccbgjjct1hzl",
+        "kind": "8100",
+        "id": "2451e7a6-144e-4fbe-ae95-6d9f3da7d0fc",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.907612,
+            28.859841
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "景德镇机场",
+        "pyname": "jdzjc",
+        "kind": "8100",
+        "id": "c22ad738-a0e2-4ee1-8e62-a9b401052e19",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.179116,
+            29.337108
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "吉安井冈山机场",
+        "pyname": "jajgsjc",
+        "kind": "8100",
+        "id": "5923a8f0-1c44-4b7d-85e6-21f2e32f89d0",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.742888,
+            26.854572
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "赣州黄金机场",
+        "pyname": "gzhjjc",
+        "kind": "8100",
+        "id": "10810dcf-b28b-4dd5-9df2-8a3d4c76c03c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            114.778546,
+            25.84883
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "九江庐山机场",
+        "pyname": "jjlsjc",
+        "kind": "8100",
+        "id": "2bc9bfc2-a119-48c7-ab9e-252c84687d09",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.802247,
+            29.483916
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "庐山直升机场",
+        "pyname": "lszsjc",
+        "kind": "8100",
+        "id": "e1caf6b4-74c3-4e1d-b8dd-57dc3fa92d2b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.990168,
+            29.582076
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "青云谱机场",
+        "pyname": "qypjc",
+        "kind": "8100",
+        "id": "6a39973c-4814-48e9-91f0-1ab82f13bc24",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.105024,
+            28.735914
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南昌昌北国际机场T2航站楼",
+        "pyname": "nccbgjjct2hzl",
+        "kind": "8100",
+        "id": "677608db-57c8-4bfe-aad4-04ec762ebb92",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.912442,
+            28.862358
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南昌昌北国际机场",
+        "pyname": "nccbgjjc",
+        "kind": "8100",
+        "id": "b4252ddc-188f-4c80-82d0-eb5cf9920865",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.909022,
+            28.862029
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长春龙嘉国际机场",
+        "pyname": "ccljgjjc",
+        "kind": "8100",
+        "id": "e0ad4a51-3ad1-471f-9827-280a0ed27d2e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            125.690561,
+            43.993145
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "白山长白山机场",
+        "pyname": "bscbsjc",
+        "kind": "8100",
+        "id": "e8bdf512-8dcc-4c44-8150-8ced02dfe859",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            127.607403,
+            42.064443
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "延吉朝阳川机场",
+        "pyname": "yjcycjc",
+        "kind": "8100",
+        "id": "dab75913-6e2a-487a-8074-7822dfde467a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            129.440047,
+            42.885307
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "白城长安机场",
+        "pyname": "bccajc",
+        "kind": "8100",
+        "id": "d1a052fc-ed0b-490f-b0ff-749f429ae776",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.01421,
+            45.509585
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "沈阳桃仙国际机场",
+        "pyname": "sytxgjjc",
+        "kind": "8100",
+        "id": "0094ae9b-99e5-4c8e-a585-edd2293ebb79",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.484807,
+            41.634119
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "沈阳桃仙国际机场T3候机楼",
+        "pyname": "sytxgjjct3hjl",
+        "kind": "8100",
+        "id": "165b31e9-2077-463d-98da-bd6ef3faaa53",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.48827,
+            41.63051
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大连周水子国际机场",
+        "pyname": "dlzszgjjc",
+        "kind": "8100",
+        "id": "9a8c9987-2e57-430c-be57-68d58efea46b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.539129,
+            38.961527
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "锦州小岭子机场",
+        "pyname": "jzxlzjc",
+        "kind": "8100",
+        "id": "ebbc64f4-a676-4177-9534-9e744f14d2b8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.065427,
+            41.094835
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "鞍山新开河机场",
+        "pyname": "asxkhjc",
+        "kind": "8100",
+        "id": "1014f5c9-c049-4eae-a991-8d721804d68b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.457571,
+            41.327415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "沈阳桃仙国际机场T1候机楼",
+        "pyname": "sytxgjjct1hjl",
+        "kind": "8100",
+        "id": "48c32dd0-ce27-445c-a07b-66517b5b0af4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.491138,
+            41.637576
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长海大长山岛机场",
+        "pyname": "chdcsdjc",
+        "kind": "8100",
+        "id": "1a9e696b-ad41-40ed-8fcf-111bf2d718b7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.664762,
+            39.266944
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大连周水子国际机场－贵宾厅B",
+        "pyname": "dlzszgjjc-gbtb",
+        "kind": "8100",
+        "id": "2a8db87e-0be2-4997-a76c-9f8b7b65ce6d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.532605,
+            38.961379
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "沈阳桃仙国际机场T2候机楼",
+        "pyname": "sytxgjjct2hjl",
+        "kind": "8100",
+        "id": "68233e33-3e35-467b-aaf9-13c8ce956d85",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.488048,
+            41.634708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大连周水子国际机场－贵宾厅A",
+        "pyname": "dlzszgjjc-gbta",
+        "kind": "8100",
+        "id": "6b5d8a83-aa48-48ec-8426-2e62036db409",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.535495,
+            38.962276
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "财湖机场",
+        "pyname": "chjc",
+        "kind": "8100",
+        "id": "f1407a2b-445f-4bfe-9812-29e1bc6589af",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            123.37411,
+            42.389675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "鞍山腾鳌机场",
+        "pyname": "astajc",
+        "kind": "8100",
+        "id": "c52d7e53-6cc8-4fec-82a9-cd75b73d3bb4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.861271,
+            41.111203
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "丹东浪头机场",
+        "pyname": "ddltjc",
+        "kind": "8100",
+        "id": "592934af-e2b0-4793-bc15-d92248eb13ca",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            124.281253,
+            40.031997
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "朝阳机场",
+        "pyname": "cyjc",
+        "kind": "8100",
+        "id": "e3f32fe2-fd87-4257-86a8-7b785ae0ada1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.4359,
+            41.544653
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌海机场",
+        "pyname": "whjc",
+        "kind": "8100",
+        "id": "ab664605-18c2-4c38-bca3-3f826c42b656",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.803378,
+            39.790623
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "根河林业机场",
+        "pyname": "ghlyjc",
+        "kind": "8100",
+        "id": "620eb4e1-8515-4f1f-95d3-bff5f4a743e4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.381286,
+            50.699265
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "巴彦淖尔机场",
+        "pyname": "bynejc",
+        "kind": "8100",
+        "id": "207b4257-fd85-4074-b579-f7ab8dd671c6",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.739959,
+            40.922099
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "呼伦贝尔海拉尔国际机场",
+        "pyname": "hlbehlegjjc",
+        "kind": "8100",
+        "id": "196a3063-b362-4cb5-9636-09d0f578e1f8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.819635,
+            49.208285
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "鄂尔多斯机场",
+        "pyname": "eedsjc",
+        "kind": "8100",
+        "id": "bc8e3e4d-4a41-4490-8178-1b9ff9d7bef2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.860844,
+            39.499351
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "通辽机场",
+        "pyname": "tljc",
+        "kind": "8100",
+        "id": "88cf7947-44db-4a31-91d0-0c2e748b7f3f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.203969,
+            43.55547
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "呼伦贝尔海拉尔国际机场一号候机楼",
+        "pyname": "hlbehlegjjcyhhjl",
+        "kind": "8100",
+        "id": "6ab7e30c-3a07-4177-9556-72b3c304eb7c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.817127,
+            49.210701
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "二连浩特市机场",
+        "pyname": "elhtsjc",
+        "kind": "8100",
+        "id": "461abab6-4688-400d-8b44-ffd99fef9cda",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.097096,
+            43.426922
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌兰浩特机场",
+        "pyname": "wlhtjc",
+        "kind": "8100",
+        "id": "6fe1ef93-a63c-48ca-abdd-e48088e2129d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.00235,
+            46.193945
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "包头二里半机场",
+        "pyname": "btelbjc",
+        "kind": "8100",
+        "id": "c29562b3-0609-479b-9a7a-fe38675f5666",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.998187,
+            40.563312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "锡林浩特机场",
+        "pyname": "xlhtjc",
+        "kind": "8100",
+        "id": "394e0531-07d6-4d63-90cf-e31a40c96d38",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            115.959102,
+            43.916331
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "加格达奇机场",
+        "pyname": "jgdqjc",
+        "kind": "8100",
+        "id": "170540b0-1090-4b90-99ee-fb613ff55964",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            124.11083,
+            50.373541
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "呼伦贝尔海拉尔国际机场国际候机楼",
+        "pyname": "hlbehlegjjcgjhjl",
+        "kind": "8100",
+        "id": "8fcee729-cfe3-435b-8c3b-ef6c4bb2f348",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.806763,
+            49.209746
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "赤峰玉龙机场",
+        "pyname": "cfyljc",
+        "kind": "8100",
+        "id": "8989bbb2-d04a-44ce-9fa0-6e8ec13c4841",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.832956,
+            42.154441
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "满洲里西郊国际机场",
+        "pyname": "mzlxjgjjc",
+        "kind": "8100",
+        "id": "693cb770-4cf7-41b3-a486-f6e7f4f09204",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.331342,
+            49.570152
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "呼伦贝尔海拉尔国际机场二号候机楼",
+        "pyname": "hlbehlegjjcehhjl",
+        "kind": "8100",
+        "id": "5049df4c-df71-4088-9eb9-c4abc22a63e2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.819273,
+            49.210884
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿尔山机场",
+        "pyname": "aesjc",
+        "kind": "8100",
+        "id": "5c330d05-1448-4940-99fe-e49217b79d64",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.916253,
+            47.307796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "呼和浩特白塔国际机场",
+        "pyname": "hhhtbtgjjc",
+        "kind": "8100",
+        "id": "18d22102-96fa-413b-98f0-c87abc090d41",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.814714,
+            40.854178
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "银川河东国际机场1号航站楼",
+        "pyname": "ychdgjjc1hhzl",
+        "kind": "8100",
+        "id": "2ac1578d-91e0-464b-b910-f24ae531758a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.386527,
+            38.325095
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "银川河东国际机场贵宾南厅",
+        "pyname": "ychdgjjcgbnt",
+        "kind": "8100",
+        "id": "f99720d7-b6d9-47ee-a5a8-3d3fea6972d9",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.384332,
+            38.321898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "银川河东国际机场",
+        "pyname": "ychdgjjc",
+        "kind": "8100",
+        "id": "de8f53c4-17be-4e83-960f-5a463fda8aa8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.388579,
+            38.323907
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "中卫沙坡头机场",
+        "pyname": "zwsptjc",
+        "kind": "8100",
+        "id": "8ec58dc7-30e8-478a-b77a-f7c2eae47fc5",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.15243,
+            37.569245
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "银川河东国际机场贵宾北厅",
+        "pyname": "ychdgjjcgbbt",
+        "kind": "8100",
+        "id": "e93a78ff-8c3a-4fba-b68d-10ad4a7ac053",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.384869,
+            38.323866
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "固原六盘山机场",
+        "pyname": "gylpsjc",
+        "kind": "8100",
+        "id": "5adbe14e-c54b-49db-a5ab-701a273175dc",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.221577,
+            36.07675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "银川河东国际机场2号航站楼",
+        "pyname": "ychdgjjc2hhzl",
+        "kind": "8100",
+        "id": "b04d2f60-207b-460d-8e60-5668b22e3be2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.38444,
+            38.322897
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "玉树机场",
+        "pyname": "ysjc",
+        "kind": "8100",
+        "id": "4c101a56-c9d5-4d72-9590-9645a2c6a064",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            97.037958,
+            32.840123
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西宁曹家堡机场1号航站楼",
+        "pyname": "xncjbjc1hhzl",
+        "kind": "8100",
+        "id": "381daadf-fc8a-4bb5-b527-8981d42ab236",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.037912,
+            36.525388
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西宁曹家堡机场",
+        "pyname": "xncjbjc",
+        "kind": "8100",
+        "id": "4dc27b29-f95f-4876-9c38-eb684eaff600",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.037912,
+            36.525388
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西宁曹家堡机场商务贵宾厅",
+        "pyname": "xncjbjcswgbt",
+        "kind": "8100",
+        "id": "ae9b1f70-6aa3-4e29-b424-4b08c6e9125a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.039,
+            36.525136
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西宁曹家堡机场T2航站楼",
+        "pyname": "xncjbjct2hzl",
+        "kind": "8100",
+        "id": "0463dc97-73f9-4f83-ad00-b981a22fa72c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.040547,
+            36.524773
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "格尔木机场",
+        "pyname": "gemjc",
+        "kind": "8100",
+        "id": "92b49e18-eed0-4552-a4e2-86fc9ff95302",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            94.789319,
+            36.402556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西宁曹家堡机场T2航站楼贵宾厅",
+        "pyname": "xncjbjct2hzlgbt",
+        "kind": "8100",
+        "id": "cb843254-633c-4b68-8ba9-44c4e4062e06",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.039119,
+            36.525095
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "汉中机场",
+        "pyname": "hzjc",
+        "kind": "8100",
+        "id": "9cc3f555-0a6c-4335-9784-43e1297d912b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.010464,
+            33.065629
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西安咸阳国际机场2号航站楼",
+        "pyname": "xaxygjjc2hhzl",
+        "kind": "8100",
+        "id": "f30d1536-a014-4a6e-9bcf-bfe43ef8e020",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.755456,
+            34.441378
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安康机场",
+        "pyname": "akjc",
+        "kind": "8100",
+        "id": "ff48c5e0-2daa-40e2-a311-3d767dd65d15",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.935281,
+            32.709366
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "汉中城固机场",
+        "pyname": "hzcgjc",
+        "kind": "8100",
+        "id": "fed07e45-ffa9-4392-816d-48d57e96778f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.196594,
+            33.124206
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西安咸阳国际机场",
+        "pyname": "xaxygjjc",
+        "kind": "8100",
+        "id": "4215e329-c829-4fed-a990-17baf14937a9",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.758415,
+            34.439139
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "延安二十里铺机场",
+        "pyname": "yaeslpjc",
+        "kind": "8100",
+        "id": "672eaa24-bf0b-4b83-b1b9-640fc40cbf7d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.551805,
+            36.638888
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "榆林榆阳机场",
+        "pyname": "ylyyjc",
+        "kind": "8100",
+        "id": "27cf1f19-528e-46ca-bb6a-73c737e1c69d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.596469,
+            38.361622
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "蒲城内府机场",
+        "pyname": "pcnfjc",
+        "kind": "8100",
+        "id": "029a7ab3-1e94-473f-8481-357dd919d707",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            109.541051,
+            34.837591
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西安咸阳国际机场T3航站楼",
+        "pyname": "xaxygjjct3hzl",
+        "kind": "8100",
+        "id": "ee6ffce8-141e-4456-87c5-92fa687030b7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            108.755706,
+            34.43737
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "济南遥墙国际机场",
+        "pyname": "jnyqgjjc",
+        "kind": "8100",
+        "id": "5c0db8ac-9d04-42f8-958e-3f31ead59bb8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.207796,
+            36.851815
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "济宁曲阜机场",
+        "pyname": "jnqfjc",
+        "kind": "8100",
+        "id": "231c7fc3-6164-4d74-9451-e81dec52708b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.350995,
+            35.2975
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "平阴农用飞机场",
+        "pyname": "pynyfjc",
+        "kind": "8100",
+        "id": "7942fce1-4c5b-4712-9c3c-eb9a1fbb7a5f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            116.438677,
+            36.29346
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "滨州大高通用机场",
+        "pyname": "bzdgtyjc",
+        "kind": "8100",
+        "id": "6ac34255-ab58-4852-beb1-6b0025b8eed0",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.883724,
+            37.606852
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "胜利机场",
+        "pyname": "sljc",
+        "kind": "8100",
+        "id": "69fef28a-f6ce-44df-8885-1f8660e1ba6c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.783602,
+            37.50476
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "蓬莱沙河口机场",
+        "pyname": "plshkjc",
+        "kind": "8100",
+        "id": "8df7df48-0b5d-4e13-bfe1-c92fc54a5b64",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.811569,
+            37.806908
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "临沂机场",
+        "pyname": "lyjc",
+        "kind": "8100",
+        "id": "aa985714-5069-4680-b63f-241376b2650f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.407344,
+            35.048899
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "潍坊南苑机场",
+        "pyname": "wfnyjc",
+        "kind": "8100",
+        "id": "1ff240d0-47b6-4f2c-9ab5-0f03c18e3223",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            119.114378,
+            36.640925
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "威海国际机场",
+        "pyname": "whgjjc",
+        "kind": "8100",
+        "id": "e2075608-d7e2-49e4-ba52-fa2a04ec38f9",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.235959,
+            37.18957
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "烟台莱山国际机场",
+        "pyname": "ytlsgjjc",
+        "kind": "8100",
+        "id": "90eafc78-573a-4111-acc3-6738b5b58571",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.372943,
+            37.407289
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "青岛流亭国际机场",
+        "pyname": "qdltgjjc",
+        "kind": "8100",
+        "id": "f3804dfe-9f7c-4e37-b898-e6f4afea5472",
+        "checked": false,
+        "props": {
+          "billboard": {
+            "image": "/images/飞机场2.svg"
+          }
+        }
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.381715,
+            36.265705
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "烟台蓬莱国际机场",
+        "pyname": "ytplgjjc",
+        "kind": "8100",
+        "id": "e8d1041e-5205-446d-8a2a-44f5079d2bf7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.991249,
+            37.655684
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海虹桥国际机场2号航站楼",
+        "pyname": "shhqgjjc2hhzl",
+        "kind": "8100",
+        "id": "aac38d5e-b00b-4bcb-98f9-d4c9973484e2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.323351,
+            31.196034
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海虹桥国际机场1号航站楼",
+        "pyname": "shhqgjjc1hhzl",
+        "kind": "8100",
+        "id": "f47707b2-1ef3-46ff-bcbe-2fa162832623",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.342031,
+            31.19584
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海浦东国际机场1号航站楼",
+        "pyname": "shpdgjjc1hhzl",
+        "kind": "8100",
+        "id": "f6e07024-fcd2-483e-9eb2-ece6d4815489",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.798449,
+            31.151984
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海高东海上救助机场",
+        "pyname": "shgdhsjzjc",
+        "kind": "8100",
+        "id": "e341b440-157b-4542-94e9-75e3d3b10150",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.621358,
+            31.337135
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海奥迪国际赛车场机场",
+        "pyname": "shadgjsccjc",
+        "kind": "8100",
+        "id": "82b4e1ba-debf-472a-ad16-195e0003f4ef",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.218361,
+            31.332747
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "华山医院高架直升机场",
+        "pyname": "hsyygjzsjc",
+        "kind": "8100",
+        "id": "ded10952-b4ef-4faa-9077-99a1239c0f02",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.438862,
+            31.218583
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海虹桥国际机场",
+        "pyname": "shhqgjjc",
+        "kind": "8100",
+        "id": "fbe6aaf1-af95-437e-9acc-5020725f010e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.331433,
+            31.197589
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海浦东国际机场",
+        "pyname": "shpdgjjc",
+        "kind": "8100",
+        "id": "b86f567f-db7d-463f-8ce6-0572d72dda6c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.797668,
+            31.148296
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海浦东国际机场2号航站楼",
+        "pyname": "shpdgjjc2hhzl",
+        "kind": "8100",
+        "id": "f8aec95e-ba8f-45ae-9d85-f4ca22a78489",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.804648,
+            31.153156
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海瑞金医院高架直升机场",
+        "pyname": "shrjyygjzsjc",
+        "kind": "8100",
+        "id": "ed6b8d24-3b1b-4c1b-8e65-589e43db6d40",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.461842,
+            31.212357
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上海民航龙华机场",
+        "pyname": "shmhlhjc",
+        "kind": "8100",
+        "id": "db055111-1a3c-47f4-84b8-74ce91241a34",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.452636,
+            31.172184
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "太原武宿国际机场",
+        "pyname": "tywsgjjc",
+        "kind": "8100",
+        "id": "ecf460e1-2708-4d52-babc-2c47302c757d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.624916,
+            37.75176
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长治机场",
+        "pyname": "czjc",
+        "kind": "8100",
+        "id": "3310634c-5336-4206-86b8-de4e1040da3c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.121897,
+            36.246718
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大同云冈机场",
+        "pyname": "dtygjc",
+        "kind": "8100",
+        "id": "9bf059b5-6561-47b8-a6fc-d043aebcee74",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            113.481815,
+            40.056216
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "太原武宿国际机场1号航站楼",
+        "pyname": "tywsgjjc1hhzl",
+        "kind": "8100",
+        "id": "f990c66a-a3b5-4107-b37e-e152ef3f3af8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.625692,
+            37.754537
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "太原武宿国际机场2号航站楼",
+        "pyname": "tywsgjjc2hhzl",
+        "kind": "8100",
+        "id": "53d63b3f-02c6-4b72-b60f-88409fc6c46e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.628546,
+            37.754103
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "运城张孝机场",
+        "pyname": "yczxjc",
+        "kind": "8100",
+        "id": "fbf83c53-cdb2-4eec-bcc7-b4bb256c4095",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            111.037651,
+            35.114723
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "成都双流国际机场",
+        "pyname": "cdslgjjc",
+        "kind": "8100",
+        "id": "9395399a-3ecd-4df0-a991-3fe13a74cffa",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.952841,
+            30.577307
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新津机场",
+        "pyname": "xjjc",
+        "kind": "8100",
+        "id": "9b011b62-f900-4e12-8c00-4da3554e919f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.836476,
+            30.422629
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "成都双流国际机场T1航站楼",
+        "pyname": "cdslgjjct1hzl",
+        "kind": "8100",
+        "id": "e1271ffa-9f0b-453d-96f9-ada72a336ac1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.956438,
+            30.582093
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "成都双流国际机场T2航站楼",
+        "pyname": "cdslgjjct2hzl",
+        "kind": "8100",
+        "id": "05673f91-bcef-4cb6-8e49-247168251b34",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.953586,
+            30.573034
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "攀枝花保安营机场",
+        "pyname": "pzhbayjc",
+        "kind": "8100",
+        "id": "c95551aa-37cf-409c-ae1c-8c59c0339308",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            101.794096,
+            26.538484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南充高坪机场",
+        "pyname": "ncgpjc",
+        "kind": "8100",
+        "id": "3c6428fc-81b8-4a0a-a752-d88c0ebc9821",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            106.162,
+            30.790604
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "绵阳南郊机场",
+        "pyname": "mynjjc",
+        "kind": "8100",
+        "id": "3c2a5d89-f1f6-444e-bb47-eff1671813d6",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            104.747088,
+            31.427731
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "达州河市机场",
+        "pyname": "dzhsjc",
+        "kind": "8100",
+        "id": "d1c87226-8355-4b0c-8c24-4b48410c8855",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            107.426765,
+            31.132014
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "广元盘龙机场",
+        "pyname": "gypljc",
+        "kind": "8100",
+        "id": "f0b8e3f0-3d29-42be-971e-7a9ba54f6c9c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.701021,
+            32.395031
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "康定机场",
+        "pyname": "kdjc",
+        "kind": "8100",
+        "id": "7f87d04f-5bde-4a81-9fcf-308bd6e79741",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            101.750226,
+            30.132498
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西昌青山机场",
+        "pyname": "xcqsjc",
+        "kind": "8100",
+        "id": "0da13db1-be0c-464f-9e8a-b2882017e733",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.189409,
+            27.979853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "泸州蓝田机场",
+        "pyname": "lzltjc",
+        "kind": "8100",
+        "id": "97997d54-f474-4fb8-9f5a-6294a7424c15",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.379552,
+            28.845111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宜宾菜坝机场",
+        "pyname": "ybcbjc",
+        "kind": "8100",
+        "id": "86ce1ed1-d04f-46a6-98dd-e7bb732e1b2a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            104.553321,
+            28.798997
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "四川九寨黄龙机场",
+        "pyname": "scjzhljc",
+        "kind": "8100",
+        "id": "86a57f2f-e229-4ffd-b775-63a11a0e3f7d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.685454,
+            32.853684
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "广汉机场",
+        "pyname": "ghjc",
+        "kind": "8100",
+        "id": "c47ade68-ea9d-4159-90a3-2c19be49942b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            104.322111,
+            30.947991
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "遂宁机场",
+        "pyname": "snjc",
+        "kind": "8100",
+        "id": "d3edbfca-7be5-415b-88ce-3a43f3b612cf",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            105.599716,
+            30.46639
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "四川九寨黄龙机场T2航站楼",
+        "pyname": "scjzhljct2hzl",
+        "kind": "8100",
+        "id": "f4d77b33-ab27-4b2b-b16b-347931be85d4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.686015,
+            32.854104
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "四川九寨黄龙机场T1航站楼",
+        "pyname": "scjzhljct1hzl",
+        "kind": "8100",
+        "id": "f7170f61-f2ac-4ec2-8861-18fbf55949fd",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            103.685634,
+            32.853123
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "窦庄机场",
+        "pyname": "dzjc",
+        "kind": "8100",
+        "id": "463f97fd-a7b3-4564-91bb-ee87641943e2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.31469,
+            38.564593
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "天津塘沽机场",
+        "pyname": "tjtgjc",
+        "kind": "8100",
+        "id": "a6a27003-b84f-4ac0-ad27-5777970848c3",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.657764,
+            38.899921
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "滨海东方通用直升机场",
+        "pyname": "bhdftyzsjc",
+        "kind": "8100",
+        "id": "20ae7cd1-5987-4431-8133-9c82bce6a37e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.732618,
+            39.050475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "天津滨海国际机场",
+        "pyname": "tjbhgjjc",
+        "kind": "8100",
+        "id": "48c4a269-dbbb-4b81-b826-2937af5b3e6e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            117.353563,
+            39.127253
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "伊宁机场1号候机楼",
+        "pyname": "ynjc1hhjl",
+        "kind": "8100",
+        "id": "d0ce0ef8-aba0-4eec-bc46-7fc6e28026e6",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            81.331116,
+            43.951971
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "伊宁机场2号候机楼",
+        "pyname": "ynjc2hhjl",
+        "kind": "8100",
+        "id": "745f3bdc-b2d1-4bc0-b9ac-714b9c3a2520",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            81.330264,
+            43.951642
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "伊宁机场",
+        "pyname": "ynjc",
+        "kind": "8100",
+        "id": "bdf8549c-0536-42d5-86e6-03e8ba4b43d4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            81.332848,
+            43.955755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌鲁木齐地窝堡国际机场",
+        "pyname": "wlmqdwpgjjc",
+        "kind": "8100",
+        "id": "bc9a1753-7bce-4687-9dca-95474b02501a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            87.475951,
+            43.906076
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "和田机场",
+        "pyname": "htjc",
+        "kind": "8100",
+        "id": "888fe2be-709e-44e9-b196-b9b1d5e03c34",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            79.872127,
+            37.040034
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "博乐机场",
+        "pyname": "bljc",
+        "kind": "8100",
+        "id": "52b7a1ef-a3ff-46bd-b3a3-bde39dd1a0bd",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            82.299877,
+            44.899306
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "喀什机场",
+        "pyname": "ksjc",
+        "kind": "8100",
+        "id": "74c48ff1-e2a7-4ee4-9af5-b8770761643f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            76.010678,
+            39.536847
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "且末机场",
+        "pyname": "qmjc",
+        "kind": "8100",
+        "id": "46ead6af-1be8-4bc1-970c-458d741d241d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            85.533668,
+            38.144646
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿克苏机场",
+        "pyname": "aksjc",
+        "kind": "8100",
+        "id": "77284da4-3091-4e93-a8de-e264fb01edfa",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            80.296254,
+            41.258573
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "库车龟兹机场",
+        "pyname": "kcqcjc",
+        "kind": "8100",
+        "id": "305421ef-2af6-40cd-a854-91d33a23c2c8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            82.874055,
+            41.681593
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌鲁木齐地窝堡国际机场T3候机楼",
+        "pyname": "wlmqdwpgjjct3hjl",
+        "kind": "8100",
+        "id": "bc65de88-40ee-4ff3-8cc2-a2ac2e21b83f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            87.46712,
+            43.898348
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "克拉玛依机场",
+        "pyname": "klmyjc",
+        "kind": "8100",
+        "id": "10618b1a-20d1-4040-a45c-857bf3872f8e",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            84.956932,
+            45.467403
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "库尔勒机场",
+        "pyname": "keljc",
+        "kind": "8100",
+        "id": "ed1bfcc4-0cfe-4289-b7a7-f8326609822f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            86.141111,
+            41.621268
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "哈密机场",
+        "pyname": "hmjc",
+        "kind": "8100",
+        "id": "7fe957fc-e700-4a2e-b951-32c7ebc709c4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            93.655826,
+            42.839393
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿勒泰机场",
+        "pyname": "altjc",
+        "kind": "8100",
+        "id": "3fb65acb-fe4d-46c9-b514-b9de23aec55a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            88.088256,
+            47.752239
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌鲁木齐地窝堡国际机场T1候机楼",
+        "pyname": "wlmqdwpgjjct1hjl",
+        "kind": "8100",
+        "id": "6f62a5d9-fa95-4837-b791-c9dde4440d06",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            87.476604,
+            43.903407
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "乌鲁木齐地窝堡国际机场T2候机楼",
+        "pyname": "wlmqdwpgjjct2hjl",
+        "kind": "8100",
+        "id": "5c9838a1-1fdf-4bd0-8ccb-342871e680d7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            87.471837,
+            43.901242
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "塔城机场",
+        "pyname": "tcjc",
+        "kind": "8100",
+        "id": "944ead83-719e-4677-8820-d4566b4fc723",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            83.339112,
+            46.669851
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "库车机场",
+        "pyname": "kcjc",
+        "kind": "8100",
+        "id": "54211306-740f-4bf6-a603-b6a57693c696",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            82.990925,
+            41.714663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "那拉提机场",
+        "pyname": "nltjc",
+        "kind": "8100",
+        "id": "da2d4630-6c93-47ce-ba06-3b020532929d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            83.376079,
+            43.428903
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "喀纳斯机场",
+        "pyname": "knsjc",
+        "kind": "8100",
+        "id": "82d968c0-a6f1-4ff9-83fe-4b8e1843d759",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            87.002313,
+            48.223466
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "吐鲁番机场",
+        "pyname": "tlfjc",
+        "kind": "8100",
+        "id": "1da63006-7254-45ed-92f9-e6b89e917f18",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            89.100376,
+            43.026953
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "拉萨贡嘎机场",
+        "pyname": "lsggjc",
+        "kind": "8100",
+        "id": "470cb869-0bb1-4c83-8990-df210653a83f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            90.899801,
+            29.293779
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "昌都邦达机场",
+        "pyname": "cdbdjc",
+        "kind": "8100",
+        "id": "d8396dd8-ee5a-4881-8c04-0920f9aa3e04",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            97.107054,
+            30.550784
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "日喀则机场",
+        "pyname": "rkzjc",
+        "kind": "8100",
+        "id": "cc3c55aa-c293-4356-81d0-088120deb0bf",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            89.298402,
+            29.349467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿里昆莎机场",
+        "pyname": "alksjc",
+        "kind": "8100",
+        "id": "7e46cd69-708c-4ea0-a7f6-87d7a3eefbd8",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            80.053523,
+            32.109772
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "林芝机场",
+        "pyname": "lzjc",
+        "kind": "8100",
+        "id": "e8417542-cc86-419a-8df1-389047af5714",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            94.336376,
+            29.308529
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "德宏芒市机场",
+        "pyname": "dhmsjc",
+        "kind": "8100",
+        "id": "41ab9bed-6516-42cb-bc83-59872ba7b0df",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            98.532119,
+            24.405143
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "临沧机场",
+        "pyname": "lcjc",
+        "kind": "8100",
+        "id": "5e4cc5b1-8e44-4fca-8b6b-0ad85b53e8a1",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.025423,
+            23.743888
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "迪庆香格里拉机场",
+        "pyname": "dqxglljc",
+        "kind": "8100",
+        "id": "50fcbc29-6489-4062-bcf8-81c81f01d236",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            99.681427,
+            27.796326
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "文山普者黑机场",
+        "pyname": "wspzhjc",
+        "kind": "8100",
+        "id": "28113906-f100-4258-9a8c-10670eb9d27c",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            104.331496,
+            23.566168
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大理机场",
+        "pyname": "dljc",
+        "kind": "8100",
+        "id": "28f07100-b53b-4200-8fe7-ff6509d3299d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.321945,
+            25.650692
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "腾冲机场",
+        "pyname": "tcjc",
+        "kind": "8100",
+        "id": "a0b9e82c-51d4-480d-b583-afdebfcc6416",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            98.482474,
+            24.939663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "普洱思茅机场",
+        "pyname": "pesmjc",
+        "kind": "8100",
+        "id": "99154a9b-24e2-45fe-b67b-292006e11b11",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.961705,
+            22.796549
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "昆明长水国际机场",
+        "pyname": "kmcsgjjc",
+        "kind": "8100",
+        "id": "90f5212b-cc03-4b50-a1d8-7beb6f96e4d3",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            102.927144,
+            25.099324
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "丽江三义国际机场",
+        "pyname": "ljsygjjc",
+        "kind": "8100",
+        "id": "1fa8b910-dfa2-4c40-8d83-37ff174e940a",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.24698,
+            26.670211
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西双版纳嘎洒国际机场",
+        "pyname": "xsbngsgjjc",
+        "kind": "8100",
+        "id": "776b2785-baee-45cc-a682-3042051b0330",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.765461,
+            21.976435
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "丽江三义国际机场－国际航站楼",
+        "pyname": "ljsygjjc-gjhzl",
+        "kind": "8100",
+        "id": "4f4a868b-9c1d-42c4-85f0-cfc7cbd62507",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.24679,
+            26.671891
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保山机场",
+        "pyname": "bsjc",
+        "kind": "8100",
+        "id": "f6fd1eb0-6fe4-44d0-915b-09f97698ce98",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            99.164671,
+            25.054804
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西双版纳嘎洒国际机场国内候机楼",
+        "pyname": "xsbngsgjjcgnhjl",
+        "kind": "8100",
+        "id": "14c3fdb8-380c-4ca0-8941-f27fbbb357da",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.765651,
+            21.976576
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西双版纳嘎洒国际机场国际厅",
+        "pyname": "xsbngsgjjcgjt",
+        "kind": "8100",
+        "id": "81b99ccb-d9e1-47f3-97f5-4b2298836258",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.765891,
+            21.972623
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "丽江三义国际机场－国内航站楼",
+        "pyname": "ljsygjjc-gnhzl",
+        "kind": "8100",
+        "id": "8178add0-fc95-4b4e-916c-05c886827bf5",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            100.24727,
+            26.670071
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "杭州萧山国际机场国内航站楼（B楼）",
+        "pyname": "hzxsgjjcgnhzl(bl)",
+        "kind": "8100",
+        "id": "3df3fd01-a5ec-4c19-9d3f-14dcdc2f4d25",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.432611,
+            30.23788
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "杭州萧山国际机场",
+        "pyname": "hzxsgjjc",
+        "kind": "8100",
+        "id": "65e725b1-7200-42f8-b990-81b77ff59920",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.433914,
+            30.238652
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "杭州萧山国际机场国际航站楼（A楼）",
+        "pyname": "hzxsgjjcgjhzl(al)",
+        "kind": "8100",
+        "id": "b5be9d93-ed54-44d0-9bac-500cc9b94d1d",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.43195,
+            30.234949
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宁波栎社国际机场",
+        "pyname": "nblsgjjc",
+        "kind": "8100",
+        "id": "a6537113-26bb-4b69-96d5-2ec66f1d8bc2",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.461979,
+            29.821107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "义乌机场",
+        "pyname": "ywjc",
+        "kind": "8100",
+        "id": "2de65d59-62c7-4efd-8f46-aee4ee59cdc4",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.027772,
+            29.343096
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "舟山普陀山机场",
+        "pyname": "zsptsjc",
+        "kind": "8100",
+        "id": "290d894d-63dc-4199-8ebb-b19628b11d68",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.357565,
+            29.936001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "温州龙湾国际机场国际候机楼",
+        "pyname": "wzlwgjjcgjhjl",
+        "kind": "8100",
+        "id": "68b53216-172f-4bc3-b543-f6c62228be0f",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.847742,
+            27.915583
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "桃花直升机起降点",
+        "pyname": "thzsjqjd",
+        "kind": "8100",
+        "id": "dfcb3740-06be-4c09-bcb1-aeee446fb6ba",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.289383,
+            29.817885
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "衢山直升机起降点",
+        "pyname": "qszsjqjd",
+        "kind": "8100",
+        "id": "1c05b8d2-f214-411c-aaf7-e73161dbc664",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.294394,
+            30.447669
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "岱山直升机起降点",
+        "pyname": "dszsjqjd",
+        "kind": "8100",
+        "id": "8f0238bd-5e4f-4f3c-9025-bf007bfa5289",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.113592,
+            30.277605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "温州龙湾国际机场国内候机楼",
+        "pyname": "wzlwgjjcgnhjl",
+        "kind": "8100",
+        "id": "061cd132-6a21-474d-a94f-8d7820e1581b",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.849043,
+            27.917475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "嵊泗直升机起降点",
+        "pyname": "sszsjqjd",
+        "kind": "8100",
+        "id": "b53b5d0a-4d55-4951-945c-1345a4a93ef7",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.44201,
+            30.73866
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "义乌机场贵宾楼",
+        "pyname": "ywjcgbl",
+        "kind": "8100",
+        "id": "ac8f11f4-9608-46cc-a515-14a0bcfdf9cf",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.027592,
+            29.342247
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "温州龙湾国际机场",
+        "pyname": "wzlwgjjc",
+        "kind": "8100",
+        "id": "d8e82912-212f-4f26-9c5f-188c0b213b80",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            120.849124,
+            27.915925
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "舟山五岛直升机场",
+        "pyname": "zswdzsjc",
+        "kind": "8100",
+        "id": "d98ef297-dd7e-4d67-8bcc-8295e65529a3",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            122.357565,
+            29.936001
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "衢州民航站",
+        "pyname": "qzmhz",
+        "kind": "8100",
+        "id": "651b8149-a627-494f-ba8b-fb45b55d9a66",
+        "checked": false
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            118.896427,
+            28.971129
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "台州路桥机场",
+        "pyname": "tzlqjc",
+        "kind": "8100",
+        "id": "9036cf89-ed3a-49f5-ba1c-f47e33def70c",
+        "checked": false,
+        "props": {
+          "billboard": {
+            "color": "red"
+          }
+        }
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            121.417098,
+            28.55775
+          ]
+        ]
+      }
+    }
+  ]
+}
