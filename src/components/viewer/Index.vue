@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-21 21:40:39
+ * @LastEditTime: 2022-07-23 00:55:47
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
 -->
 <template>
-  <vc-config-provider :locale="vclocale" cesium-path="/Cesium/Cesium.js">
+  <vc-config-provider :locale="vclocale" :cesium-path="cesiumPath">
     <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
       <!-- 导航罗盘控件 -->
       <vc-navigation
@@ -83,6 +83,7 @@ const language = {
   'zh-CN': zhCN
 }
 const { locale } = useI18n()
+const cesiumPath = `${import.meta.env.BASE_URL}Cesium/Cesium.js`
 // emit
 const emit = defineEmits(['viewerReady', 'cesiumReady', 'leftClick', 'destroyed'])
 const vclocale = computed(() => {
