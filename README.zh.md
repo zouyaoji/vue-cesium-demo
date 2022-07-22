@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 14:53:30
- * @LastEditTime: 2022-06-01 18:05:36
+ * @LastEditTime: 2022-07-23 00:31:43
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\README.zh.md
@@ -30,7 +30,9 @@
 
 ## 计划
 
-- 动态渲染示例
+- ~~动态渲染示例~~
+- 量算绘制示例
+- 飞行管理示例
 
 ## 赞助
 

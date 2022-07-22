@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 14:53:30
- * @LastEditTime: 2022-06-01 18:05:31
+ * @LastEditTime: 2022-07-23 00:31:33
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\README.md
@@ -29,6 +29,10 @@ This template should help get you started developing with Vue and Typescript in 
 - layer management
 
 ## Todo
+
+- ~~Dynamic rendering~~
+- Measurement drawing
+- Flight management
 
 ## Donation
 
