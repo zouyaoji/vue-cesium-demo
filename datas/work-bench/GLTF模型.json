@@ -1,0 +1,88 @@
+{
+  "type": "FeatureCollection",
+  "name": "Tileset模型",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "飞机",
+        "hpr": "[135, 0, 0]",
+        "props": {
+          "model": {
+            "uri": "/datas/gltf/Cesium_Air.glb"
+          }
+        }
+      },
+      "geometry": {
+        "coordinates": [
+          121.25202608700887,
+          32.14045397527647
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "无人机",
+        "hpr": "[135, 0, 0]",
+        "props": {
+          "model": {
+            "uri": "/datas/gltf/CesiumDrone.glb"
+          }
+        }
+      },
+      "geometry": {
+        "coordinates": [
+          120.91567328928569,
+          31.90838610596914
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "牛奶车",
+        "hpr": "[135, 0, 0]",
+        "props": {
+          "model": {
+            "uri": "/datas/gltf/CesiumMilkTruck.glb"
+          }
+        }
+      },
+      "geometry": {
+        "coordinates": [
+          120.92445540393236,
+          31.422089050215003
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "热气球",
+        "hpr": "[135, 0, 0]",
+        "props": {
+          "model": {
+            "uri": "/datas/gltf/CesiumBalloon.glb"
+          }
+        }
+      },
+      "geometry": {
+        "coordinates": [
+          121.3840560441779,
+          32.02782672458972
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}
