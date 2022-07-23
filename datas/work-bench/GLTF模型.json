@@ -15,7 +15,7 @@
         "hpr": "[135, 0, 0]",
         "props": {
           "model": {
-            "uri": "/datas/gltf/Cesium_Air.glb"
+            "uri": "../datas/gltf/Cesium_Air.glb"
           }
         }
       },
@@ -34,7 +34,7 @@
         "hpr": "[135, 0, 0]",
         "props": {
           "model": {
-            "uri": "/datas/gltf/CesiumDrone.glb"
+            "uri": "../datas/gltf/CesiumDrone.glb"
           }
         }
       },
@@ -53,7 +53,7 @@
         "hpr": "[135, 0, 0]",
         "props": {
           "model": {
-            "uri": "/datas/gltf/CesiumMilkTruck.glb"
+            "uri": "../datas/gltf/CesiumMilkTruck.glb"
           }
         }
       },
@@ -72,7 +72,7 @@
         "hpr": "[135, 0, 0]",
         "props": {
           "model": {
-            "uri": "/datas/gltf/CesiumBalloon.glb"
+            "uri": "../datas/gltf/CesiumBalloon.glb"
           }
         }
       },

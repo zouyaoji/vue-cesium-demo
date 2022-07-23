@@ -14,7 +14,7 @@
         "name": "大雁塔",
         "props": {
           "tileset": {
-            "url": "/datas/3dtiles/dayanta/tileset.json"
+            "url": "../datas/3dtiles/dayanta/tileset.json"
           }
         }
       },
