@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2022-06-01 17:28:48
+ * @LastEditTime: 2022-07-23 12:29:08
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\router\index.ts
@@ -30,7 +30,7 @@ const Router = createRouter({
   // quasar.conf.js -> build -> vueRouterMode
   // quasar.conf.js -> build -> publicPath
   // history: createHistory(import.meta.env.MODE === 'ssr' ? void 0 : import.meta.env.VITE_VUE_ROUTER_BASE)
-  history: createHistory(import.meta.env.MODE === 'development' ? '/' : '/vue-cesium-demo')
+  history: createHistory(import.meta.env.VITE_VUE_ROUTER_BASE)
 })
 
 const whiteList = ['/login', '/404'] // 设置白名单，避免死循环
