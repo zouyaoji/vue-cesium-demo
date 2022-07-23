@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-07-23 00:55:19
+ * @LastEditTime: 2022-07-23 11:08:51
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -26,7 +26,7 @@ const htmlPlugin = () => {
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
   return defineConfig({
-    base: process.env.VITE_VUE_ROUTER_BASE,
+    base: './',
     plugins: [
       vue({
         template: { transformAssetUrls }
