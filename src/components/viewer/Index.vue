@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-23 16:44:14
+ * @LastEditTime: 2022-07-23 20:53:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -81,7 +81,7 @@ const language = {
   'zh-CN': zhCN
 }
 const { locale } = useI18n()
-const cesiumPath = `${import.meta.env.BASE_URL}Cesium/Cesium.js`
+const cesiumPath = import.meta.env.VITE_VUE_CESIUMJS_PATH
 // emit
 const emit = defineEmits(['viewerReady', 'cesiumReady', 'leftClick', 'destroyed'])
 const vclocale = computed(() => {
