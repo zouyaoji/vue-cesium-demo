@@ -4008,7 +4008,7 @@
         "checked": false,
         "props": {
           "billboard": {
-            "image": "/images/飞机场2.svg"
+            "image": "../images/飞机场2.svg"
           }
         }
       },

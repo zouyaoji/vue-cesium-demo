@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-06-27 14:31:26
+ * @LastEditTime: 2022-07-23 13:36:42
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\main.ts
@@ -13,10 +13,10 @@ import VueCesium from 'vue-cesium'
 // Import store and router instances
 import { pinia } from '@store/index'
 import router from '@router/index'
-// Import VueCesium css
-import 'vue-cesium/dist/index.css'
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css'
+// Import VueCesium css
+import 'vue-cesium/dist/index.css'
 // Import Quasar css
 import 'quasar/src/css/index.sass'
 

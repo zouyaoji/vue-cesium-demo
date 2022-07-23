@@ -201,7 +201,7 @@ const describeWithoutUnderscores = (properties, nameProperty?) => {
 <style lang="scss" scoped>
 .vc-geocoder {
   position: absolute;
-  top: 23px;
+  top: 10px;
   right: 380px;
 }
 </style>

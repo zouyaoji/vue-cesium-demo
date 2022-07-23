@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-07-21 20:16:12
+ * @LastEditTime: 2022-07-23 15:04:26
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -40,8 +40,10 @@
         </div>
       </div>
     </div>
+
     <div class="right q-ml-sm q-mr-sm">
       <div v-if="headerMenus.length" class="content">
+        <vc-geocoder></vc-geocoder>
         <q-btn size="md" flat round color="#fff" @click="onNavigation">
           <q-icon name="fa fa-github"></q-icon>
         </q-btn>
@@ -71,6 +73,7 @@ import { store } from '@src/store'
 import { ThemeOptions } from '@src/types/theme'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { storeToRefs } from 'pinia'
+import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
 
 const $route = useRoute()
 const searchActive = ref(false)

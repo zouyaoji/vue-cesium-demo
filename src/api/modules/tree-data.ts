@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:27:55
- * @LastEditTime: 2022-07-23 11:11:17
+ * @LastEditTime: 2022-07-23 15:38:49
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\tree-data.ts
@@ -20,13 +20,13 @@ export default [
         icon: '',
         checked: false,
         expanded: false,
-        fetchStr: './datas/work-bench/机场.json',
+        fetchStr: `/datas/work-bench/机场.json`,
         canRenderDirectly: true,
         hasDetail: true,
         renderingType: 'billboard',
         props: {
           billboard: {
-            image: './images/飞机场.svg',
+            image: `${import.meta.env.BASE_URL}images/飞机场.svg`,
             color: '#ffc10',
             scale: 0.25,
             verticalOrigin: 1,
@@ -41,7 +41,7 @@ export default [
         icon: '',
         checked: false,
         expanded: false,
-        fetchStr: './datas/work-bench/水系.json',
+        fetchStr: `/datas/work-bench/水系.json`,
         canRenderDirectly: true,
         hasDetail: true,
         renderingType: 'polyline',
@@ -57,13 +57,13 @@ export default [
         icon: '',
         checked: false,
         expanded: false,
-        fetchStr: './datas/work-bench/岛屿.json',
+        fetchStr: `/datas/work-bench/岛屿.json`,
         canRenderDirectly: true,
         hasDetail: true,
         renderingType: 'polygon,polyline,billboard',
         props: {
           billboard: {
-            image: './images/岛屿.svg',
+            image: `${import.meta.env.BASE_URL}images/岛屿.svg`,
             scale: 0.2,
             verticalOrigin: 1,
             scaleByDistance: [1e2, 2, 1.5e5, 0.5],
@@ -79,7 +79,7 @@ export default [
         icon: '',
         checked: false,
         expanded: false,
-        fetchStr: './datas/work-bench/Tileset模型.json',
+        fetchStr: `/datas/work-bench/Tileset模型.json`,
         canRenderDirectly: true,
         hasDetail: true,
         renderingType: 'tileset',
@@ -93,7 +93,7 @@ export default [
         icon: '',
         checked: false,
         expanded: false,
-        fetchStr: './datas/work-bench/GLTF模型.json',
+        fetchStr: `/datas/work-bench/GLTF模型.json`,
         canRenderDirectly: true,
         hasDetail: true,
         renderingType: 'model',

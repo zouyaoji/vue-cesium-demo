@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-23 12:56:55
+ * @LastEditTime: 2022-07-23 16:44:14
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
@@ -31,7 +31,7 @@
           :sort-order="item.sortOrder"
           :show="item.show"
         >
-          <component :is="item.component" v-bind="item.props" />
+          <component :is="item.component" v-bind="item.props as any" />
         </vc-layer-imagery>
       </template>
       <!-- 矢量数据图层 -->
@@ -52,14 +52,12 @@
           {{ mouseOverNameOpts.text }}
         </div>
       </vc-overlay-html>
-      <vc-geocoder></vc-geocoder>
       <slot />
     </vc-viewer>
   </vc-config-provider>
 </template>
 <script setup lang="ts">
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
-import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
 import { ref, computed } from 'vue'
 import { store } from '@src/store'
 import {
