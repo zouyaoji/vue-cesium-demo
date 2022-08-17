@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:02:25
- * @LastEditTime: 2022-07-23 00:35:11
+ * @LastEditTime: 2022-08-17 21:31:09
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\Index.vue
@@ -10,7 +10,7 @@
   <div class="work-bench">
     <div
       v-show="dynamicRenderLayout.datasource.workBench"
-      class="datasources-container"
+      class="datasources-container animate__animated animate__fadeInLeft"
       :class="{ 'full-width-drawer': !globalLayout.leftDrawerMini }"
     >
       <div class="dataset-category">
@@ -73,15 +73,16 @@
             class="absolute-center"
             :has-error="workBenchModel.hasLoadingError"
           ></loading-ios>
-          <data-list-tree
+          <vc-data-tree
+            v-model:selected="workBenchModel.selectedKey"
             :nodes="selectedDatasetCategories"
-            class="data-list-tree"
             :filter="workBenchModel.filterText"
-            @add-or-remove-dataset="addOrRemoveDataset"
-            @show-feature-info="showFeatureInfo"
-            @fly-to-feature="flyToFeature"
-            @showOrHideDatasetList="showOrHideDatasetList"
-          ></data-list-tree>
+            @update:selected="showFeatureInfo"
+            @zoomIconClicked="flyToFeature"
+            @expanded="showOrHideDatasetList"
+            @lazy-load="addOrRemoveDataset"
+            @checked="onChecked"
+          ></vc-data-tree>
         </q-scroll-area>
       </div>
     </div>
@@ -105,9 +106,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import useWorkBench from './useWorkBench'
-import DataListTree from '../data-list-tree/Index.vue'
+import VcDataTree from '../vc-data-tree'
 import { useScroll } from '@composables/index'
 import LoadingIos from '@components/loading/Ios.vue'
 import { removeRenderDataByPage } from '@src/utils/render-data'
@@ -116,7 +117,6 @@ import { store } from '@src/store'
 import { storeToRefs } from 'pinia'
 
 const globalLayout = storeToRefs(store.system.useLayoutStore()).global
-
 const {
   contentStyle,
   contentActiveStyle,
@@ -132,10 +132,11 @@ const {
   dynamicRenderLayout,
   selectedDatasetCategories,
   init,
-  addOrRemoveDataset,
   showFeatureInfo,
   flyToFeature,
   showOrHideDatasetList,
+  addOrRemoveDataset,
+  onChecked,
   toggleDynamicRenderPageLayout
 } = useWorkBench()
 

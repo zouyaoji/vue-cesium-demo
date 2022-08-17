@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-07-23 00:15:51
+ * @LastEditTime: 2022-08-17 21:43:41
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -23,7 +23,7 @@ import {
 } from 'vue-cesium'
 import { useVueCesium } from 'vue-cesium'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
-import { clearSelectedRenderData, highlightRenderData } from '@src/utils/render-data'
+import { clearSelectedRenderData, highlightRenderData, showFeatureInfoPanel } from '@src/utils/render-data'
 import { logger } from '@src/utils'
 import { VcRenderDataset } from '@src/types/render-data'
 
@@ -51,7 +51,6 @@ export default defineComponent({
     const { registerTimeout, removeTimeout } = useTimeout()
     const { toggleGlobalLayout } = store.system.useLayoutStore()
     const { setMouseOverlayLabel, clearMouseOverlayLabel } = store.viewer.useOverlayStore()
-
     // watch
     let canDepart = false
     watch(
@@ -198,6 +197,7 @@ export default defineComponent({
     }
 
     const onPickEvt = picked => {
+      const { viewer, vm } = $vc
       if (picked) {
         if (picked.id !== '__Vc__Pick__Location__') {
           selectedByPick = true
@@ -208,7 +208,6 @@ export default defineComponent({
           })
           // 设个延时切换选中对象时，动画效果才能正常
           setTimeout(() => {
-            const { viewer } = $vc
             const { defined, JulianDate, BoundingSphere } = Cesium
             // zouyaoji tips
             // 面图元 对象用的 PolygonPrimitive，feature 存 PolygonPrimitive 上面了
@@ -217,7 +216,7 @@ export default defineComponent({
             const feature = picked.cesiumObject?.feature || picked.cesiumObject?._vcParent?.feature
             if (defined(feature)) {
               nextTick(() => {
-                const { actualRenderingType, datasetId, id, renderingApi } = feature.properties
+                const { renderingType, actualRenderingType, datasetId, id, renderingApi } = feature.properties
                 highlightRenderData(actualRenderingType, datasetId, id)
                 let boundingSphere, positions, position
                 const pickedFeature = picked.cesiumObject
@@ -259,6 +258,8 @@ export default defineComponent({
                     break
                 }
 
+                vm.vcMitt.emit('pickEvt', feature.properties.id)
+
                 const canShowDetail = Cesium.defined(feature?.properties?.showBillboardMenu)
                   ? feature.properties.showBillboardMenu
                   : true
@@ -267,16 +268,20 @@ export default defineComponent({
             } else {
               clearSelectedRenderData()
               toggleGlobalLayout({
-                featureInfo: false
+                featureInfo: false,
+                videoPlayer: false
               })
+              vm.vcMitt.emit('pickEvt', '')
             }
           }, 100)
         }
       } else {
         clearSelectedRenderData()
         toggleGlobalLayout({
-          featureInfo: false
+          featureInfo: false,
+          videoPlayer: false
         })
+        vm.vcMitt.emit('pickEvt', '')
       }
     }
 
@@ -287,8 +292,7 @@ export default defineComponent({
         logger.warn('显示详情数据失败，原因：要素 id 值为空。', '要素model：', selectedRenderData.model)
         return
       }
-      // showFeatureInfoPanel(feature, selectedRenderData)
-      logger.debug('属性展示逻辑待完善')
+      showFeatureInfoPanel(feature, selectedRenderData)
     }
 
     function setRef(this, el) {

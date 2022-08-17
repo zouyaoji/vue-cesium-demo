@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-07-22 23:47:42
+ * @LastEditTime: 2022-08-17 20:55:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
@@ -16,6 +16,7 @@ import { entityModelHandler } from './model-helper'
 import { isPlainObject } from 'vue-cesium/es/utils/util'
 import { find, intersectionWith, uniqWith } from 'lodash'
 import { markRaw, toRef } from 'vue'
+import { AnyObject } from 'vue-cesium/es/utils/types'
 /**
  * 添加渲染数据到场景。
  * @param {VcRenderData|Array<VcRenderData>} renderDatas 待添加的渲染数据或数据组
@@ -60,22 +61,29 @@ export function getRenderDataByDatasetId(id: string | number): VcRenderData {
  * 设置当前选中的渲染数据
  * @param {*} renderData
  */
-export function setSelectedRenderData(renderData: VcSelectedRenderData) {
-  store.viewer.useRenderStore(pinia).setSelectedRenderData(renderData)
+export function setSelectedRenderData(renderData: VcSelectedRenderData, clearRestoreHandlers?) {
+  store.viewer.useRenderStore(pinia).setSelectedRenderData(renderData, clearRestoreHandlers)
 }
 /**
  * 清除当前选中的渲染数据
  */
 export function clearSelectedRenderData() {
   const selectedRenderData = store.viewer.useRenderStore(pinia).selectedRenderData
-  selectedRenderData.model && selectedRenderData?.restoreHandler?.()
-  setSelectedRenderData({
-    model: undefined,
-    renderingType: undefined,
-    restoreHandler: undefined,
-    feature: undefined,
-    featureInfoListItems: []
-  })
+  if (selectedRenderData.model && selectedRenderData?.restoreHandlers?.length) {
+    selectedRenderData.restoreHandlers.forEach(restoreHandler => {
+      restoreHandler()
+    })
+  }
+  setSelectedRenderData(
+    {
+      model: undefined,
+      renderingType: undefined,
+      restoreHandlers: [],
+      feature: undefined,
+      featureInfoListItems: []
+    },
+    true
+  )
 }
 /**
  * 高亮展示选中的渲染数据
@@ -94,96 +102,53 @@ export function highlightRenderData(
 ) {
   clearSelectedRenderData()
 
-  const model = getFeatureModel(renderingType, datasetId, featureId)
-  if (!model) {
-    return false
+  const renderingTypes = renderingType.trim().split(',')
+  if (!renderingTypes || !renderingTypes.length) {
+    logger.warn(`高亮渲染模型失败，原因：未知的显示类型。`, '要素ID：', featureId)
   }
 
-  if (renderingType === 'point') {
-    const point = renderingApi === 'primitive' ? model : model.point
-    const restorePixelSize = point.pixelSize || 1
-    const restoreColor = point.color || [255, 255, 255, 0]
-    point.pixelSize = restorePixelSize * 1.5
-    // billboard.color = '#ffc107'
+  renderingTypes.forEach(renderingType => {
+    const renderData = getRenderDataByDatasetId(datasetId)
+    const model = getFeatureModel(renderingType, renderData, featureId)
+    if (!model) {
+      return
+    }
+    const selectedFeatureProps = model.feature.properties?.selectedProps
+    const selectedProps =
+      selectedFeatureProps && isPlainObject(selectedFeatureProps)
+        ? selectedFeatureProps
+        : selectedFeatureProps
+        ? JSON.parse(selectedFeatureProps)
+        : {}
 
-    setSelectedRenderData({
-      model: point,
-      renderingType,
-      restoreHandler: () => {
-        point.pixelSize = restorePixelSize
-        point.color = restoreColor
-      },
-      feature: model.feature,
-      featureInfoListItems
-    })
-  } else if (renderingType === 'billboard') {
-    const billboard = renderingApi === 'primitive' ? model : model.billboard
-    // const restoreColor = billboard.color || [255, 255, 255, 0]
-    const restoreScale = billboard.scale || 1
-    billboard.scale = restoreScale * 1.5
-    // billboard.color = '#ffc107'
+    const props = renderingApi === 'primitive' ? model : model[renderingType]
+    const selectedRenderProps = selectedProps?.[renderingType]
 
-    setSelectedRenderData({
-      model: billboard,
-      renderingType,
-      restoreHandler: () => {
-        billboard.scale = restoreScale
-        // billboard.color = restoreColor
-      },
-      feature: model.feature,
-      featureInfoListItems
-    })
-  } else if (renderingType === 'polyline') {
-    const polyline = renderingApi === 'primitive' ? model : model.polyline
-    const restoreMaterial = polyline.material || 'white'
-    const restoreWidth = polyline.width || 1
-    polyline.width = restoreWidth * 1.5
-    polyline.material = '#ffc107'
-    setSelectedRenderData({
-      model: polyline,
-      renderingType: 'polyline',
-      restoreHandler: () => {
-        polyline.width = restoreWidth
-        polyline.material = restoreMaterial
-      },
-      feature: model.feature,
-      featureInfoListItems
-    })
-  } else if (renderingType === 'polygon') {
-    if (renderingApi === 'primitive') {
-      const polygon = model
-      const restoreColor = polygon.color || 'white'
-      polygon.color = '#ffc107'
+    if (selectedRenderProps) {
+      let restoreProps: any = {}
+      Object.keys(selectedRenderProps).forEach(key => {
+        restoreProps[key] = props[key]
+        props[key] = selectedRenderProps[key]
+      })
+
       setSelectedRenderData({
-        model: polygon,
-        renderingType: 'polygon',
-        restoreHandler: () => {
-          polygon.color = restoreColor
-        },
+        model: props,
+        renderingType,
+        restoreHandlers: [
+          () => {
+            Object.keys(restoreProps).forEach(key => {
+              props[key] = restoreProps[key]
+            })
+            restoreProps = undefined
+          }
+        ],
         feature: model.feature,
         featureInfoListItems
       })
     } else {
-      const polygon = model.polygon
-      const restoreMaterial = polygon.material || 'white'
-      if (model.feature.properties?.datasetId === 'observationElementPattern') {
-        polygon.extrudedHeight = 1000
-      }
-      polygon.material = '#ffc107'
-      setSelectedRenderData({
-        model: polygon,
-        renderingType: 'polygon',
-        restoreHandler: () => {
-          polygon.material = restoreMaterial
-          polygon.extrudedHeight = undefined
-        },
-        feature: model.feature,
-        featureInfoListItems
-      })
+      logger.warn('设置对象选中风格失败，原因：没有设置默认选中样式。请通过数据集或者要素的 selectedProps 字段设置。')
     }
-  } else if (renderingType === 'geojson') {
-    const polygon = renderingApi === 'primitive' ? model.polygon : model.polygon
-  }
+  })
 }
 
 export function getRenderDataDatasetModel(datasetId: string | number, cmpName: string) {
@@ -209,11 +174,16 @@ export function getRenderDataDatasetModel(datasetId: string | number, cmpName: s
  */
 export function getFeatureModel(
   renderingType: string,
-  datasetId: string | number,
+  datasetId: string | number | AnyObject,
   featureId: string | number,
   renderingApi?
 ) {
-  const renderData = getRenderDataByDatasetId(datasetId)
+  let renderData = undefined
+  if (isPlainObject(datasetId)) {
+    renderData = datasetId
+  } else {
+    renderData = getRenderDataByDatasetId(datasetId)
+  }
   if (!renderData) {
     return undefined
   }
@@ -550,13 +520,84 @@ export async function flyToFeature<T = {}>(
   }
 }
 
+// export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGetMethod) {
+//   return fetchingMethod()
+//     .then(res => {
+//       if (res.code !== 0) {
+//         logger.error(`添加渲染数据集失败，原因：数据请求失败。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`)
+//         dataset.loading = false
+//         dataset.checked = false
+//         return false
+//       }
+
+//       if (res.data) {
+//         if (res.data?.type) {
+//           const geoJsonObjectType = res.data?.type
+//           switch (geoJsonObjectType) {
+//             case 'Feature':
+//               dataset.children = [res.data]
+//               break
+//             case 'FeatureCollection':
+//               dataset.children = res.data.features
+//               dataset.children.forEach(v => {
+//                 // 增加渲染必备的一些属性
+//                 if (!Cesium.defined(v.properties.renderingType)) {
+//                   v.properties.renderingType = dataset.renderingType || 'billboard'
+//                 }
+//                 if (!Cesium.defined(v.properties.id)) {
+//                   v.properties.id = Cesium.createGuid()
+//                 }
+//                 if (!Cesium.defined(v.properties.checked)) {
+//                   v.properties.checked = false
+//                 }
+//               })
+//               break
+//             default:
+//               logger.error(
+//                 `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+//               )
+//               dataset.loading = false
+//               dataset.checked = false
+//               return
+//           }
+//         } else if (dataset.renderingType === 'heatmap') {
+//           // 人口分布的热力图
+//           dataset.children = [res.data]
+//         }
+//       } else {
+//         logger.error(
+//           `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+//         )
+//         dataset.loading = false
+//         dataset.checked = false
+//         return false
+//       }
+//       if (!dataset.children?.length) {
+//         logger.error(
+//           `添加渲染数据集失败，原因：请求数据成功，但结果为空。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
+//         )
+//         dataset.loading = false
+//         dataset.checked = false
+//         return false
+//       }
+//       return true
+//     })
+//     .catch(e => {
+//       logger.error('添加渲染数据集失败，原因：数据请求异常。', e)
+//       dataset.loading = false
+//       dataset.checked = false
+//       return false
+//     })
+// }
+
 export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGetMethod) {
+  let result = []
   return fetchingMethod()
     .then(res => {
       if (res.code !== 0) {
         logger.error(`添加渲染数据集失败，原因：数据请求失败。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`)
-        dataset.loading = false
-        dataset.checked = false
+        // dataset.loading = false
+        // dataset.checked = false
         return false
       }
 
@@ -565,11 +606,12 @@ export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGe
           const geoJsonObjectType = res.data?.type
           switch (geoJsonObjectType) {
             case 'Feature':
-              dataset.children = [res.data]
+              result = [res.data]
               break
             case 'FeatureCollection':
-              dataset.children = res.data.features
-              dataset.children.forEach(v => {
+              result = res.data.features
+              result.forEach(v => {
+                // 增加渲染必备的一些属性
                 if (!Cesium.defined(v.properties.renderingType)) {
                   v.properties.renderingType = dataset.renderingType || 'billboard'
                 }
@@ -585,36 +627,33 @@ export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGe
               logger.error(
                 `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
               )
-              dataset.loading = false
-              dataset.checked = false
-              return
+              // dataset.loading = false
+              // dataset.checked = false
+              return false
           }
-        } else if (dataset.renderingType === 'heatmap') {
-          // 人口分布的热力图
-          dataset.children = [res.data]
         }
       } else {
         logger.error(
           `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
         )
-        dataset.loading = false
-        dataset.checked = false
+        // dataset.loading = false
+        // dataset.checked = false
         return false
       }
-      if (!dataset.children?.length) {
+      if (!result.length) {
         logger.error(
           `添加渲染数据集失败，原因：请求数据成功，但结果为空。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
         )
-        dataset.loading = false
-        dataset.checked = false
+        // dataset.loading = false
+        // dataset.checked = false
         return false
       }
-      return true
+      return result
     })
     .catch(e => {
       logger.error('添加渲染数据集失败，原因：数据请求异常。', e)
-      dataset.loading = false
-      dataset.checked = false
+      // dataset.loading = false
+      // dataset.checked = false
       return false
     })
 }
@@ -633,7 +672,6 @@ export function addDatasetByRenderingType(
   page: string,
   type?: string
 ) {
-  dataset.loading = true
   if (!dataset.children?.length) {
     try {
       return fetchDatasetList(dataset, fetchingMethod).then(flag => {
@@ -647,8 +685,6 @@ export function addDatasetByRenderingType(
         '数据模型：',
         dataset
       )
-      dataset.loading = false
-      dataset.checked = false
       return
     }
   } else {
@@ -718,9 +754,10 @@ const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
     addRenderDatas(renderData)
   } else {
     for (let i = 0; i < dataset.children.length; i++) {
-      const feature = dataset.children[i]
+      const feature = dataset.children[i] as VcFeature
       const properties = feature.properties
-      properties.datasetId = dataset.id
+      properties.datasetId = feature.properties.datasetId || dataset.id
+      properties.selectedProps = feature.properties.selectedProps || dataset.selectedProps || {}
       const props =
         dataset.props && isPlainObject(dataset?.props)
           ? dataset?.props
@@ -779,4 +816,16 @@ const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
   }
 
   return true
+}
+
+export function showFeatureInfoPanel(feature: VcFeature, renderData?: VcSelectedRenderData) {
+  if (!renderData) {
+    const model = getFeatureModel(feature.properties.renderingType, feature.properties.datasetId, feature.properties.id)
+    if (!model) {
+      return
+    }
+    highlightRenderData(feature.properties.renderingType, feature.properties.datasetId, feature.properties.id)
+  } else {
+    //
+  }
 }

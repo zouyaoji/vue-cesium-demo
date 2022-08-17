@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-13 16:40:38
- * @LastEditTime: 2022-07-21 19:54:27
+ * @LastEditTime: 2022-08-06 21:59:30
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\system\layout.ts
@@ -10,6 +10,16 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { isBoolean } from 'lodash'
 import { isPlainObject } from 'vue-cesium/es/utils/util'
 
+export type GlobalLayoutOpts = {
+  header?: boolean
+  leftDrawerMini?: boolean
+  content?: boolean
+  footer?: boolean
+  layerManager?: boolean
+  navigation?: boolean
+  featureInfo?: boolean
+  videoPlayer?: boolean
+}
 // main is the name of the store. It is unique across your application
 // and will appear in devtools
 export const useLayoutStore = defineStore('layout', {
@@ -22,7 +32,8 @@ export const useLayoutStore = defineStore('layout', {
       footer: false,
       layerManager: false,
       navigation: false,
-      featureInfo: false
+      featureInfo: false,
+      videoPlayer: false
     },
     /**
      * index 页面布局参数
@@ -42,7 +53,7 @@ export const useLayoutStore = defineStore('layout', {
      * @param {*} state
      * @param {*} layoutOpts
      */
-    toggleGlobalLayout(layoutOpts) {
+    toggleGlobalLayout(layoutOpts: GlobalLayoutOpts) {
       const optsArray = Object.keys(layoutOpts)
       optsArray.forEach(opt => {
         isBoolean(layoutOpts[opt]) && (this.global[opt] = layoutOpts[opt])

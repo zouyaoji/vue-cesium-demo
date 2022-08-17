@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 19:56:26
- * @LastEditTime: 2022-05-25 21:10:37
+ * @LastEditTime: 2022-08-07 15:27:23
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\render.ts
@@ -17,7 +17,7 @@ export const useRenderStore = defineStore('render', {
     selectedRenderData: {
       model: undefined, // model 有值说明已经被渲染出来了
       renderingType: undefined,
-      restoreHandler: undefined,
+      restoreHandlers: [],
       feature: undefined,
       featureInfoListItems: []
     }
@@ -75,12 +75,16 @@ export const useRenderStore = defineStore('render', {
      * 设置选中的渲染数据。
      * @param renderData
      */
-    setSelectedRenderData(renderData) {
+    setSelectedRenderData(renderData, clearRestoreHandlers?: boolean) {
       this.selectedRenderData.model = renderData.model
       this.selectedRenderData.renderingType = renderData.renderingType
-      this.selectedRenderData.restoreHandler = renderData.restoreHandler
       this.selectedRenderData.feature = renderData.feature
       this.selectedRenderData.featureInfoListItems = renderData.featureInfoListItems
+      if (clearRestoreHandlers) {
+        this.selectedRenderData.restoreHandlers = []
+      } else {
+        this.selectedRenderData.restoreHandlers.push(...renderData.restoreHandlers)
+      }
     },
     /**
      * 根据 id 获取渲染数据。

@@ -30,15 +30,15 @@ export interface VcProperties extends Properties {
    * 所属数据集的id。（自动赋值）
    */
   datasetId?: number | string
+  /**
+   * 是否处于loading状态
+   */
+  loading?: boolean
 }
 
 export interface VcFeature<T = Geometry> extends Feature<T> {
   type: 'Feature'
   properties: VcProperties
-  /**
-   * 是否处于加载状态
-   */
-  loading?: boolean
 }
 
 export interface VcDataset {
@@ -64,7 +64,7 @@ export interface VcDataset {
   /**
    * 子要素集合
    */
-  children?: Array<VcFeature>
+  children?: Array<VcFeature | VcDataset>
   /**
    * 实际渲染的 cesium 对象。
    */
@@ -74,21 +74,17 @@ export interface VcDataset {
    */
   fetchStr?: string | VcDatasetGetMethod
   /**
-   * 是否可以展示子要素
+   * 是否是懒加载
    */
-  hasDetail?: boolean
+  lazy?: boolean
   /**
    * 列表 UI 所用的 iconfont 或者 svg 图标
    */
   icon?: string
   /**
-   * 层级
-   */
-  level?: number
-  /**
    * 是否是分组标题
    */
-  isGroup?: boolean
+  group?: boolean
   /**
    * 是否可以直接渲染
    */
@@ -179,7 +175,7 @@ export interface VcSelectedRenderData {
         [key: string]: any
       }
   renderingType: string
-  restoreHandler: () => void
+  restoreHandlers: Array<() => void>
 }
 
 export interface VcDatasourceCategory {
