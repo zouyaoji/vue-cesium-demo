@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./ComponentDatatype-4eeb6d9b', './defaultValue-97284df2', './IndexDatatype-f228f5fd', './RuntimeError-4f8ec8a2', './createTaskProcessorWorker', './WebGLConstants-6da700a2'], (function (ComponentDatatype, defaultValue, IndexDatatype, RuntimeError, createTaskProcessorWorker, WebGLConstants) { 'use strict';
+define(['./ComponentDatatype-1ef49b14', './defaultValue-4607806f', './IndexDatatype-790b4297', './RuntimeError-cef79f54', './createTaskProcessorWorker', './WebGLConstants-f100e3dd'], (function (ComponentDatatype, defaultValue, IndexDatatype, RuntimeError, createTaskProcessorWorker, WebGLConstants) { 'use strict';
 
   /* global require */
 
@@ -404,4 +404,3 @@ define(['./ComponentDatatype-4eeb6d9b', './defaultValue-97284df2', './IndexDatat
   return decodeDraco;
 
 }));
-//# sourceMappingURL=decodeDraco.js.map

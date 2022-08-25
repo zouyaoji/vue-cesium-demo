@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./AxisAlignedBoundingBox-1aaf78c2', './Transforms-273eeb44', './Matrix2-9e1c22e2', './defaultValue-97284df2', './TerrainEncoding-8fbe9124', './ComponentDatatype-4eeb6d9b', './OrientedBoundingBox-a82b3552', './RuntimeError-4f8ec8a2', './WebMercatorProjection-3b121d41', './createTaskProcessorWorker', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './AttributeCompression-f202be44', './WebGLConstants-6da700a2', './EllipsoidTangentPlane-d42ee682', './IntersectionTests-ea138127', './Plane-76b84425'], (function (AxisAlignedBoundingBox, Transforms, Matrix2, defaultValue, TerrainEncoding, ComponentDatatype, OrientedBoundingBox, RuntimeError, WebMercatorProjection, createTaskProcessorWorker, _commonjsHelpers3aae1032, combine, AttributeCompression, WebGLConstants, EllipsoidTangentPlane, IntersectionTests, Plane) { 'use strict';
+define(['./AxisAlignedBoundingBox-8c885262', './Transforms-fc8266a1', './Matrix2-46dc0d7f', './defaultValue-4607806f', './TerrainEncoding-541a49e1', './ComponentDatatype-1ef49b14', './OrientedBoundingBox-7072d624', './RuntimeError-cef79f54', './WebMercatorProjection-60cca281', './createTaskProcessorWorker', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './AttributeCompression-e3844002', './WebGLConstants-f100e3dd', './EllipsoidTangentPlane-daffc3d5', './IntersectionTests-f3daffbb', './Plane-e8eab25b'], (function (AxisAlignedBoundingBox, Transforms, Matrix2, defaultValue, TerrainEncoding, ComponentDatatype, OrientedBoundingBox, RuntimeError, WebMercatorProjection, createTaskProcessorWorker, _commonjsHelpers, combine, AttributeCompression, WebGLConstants, EllipsoidTangentPlane, IntersectionTests, Plane) { 'use strict';
 
   const sizeOfUint16 = Uint16Array.BYTES_PER_ELEMENT;
   const sizeOfInt32 = Int32Array.BYTES_PER_ELEMENT;
@@ -663,4 +663,3 @@ define(['./AxisAlignedBoundingBox-1aaf78c2', './Transforms-273eeb44', './Matrix2
   return createVerticesFromGoogleEarthEnterpriseBuffer$1;
 
 }));
-//# sourceMappingURL=createVerticesFromGoogleEarthEnterpriseBuffer.js.map

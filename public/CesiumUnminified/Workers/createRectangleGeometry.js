@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./defaultValue-97284df2', './Matrix2-9e1c22e2', './Transforms-273eeb44', './RuntimeError-4f8ec8a2', './ComponentDatatype-4eeb6d9b', './GeometryAttribute-9be2d2e5', './GeometryAttributes-734a3446', './GeometryInstance-3db1d31b', './GeometryOffsetAttribute-59b14f45', './GeometryPipeline-d7363877', './IndexDatatype-f228f5fd', './PolygonPipeline-db21de21', './RectangleGeometryLibrary-93ca0888', './VertexFormat-563ab2cc', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './WebGLConstants-6da700a2', './AttributeCompression-f202be44', './EncodedCartesian3-491ac596', './IntersectionTests-ea138127', './Plane-76b84425', './EllipsoidRhumbLine-7bc7dfce'], (function (defaultValue, Matrix2, Transforms, RuntimeError, ComponentDatatype, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryOffsetAttribute, GeometryPipeline, IndexDatatype, PolygonPipeline, RectangleGeometryLibrary, VertexFormat, _commonjsHelpers3aae1032, combine, WebGLConstants, AttributeCompression, EncodedCartesian3, IntersectionTests, Plane, EllipsoidRhumbLine) { 'use strict';
+define(['./defaultValue-4607806f', './Matrix2-46dc0d7f', './Transforms-fc8266a1', './RuntimeError-cef79f54', './ComponentDatatype-1ef49b14', './GeometryAttribute-0c65674d', './GeometryAttributes-acac33d2', './GeometryInstance-a75a729d', './GeometryOffsetAttribute-3e5f3e97', './GeometryPipeline-e00ed69b', './IndexDatatype-790b4297', './PolygonPipeline-8d44637f', './RectangleGeometryLibrary-8b2d599a', './VertexFormat-a06c2122', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './WebGLConstants-f100e3dd', './AttributeCompression-e3844002', './EncodedCartesian3-67ce8bc4', './IntersectionTests-f3daffbb', './Plane-e8eab25b', './EllipsoidRhumbLine-c4e2c591'], (function (defaultValue, Matrix2, Transforms, RuntimeError, ComponentDatatype, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryOffsetAttribute, GeometryPipeline, IndexDatatype, PolygonPipeline, RectangleGeometryLibrary, VertexFormat, _commonjsHelpers, combine, WebGLConstants, AttributeCompression, EncodedCartesian3, IntersectionTests, Plane, EllipsoidRhumbLine) { 'use strict';
 
   const positionScratch = new Matrix2.Cartesian3();
   const normalScratch = new Matrix2.Cartesian3();
@@ -1499,4 +1499,3 @@ define(['./defaultValue-97284df2', './Matrix2-9e1c22e2', './Transforms-273eeb44'
   return createRectangleGeometry;
 
 }));
-//# sourceMappingURL=createRectangleGeometry.js.map

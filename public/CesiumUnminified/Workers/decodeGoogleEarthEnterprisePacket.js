@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./RuntimeError-4f8ec8a2', './defaultValue-97284df2', './_commonjsHelpers-3aae1032-65601a27', './createTaskProcessorWorker'], (function (RuntimeError, defaultValue, _commonjsHelpers3aae1032, createTaskProcessorWorker) { 'use strict';
+define(['./RuntimeError-cef79f54', './defaultValue-4607806f', './_commonjsHelpers-a32ac251', './createTaskProcessorWorker'], (function (RuntimeError, defaultValue, _commonjsHelpers, createTaskProcessorWorker) { 'use strict';
 
   const compressedMagic$1 = 0x7468dead;
   const compressedMagicSwap$1 = 0xadde6874;
@@ -255,9 +255,7 @@ define(['./RuntimeError-4f8ec8a2', './defaultValue-97284df2', './_commonjsHelper
     return this._bits & anyChildBitmask;
   };
 
-  /* This file is automatically rebuilt by the Cesium build process. */
-
-  var common = _commonjsHelpers3aae1032.createCommonjsModule(function (module, exports) {
+  var common = _commonjsHelpers.createCommonjsModule(function (module, exports) {
 
 
   var TYPED_OK =  (typeof Uint8Array !== 'undefined') &&
@@ -3799,4 +3797,3 @@ define(['./RuntimeError-4f8ec8a2', './defaultValue-97284df2', './_commonjsHelper
   return decodeGoogleEarthEnterprisePacket$1;
 
 }));
-//# sourceMappingURL=decodeGoogleEarthEnterprisePacket.js.map
