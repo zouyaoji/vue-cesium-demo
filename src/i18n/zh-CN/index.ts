@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-07-21 09:19:58
+ * @LastEditTime: 2022-08-31 12:39:46
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\zh-CN\index.ts
@@ -13,19 +13,28 @@ export default {
   message: {
     header: {
       index: '首页',
-      dynamicRender: '动态渲染'
+      dynamicRender: '动态渲染',
+      expansion: '扩展组件',
+      other: '测试页面'
     },
     sideBar: {
       dynamicRender: {
         datasource: '数据源',
         historicalTrack: '历史轨迹'
+      },
+      expansion: {
+        typhoon: '台风'
+      },
+      other: {
+        tsx: 'TSX'
       }
     },
     panel: {
-      layerManager: '图层管理'
+      layerManager: '图层管理',
+      videoPlayer: '视频播放'
     },
     baseLayer: '底图图层',
     overlayLayer: '叠加图层',
-    vectorLayer: '矢量图层'
+    terrainLayer: '地形图层'
   }
 }
