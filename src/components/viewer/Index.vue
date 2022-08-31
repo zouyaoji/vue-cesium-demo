@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-07-23 20:53:50
+ * @LastEditTime: 2022-08-28 14:43:49
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
 -->
 <template>
-  <vc-config-provider :locale="vclocale" :cesium-path="cesiumPath">
+  <vc-config-provider :locale="vclocale" :cesium-path="cesiumPath" :access-token="accesstToken">
     <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
       <!-- 导航罗盘控件 -->
       <vc-navigation
@@ -22,25 +22,17 @@
       <vc-ajax-bar position="bottom" color="#21BA45" size="3px" positioning="fixed"></vc-ajax-bar>
       <!-- 动态渲染的数据 -->
       <dynamic-render-data></dynamic-render-data>
-      <!-- 栅格数据图层 -->
+      <!-- 底图图层 & 叠加图层 -->
       <template v-for="(item, index) in layerList" :key="'layer' + index">
-        <vc-layer-imagery
-          :alpha="item.alpha"
-          :brightness="item.brightness"
-          :contrast="item.contrast"
-          :sort-order="item.sortOrder"
-          :show="item.show"
-        >
-          <component :is="item.component" v-bind="item.props as any" />
-        </vc-layer-imagery>
+        <component :is="item.component" v-bind="item.props">
+          <template v-for="(subItem, subIndex) in item?.children" :key="index + '_' + subIndex">
+            <component :is="subItem.component" v-bind="subItem.props" />
+          </template>
+        </component>
       </template>
-      <!-- 矢量数据图层 -->
-      <template v-for="(item, index) in vectorLayers" :key="'vector' + index">
-        <component
-          :is="item.component"
-          v-if="item.component === 'VcTerrainProviderCesium' ? item.props.show : true"
-          v-bind="item.props"
-        />
+      <!-- 地形图层 -->
+      <template v-for="(item, index) in terrainLayers" :key="'terrain' + index">
+        <component :is="item.component" v-if="item.props.show" v-bind="item.props" />
       </template>
       <!-- 名称 overlay -->
       <vc-overlay-html
@@ -76,12 +68,18 @@ import { ThemeOptions } from '@src/types/theme'
 import { VcNavigationOtherOpts } from 'vue-cesium/es/components/controls/navigation/defaultProps'
 import { VcReadyObject } from 'vue-cesium/es/utils/types'
 
+defineOptions({
+  name: 'VcDemoViewer'
+})
+
 const language = {
   'en-US': enUS,
   'zh-CN': zhCN
 }
 const { locale } = useI18n()
 const cesiumPath = import.meta.env.VITE_VUE_CESIUMJS_PATH
+const accesstToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5Y2U0ZTk2Ni1jNzdkLTQ3OWYtYjVmYS0yMGM3YTk3NjgzMmUiLCJpZCI6Njk5Nywic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU0ODA1MTc0OH0.Csy6yyAnv6JSBppH0Ou3ahshqcHFEhP27iOz5gjQMEo'
 // emit
 const emit = defineEmits(['viewerReady', 'cesiumReady', 'leftClick', 'destroyed'])
 const vclocale = computed(() => {
@@ -174,12 +172,11 @@ const layerList = computed(() => [
   ...store.viewer.useLayerStore().baseLayers,
   ...store.viewer.useLayerStore().overlayLayers
 ])
-const vectorLayers = computed(() => store.viewer.useLayerStore().vectorLayers)
+const terrainLayers = computed(() => store.viewer.useLayerStore().terrainLayers)
 
 // methods
 const onViewerReady = (readyObj: VcReadyObject) => {
   emit('viewerReady', readyObj)
-  readyObj.viewer.imageryLayers.removeAll()
 
   toggleGlobalLayout({
     header: true

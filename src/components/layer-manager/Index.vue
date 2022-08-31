@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-07-21 18:43:55
+ * @LastEditTime: 2022-08-28 14:09:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
@@ -36,7 +36,7 @@
             <q-checkbox
               v-for="(item, index) of layerList.overlayLayers"
               :key="index"
-              v-model="item.show"
+              v-model="item.props.show"
               :val="item.name"
               :label="item.text"
               @update:model-value="overlayLayerSwitch(item, $event)"
@@ -45,15 +45,15 @@
         </q-card-section>
         <q-separator inset />
         <q-card-section class="q-pt-sm">
-          <div class="text-subtitle2">{{ $t('message.vectorLayer') }}</div>
+          <div class="text-subtitle2">{{ $t('message.terrainLayer') }}</div>
           <div class="q-gutter-sm">
-            <q-checkbox
-              v-for="(item, index) of layerList.vectorLayers"
+            <q-radio
+              v-for="(item, index) of layerList.terrainLayers"
               :key="index"
-              v-model="item.props.show"
+              v-model="defaultTerrainLayer"
               :val="item.name"
               :label="item.text"
-              @update:model-value="overlayLayerSwitch(item, $event)"
+              @update:model-value="terrainLayerSwitch"
             />
           </div>
         </q-card-section>
@@ -74,7 +74,7 @@ const dragWrapperRef = ref<typeof DragWrapper | null>(null)
 
 const layoutStore = store.system.useLayoutStore()
 const { global: globalLayout, dynamicRender: dynamicRenderLayout } = storeToRefs(layoutStore)
-const { overlayLayers, baseLayers, vectorLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
+const { overlayLayers, baseLayers, terrainLayers, toggle: toggleLayerVisible } = store.viewer.useLayerStore()
 
 // watch
 watch(
@@ -93,12 +93,21 @@ watch(
 const layerList = computed(() => ({
   overlayLayers,
   baseLayers,
-  vectorLayers
+  terrainLayers
 }))
 
 const defaultbaseLayer = computed<string>({
   get() {
-    return layerList.value.baseLayers.filter(v => v.show)?.[0]?.name
+    return layerList.value.baseLayers.filter(v => v.props.show)?.[0]?.name
+  },
+  set(val) {
+    //
+  }
+})
+
+const defaultTerrainLayer = computed<string>({
+  get() {
+    return layerList.value.terrainLayers.filter(v => v.props.show)?.[0]?.name
   },
   set(val) {
     //
@@ -125,6 +134,25 @@ const overlayLayerSwitch = (data, evt) => {
   toggleLayerVisible({
     names: name,
     show: evt
+  })
+}
+
+/**
+ * 地形图层切换
+ */
+const terrainLayerSwitch = (data, evt) => {
+  layerList.value.terrainLayers.forEach(item => {
+    if (item.name === data) {
+      toggleLayerVisible({
+        names: item.name,
+        show: true
+      })
+    } else {
+      toggleLayerVisible({
+        names: item.name,
+        show: false
+      })
+    }
   })
 }
 
