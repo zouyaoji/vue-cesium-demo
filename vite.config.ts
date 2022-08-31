@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2022-07-23 15:45:45
+ * @LastEditTime: 2022-08-24 22:29:29
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\vite.config.ts
@@ -9,9 +9,12 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import defineOptions from 'unplugin-vue-define-options/vite'
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('./package.json')
-import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
 const htmlPlugin = () => {
   return {
@@ -31,6 +34,8 @@ export default ({ mode }) => {
       vue({
         template: { transformAssetUrls }
       }),
+      vueJsx(),
+      defineOptions(),
       quasar({
         sassVariables: true
       }),
@@ -41,6 +46,7 @@ export default ({ mode }) => {
         '@src': resolve(__dirname, './src'),
         '@api': resolve(__dirname, './src/api'),
         '@assets': resolve(__dirname, './src/assets'),
+        '@common': resolve(__dirname, './src/common'),
         '@components': resolve(__dirname, './src/components'),
         '@composables': resolve(__dirname, './src/composables'),
         '@config': resolve(__dirname, './src/config'),
@@ -74,6 +80,11 @@ export default ({ mode }) => {
           target: 'https://restapi.amap.com/v3',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/v3/, '/')
+        },
+        '/geoserver': {
+          target: 'http://47.111.68.226:8080/geoserver',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/geoserver/, '/')
         }
       }
     },

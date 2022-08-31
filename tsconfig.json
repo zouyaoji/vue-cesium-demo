@@ -16,11 +16,12 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "baseUrl": "./",
-    "types": ["vue-cesium/global", "vue-cesium/Cesium", "vite/client"],
+    "types": ["vue-cesium/global", "vue-cesium/Cesium", "vite/client", "unplugin-vue-define-options"],
     "paths": {
       "@src/*": ["src/*"],
       "@api/*": ["src/api/*"],
       "@assets/*": ["src/assets/*"],
+      "@common/*": ["src/common/*"],
       "@components/*": ["src/components/*"],
       "@composables/*": ["src/composables/*"],
       "@config/*": ["src/config/*"],
