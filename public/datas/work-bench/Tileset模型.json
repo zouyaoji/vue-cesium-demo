@@ -25,6 +25,24 @@
         ],
         "type": "Point"
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "矢量白模",
+        "props": {
+          "tileset": {
+            "url": "https://resource.dvgis.cn/data/3dtiles/ljz/tileset.json"
+          }
+        }
+      },
+      "geometry": {
+        "coordinates": [
+          108.965836,
+          34.225607
+        ],
+        "type": "Point"
+      }
     }
   ]
 }

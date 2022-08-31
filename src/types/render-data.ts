@@ -1,5 +1,5 @@
 import type { Feature, Geometry, Properties } from '@turf/turf'
-import type { VcCesiumObject } from 'vue-cesium/es/utils/types'
+import type { VcCamera, VcCesiumObject } from 'vue-cesium/es/utils/types'
 
 /**
  * 渲染要素属性
@@ -34,6 +34,10 @@ export interface VcProperties extends Properties {
    * 是否处于loading状态
    */
   loading?: boolean
+  /**
+   * 定位时的相机参数
+   */
+  vcCamera?: VcCamera
 }
 
 export interface VcFeature<T = Geometry> extends Feature<T> {
@@ -152,6 +156,7 @@ export interface VcRenderDataset<T = {}> {
   props: {
     [key: string]: any
   }
+  feature?: VcFeature
   children?: Array<VcRenderDataset>
 }
 

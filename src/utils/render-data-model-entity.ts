@@ -262,7 +262,6 @@ function createVcGraphicPolygonModel(
           positions: coordinates[0],
           holes
         },
-        height: 0,
         ...polygonProps
       },
       feature: cloneDeep(feature)

@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:02:25
- * @LastEditTime: 2022-08-17 21:31:09
+ * @LastEditTime: 2022-08-31 12:11:03
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\Index.vue
@@ -80,8 +80,8 @@
             @update:selected="showFeatureInfo"
             @zoomIconClicked="flyToFeature"
             @expanded="showOrHideDatasetList"
-            @lazy-load="addOrRemoveDataset"
-            @checked="onChecked"
+            @lazy-load="onLazyLoad"
+            @checked="addOrRemoveDataset"
           ></vc-data-tree>
         </q-scroll-area>
       </div>
@@ -136,7 +136,7 @@ const {
   flyToFeature,
   showOrHideDatasetList,
   addOrRemoveDataset,
-  onChecked,
+  onLazyLoad,
   toggleDynamicRenderPageLayout
 } = useWorkBench()
 

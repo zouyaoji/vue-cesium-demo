@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:27:55
- * @LastEditTime: 2022-08-17 21:42:25
+ * @LastEditTime: 2022-08-31 22:34:10
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\tree-data.ts
@@ -15,13 +15,12 @@ export default [
     icon: '',
     children: [
       {
-        id: '555',
+        id: uuidv4(),
         name: '机场',
         icon: '',
         checked: false,
         expanded: false,
         fetchStr: `/datas/work-bench/机场.json`,
-        canRenderDirectly: true,
         renderingType: 'billboard',
         lazy: true,
         props: {
@@ -42,13 +41,12 @@ export default [
         }
       },
       {
-        id: '666',
+        id: uuidv4(),
         name: '水系',
         icon: '',
         checked: false,
         expanded: false,
         fetchStr: `/datas/work-bench/水系.json`,
-        canRenderDirectly: true,
         renderingType: 'polyline',
         lazy: true,
         props: {
@@ -64,13 +62,12 @@ export default [
         }
       },
       {
-        id: '777',
+        id: uuidv4(),
         name: '岛屿',
         icon: '',
         checked: false,
         expanded: false,
         fetchStr: `/datas/work-bench/岛屿.json`,
-        canRenderDirectly: true,
         renderingType: 'polygon,polyline,billboard',
         lazy: true,
         props: {
@@ -93,40 +90,34 @@ export default [
         }
       },
       {
-        id: '1111',
+        id: uuidv4(),
         name: '模型',
         icon: '',
         checked: false,
         expanded: false,
-        group: true,
-        renderingType: '',
-        // lazy: true,
+        renderingType: 'model',
         children: [
           {
-            id: '888',
+            id: uuidv4(),
             name: 'Tileset 模型',
             icon: '',
             checked: false,
             expanded: false,
             fetchStr: `/datas/work-bench/Tileset模型.json`,
-            canRenderDirectly: true,
             lazy: true,
-            level: 2,
             renderingType: 'tileset',
             props: {
               tileset: {}
             }
           },
           {
-            id: '999',
+            id: uuidv4(),
             name: 'GLTF 模型',
             icon: '',
             checked: false,
             expanded: false,
             fetchStr: `/datas/work-bench/GLTF模型.json`,
-            canRenderDirectly: false,
             lazy: true,
-            level: 2,
             renderingType: 'model',
             props: {
               model: {
@@ -138,35 +129,112 @@ export default [
                 color: 'red'
               }
             }
+          },
+          {
+            id: uuidv4(),
+            name: '模型嵌套',
+            icon: '',
+            checked: false,
+            expanded: false,
+            renderingType: 'model',
+            children: [
+              {
+                id: uuidv4(),
+                name: 'GLTF 模型',
+                icon: '',
+                checked: false,
+                expanded: false,
+                lazy: true,
+                fetchStr: `/datas/work-bench/GLTF模型.json`,
+                renderingType: 'model',
+                props: {
+                  model: {
+                    scale: 1
+                  }
+                }
+              },
+              {
+                type: 'Feature',
+                properties: {
+                  name: '飞机',
+                  hpr: '[135, 0, 0]',
+                  renderingType: 'model',
+                  checked: false,
+                  props: {
+                    model: {
+                      uri: '../datas/gltf/Cesium_Air.glb'
+                    }
+                  },
+                  selectedProps: {
+                    model: {
+                      color: 'red'
+                    }
+                  }
+                },
+                geometry: {
+                  coordinates: [121.25202608700887, 32.14045397527647],
+                  type: 'Point'
+                }
+              }
+            ]
           }
-          // {
-          //   id: 'test',
-          //   name: '分组嵌套',
-          //   icon: '',
-          //   checked: false,
-          //   expanded: false,
-          //   hasDetail: true,
-          //   isParent: true,
-          //   children: [
-          //     {
-          //       id: '9999',
-          //       name: 'GLTF 模型',
-          //       icon: '',
-          //       checked: false,
-          //       expanded: false,
-          //       fetchStr: `/datas/work-bench/GLTF模型.json`,
-          //       canRenderDirectly: false,
-          //       hasDetail: true,
-          //       renderingType: 'model',
-          //       level: 2,
-          //       props: {
-          //         model: {
-          //           scale: 1
-          //         }
-          //       }
-          //     }
-          //   ]
-          // }
+        ]
+      },
+      {
+        id: uuidv4(),
+        name: '图层',
+        icon: '',
+        checked: false,
+        expanded: false,
+        renderingType: 'imagery',
+        children: [
+          {
+            id: uuidv4(),
+            name: '图层嵌套',
+            icon: '',
+            checked: false,
+            expanded: false,
+            fetchStr: `/datas/work-bench/图层.json`,
+            lazy: true,
+            renderingType: 'imagery',
+            props: {
+              imagery: {}
+            }
+          },
+          {
+            type: 'Feature',
+            properties: {
+              id: uuidv4(),
+              checked: false,
+              name: 'WMS',
+              props: {
+                imagery: {
+                  alpha: 1,
+                  brightness: 1,
+                  contrast: 1,
+                  sortOrder: 60,
+                  children: [
+                    {
+                      cmpName: 'VcImageryProviderWms',
+                      props: {
+                        url: 'https://nationalmap.gov.au/proxy/http://geoserver.nationalmap.nicta.com.au/geotopo_250k/ows',
+                        layers: 'Hydrography:bores',
+                        parameters: {
+                          format: 'image/png',
+                          transparent: true
+                        },
+                        rectangle: [112, -43, 154, -10]
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            geometry: {
+              coordinates: [108.965836, 34.225607],
+              type: 'Point'
+            }
+          }
         ]
       }
     ]

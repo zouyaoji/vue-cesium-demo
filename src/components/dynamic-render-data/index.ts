@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-08-17 21:43:41
+ * @LastEditTime: 2022-08-31 23:02:48
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -19,7 +19,10 @@ import {
   VcDatasourceCustom,
   VcOverlayDynamic,
   VcOverlayHeatmap,
-  VcPrimitiveTileset
+  VcPrimitiveTileset,
+  VcLayerImagery,
+  VcImageryProviderWms,
+  VcImageryProviderTencent
 } from 'vue-cesium'
 import { useVueCesium } from 'vue-cesium'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
@@ -36,7 +39,10 @@ const cmpMap = {
   VcDatasourceCustom,
   VcOverlayDynamic,
   VcOverlayHeatmap,
-  VcPrimitiveTileset
+  VcPrimitiveTileset,
+  VcLayerImagery,
+  VcImageryProviderWms,
+  VcImageryProviderTencent
 }
 
 export default defineComponent({
@@ -199,6 +205,7 @@ export default defineComponent({
     const onPickEvt = picked => {
       const { viewer, vm } = $vc
       if (picked) {
+        console.log(picked)
         if (picked.id !== '__Vc__Pick__Location__') {
           selectedByPick = true
           // 隐藏要素信息面板

@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-08-17 20:55:50
+ * @LastEditTime: 2022-08-31 22:59:34
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
@@ -9,14 +9,21 @@
 
 import { store, pinia } from '@src/store'
 import { VcRenderData, VcFeature, VcSelectedRenderData, VcDatasetGetMethod, VcDataset } from '@src/types/render-data'
-import { VcDatasourceCustomProps, VcDatasourceGeojsonProps, VcEntityProps, VcPrimitiveTilesetProps } from 'vue-cesium'
+import {
+  VcDatasourceCustomProps,
+  VcDatasourceGeojsonProps,
+  VcEntityProps,
+  VcLayerImageryProps,
+  VcPrimitiveTilesetProps
+} from 'vue-cesium'
 import { AllGeoJSON, Feature, FeatureCollection } from '@turf/turf'
 import * as logger from './logger'
 import { entityModelHandler } from './model-helper'
-import { isPlainObject } from 'vue-cesium/es/utils/util'
+import { hasOwn, isPlainObject } from 'vue-cesium/es/utils/util'
 import { find, intersectionWith, uniqWith } from 'lodash'
 import { markRaw, toRef } from 'vue'
 import { AnyObject } from 'vue-cesium/es/utils/types'
+import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
 /**
  * 添加渲染数据到场景。
  * @param {VcRenderData|Array<VcRenderData>} renderDatas 待添加的渲染数据或数据组
@@ -213,6 +220,10 @@ export function getFeatureModel(
     case 'tileset':
       cmpName = 'VcPrimitiveTileset'
       break
+    case 'imagery': {
+      cmpName = 'VcLayerImagery'
+      break
+    }
   }
 
   const dataset = find(renderData.datasets, v => v.cmpName === cmpName)
@@ -438,6 +449,7 @@ export async function makeEntitiesModel(data: string | AllGeoJSON, renderingType
 export async function flyToFeature<T = {}>(
   viewer: Cesium.Viewer,
   feature: VcFeature,
+  index?: number,
   options = {
     isHighlightRenderData: true,
     showBillboardOverlayMenu: true,
@@ -449,7 +461,7 @@ export async function flyToFeature<T = {}>(
     [key: string]: any
   }
 ) {
-  const renderingType = feature?.properties?.actualRenderingType
+  const renderingType = feature?.properties?.actualRenderingType || feature?.properties?.renderingType
   if (!renderingType) {
     logger.error('定位到要素失败，原因：未知的显示类型。', '要素模型：', feature)
     return
@@ -462,6 +474,10 @@ export async function flyToFeature<T = {}>(
   }
   const featureId = feature.properties.id
   options.isHighlightRenderData && highlightRenderData(renderingType, datasetId, featureId)
+  if (feature.properties.vcCamera) {
+    flyToCamera(viewer, feature.properties.vcCamera)
+    return
+  }
   const { toggleGlobalLayout } = store.system.useLayoutStore(pinia)
   switch (renderingType) {
     case 'billboard':
@@ -479,7 +495,7 @@ export async function flyToFeature<T = {}>(
       // 定位默认取第一个数据集的对象
       if (renderData?.datasets?.length) {
         const datasource = renderData.datasets[0].cmpRef?.cesiumObject as Cesium.DataSource
-        const target = datasource.entities.values.filter((entity: any) => entity.feature.properties.id === featureId)[0]
+        const target = datasource.entities.values.find((entity: any) => entity.feature.properties.id === featureId)
         viewer
           .flyTo(target, {
             ...options
@@ -489,7 +505,7 @@ export async function flyToFeature<T = {}>(
           })
       }
       break
-    case 'tileset':
+    default:
       // 关闭上次的布告板菜单（如果有的话）
       // clearBillboardOverlayMenu()
       // 关闭属性详情面板
@@ -497,10 +513,8 @@ export async function flyToFeature<T = {}>(
         featureInfo: false
       })
       if (renderData?.datasets?.length) {
-        const datasets = renderData.datasets.filter(
-          dataset => dataset.props.url === feature.properties.props.tileset.url
-        )
-        const target = datasets[0].cmpRef.cesiumObject
+        const dataset = renderData.datasets.find(dataset => dataset.feature.properties.id === feature.properties.id)
+        const target = dataset.cmpRef.cesiumObject
         viewer
           .flyTo(target, {
             ...options
@@ -515,80 +529,8 @@ export async function flyToFeature<T = {}>(
           })
       }
       break
-    case 'geojson':
-      break
   }
 }
-
-// export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGetMethod) {
-//   return fetchingMethod()
-//     .then(res => {
-//       if (res.code !== 0) {
-//         logger.error(`添加渲染数据集失败，原因：数据请求失败。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`)
-//         dataset.loading = false
-//         dataset.checked = false
-//         return false
-//       }
-
-//       if (res.data) {
-//         if (res.data?.type) {
-//           const geoJsonObjectType = res.data?.type
-//           switch (geoJsonObjectType) {
-//             case 'Feature':
-//               dataset.children = [res.data]
-//               break
-//             case 'FeatureCollection':
-//               dataset.children = res.data.features
-//               dataset.children.forEach(v => {
-//                 // 增加渲染必备的一些属性
-//                 if (!Cesium.defined(v.properties.renderingType)) {
-//                   v.properties.renderingType = dataset.renderingType || 'billboard'
-//                 }
-//                 if (!Cesium.defined(v.properties.id)) {
-//                   v.properties.id = Cesium.createGuid()
-//                 }
-//                 if (!Cesium.defined(v.properties.checked)) {
-//                   v.properties.checked = false
-//                 }
-//               })
-//               break
-//             default:
-//               logger.error(
-//                 `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
-//               )
-//               dataset.loading = false
-//               dataset.checked = false
-//               return
-//           }
-//         } else if (dataset.renderingType === 'heatmap') {
-//           // 人口分布的热力图
-//           dataset.children = [res.data]
-//         }
-//       } else {
-//         logger.error(
-//           `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
-//         )
-//         dataset.loading = false
-//         dataset.checked = false
-//         return false
-//       }
-//       if (!dataset.children?.length) {
-//         logger.error(
-//           `添加渲染数据集失败，原因：请求数据成功，但结果为空。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
-//         )
-//         dataset.loading = false
-//         dataset.checked = false
-//         return false
-//       }
-//       return true
-//     })
-//     .catch(e => {
-//       logger.error('添加渲染数据集失败，原因：数据请求异常。', e)
-//       dataset.loading = false
-//       dataset.checked = false
-//       return false
-//     })
-// }
 
 export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGetMethod) {
   let result = []
@@ -596,8 +538,6 @@ export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGe
     .then(res => {
       if (res.code !== 0) {
         logger.error(`添加渲染数据集失败，原因：数据请求失败。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`)
-        // dataset.loading = false
-        // dataset.checked = false
         return false
       }
 
@@ -627,8 +567,6 @@ export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGe
               logger.error(
                 `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
               )
-              // dataset.loading = false
-              // dataset.checked = false
               return false
           }
         }
@@ -636,24 +574,18 @@ export function fetchDatasetList(dataset: VcDataset, fetchingMethod: VcDatasetGe
         logger.error(
           `添加渲染数据集失败，原因：未知的 GeoJSON 类型。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
         )
-        // dataset.loading = false
-        // dataset.checked = false
         return false
       }
       if (!result.length) {
         logger.error(
           `添加渲染数据集失败，原因：请求数据成功，但结果为空。数据集id: ${dataset.id}，数据集名称: ${dataset.name}`
         )
-        // dataset.loading = false
-        // dataset.checked = false
         return false
       }
       return result
     })
     .catch(e => {
       logger.error('添加渲染数据集失败，原因：数据请求异常。', e)
-      // dataset.loading = false
-      // dataset.checked = false
       return false
     })
 }
@@ -717,44 +649,10 @@ const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
     }
   > = [] // 实体集合
 
-  if (dataset.renderingType === 'tileset') {
-    for (let i = 0; i < dataset.children.length; i++) {
-      const feature = dataset.children[i]
-      const properties = feature.properties
-      properties.datasetId = dataset.id
-      const props =
-        dataset.props && isPlainObject(dataset?.props)
-          ? dataset?.props
-          : dataset.props
-          ? JSON.parse(dataset?.props)
-          : {}
-
-      const vcProps = Object.assign(
-        {},
-        props[dataset.renderingType],
-        feature.properties?.props?.[dataset.renderingType]
-      )
-
-      feature.properties.actualRenderingType = dataset.renderingType
-
-      renderData.datasets.push({
-        cmpName: 'VcPrimitiveTileset',
-        props: {
-          ...vcProps,
-          show: toRef(feature.properties, 'checked'),
-          maximumMemoryUsage: 128,
-          maximumScreenSpaceError: 64,
-          onReady: () => {
-            dataset.loading = false
-          }
-        } as VcPrimitiveTilesetProps
-      })
-    }
-
-    addRenderDatas(renderData)
-  } else {
-    for (let i = 0; i < dataset.children.length; i++) {
-      const feature = dataset.children[i] as VcFeature
+  for (let i = 0; i < dataset?.children?.length; i++) {
+    const node = dataset.children[i]
+    if (hasOwn(node, 'type') && hasOwn(node, 'properties')) {
+      const feature = node as VcFeature
       const properties = feature.properties
       properties.datasetId = feature.properties.datasetId || dataset.id
       properties.selectedProps = feature.properties.selectedProps || dataset.selectedProps || {}
@@ -764,57 +662,109 @@ const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
           : dataset.props
           ? JSON.parse(dataset?.props)
           : {}
-      const models = processVcEntityModels(feature, props)
-      if (typeof models === 'string') {
-        continue
-      }
-      const intersections = intersectionWith(models, entities, (arrVal: any, othVal: any) => {
-        return (
-          arrVal.feature.properties.id === othVal.feature.properties.id &&
-          arrVal.feature.geometry.type === othVal.feature.geometry.type
+      if (dataset.renderingType === 'tileset') {
+        const vcProps = Object.assign(
+          {},
+          props[dataset.renderingType],
+          feature.properties?.props?.[dataset.renderingType]
         )
-      })
-      entities.push(...models)
-      if (intersections.length) {
-        intersections.forEach(intersection => {
-          logger.warn(
-            `已添加相同id和类型的渲染数据集，可能有重复数据，请核实。对象 id: ${intersection.feature.properties.id}，对象类型: ${intersection.feature.geometry.type}`,
-            '数据模型：',
-            intersection
-          )
+
+        feature.properties.actualRenderingType = dataset.renderingType
+        renderData.datasets.push({
+          cmpName: 'VcPrimitiveTileset',
+          props: {
+            ...vcProps,
+            show: toRef(feature.properties, 'checked'),
+            onReady: () => {
+              dataset.loading = false
+            }
+          } as VcPrimitiveTilesetProps,
+          feature
         })
-        // 去重
-        entities = uniqWith(entities, (arrVal: any, othVal: any) => {
+      } else if (dataset.renderingType === 'imagery') {
+        const vcProps = Object.assign(
+          {},
+          props[dataset.renderingType],
+          feature.properties?.props?.[dataset.renderingType]
+        )
+
+        feature.properties.actualRenderingType = dataset.renderingType
+        const children = vcProps.children
+        delete vcProps.children
+        renderData.datasets.push({
+          cmpName: 'VcLayerImagery',
+          props: {
+            ...vcProps,
+            show: toRef(feature.properties, 'checked'),
+            onReady: () => {
+              dataset.loading = false
+            }
+          } as VcLayerImageryProps,
+          feature,
+          children: [
+            {
+              cmpName: children[0].cmpName,
+              props: {
+                ...children[0].props
+              }
+            }
+          ]
+        })
+      } else {
+        const models = processVcEntityModels(feature, props)
+        if (typeof models === 'string') {
+          continue
+        }
+        const intersections = intersectionWith(models, entities, (arrVal: any, othVal: any) => {
           return (
             arrVal.feature.properties.id === othVal.feature.properties.id &&
             arrVal.feature.geometry.type === othVal.feature.geometry.type
           )
         })
+        entities.push(...models)
+        if (intersections.length) {
+          intersections.forEach(intersection => {
+            logger.warn(
+              `已添加相同id和类型的渲染数据集，可能有重复数据，请核实。对象 id: ${intersection.feature.properties.id}，对象类型: ${intersection.feature.geometry.type}`,
+              '数据模型：',
+              intersection
+            )
+          })
+          // 去重
+          entities = uniqWith(entities, (arrVal: any, othVal: any) => {
+            return (
+              arrVal.feature.properties.id === othVal.feature.properties.id &&
+              arrVal.feature.geometry.type === othVal.feature.geometry.type
+            )
+          })
+        }
       }
+    } else {
+      const dataset = node as VcDataset
+      dataset?.children?.length && addRenderDataset(dataset, page, type)
     }
-
-    if (renderingApi === 'entity') {
-      entities.length &&
-        renderData.datasets.push({
-          cmpName: 'VcDatasourceCustom',
-          props: {
-            entities,
-            onReady: ({ cesiumObject }) => {
-              const id = `VcDatasourceCustom_${dataset.id}`
-              cesiumObject.datasetId = id
-              const findResult = find(dataset.cesiumObjects, v => v.datasetId === id)
-              !findResult && dataset.cesiumObjects.push(markRaw(cesiumObject))
-              dataset.loading = false
-            }
-          }
-        })
-    } else if (renderingApi === 'primitive') {
-      //
-    }
-
-    addRenderDatas(renderData)
   }
 
+  if (renderingApi === 'entity') {
+    entities.length &&
+      renderData.datasets.push({
+        cmpName: 'VcDatasourceCustom',
+        props: {
+          entities,
+          onReady: ({ cesiumObject }) => {
+            const id = `VcDatasourceCustom_${dataset.id}`
+            cesiumObject.datasetId = id
+            const findResult = find(dataset.cesiumObjects, v => v.datasetId === id)
+            !findResult && dataset.cesiumObjects.push(markRaw(cesiumObject))
+            dataset.loading = false
+          }
+        }
+      })
+  } else if (renderingApi === 'primitive') {
+    //
+  }
+
+  addRenderDatas(renderData)
   return true
 }
 

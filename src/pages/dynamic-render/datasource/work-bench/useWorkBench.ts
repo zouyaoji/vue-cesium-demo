@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:03:02
- * @LastEditTime: 2022-08-17 21:12:02
+ * @LastEditTime: 2022-08-31 23:03:53
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\useWorkBench.ts
@@ -21,6 +21,7 @@ import {
   flyToFeature as flyToFeatureModel,
   showFeatureInfoPanel
 } from '@src/utils/render-data'
+import { hasOwn } from 'vue-cesium/es/utils/util'
 
 export interface WorkBenchModel {
   selectedId: string
@@ -104,8 +105,8 @@ export default function () {
     showFeatureInfoPanel(feature)
   }
 
-  const flyToFeature = (key: string, feature: VcFeature) => {
-    flyToFeatureModel($vc.viewer, feature)
+  const flyToFeature = (key: string, feature: VcFeature, index: number) => {
+    flyToFeatureModel($vc.viewer, feature, index)
   }
 
   const showOrHideDatasetList = (show: boolean, dataset: VcDataset) => {
@@ -120,11 +121,28 @@ export default function () {
     }
   }
 
-  const onChecked = (state: boolean, node: VcDataset | VcFeature, m, parent: VcDataset) => {
-    console.log(state, node)
-    if (m.isParent === true) {
+  const addOrRemoveDataset = (show: boolean, node: VcDataset | VcFeature, parent?: VcDataset, index?: number) => {
+    console.log(show, node, parent, index)
+    if (hasOwn(node, 'type') && hasOwn(node, 'properties')) {
+      const feature = node as VcFeature
+      if (show === true) {
+        const renderData = getRenderDataByDatasetId(feature.properties.datasetId)
+        if (renderData) {
+          //
+        } else {
+          if (parent.renderingType) {
+            const fetchingMethod = () => {
+              return api.common.getStaticData(parent.fetchStr)
+            }
+            addDatasetByRenderingType(parent, fetchingMethod, '/dynamic-render/datasource')
+          } else if (parent.renderingType !== '') {
+            logger.error('添加渲染数据集失败，原因：未知的显示类型。', '数据模型：', parent)
+          }
+        }
+      }
+    } else {
       const dataset = node as VcDataset
-      if (state === true) {
+      if (show === true) {
         const renderData = getRenderDataByDatasetId(dataset.id)
         if (renderData) {
           // 已存在
@@ -141,29 +159,14 @@ export default function () {
         }
       } else {
         removeRenderDataById(dataset.id)
-      }
-    } else {
-      const vcFeature = node as VcFeature
-      if (state === true) {
-        const renderData = getRenderDataByDatasetId(vcFeature.properties.datasetId)
-        if (renderData) {
-          //
-        } else {
-          if (parent.renderingType) {
-            const fetchingMethod = () => {
-              return api.common.getStaticData(parent.fetchStr)
-            }
-
-            addDatasetByRenderingType(parent, fetchingMethod, '/dynamic-render/datasource')
-          } else if (parent.renderingType !== '') {
-            logger.error('添加渲染数据集失败，原因：未知的显示类型。', '数据模型：', parent)
-          }
-        }
+        dataset?.children?.forEach(node => {
+          addOrRemoveDataset(show, node, dataset)
+        })
       }
     }
   }
 
-  const addOrRemoveDataset = e => {
+  const onLazyLoad = e => {
     const dataset: VcDataset = e.dataset
     const key = e.key as string
     if (key.indexOf('Lazy load empty') > -1) {
@@ -192,8 +195,8 @@ export default function () {
     showFeatureInfo,
     flyToFeature,
     showOrHideDatasetList,
+    onLazyLoad,
     addOrRemoveDataset,
-    onChecked,
     toggleDynamicRenderPageLayout
   }
 }

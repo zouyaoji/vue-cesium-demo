@@ -1,26 +1,15 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-08-07 21:23:53
- * @LastEditTime: 2022-08-17 21:27:12
+ * @LastEditTime: 2022-08-31 23:04:39
  * @LastEditors: zouyaoji
  * @Description:
- * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\vc-data-list\index.ts
+ * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\vc-data-tree\index.ts
  */
 
 import { VcDataset, VcFeature } from '@src/types/render-data'
 import { QCheckbox, QChip, QExpansionItem, QIcon, QItem, QItemLabel, QItemSection, QList, Ripple } from 'quasar'
-import {
-  computed,
-  defineComponent,
-  h,
-  nextTick,
-  onBeforeUpdate,
-  PropType,
-  ref,
-  toRef,
-  watch,
-  withDirectives
-} from 'vue'
+import { computed, defineComponent, h, nextTick, onBeforeUpdate, PropType, ref, withDirectives } from 'vue'
 import { hasOwn } from 'vue-cesium/es/utils/util'
 import LoadingIos from '@components/loading/Ios.vue'
 
@@ -44,10 +33,10 @@ export default defineComponent({
     // accordion: Boolean
   },
   emits: {
-    checked: (checked: boolean, dataset: VcFeature | VcDataset, m, parent: VcDataset) => true,
+    checked: (checked: boolean, dataset: VcFeature | VcDataset, parent?: VcDataset, index?: number) => true,
     'lazy-load': evt => true,
-    'update:selected': (key: string, node: VcFeature) => true,
-    zoomIconClicked: (key: string, node: VcFeature) => true
+    'update:selected': (key: string, node: VcFeature, index: number) => true,
+    zoomIconClicked: (key: string, node: VcFeature, index: number) => true
   },
   setup(props, ctx) {
     const lazy = ref({})
@@ -78,7 +67,7 @@ export default defineComponent({
     const meta = computed(() => {
       const meta = {}
 
-      const travel = (node: VcDataset | VcFeature, parent) => {
+      const travel = (node: VcDataset | VcFeature, index, parent) => {
         const tickStrategy = parent ? parent.tickStrategy : props.tickStrategy
         let key
         let isParent
@@ -134,6 +123,7 @@ export default defineComponent({
         }
 
         const m = {
+          index,
           name,
           key,
           parent,
@@ -170,7 +160,7 @@ export default defineComponent({
 
         if (isParent === true) {
           const vcDataset = node as VcDataset
-          m.children = vcDataset.children.map(n => travel(n, m))
+          m.children = vcDataset.children.map((n, index) => travel(n, index, m))
           if (props.filter) {
             if (m.matchesFilter !== true) {
               m.matchesFilter = m.children.some(n => n.matchesFilter)
@@ -209,7 +199,10 @@ export default defineComponent({
                 }
               }
               if (m.indeterminate === true) {
-                m.indeterminateNextState = m.children.every(meta => meta.tickable !== true || meta.ticked !== true)
+                // m.indeterminateNextState = m.children.every(meta => meta.tickable !== true || meta.ticked !== true)
+                m.indeterminateNextState = m.children.every(
+                  meta => (meta.tickable !== true || meta.ticked !== true) && meta.indeterminateNextState !== false
+                )
               }
             }
           }
@@ -217,7 +210,7 @@ export default defineComponent({
         return m
       }
 
-      props.nodes.forEach(node => travel(node, null))
+      props.nodes.forEach((node, index) => travel(node, index, null))
       return meta
     })
 
@@ -283,8 +276,6 @@ export default defineComponent({
     }
 
     const onTickedClick = (state, node: VcDataset | VcFeature, m, parent?: VcDataset) => {
-      ctx.emit('checked', state, node, m, parent)
-
       if (m.indeterminate === true) {
         state = m.indeterminateNextState
       }
@@ -318,6 +309,8 @@ export default defineComponent({
 
         travelChildren(node, parent)
       }
+
+      ctx.emit('checked', state, node, parent, m.index)
     }
 
     const getTotalCount = (dataset: VcDataset) => {
@@ -345,7 +338,7 @@ export default defineComponent({
     const onFeatureLocationClick = (node: VcFeature, meta, e, keyboard?) => {
       keyboard !== true && blur(meta.key)
 
-      ctx.emit('zoomIconClicked', meta.key, node)
+      ctx.emit('zoomIconClicked', meta.key, node, meta.index)
       e.stopPropagation()
     }
 
@@ -353,7 +346,7 @@ export default defineComponent({
       keyboard !== true && blur(meta.key)
 
       if (hasSelection.value && meta.selectable) {
-        ctx.emit('update:selected', meta.key, node)
+        ctx.emit('update:selected', meta.key, node, meta.index)
       } else {
         // onExpandClick(node, meta, e, keyboard)
       }
