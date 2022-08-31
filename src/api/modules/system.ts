@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-07-23 00:49:52
+ * @LastEditTime: 2022-08-31 16:12:48
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
@@ -20,7 +20,7 @@ export type Menu = {
   hidden: boolean
   name: string
   path: string
-  permission: string
+  permission?: string
   sort: number
   title: string
   caption?: string
@@ -43,7 +43,6 @@ const menus: Array<Menu> = [
     hidden: false,
     name: 'layout',
     path: '/',
-    permission: '',
     sort: 1000,
     title: 'VueCesiumDemo',
     type: 10,
@@ -56,7 +55,6 @@ const menus: Array<Menu> = [
         hidden: false,
         name: 'index',
         path: '/index',
-        permission: 'permission-index',
         sort: 1000,
         caption: '首页',
         title: 'message.header.index',
@@ -70,7 +68,6 @@ const menus: Array<Menu> = [
             hidden: false,
             name: 'left-panel',
             path: '',
-            permission: 'permission-left-panel-view',
             sort: 100101,
             title: '查看左侧面板',
             type: 20
@@ -85,7 +82,6 @@ const menus: Array<Menu> = [
         hidden: false,
         name: 'dynamic-render',
         path: '/dynamic-render',
-        permission: 'permission-dynamic-render',
         sort: 1000,
         caption: '动态渲染',
         title: 'message.header.dynamicRender',
@@ -95,12 +91,11 @@ const menus: Array<Menu> = [
           {
             id: uuidv4(),
             component: '/dynamic-render/datasource',
-            icon: 'dataset',
+            icon: 'storage',
             islock: false,
             hidden: false,
             name: 'datasource',
             path: '/dynamic-render/datasource',
-            permission: 'permission-datasource',
             sort: 1000,
             caption: 'dynamicRender',
             title: 'message.sideBar.dynamicRender.datasource',
@@ -109,15 +104,72 @@ const menus: Array<Menu> = [
           {
             id: uuidv4(),
             component: '/dynamic-render/historical-track',
-            icon: 'inbox',
+            icon: 'route',
             islock: false,
             hidden: false,
             name: 'historical-track',
             path: '/dynamic-render/historical-track',
-            permission: 'permission-historical-track',
             sort: 1000,
             caption: 'dynamicRender',
             title: 'message.sideBar.dynamicRender.historicalTrack',
+            type: 10
+          }
+        ]
+      },
+      {
+        id: uuidv4(),
+        component: '/expansion',
+        icon: 'cog',
+        islock: false,
+        hidden: false,
+        name: 'expansion',
+        path: '/expansion',
+        sort: 1000,
+        caption: '扩展组件',
+        title: 'message.header.expansion',
+        type: 10,
+        redirect: '/expansion/typhoon',
+        children: [
+          {
+            id: uuidv4(),
+            component: '/expansion/typhoon',
+            icon: 'timeline',
+            islock: false,
+            hidden: false,
+            name: 'typhoon',
+            path: '/expansion/typhoon',
+            sort: 1000,
+            caption: '台风组件',
+            title: 'message.sideBar.expansion.typhoon',
+            type: 10
+          }
+        ]
+      },
+      {
+        id: uuidv4(),
+        component: '/other',
+        icon: 'cog',
+        islock: false,
+        hidden: false,
+        name: 'other',
+        path: '/other',
+        sort: 1000,
+        caption: '其他测试',
+        title: 'message.header.other',
+        type: 10,
+        redirect: '/other/tsx',
+        children: [
+          {
+            id: uuidv4(),
+            component: '/other/tsx',
+            icon: 'bug_report',
+            islock: false,
+            hidden: false,
+            name: 'tsx',
+            path: '/other/tsx',
+            sort: 1000,
+            caption: 'TSX 渲染',
+            title: 'message.sideBar.other.tsx',
             type: 10
           }
         ]
