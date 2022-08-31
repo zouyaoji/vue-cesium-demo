@@ -5644,7 +5644,20 @@
         "pyname": "nblsgjjc",
         "kind": "8100",
         "id": "a6537113-26bb-4b69-96d5-2ec66f1d8bc2",
-        "checked": false
+        "checked": false,
+        "renderingType": "point",
+        "props": {
+          "point": {
+            "pixelSize": 8,
+            "color": "red"
+          }
+        },
+        "selectedProps": {
+          "point": {
+            "pixelSize": 16,
+            "color": "yellow"
+          }
+        }
       },
       "geometry": {
         "type": "MultiPoint",
@@ -5895,6 +5908,12 @@
         "props": {
           "billboard": {
             "color": "red"
+          }
+        },
+        "selectedProps": {
+          "billboard": {
+            "color": "yellow",
+            "scale": 0.5
           }
         }
       },

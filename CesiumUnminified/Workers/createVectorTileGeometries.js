@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./Transforms-273eeb44', './BoxGeometry-97fb4823', './Matrix2-9e1c22e2', './Color-4a982256', './CylinderGeometry-3675fb23', './defaultValue-97284df2', './EllipsoidGeometry-c9dbbf37', './IndexDatatype-f228f5fd', './createTaskProcessorWorker', './RuntimeError-4f8ec8a2', './ComponentDatatype-4eeb6d9b', './WebGLConstants-6da700a2', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './GeometryAttribute-9be2d2e5', './GeometryAttributes-734a3446', './GeometryOffsetAttribute-59b14f45', './VertexFormat-563ab2cc', './CylinderGeometryLibrary-365438d7'], (function (Transforms, BoxGeometry, Matrix2, Color, CylinderGeometry, defaultValue, EllipsoidGeometry, IndexDatatype, createTaskProcessorWorker, RuntimeError, ComponentDatatype, WebGLConstants, _commonjsHelpers3aae1032, combine, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, CylinderGeometryLibrary) { 'use strict';
+define(['./Transforms-fc8266a1', './BoxGeometry-c0bc0f0b', './Matrix2-46dc0d7f', './Color-2bc33577', './CylinderGeometry-5b5c7e2e', './defaultValue-4607806f', './EllipsoidGeometry-92f81f87', './IndexDatatype-790b4297', './createTaskProcessorWorker', './RuntimeError-cef79f54', './ComponentDatatype-1ef49b14', './WebGLConstants-f100e3dd', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './GeometryAttribute-0c65674d', './GeometryAttributes-acac33d2', './GeometryOffsetAttribute-3e5f3e97', './VertexFormat-a06c2122', './CylinderGeometryLibrary-4752f371'], (function (Transforms, BoxGeometry, Matrix2, Color, CylinderGeometry, defaultValue, EllipsoidGeometry, IndexDatatype, createTaskProcessorWorker, RuntimeError, ComponentDatatype, WebGLConstants, _commonjsHelpers, combine, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, CylinderGeometryLibrary) { 'use strict';
 
   /**
    * Describes a renderable batch of geometry.
@@ -468,4 +468,3 @@ define(['./Transforms-273eeb44', './BoxGeometry-97fb4823', './Matrix2-9e1c22e2',
   return createVectorTileGeometries$1;
 
 }));
-//# sourceMappingURL=createVectorTileGeometries.js.map

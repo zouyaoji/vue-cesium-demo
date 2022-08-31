@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./Matrix2-9e1c22e2', './RuntimeError-4f8ec8a2', './defaultValue-97284df2', './EllipseOutlineGeometry-ca2110e2', './ComponentDatatype-4eeb6d9b', './WebGLConstants-6da700a2', './Transforms-273eeb44', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './EllipseGeometryLibrary-dac95924', './GeometryAttribute-9be2d2e5', './GeometryAttributes-734a3446', './GeometryOffsetAttribute-59b14f45', './IndexDatatype-f228f5fd'], (function (Matrix2, RuntimeError, defaultValue, EllipseOutlineGeometry, ComponentDatatype, WebGLConstants, Transforms, _commonjsHelpers3aae1032, combine, EllipseGeometryLibrary, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, IndexDatatype) { 'use strict';
+define(['./Matrix2-46dc0d7f', './RuntimeError-cef79f54', './defaultValue-4607806f', './EllipseOutlineGeometry-57c70f62', './ComponentDatatype-1ef49b14', './WebGLConstants-f100e3dd', './Transforms-fc8266a1', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './EllipseGeometryLibrary-464629fe', './GeometryAttribute-0c65674d', './GeometryAttributes-acac33d2', './GeometryOffsetAttribute-3e5f3e97', './IndexDatatype-790b4297'], (function (Matrix2, RuntimeError, defaultValue, EllipseOutlineGeometry, ComponentDatatype, WebGLConstants, Transforms, _commonjsHelpers, combine, EllipseGeometryLibrary, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, IndexDatatype) { 'use strict';
 
   /**
    * A description of the outline of a circle on the ellipsoid.
@@ -183,4 +183,3 @@ define(['./Matrix2-9e1c22e2', './RuntimeError-4f8ec8a2', './defaultValue-97284df
   return createCircleOutlineGeometry;
 
 }));
-//# sourceMappingURL=createCircleOutlineGeometry.js.map

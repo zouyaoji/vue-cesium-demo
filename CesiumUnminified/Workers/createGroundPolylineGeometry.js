@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./Transforms-273eeb44', './Matrix2-9e1c22e2', './RuntimeError-4f8ec8a2', './defaultValue-97284df2', './ComponentDatatype-4eeb6d9b', './ArcType-de5d8777', './arrayRemoveDuplicates-1af79ba4', './EllipsoidGeodesic-72f01b70', './EllipsoidRhumbLine-7bc7dfce', './EncodedCartesian3-491ac596', './GeometryAttribute-9be2d2e5', './IntersectionTests-ea138127', './Plane-76b84425', './WebMercatorProjection-3b121d41', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './WebGLConstants-6da700a2'], (function (Transforms, Matrix2, RuntimeError, defaultValue, ComponentDatatype, ArcType, arrayRemoveDuplicates, EllipsoidGeodesic, EllipsoidRhumbLine, EncodedCartesian3, GeometryAttribute, IntersectionTests, Plane, WebMercatorProjection, _commonjsHelpers3aae1032, combine, WebGLConstants) { 'use strict';
+define(['./Transforms-fc8266a1', './Matrix2-46dc0d7f', './RuntimeError-cef79f54', './defaultValue-4607806f', './ComponentDatatype-1ef49b14', './ArcType-f5af12f9', './arrayRemoveDuplicates-1f0fa8fd', './EllipsoidGeodesic-70578277', './EllipsoidRhumbLine-c4e2c591', './EncodedCartesian3-67ce8bc4', './GeometryAttribute-0c65674d', './IntersectionTests-f3daffbb', './Plane-e8eab25b', './WebMercatorProjection-60cca281', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './WebGLConstants-f100e3dd'], (function (Transforms, Matrix2, RuntimeError, defaultValue, ComponentDatatype, ArcType, arrayRemoveDuplicates, EllipsoidGeodesic, EllipsoidRhumbLine, EncodedCartesian3, GeometryAttribute, IntersectionTests, Plane, WebMercatorProjection, _commonjsHelpers, combine, WebGLConstants) { 'use strict';
 
   /**
    * A tiling scheme for geometry referenced to a simple {@link GeographicProjection} where
@@ -2157,4 +2157,3 @@ define(['./Transforms-273eeb44', './Matrix2-9e1c22e2', './RuntimeError-4f8ec8a2'
   return createGroundPolylineGeometry;
 
 }));
-//# sourceMappingURL=createGroundPolylineGeometry.js.map

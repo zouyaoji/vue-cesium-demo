@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./Matrix2-9e1c22e2', './combine-d11b1f00', './AttributeCompression-f202be44', './ComponentDatatype-4eeb6d9b', './IndexDatatype-f228f5fd', './createTaskProcessorWorker', './RuntimeError-4f8ec8a2', './defaultValue-97284df2', './WebGLConstants-6da700a2'], (function (Matrix2, combine, AttributeCompression, ComponentDatatype, IndexDatatype, createTaskProcessorWorker, RuntimeError, defaultValue, WebGLConstants) { 'use strict';
+define(['./Matrix2-46dc0d7f', './combine-fc59ba59', './AttributeCompression-e3844002', './ComponentDatatype-1ef49b14', './IndexDatatype-790b4297', './createTaskProcessorWorker', './RuntimeError-cef79f54', './defaultValue-4607806f', './WebGLConstants-f100e3dd'], (function (Matrix2, combine, AttributeCompression, ComponentDatatype, IndexDatatype, createTaskProcessorWorker, RuntimeError, defaultValue, WebGLConstants) { 'use strict';
 
   const maxShort = 32767;
 
@@ -277,4 +277,3 @@ define(['./Matrix2-9e1c22e2', './combine-d11b1f00', './AttributeCompression-f202
   return createVectorTilePolylines$1;
 
 }));
-//# sourceMappingURL=createVectorTilePolylines.js.map

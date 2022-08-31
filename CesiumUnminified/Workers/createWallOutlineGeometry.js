@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.95
+ * Version 1.96
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,7 +23,7 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-define(['./defaultValue-97284df2', './Matrix2-9e1c22e2', './Transforms-273eeb44', './ComponentDatatype-4eeb6d9b', './RuntimeError-4f8ec8a2', './GeometryAttribute-9be2d2e5', './GeometryAttributes-734a3446', './IndexDatatype-f228f5fd', './WallGeometryLibrary-3933dbde', './_commonjsHelpers-3aae1032-65601a27', './combine-d11b1f00', './WebGLConstants-6da700a2', './arrayRemoveDuplicates-1af79ba4', './PolylinePipeline-e67c0760', './EllipsoidGeodesic-72f01b70', './EllipsoidRhumbLine-7bc7dfce', './IntersectionTests-ea138127', './Plane-76b84425'], (function (defaultValue, Matrix2, Transforms, ComponentDatatype, RuntimeError, GeometryAttribute, GeometryAttributes, IndexDatatype, WallGeometryLibrary, _commonjsHelpers3aae1032, combine, WebGLConstants, arrayRemoveDuplicates, PolylinePipeline, EllipsoidGeodesic, EllipsoidRhumbLine, IntersectionTests, Plane) { 'use strict';
+define(['./defaultValue-4607806f', './Matrix2-46dc0d7f', './Transforms-fc8266a1', './ComponentDatatype-1ef49b14', './RuntimeError-cef79f54', './GeometryAttribute-0c65674d', './GeometryAttributes-acac33d2', './IndexDatatype-790b4297', './WallGeometryLibrary-e6d0713f', './_commonjsHelpers-a32ac251', './combine-fc59ba59', './WebGLConstants-f100e3dd', './arrayRemoveDuplicates-1f0fa8fd', './PolylinePipeline-043c23e2', './EllipsoidGeodesic-70578277', './EllipsoidRhumbLine-c4e2c591', './IntersectionTests-f3daffbb', './Plane-e8eab25b'], (function (defaultValue, Matrix2, Transforms, ComponentDatatype, RuntimeError, GeometryAttribute, GeometryAttributes, IndexDatatype, WallGeometryLibrary, _commonjsHelpers, combine, WebGLConstants, arrayRemoveDuplicates, PolylinePipeline, EllipsoidGeodesic, EllipsoidRhumbLine, IntersectionTests, Plane) { 'use strict';
 
   const scratchCartesian3Position1 = new Matrix2.Cartesian3();
   const scratchCartesian3Position2 = new Matrix2.Cartesian3();
@@ -455,4 +455,3 @@ define(['./defaultValue-97284df2', './Matrix2-9e1c22e2', './Transforms-273eeb44'
   return createWallOutlineGeometry;
 
 }));
-//# sourceMappingURL=createWallOutlineGeometry.js.map
