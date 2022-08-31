@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:08
- * @LastEditTime: 2022-01-05 22:15:08
+ * @LastEditTime: 2022-08-24 22:30:49
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\.eslintrc.js
@@ -64,7 +64,9 @@ module.exports = {
     chrome: 'readonly',
     Cesium: 'readonly',
     defineEmits: 'readonly',
-    defineProps: 'readonly'
+    defineProps: 'readonly',
+    defineExpose: 'readonly',
+    defineOptions: 'readonly'
   },
   // add your custom rules here
   rules: {

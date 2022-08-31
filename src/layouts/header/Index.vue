@@ -14,12 +14,12 @@
           <img src="https://zouyaoji.top/vue-cesium/favicon.png" />
         </div>
         <q-btn
-          v-if="asideMenus.length"
           flat
           icon="menu"
           class="text-white"
           round
           style="height: 24px"
+          :disable="!asideMenus.length"
           @click="onToggleLeftDrawer"
         ></q-btn>
         <div class="title text-h4 float">
@@ -74,6 +74,10 @@ import { ThemeOptions } from '@src/types/theme'
 import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { storeToRefs } from 'pinia'
 import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
+
+defineOptions({
+  name: 'VcDemoMainHeader'
+})
 
 const $route = useRoute()
 const searchActive = ref(false)

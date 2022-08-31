@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-21 11:18:40
- * @LastEditTime: 2022-07-20 14:25:56
+ * @LastEditTime: 2022-08-31 16:24:23
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\index\Index.vue
@@ -27,7 +27,14 @@
 <script lang="ts" setup>
 import { store } from '@src/store'
 import { onMounted, onUnmounted, ref } from 'vue'
-import { VcEntityProps } from 'vue-cesium'
+import { useVueCesium, VcEntityProps } from 'vue-cesium'
+import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
+
+defineOptions({
+  name: 'VcDemoPageIndex'
+})
+
+const $vc = useVueCesium()
 
 const entity = ref<VcEntityProps>({
   position: [108, 32],
@@ -45,6 +52,10 @@ const { loadDefaultLayers, toggle } = store.viewer.useLayerStore()
 
 onMounted(() => {
   loadDefaultLayers(true)
+
+  flyToCamera($vc.viewer, {
+    position: [105, 30, 19159568]
+  })
 })
 
 onUnmounted(() => {

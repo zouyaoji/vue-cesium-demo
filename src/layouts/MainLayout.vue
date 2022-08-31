@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-07-21 20:13:06
+ * @LastEditTime: 2022-08-31 22:37:52
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -17,36 +17,34 @@
       bordered
       :mini="globalLayout.leftDrawerMini"
     >
-      <q-scroll-area class="fit">
-        <q-list class="drawer-menu-list">
-          <template v-for="(menuItem, index) in asideMenus" :key="index">
-            <q-item
-              v-ripple
-              clickable
-              active-class="menu-active-item"
-              :active="menuItem.name === currentRouteName"
-              @click="$router.push(menuItem.path)"
+      <q-list class="drawer-menu-list">
+        <template v-for="(menuItem, index) in asideMenus" :key="index">
+          <q-item
+            v-ripple
+            clickable
+            active-class="menu-active-item"
+            :active="menuItem.name === currentRouteName"
+            @click="$router.push(menuItem.path)"
+          >
+            <q-item-section avatar>
+              <q-icon :name="menuItem.icon" />
+            </q-item-section>
+            <q-item-section>
+              {{ $t(menuItem.title) || menuItem.caption }}
+            </q-item-section>
+            <q-tooltip
+              v-if="globalLayout.leftDrawerMini"
+              transition-show="scale"
+              transition-hide="scale"
+              anchor="center right"
+              self="center left"
             >
-              <q-item-section avatar>
-                <q-icon :name="menuItem.icon" />
-              </q-item-section>
-              <q-item-section>
-                {{ $t(menuItem.title) || menuItem.caption }}
-              </q-item-section>
-              <q-tooltip
-                v-if="globalLayout.leftDrawerMini"
-                transition-show="scale"
-                transition-hide="scale"
-                anchor="center right"
-                self="center left"
-              >
-                {{ $t(menuItem.title) || menuItem.caption }}
-              </q-tooltip>
-            </q-item>
-            <q-separator v-if="menuItem.separator" :key="'sep' + index" />
-          </template>
-        </q-list>
-      </q-scroll-area>
+              {{ $t(menuItem.title) || menuItem.caption }}
+            </q-tooltip>
+          </q-item>
+          <q-separator v-if="menuItem.separator" :key="'sep' + index" />
+        </template>
+      </q-list>
     </q-drawer>
     <q-page-container class="no-padding">
       <q-page class="interaction-root">
@@ -79,6 +77,10 @@ import { store } from '@src/store'
 import { storeToRefs } from 'pinia'
 import { useRouter, useRoute } from 'vue-router'
 import { ThemeOptions } from '@src/types/theme'
+
+defineOptions({
+  name: 'VcDemoMainLayout'
+})
 
 const $route = useRoute()
 // state
@@ -114,8 +116,8 @@ watch(
     if (val.length > 1) {
       const side = headerMenus.value.filter(menu => menu.path === val[1].path)
       if (side.length) {
-        const children = side[0].children.filter(v => v.type === 10)
-        if (children.length) {
+        const children = side[0]?.children?.filter(v => v.type === 10)
+        if (children?.length) {
           menuStore.asideSet(children)
         } else {
           menuStore.asideSet([])
@@ -169,7 +171,8 @@ onMounted(() => {
     padding-top: 70px;
   }
   ::v-deep(.q-drawer) {
-    height: 350px;
+    // height: 350px;
+    height: fit-content;
     top: 120px;
     left: 12px;
   }
@@ -197,6 +200,8 @@ onMounted(() => {
   }
 
   .drawer-menu-list {
+    height: fit-content;
+    overflow: hidden;
     color: v-bind('theme.menu.themeMenuColor') !important;
     .menu-active-item {
       color: v-bind('theme.menu.themeMenuActiveColor');
