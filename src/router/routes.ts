@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2021-12-29 14:08:24
+ * @LastEditTime: 2022-08-31 10:58:53
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\router\routes.ts
@@ -14,7 +14,7 @@ const frameIn = [
     path: '/',
     name: 'layout',
     component: () => import('@src/layouts/MainLayout.vue'),
-    redirect: { path: 'index' },
+    redirect: { path: import.meta.env.VITE_VUE_DEFAULT_PATH },
     children: [
       {
         name: 'login',

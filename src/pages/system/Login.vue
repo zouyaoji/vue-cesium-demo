@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-01 17:36:48
- * @LastEditTime: 2022-05-31 14:46:26
+ * @LastEditTime: 2022-08-31 10:57:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\system\Login.vue
@@ -133,7 +133,7 @@ const onSubmit = async () => {
     .login(form.value)
     .then(() => {
       // 重定向对象不存在则返回顶层路径
-      $router.replace(($router.currentRoute.value.query.redirect as string) || '/index')
+      $router.replace(($router.currentRoute.value.query.redirect as string) || import.meta.env.VITE_VUE_DEFAULT_PATH)
     })
 }
 

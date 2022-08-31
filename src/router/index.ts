@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2022-07-23 12:29:08
+ * @LastEditTime: 2022-08-31 10:57:28
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\router\index.ts
@@ -55,7 +55,7 @@ Router.beforeEach(async (to, from, next) => {
       }
       if (to.path === '/login') {
         next({
-          path: '/index'
+          path: import.meta.env.VITE_VUE_DEFAULT_PATH
         })
       } else {
         next()
