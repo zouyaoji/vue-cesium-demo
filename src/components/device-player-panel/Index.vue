@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-09-14 22:44:02
+ * @LastEditTime: 2022-09-15 00:47:14
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\device-player-panel\Index.vue
@@ -20,10 +20,13 @@
         @close="onLayerManagerToggle"
       >
         <q-card-section>
-          <div class="jessibuca-player-container">
+          <div class="video-player-container">
             <jessibuca-player
               url="https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-720p.flv"
             ></jessibuca-player>
+            <!-- <webrtc-player
+              url="test"
+            ></webrtc-player> -->
           </div>
         </q-card-section>
       </common-panel>
@@ -38,6 +41,7 @@ import CommonPanel from '@components/common-panel/Index.vue'
 import DragWrapper from '@components/drag-wrapper'
 import { storeToRefs } from 'pinia'
 import JessibucaPlayer from '@components/jessibuca-player/Index.vue'
+import WebrtcPlayer from '@components/webrtc-player/Index.vue'
 
 defineOptions({
   name: 'VcDemoDevicePlayerPanel'

@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-09-04 09:26:15
- * @LastEditTime: 2022-09-14 22:27:09
+ * @LastEditTime: 2022-09-15 00:48:15
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\jessibuca-player\Index.vue
@@ -152,9 +152,10 @@ const create = () => {
     videoBuffer: 0.2, // 最大缓冲时长，单位秒
     isResize: true,
     decoder: `${import.meta.env.BASE_URL}libs/jessibuca/decoder.js`,
-    useMSE: false,
+    useMSE: true,
+    useWCS: true,
     showBandwidth: false,
-    isFlv: true,
+    isFlv: false,
     // text: "WVP-PRO",
     // background: "static/images/zlm-logo.png",
     loadingText: '加载中',

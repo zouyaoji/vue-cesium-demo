@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:27:55
- * @LastEditTime: 2022-08-31 22:34:10
+ * @LastEditTime: 2022-09-12 23:49:12
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\tree-data.ts
@@ -39,6 +39,48 @@ export default [
             scale: 1
           }
         }
+      },
+      {
+        id: uuidv4(),
+        name: '摄像头',
+        icon: '',
+        checked: false,
+        expanded: false,
+        fetchStr: `/datas/work-bench/视频点.json`,
+        renderingType: 'billboard',
+        lazy: true,
+        props: {
+          billboard: {
+            image: `${import.meta.env.BASE_URL}images/video.svg`,
+            color: '#ffc10',
+            scale: 0.25,
+            verticalOrigin: 1,
+            scaleByDistance: [1e2, 2, 1.5e5, 0.5],
+            distanceDisplayCondition: [0, 3.0e7]
+          }
+        },
+        selectedProps: {
+          billboard: {
+            color: 'red',
+            scale: 1
+          }
+        },
+        children: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'MultiPoint',
+              coordinates: [[108.253394, 29.730675]]
+            },
+            properties: {
+              name: '摄像头点位1',
+              pyname: 'hstxgjjc',
+              kind: '8100',
+              id: uuidv4(),
+              checked: true
+            }
+          }
+        ]
       },
       {
         id: uuidv4(),
@@ -156,10 +198,11 @@ export default [
               {
                 type: 'Feature',
                 properties: {
+                  id: uuidv4(),
                   name: '飞机',
                   hpr: '[135, 0, 0]',
                   renderingType: 'model',
-                  checked: false,
+                  checked: true,
                   props: {
                     model: {
                       uri: '../datas/gltf/Cesium_Air.glb'
