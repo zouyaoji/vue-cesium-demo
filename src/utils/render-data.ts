@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-08-31 22:59:34
+ * @LastEditTime: 2022-09-14 21:58:24
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
@@ -22,7 +22,7 @@ import { entityModelHandler } from './model-helper'
 import { hasOwn, isPlainObject } from 'vue-cesium/es/utils/util'
 import { find, intersectionWith, uniqWith } from 'lodash'
 import { markRaw, toRef } from 'vue'
-import { AnyObject } from 'vue-cesium/es/utils/types'
+import { AnyObject, VcReadyObject } from 'vue-cesium/es/utils/types'
 import { flyToCamera } from 'vue-cesium/es/utils/cesium-helpers'
 /**
  * 添加渲染数据到场景。
@@ -286,14 +286,15 @@ export function processVcEntityModels(
     return '添加渲染模型失败，原因：该要素没有 geometry 属性'
   }
 
-  const geometryType = feature.geometry.type
-  const properties = feature.properties
-  const renderingTypes = properties?.renderingType?.trim().split(',')
+  // const properties = feature.properties
+  // const renderingTypes = properties?.renderingType?.trim().split(',')
+  const renderingTypes = Object.keys(props)
   if (!renderingTypes || !renderingTypes.length) {
     logger.warn(`添加渲染模型失败，原因：未知的显示类型。`, '要素：', feature)
     return '添加渲染模型失败，原因：未知的显示类型。'
   }
 
+  const geometryType = feature.geometry.type
   const geometryHandler = entityModelHandler[geometryType]
   if (!Cesium.defined(geometryHandler)) {
     logger.warn(`添加渲染模型失败，原因：该几何类型${geometryType}没有找到处理方法。`, '要素：', feature)
@@ -602,13 +603,14 @@ export function addDatasetByRenderingType(
   dataset: VcDataset,
   fetchingMethod: VcDatasetGetMethod,
   page: string,
-  type?: string
+  type?: string,
+  renderDatasetProps?
 ) {
   if (!dataset.children?.length) {
     try {
       return fetchDatasetList(dataset, fetchingMethod).then(flag => {
         if (flag) {
-          return addRenderDataset(dataset, page, type)
+          return addRenderDataset(dataset, page, type, renderDatasetProps)
         }
       })
     } catch (error) {
@@ -620,7 +622,7 @@ export function addDatasetByRenderingType(
       return
     }
   } else {
-    return Promise.resolve(addRenderDataset(dataset, page, type))
+    return Promise.resolve(addRenderDataset(dataset, page, type, renderDatasetProps))
   }
 }
 
@@ -631,151 +633,197 @@ export function addDatasetByRenderingType(
  * @param {*} type
  * @returns
  */
-const addRenderDataset = (dataset: VcDataset, page: string, type: string) => {
-  dataset.cesiumObjects = dataset.cesiumObjects || []
-  const renderData: VcRenderData = {
-    id: dataset.id,
-    name: dataset.name,
-    page,
-    type,
-    datasets: []
-  }
-
-  const renderingApi = 'entity'
-
-  let entities: Array<
-    VcEntityProps & {
-      feature: VcFeature
+const addRenderDataset = (dataset: VcDataset, page: string, type: string, renderDatasetProps?) => {
+  return new Promise((resolve, reject) => {
+    dataset.cesiumObjects = dataset.cesiumObjects || []
+    const renderData: VcRenderData = {
+      id: dataset.id,
+      name: dataset.name,
+      page,
+      type,
+      datasets: []
     }
-  > = [] // 实体集合
 
-  for (let i = 0; i < dataset?.children?.length; i++) {
-    const node = dataset.children[i]
-    if (hasOwn(node, 'type') && hasOwn(node, 'properties')) {
-      const feature = node as VcFeature
-      const properties = feature.properties
-      properties.datasetId = feature.properties.datasetId || dataset.id
-      properties.selectedProps = feature.properties.selectedProps || dataset.selectedProps || {}
-      const props =
-        dataset.props && isPlainObject(dataset?.props)
-          ? dataset?.props
-          : dataset.props
-          ? JSON.parse(dataset?.props)
-          : {}
-      if (dataset.renderingType === 'tileset') {
-        const vcProps = Object.assign(
-          {},
-          props[dataset.renderingType],
-          feature.properties?.props?.[dataset.renderingType]
-        )
+    const renderingApi = 'entity'
 
-        feature.properties.actualRenderingType = dataset.renderingType
-        renderData.datasets.push({
-          cmpName: 'VcPrimitiveTileset',
-          props: {
-            ...vcProps,
-            show: toRef(feature.properties, 'checked'),
-            onReady: () => {
-              dataset.loading = false
-            }
-          } as VcPrimitiveTilesetProps,
-          feature
-        })
-      } else if (dataset.renderingType === 'imagery') {
-        const vcProps = Object.assign(
-          {},
-          props[dataset.renderingType],
-          feature.properties?.props?.[dataset.renderingType]
-        )
+    let entities: Array<
+      VcEntityProps & {
+        feature: VcFeature
+      }
+    > = [] // 实体集合
 
-        feature.properties.actualRenderingType = dataset.renderingType
-        const children = vcProps.children
-        delete vcProps.children
-        renderData.datasets.push({
-          cmpName: 'VcLayerImagery',
-          props: {
-            ...vcProps,
-            show: toRef(feature.properties, 'checked'),
-            onReady: () => {
-              dataset.loading = false
-            }
-          } as VcLayerImageryProps,
-          feature,
-          children: [
-            {
-              cmpName: children[0].cmpName,
-              props: {
-                ...children[0].props
-              }
-            }
-          ]
-        })
-      } else {
-        const models = processVcEntityModels(feature, props)
-        if (typeof models === 'string') {
-          continue
-        }
-        const intersections = intersectionWith(models, entities, (arrVal: any, othVal: any) => {
-          return (
-            arrVal.feature.properties.id === othVal.feature.properties.id &&
-            arrVal.feature.geometry.type === othVal.feature.geometry.type
+    for (let i = 0; i < dataset?.children?.length; i++) {
+      const node = dataset.children[i]
+      if (hasOwn(node, 'type') && hasOwn(node, 'properties')) {
+        const feature = node as VcFeature
+        const properties = feature.properties
+        properties.datasetId = feature.properties.datasetId || dataset.id
+        properties.datasetName = feature.properties.datasetName || dataset.name
+
+        properties.selectedProps = feature.properties.selectedProps || dataset.selectedProps || {}
+        const datasetProps =
+          dataset.props && isPlainObject(dataset?.props)
+            ? dataset?.props
+            : dataset.props
+            ? JSON.parse(dataset?.props)
+            : {}
+        const featureProps =
+          feature.properties?.props && isPlainObject(feature.properties?.props)
+            ? feature.properties?.props
+            : feature.properties.props
+            ? JSON.parse(feature.properties?.props)
+            : {}
+
+        // 优先取 feature 上的 props 参数
+        const props = Object.assign({}, datasetProps, featureProps)
+
+        if (dataset.renderingType === 'tileset') {
+          const vcProps = Object.assign(
+            {},
+            props[dataset.renderingType],
+            feature.properties?.props?.[dataset.renderingType]
           )
-        })
-        entities.push(...models)
-        if (intersections.length) {
-          intersections.forEach(intersection => {
-            logger.warn(
-              `已添加相同id和类型的渲染数据集，可能有重复数据，请核实。对象 id: ${intersection.feature.properties.id}，对象类型: ${intersection.feature.geometry.type}`,
-              '数据模型：',
-              intersection
-            )
+
+          feature.properties.actualRenderingType = dataset.renderingType
+          renderData.datasets.push({
+            cmpName: 'VcPrimitiveTileset',
+            props: {
+              ...vcProps,
+              show: toRef(feature.properties, 'checked'),
+              onReady: (e: VcReadyObject) => {
+                resolve(e)
+              }
+            } as VcPrimitiveTilesetProps,
+            feature
           })
-          // 去重
-          entities = uniqWith(entities, (arrVal: any, othVal: any) => {
+        } else if (dataset.renderingType === 'imagery') {
+          const vcProps = Object.assign(
+            {},
+            props[dataset.renderingType],
+            feature.properties?.props?.[dataset.renderingType]
+          )
+
+          feature.properties.actualRenderingType = dataset.renderingType
+          const children = vcProps.children
+          delete vcProps.children
+          renderData.datasets.push({
+            cmpName: 'VcLayerImagery',
+            props: {
+              ...vcProps,
+              show: toRef(feature.properties, 'checked'),
+              onReady: (e: VcReadyObject) => {
+                resolve(e)
+              }
+            } as VcLayerImageryProps,
+            feature,
+            children: [
+              {
+                cmpName: children[0].cmpName,
+                props: {
+                  ...children[0].props
+                }
+              }
+            ]
+          })
+        } else {
+          const models = processVcEntityModels(feature, props)
+          if (typeof models === 'string') {
+            continue
+          }
+          const intersections = intersectionWith(models, entities, (arrVal: any, othVal: any) => {
             return (
               arrVal.feature.properties.id === othVal.feature.properties.id &&
               arrVal.feature.geometry.type === othVal.feature.geometry.type
             )
           })
-        }
-      }
-    } else {
-      const dataset = node as VcDataset
-      dataset?.children?.length && addRenderDataset(dataset, page, type)
-    }
-  }
-
-  if (renderingApi === 'entity') {
-    entities.length &&
-      renderData.datasets.push({
-        cmpName: 'VcDatasourceCustom',
-        props: {
-          entities,
-          onReady: ({ cesiumObject }) => {
-            const id = `VcDatasourceCustom_${dataset.id}`
-            cesiumObject.datasetId = id
-            const findResult = find(dataset.cesiumObjects, v => v.datasetId === id)
-            !findResult && dataset.cesiumObjects.push(markRaw(cesiumObject))
-            dataset.loading = false
+          entities.push(...models)
+          if (intersections.length) {
+            intersections.forEach(intersection => {
+              logger.warn(
+                `已添加相同id和类型的渲染数据集，可能有重复数据，请核实。对象 id: ${intersection.feature.properties.id}，对象类型: ${intersection.feature.geometry.type}`,
+                '数据模型：',
+                intersection
+              )
+            })
+            // 去重
+            entities = uniqWith(entities, (arrVal: any, othVal: any) => {
+              return (
+                arrVal.feature.properties.id === othVal.feature.properties.id &&
+                arrVal.feature.geometry.type === othVal.feature.geometry.type
+              )
+            })
           }
         }
-      })
-  } else if (renderingApi === 'primitive') {
-    //
-  }
+      } else {
+        const dataset = node as VcDataset
+        if (dataset?.children?.length) {
+          resolve(addRenderDataset(dataset, page, type, renderDatasetProps))
+        } else {
+          resolve(false)
+        }
+      }
+    }
 
-  addRenderDatas(renderData)
-  return true
+    if (renderingApi === 'entity') {
+      entities.length &&
+        renderData.datasets.push({
+          cmpName: 'VcDatasourceCustom',
+          props: {
+            ...renderDatasetProps,
+            entities,
+            onReady: (e: VcReadyObject) => {
+              const { cesiumObject } = e
+              const id = `VcDatasourceCustom_${dataset.id}`
+              ;(cesiumObject as any).datasetId = id
+              const findResult = find(dataset.cesiumObjects, v => v.datasetId === id)
+              !findResult && dataset.cesiumObjects.push(markRaw(cesiumObject))
+              renderDatasetProps?.onReady?.(e)
+              resolve(e)
+            }
+          }
+        })
+    } else if (renderingApi === 'primitive') {
+      //
+    }
+
+    addRenderDatas(renderData)
+  })
 }
 
 export function showFeatureInfoPanel(feature: VcFeature, renderData?: VcSelectedRenderData) {
+  const { toggleGlobalLayout } = store.system.useLayoutStore(pinia)
+
+  if (feature.properties.datasetName === '摄像头') {
+    toggleGlobalLayout({
+      videoPlayer: true
+    })
+  }
+
+  toggleGlobalLayout({
+    featureInfo: true
+  })
+
+  const featureInfoListItems = Object.keys(feature.properties).map(key => ({
+    label: key,
+    value: feature.properties[key]
+  }))
+
   if (!renderData) {
     const model = getFeatureModel(feature.properties.renderingType, feature.properties.datasetId, feature.properties.id)
     if (!model) {
       return
     }
-    highlightRenderData(feature.properties.renderingType, feature.properties.datasetId, feature.properties.id)
+    highlightRenderData(
+      feature.properties.renderingType,
+      feature.properties.datasetId,
+      feature.properties.id,
+      featureInfoListItems
+    )
   } else {
-    //
+    setSelectedRenderData({
+      ...renderData,
+      restoreHandlers: [],
+      featureInfoListItems
+    })
   }
 }

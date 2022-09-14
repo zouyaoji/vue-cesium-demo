@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:02:25
- * @LastEditTime: 2022-08-31 12:11:03
+ * @LastEditTime: 2022-09-08 01:15:34
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\Index.vue
@@ -79,7 +79,6 @@
             :filter="workBenchModel.filterText"
             @update:selected="showFeatureInfo"
             @zoomIconClicked="flyToFeature"
-            @expanded="showOrHideDatasetList"
             @lazy-load="onLazyLoad"
             @checked="addOrRemoveDataset"
           ></vc-data-tree>
@@ -134,7 +133,6 @@ const {
   init,
   showFeatureInfo,
   flyToFeature,
-  showOrHideDatasetList,
   addOrRemoveDataset,
   onLazyLoad,
   toggleDynamicRenderPageLayout

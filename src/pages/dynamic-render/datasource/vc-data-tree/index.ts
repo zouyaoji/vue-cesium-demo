@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-08-07 21:23:53
- * @LastEditTime: 2022-08-31 23:04:39
+ * @LastEditTime: 2022-09-12 22:53:38
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\vc-data-tree\index.ts
@@ -255,7 +255,8 @@ export default defineComponent({
           key,
           done: children => {
             lazy.value[key] = 'loaded'
-            dataset.children = Array.isArray(children) === true ? children : []
+            dataset.children =
+              Array.isArray(children) === true ? [...dataset?.children, ...children] : [...dataset?.children]
             nextTick(() => {
               const localMeta = meta.value[key]
               if (localMeta && localMeta.isParent === true) {
@@ -397,7 +398,7 @@ export default defineComponent({
         //     h(QItemSection, { side: true }, () => h(LoadingIos, { size: '1.5em', dense: true }))
         //   )
         // }
-        if (m.lazy === 'loading') {
+        if (m.lazy === 'loading' || feature.properties.loading === true) {
           featureRenderContent.push(
             h(QItemSection, { side: true }, () => h(LoadingIos, { size: '1.5em', dense: true }))
           )
@@ -476,7 +477,7 @@ export default defineComponent({
             )
           }
           // loading
-          if (m.lazy === 'loading') {
+          if (m.lazy === 'loading' || dataset.loading === true) {
             datasetRenderContent.push(
               h(QItemSection, { side: true }, () => h(LoadingIos, { size: '1.5em', dense: true }))
             )

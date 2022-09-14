@@ -31,6 +31,10 @@ export interface VcProperties extends Properties {
    */
   datasetId?: number | string
   /**
+   * 所属数据集的Name。（自动赋值）
+   */
+  datasetName?: string
+  /**
    * 是否处于loading状态
    */
   loading?: boolean
@@ -189,7 +193,7 @@ export interface VcDatasourceCategory {
   name: string
   checked: boolean
   expanded: boolean
-  children?: Array<VcDataset>
+  children?: Array<VcDataset | VcFeature>
 
   [key: string]: any
 }

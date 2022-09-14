@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 19:56:26
- * @LastEditTime: 2022-08-07 15:27:23
+ * @LastEditTime: 2022-09-13 22:49:36
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\viewer\render.ts
@@ -9,6 +9,7 @@
 import { remove, findIndex, find } from 'lodash'
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import * as logger from '@src/utils/logger'
+import { VcFeature } from '@src/types/render-data'
 
 export const useRenderStore = defineStore('render', {
   // a function that returns a fresh state
@@ -18,7 +19,7 @@ export const useRenderStore = defineStore('render', {
       model: undefined, // model 有值说明已经被渲染出来了
       renderingType: undefined,
       restoreHandlers: [],
-      feature: undefined,
+      feature: undefined as VcFeature,
       featureInfoListItems: []
     }
   }),

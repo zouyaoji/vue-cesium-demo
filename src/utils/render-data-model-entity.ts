@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-11-17 23:52:31
- * @LastEditTime: 2022-07-23 00:00:09
+ * @LastEditTime: 2022-09-13 00:02:52
  * @LastEditors: zouyaoji
  * @Description: 为 GeoJSON 数据生成  entity api 数据模型
  * @FilePath: \vue-cesium-demo\src\utils\render-data-model-entity.ts
@@ -122,11 +122,11 @@ function createVcGraphicPointModel(
     feature: cloneDeep(feature)
   }
 
-  const childProps = feature.properties?.props
-  const childPropsR = childProps && isPlainObject(childProps) ? childProps : childProps ? JSON.parse(childProps) : {}
-  const vcProps = Object.assign({}, props[renderingType], childPropsR[renderingType])
+  // const childProps = feature.properties?.props
+  // const childPropsR = childProps && isPlainObject(childProps) ? childProps : childProps ? JSON.parse(childProps) : {}
+  // const vcProps = Object.assign({}, props[renderingType], childPropsR[renderingType])
   entityModel[renderingType] = {
-    ...vcProps
+    ...props[renderingType]
   }
 
   if (renderingType === 'model') {
@@ -170,37 +170,37 @@ function createVcGraphicPolylineModel(
     }
     switch (renderingType) {
       case 'billboard': {
-        const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
+        // const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
         entity.billboard = {
-          ...billboardProps
+          ...props.billboard
         }
         break
       }
       case 'point': {
-        const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
+        // const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
         entity.point = {
-          ...pointProps
+          ...props.point
         }
         break
       }
       case 'label': {
-        const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
+        // const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
         entity.label = {
           text: feature.properties.text || feature.properties.name,
-          ...labelProps
+          ...props.label
         }
       }
     }
 
     return entity
   } else {
-    const polylineProps = Object.assign({}, props.polyline, feature.properties?.props?.polyline)
+    // const polylineProps = Object.assign({}, props.polyline, feature.properties?.props?.polyline)
 
     const entity = {
       show,
       polyline: {
         positions: coordinates,
-        ...polylineProps
+        ...props.polyline
       },
       feature: cloneDeep(feature)
     }
@@ -254,7 +254,7 @@ function createVcGraphicPolygonModel(
         positions: coordinates[i]
       })
     }
-    const polygonProps = Object.assign({}, props.polygon, feature.properties?.props?.polygon)
+    // const polygonProps = Object.assign({}, props.polygon, feature.properties?.props?.polygon)
     const entity = {
       show,
       polygon: {
@@ -262,7 +262,7 @@ function createVcGraphicPolygonModel(
           positions: coordinates[0],
           holes
         },
-        ...polygonProps
+        ...props.polygon
       },
       feature: cloneDeep(feature)
     }
@@ -277,24 +277,24 @@ function createVcGraphicPolygonModel(
     }
     switch (renderingType) {
       case 'billboard': {
-        const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
+        // const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
         entity.billboard = {
-          ...billboardProps
+          ...props.billboard
         }
         break
       }
       case 'point': {
-        const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
+        // const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
         entity.point = {
-          ...pointProps
+          ...props.point
         }
         break
       }
       case 'label': {
-        const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
+        // const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
         entity.label = {
           text: feature.properties.text || feature.properties.name,
-          ...labelProps
+          ...props.label
         }
       }
     }
