@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:08
- * @LastEditTime: 2022-08-24 22:30:49
+ * @LastEditTime: 2022-09-04 14:30:43
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\.eslintrc.js
@@ -63,6 +63,7 @@ module.exports = {
     Capacitor: 'readonly',
     chrome: 'readonly',
     Cesium: 'readonly',
+    Jessibuca: 'readonly',
     defineEmits: 'readonly',
     defineProps: 'readonly',
     defineExpose: 'readonly',
