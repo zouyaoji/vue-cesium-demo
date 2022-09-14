@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:10
- * @LastEditTime: 2022-08-31 10:58:53
+ * @LastEditTime: 2022-09-06 11:38:55
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\router\routes.ts
@@ -37,6 +37,17 @@ const frameOut = [
   }
 ]
 
+const test = [
+  {
+    name: 'test-on-demand',
+    path: '/test-on-demand',
+    meta: {
+      title: 'ttt'
+    },
+    component: () => import('@src/pages/test/on-demand/Index.vue')
+  }
+]
+
 export const frameInRoutes = frameIn
 
-export default [...frameIn, ...frameOut]
+export default [...frameIn, ...test, ...frameOut]
