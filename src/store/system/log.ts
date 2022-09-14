@@ -1,13 +1,13 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-13 16:42:41
- * @LastEditTime: 2022-05-25 21:39:55
+ * @LastEditTime: 2022-09-15 01:05:55
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\store\system\log.ts
  */
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import dayjs from 'dayjs'
+import { date } from 'quasar'
 import { get } from 'lodash'
 import { webStorage } from '@src/utils'
 
@@ -54,7 +54,7 @@ export const useLogStore = defineStore('log', {
       this.log.push({
         message,
         type,
-        time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        time: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
         meta: {
           // 当前用户信息
           // user: rootState.system.user.info,
