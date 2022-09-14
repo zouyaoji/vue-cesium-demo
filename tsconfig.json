@@ -35,11 +35,6 @@
       "vue$": ["node_modules/vue/dist/vue.runtime.esm-bundler.js"]
     }
   },
-  "include": [
-    "src/**/*",
-    "typings/*",
-    "node_modules/vue-cesium/Cesium.d.ts",
-    "node_modules/vue-cesium/global.d.ts",
-    "public/libs/jessibuca"
-  ]
+  "exclude": ["public"],
+  "include": ["src/**/*", "typings/*", "node_modules/vue-cesium/Cesium.d.ts", "node_modules/vue-cesium/global.d.ts"]
 }

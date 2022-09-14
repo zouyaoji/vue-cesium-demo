@@ -1,11 +1,5 @@
-/dist
-/src-bex/www
-/src-capacitor
-/src-cordova
-/.quasar
-/node_modules
-.eslintrc.js
-babel.config.js
-CesiumAdpaterExport.js
-Bootstrap.js
-Jquery.js
+.github
+dist
+node_modules
+public
+coverage
