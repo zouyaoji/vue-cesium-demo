@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:19:31
- * @LastEditTime: 2022-08-28 14:09:50
+ * @LastEditTime: 2022-09-13 23:21:02
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\layer-manager\Index.vue
@@ -192,14 +192,12 @@ const onLayerManagerToggle = () => {
   }
 
   :deep(.drag-wrapper) {
-    left: 42%;
-    top: 25%;
+    left: 35%;
+    top: 20%;
     .layer-manager-panel {
       pointer-events: auto;
       width: 450px;
-      max-width: 95%;
       min-width: 450px;
-      max-height: 80vh;
     }
   }
 }

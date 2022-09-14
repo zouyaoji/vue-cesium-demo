@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-08-31 23:02:48
+ * @LastEditTime: 2022-09-15 00:51:42
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -294,12 +294,12 @@ export default defineComponent({
 
     const onShowFeatureDetail = () => {
       const feature = selectedRenderData.feature
-      const id = feature.properties.id
-      if (!id) {
-        logger.warn('显示详情数据失败，原因：要素 id 值为空。', '要素model：', selectedRenderData.model)
-        return
-      }
-      showFeatureInfoPanel(feature, selectedRenderData)
+      // const id = feature.properties.id
+      // if (!id) {
+      //   logger.warn('显示详情数据失败，原因：要素 id 值为空。', '要素model：', selectedRenderData.model)
+      //   return
+      // }
+      Cesium.defined(feature) && showFeatureInfoPanel(feature, selectedRenderData)
     }
 
     function setRef(this, el) {
