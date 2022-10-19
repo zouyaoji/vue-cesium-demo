@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-08-31 12:39:46
+ * @LastEditTime: 2022-09-20 09:42:44
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\zh-CN\index.ts
@@ -19,7 +19,8 @@ export default {
     },
     sideBar: {
       dynamicRender: {
-        datasource: '数据源',
+        recursiveList: '递归列表',
+        stack: '堆叠展示',
         historicalTrack: '历史轨迹'
       },
       expansion: {

@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-08-31 22:37:52
+ * @LastEditTime: 2022-09-20 11:25:11
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -192,7 +192,7 @@ onMounted(() => {
     height: 60px;
     line-height: 60px;
     position: absolute;
-    z-index: 9;
+    z-index: $z-fab + 20;
     top: 10px;
     left: 10px;
     border-radius: 30px;

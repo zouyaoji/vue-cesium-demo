@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "baseUrl": "./",
-    "types": ["vue-cesium/global", "vue-cesium/Cesium", "vite/client", "unplugin-vue-define-options"],
+    "types": ["vue-cesium/global", "vue-cesium/Cesium", "vite/client", "unplugin-vue-define-options/macros-global"],
     "paths": {
       "@src/*": ["src/*"],
       "@api/*": ["src/api/*"],

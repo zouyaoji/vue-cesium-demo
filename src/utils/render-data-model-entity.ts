@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-11-17 23:52:31
- * @LastEditTime: 2022-09-13 00:02:52
+ * @LastEditTime: 2022-10-20 01:12:40
  * @LastEditors: zouyaoji
  * @Description: 为 GeoJSON 数据生成  entity api 数据模型
  * @FilePath: \vue-cesium-demo\src\utils\render-data-model-entity.ts
@@ -113,10 +113,11 @@ function createVcGraphicPointModel(
   renderingType: string,
   feature: VcFeature
 ) {
-  const show = toRef(feature.properties, 'checked')
+  const show = Cesium.defined(feature.properties.checked) ? toRef(feature.properties, 'checked') : true
   feature.properties.actualRenderingType = renderingType
 
   const entityModel: any = {
+    id: Cesium.createGuid(),
     position: coordinates,
     show: show,
     feature: cloneDeep(feature)
@@ -258,6 +259,7 @@ function createVcGraphicPolygonModel(
     const entity = {
       show,
       polygon: {
+        height: 0,
         hierarchy: {
           positions: coordinates[0],
           holes

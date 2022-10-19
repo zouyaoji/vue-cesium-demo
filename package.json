@@ -21,11 +21,11 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.22",
     "qs": "^6.10.2",
-    "quasar": "^2.8.0",
+    "quasar": "^2.7.7",
     "screenfull": "^6.0.0",
     "uuid": "^9.0.0",
     "vue": "^3.2.39",
-    "vue-cesium": "^3.0.19",
+    "vue-cesium": "^3.1.0",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.5",
     "webrtc-adapter": "^8.1.2"
@@ -53,7 +53,7 @@
     "sass": "1.32.12",
     "terser": "^5.14.2",
     "typescript": "^4.8.2",
-    "unplugin-vue-define-options": "^0.10.0",
+    "unplugin-vue-define-options": "^0.11.2",
     "vite": "^3.1.0",
     "vue-tsc": "^0.40.13"
   },

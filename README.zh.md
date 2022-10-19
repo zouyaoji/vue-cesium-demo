@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-05-25 14:53:30
- * @LastEditTime: 2022-07-23 00:31:43
+ * @LastEditTime: 2022-09-19 02:26:02
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\README.zh.md
@@ -27,12 +27,15 @@
 - 登录和注销
 - 模块化全局状态管理(基于 pinia)
 - 图层管理
+- 动态渲染
+  基于 `VueCesium` + `GeoJSON` 的轻量化数据管理方案。支持响应式定制对象渲染样式、选中样式等。
 
 ## 计划
 
 - ~~动态渲染示例~~
 - 量算绘制示例
 - 飞行管理示例
+- 自动请求、自动渲染、vc-datatree 支持可配置字段。
 
 ## 赞助
 

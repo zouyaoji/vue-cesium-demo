@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-08-31 16:12:48
+ * @LastEditTime: 2022-09-20 09:41:39
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
@@ -86,19 +86,32 @@ const menus: Array<Menu> = [
         caption: '动态渲染',
         title: 'message.header.dynamicRender',
         type: 10,
-        redirect: '/dynamic-render/datasource',
+        redirect: '/dynamic-render/recursive-list',
         children: [
           {
             id: uuidv4(),
-            component: '/dynamic-render/datasource',
-            icon: 'storage',
+            component: '/dynamic-render/recursive-list',
+            icon: 'list',
             islock: false,
             hidden: false,
-            name: 'datasource',
-            path: '/dynamic-render/datasource',
+            name: 'recursive-list',
+            path: '/dynamic-render/recursive-list',
             sort: 1000,
             caption: 'dynamicRender',
-            title: 'message.sideBar.dynamicRender.datasource',
+            title: 'message.sideBar.dynamicRender.recursiveList',
+            type: 10
+          },
+          {
+            id: uuidv4(),
+            component: '/dynamic-render/stack',
+            icon: 'view_module',
+            islock: false,
+            hidden: false,
+            name: 'stack',
+            path: '/dynamic-render/stack',
+            sort: 1000,
+            caption: 'dynamicRender',
+            title: 'message.sideBar.dynamicRender.stack',
             type: 10
           },
           {

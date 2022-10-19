@@ -7,7 +7,7 @@
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\historical-track\Index.vue
 -->
 <template>
-  <div class="page-demo-dynamic-overlay absolute z-top"></div>
+  <div class="page-demo-dynamic-overlay absolute z-fab"></div>
 </template>
 
 <script lang="ts" setup>

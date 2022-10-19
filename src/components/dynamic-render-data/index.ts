@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-21 15:50:09
- * @LastEditTime: 2022-09-15 00:51:42
+ * @LastEditTime: 2022-10-19 14:23:56
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\dynamic-render-data\index.ts
@@ -224,7 +224,7 @@ export default defineComponent({
             if (defined(feature)) {
               nextTick(() => {
                 const { renderingType, actualRenderingType, datasetId, id, renderingApi } = feature.properties
-                highlightRenderData(actualRenderingType, datasetId, id)
+                highlightRenderData(actualRenderingType, datasetId, feature)
                 let boundingSphere, positions, position
                 const pickedFeature = picked.cesiumObject
                 switch (actualRenderingType) {

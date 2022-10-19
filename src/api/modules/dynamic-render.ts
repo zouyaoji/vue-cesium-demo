@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:19:48
- * @LastEditTime: 2022-07-23 00:50:03
+ * @LastEditTime: 2022-09-20 10:46:50
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\dynamic-render.ts
@@ -16,12 +16,12 @@ export default ({ service, request, serviceForMock, requestForMock, mock, tools 
    * @returns
    */
   getTreeData() {
-    mock.onAny('/dynamic-render/datasource/datatree').reply(config => {
+    mock.onAny('/dynamic-render/recursive-list/datatree').reply(config => {
       return tools.responseSuccess(treeData)
     })
     // 接口请求
     return requestForMock({
-      url: '/dynamic-render/datasource/datatree',
+      url: '/dynamic-render/recursive-list/datatree',
       method: 'post'
     })
   },

@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:02:25
- * @LastEditTime: 2022-09-08 01:15:34
+ * @LastEditTime: 2022-09-19 02:22:52
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\Index.vue
@@ -107,7 +107,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import useWorkBench from './useWorkBench'
-import VcDataTree from '../vc-data-tree'
+import VcDataTree from '@components/vc-data-tree'
 import { useScroll } from '@composables/index'
 import LoadingIos from '@components/loading/Ios.vue'
 import { removeRenderDataByPage } from '@src/utils/render-data'
@@ -149,7 +149,16 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  removeRenderDataByPage('/dynamic-render/datasource')
+  workBenchModel.datasourceCategories.forEach(ds => {
+    ds.children.forEach(v => {
+      addOrRemoveDataset(false, v)
+      v.checked = false
+      v.expanded = false
+      if (v?.children?.length) {
+        v.children.length = 0
+      }
+    })
+  })
 })
 </script>
 <style lang="scss" scoped>

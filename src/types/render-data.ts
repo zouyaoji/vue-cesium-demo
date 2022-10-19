@@ -193,7 +193,7 @@ export interface VcDatasourceCategory {
   name: string
   checked: boolean
   expanded: boolean
-  children?: Array<VcDataset | VcFeature>
+  children?: Array<VcDataset>
 
   [key: string]: any
 }

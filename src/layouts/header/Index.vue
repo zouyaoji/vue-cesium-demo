@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-07-23 15:04:26
+ * @LastEditTime: 2022-09-21 20:53:52
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
@@ -104,6 +104,10 @@ const asideMenus = computed(() => {
 const theme = computed<ThemeOptions>(() => {
   const themeStore = store.system.useThemeStore()
   return themeStore.themeConfig[themeStore.activeName]
+})
+
+const isDevelopment = computed(() => {
+  return import.meta.env.MODE === 'development'
 })
 
 watch(

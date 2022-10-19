@@ -1,7 +1,7 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-09-14 21:58:24
+ * @LastEditTime: 2022-10-20 01:18:16
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
@@ -103,7 +103,8 @@ export function clearSelectedRenderData() {
 export function highlightRenderData(
   renderingType: string,
   datasetId: string | number,
-  featureId: string | number,
+  // featureId: string | number,
+  feature: VcFeature,
   featureInfoListItems = [],
   renderingApi?
 ) {
@@ -111,13 +112,24 @@ export function highlightRenderData(
 
   const renderingTypes = renderingType.trim().split(',')
   if (!renderingTypes || !renderingTypes.length) {
-    logger.warn(`高亮渲染模型失败，原因：未知的显示类型。`, '要素ID：', featureId)
+    logger.warn(`高亮渲染模型失败，原因：未知的显示类型。`, '要素ID：', feature.properties.id)
   }
 
   renderingTypes.forEach(renderingType => {
     const renderData = getRenderDataByDatasetId(datasetId)
-    const model = getFeatureModel(renderingType, renderData, featureId)
+    const model = getFeatureModel(renderingType, renderData, feature.properties.id)
     if (!model) {
+      setSelectedRenderData({
+        model: null,
+        renderingType,
+        restoreHandlers: [
+          () => {
+            //
+          }
+        ],
+        feature: feature,
+        featureInfoListItems
+      })
       return
     }
     const selectedFeatureProps = model.feature.properties?.selectedProps
@@ -230,12 +242,20 @@ export function getFeatureModel(
   if (renderingType === 'geojson') {
     return dataset
   }
-  const model = find(
-    dataset.props[propName],
-    v => v.feature.properties.id === featureId && v.feature.properties.actualRenderingType === renderingType
-  )
 
-  return model
+  if (Cesium.defined(dataset)) {
+    if (renderingType === 'geojson') {
+      return dataset
+    }
+    const model = find(
+      dataset.props[propName],
+      v => v.feature.properties.id === featureId && v.feature.properties.actualRenderingType === renderingType
+    )
+
+    return model
+  }
+
+  return undefined
 }
 
 /**
@@ -372,11 +392,12 @@ export function addRenderDataGeojson(
 export async function addRenderDataCustom(
   data: string | AllGeoJSON,
   renderingType: string,
-  id: string | number,
-  page: string,
   entityProps: VcEntityProps,
-  datasourceProps?: VcDatasourceCustomProps,
-  type?: string
+  selectedEntityProps: VcEntityProps,
+  id: string,
+  page: string,
+  type?: string,
+  datasourceProps?: VcDatasourceCustomProps
 ) {
   const renderData: VcRenderData = {
     id: id,
@@ -385,20 +406,34 @@ export async function addRenderDataCustom(
     datasets: []
   }
 
-  const entities = await makeEntitiesModel(data, renderingType, entityProps)
+  console.time('ssss')
+  const entities = await makeEntitiesModel(data, renderingType, entityProps, selectedEntityProps, id)
+  console.timeEnd('ssss')
   entities.length &&
     renderData.datasets.push({
       cmpName: 'VcDatasourceCustom',
       props: {
         entities,
-        ...datasourceProps
+        ...datasourceProps,
+        onReady: e => {
+          const { cesiumObject } = e
+          const id = `VcDatasourceCustom_${renderData.id}`
+          ;(cesiumObject as any).datasetId = id
+          datasourceProps?.onReady?.(e)
+        }
       }
     })
   addRenderDatas(renderData)
   return Promise.resolve(renderData)
 }
 
-export async function makeEntitiesModel(data: string | AllGeoJSON, renderingType: string, props: VcEntityProps) {
+export async function makeEntitiesModel(
+  data: string | AllGeoJSON,
+  renderingType: string,
+  props: VcEntityProps,
+  selectedProps: VcEntityProps,
+  datasetId: string
+) {
   if (typeof data === 'string') {
     data = (await Cesium.Resource.fetchJson({
       url: data
@@ -413,13 +448,27 @@ export async function makeEntitiesModel(data: string | AllGeoJSON, renderingType
   const entities = []
 
   const featureType = data.type
+
+  const supplementProp = (feature: VcFeature) => {
+    feature.properties.renderingType = feature.properties.renderingType || renderingType
+    if (!Cesium.defined(feature.properties.id)) {
+      feature.properties.id = Cesium.createGuid()
+    }
+    // if (!Cesium.defined(feature.properties.checked)) {
+    //   feature.properties.checked = false
+    // }
+    feature.properties.datasetId = datasetId
+    feature.properties.selectedProps = feature.properties.selectedProps || selectedProps || {}
+  }
+
   switch (featureType) {
     case 'FeatureCollection':
       {
         const featureCollection = data as FeatureCollection
         const features = featureCollection.features
         features.forEach(feature => {
-          feature.properties.renderingType = feature.properties.renderingType || renderingType
+          supplementProp(feature as VcFeature)
+
           const models = processVcEntityModels(feature as VcFeature, props)
           models.length && entities.push(...models)
         })
@@ -427,9 +476,9 @@ export async function makeEntitiesModel(data: string | AllGeoJSON, renderingType
       break
     case 'Feature':
       {
-        const feature = data as Feature
-        feature.properties.renderingType = feature.properties.renderingType || renderingType
-        const models = processVcEntityModels(feature as VcFeature, props)
+        const feature = data as VcFeature
+        supplementProp(feature)
+        const models = processVcEntityModels(feature, props)
         models.length && entities.push(...models)
       }
       break
@@ -450,7 +499,6 @@ export async function makeEntitiesModel(data: string | AllGeoJSON, renderingType
 export async function flyToFeature<T = {}>(
   viewer: Cesium.Viewer,
   feature: VcFeature,
-  index?: number,
   options = {
     isHighlightRenderData: true,
     showBillboardOverlayMenu: true,
@@ -474,7 +522,7 @@ export async function flyToFeature<T = {}>(
     return
   }
   const featureId = feature.properties.id
-  options.isHighlightRenderData && highlightRenderData(renderingType, datasetId, featureId)
+  options.isHighlightRenderData && highlightRenderData(renderingType, datasetId, feature)
   if (feature.properties.vcCamera) {
     flyToCamera(viewer, feature.properties.vcCamera)
     return
@@ -608,8 +656,9 @@ export function addDatasetByRenderingType(
 ) {
   if (!dataset.children?.length) {
     try {
-      return fetchDatasetList(dataset, fetchingMethod).then(flag => {
-        if (flag) {
+      return fetchDatasetList(dataset, fetchingMethod).then(result => {
+        if (Array.isArray(result)) {
+          dataset.children = result
           return addRenderDataset(dataset, page, type, renderDatasetProps)
         }
       })
@@ -811,14 +860,14 @@ export function showFeatureInfoPanel(feature: VcFeature, renderData?: VcSelected
   if (!renderData) {
     const model = getFeatureModel(feature.properties.renderingType, feature.properties.datasetId, feature.properties.id)
     if (!model) {
+      setSelectedRenderData({
+        ...renderData,
+        restoreHandlers: [],
+        featureInfoListItems
+      })
       return
     }
-    highlightRenderData(
-      feature.properties.renderingType,
-      feature.properties.datasetId,
-      feature.properties.id,
-      featureInfoListItems
-    )
+    highlightRenderData(feature.properties.renderingType, feature.properties.datasetId, feature, featureInfoListItems)
   } else {
     setSelectedRenderData({
       ...renderData,

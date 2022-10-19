@@ -1,10 +1,10 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-02-06 22:03:02
- * @LastEditTime: 2022-09-13 22:41:15
+ * @LastEditTime: 2022-09-20 10:50:57
  * @LastEditors: zouyaoji
  * @Description:
- * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\datasource\work-bench\useWorkBench.ts
+ * @FilePath: \vue-cesium-demo\src\pages\dynamic-render\recursive-list\work-bench\useWorkBench.ts
  */
 import { reactive, computed, nextTick } from 'vue'
 import { useVueCesium } from 'vue-cesium'
@@ -22,6 +22,7 @@ import {
   showFeatureInfoPanel
 } from '@src/utils/render-data'
 import { hasOwn } from 'vue-cesium/es/utils/util'
+import { useRoute } from 'vue-router'
 
 export interface WorkBenchModel {
   selectedId: string
@@ -32,6 +33,7 @@ export interface WorkBenchModel {
   selectedKey: string
 }
 export default function () {
+  const $route = useRoute()
   const $vc = useVueCesium()
   const { toggleGlobalLayout, toggleDynamicRenderPageLayout } = store.system.useLayoutStore()
   // state
@@ -118,7 +120,7 @@ export default function () {
 
   const flyToFeature = (key: string, feature: VcFeature, index: number) => {
     $vc.vm.vcMitt.emit('pickEvt', feature.properties.id)
-    flyToFeatureModel($vc.viewer, feature, index)
+    flyToFeatureModel($vc.viewer, feature)
   }
 
   const addOrRemoveDataset = (show: boolean, node: VcDataset | VcFeature, parent?: VcDataset, index?: number) => {
@@ -156,8 +158,8 @@ export default function () {
               addDatasetByRenderingType(
                 parent,
                 fetchingMethod,
-                '/dynamic-render/datasource',
-                'datasource',
+                $route.path,
+                'recursive-list',
                 renderDatasetProps
               ).finally(() => {
                 parent.loading = false
@@ -167,6 +169,8 @@ export default function () {
             }
           }
         })
+      } else {
+        // feature.properties.checked = false
       }
     } else {
       const dataset = node as VcDataset
@@ -184,8 +188,8 @@ export default function () {
             addDatasetByRenderingType(
               dataset,
               fetchingMethod,
-              '/dynamic-render/datasource',
-              'datasource',
+              $route.path,
+              'recursive-list',
               renderDatasetProps
             ).finally(() => {
               dataset.loading = false
