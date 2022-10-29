@@ -1,13 +1,13 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-06-13 00:21:49
- * @LastEditTime: 2022-07-23 00:18:09
+ * @LastEditTime: 2022-10-29 09:16:47
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\vc-geocoder\Index.vue
 -->
 <template>
-  <div class="vc-geocoder q-gutter-md row z-fab">
+  <div class="vc-geocoder row">
     <q-select
       outlined
       :model-value="model"
@@ -200,8 +200,6 @@ const describeWithoutUnderscores = (properties, nameProperty?) => {
 
 <style lang="scss" scoped>
 .vc-geocoder {
-  position: absolute;
-  top: 10px;
-  right: 380px;
+  position: relative;
 }
 </style>

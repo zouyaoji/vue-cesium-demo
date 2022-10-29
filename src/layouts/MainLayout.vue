@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-14 16:36:31
- * @LastEditTime: 2022-09-20 11:25:11
+ * @LastEditTime: 2022-10-29 09:30:46
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\MainLayout.vue
@@ -46,12 +46,19 @@
         </template>
       </q-list>
     </q-drawer>
+    <!-- header -->
+    <!-- <q-header v-if="globalLayout.header" elevated class="main-header-container">
+      <main-header />
+    </q-header> -->
     <q-page-container class="no-padding">
       <q-page class="interaction-root">
         <!-- vc-viewer -->
         <main-viewer>
           <!-- header -->
-          <header v-show="globalLayout.header" elevated reveal class="absolute text-h4 text-center">
+          <!-- <header v-show="globalLayout.header" elevated reveal class="absolute text-h4 text-center">
+            <main-header />
+          </header> -->
+          <header v-if="globalLayout.header" elevated class="main-header-container text-h4 text-center text-white">
             <main-header />
           </header>
           <!-- overylay-content / router-view -->
@@ -188,15 +195,14 @@ onMounted(() => {
     filter: gray;
   }
 
-  header {
-    height: 60px;
-    line-height: 60px;
+  .main-header-container {
+    height: 50px;
+    line-height: 50px;
     position: absolute;
     z-index: $z-fab + 20;
-    top: 10px;
-    left: 10px;
-    border-radius: 30px;
     pointer-events: none;
+    width: 100%;
+    background-color: v-bind('theme.header.themeHeaderContentBackgroundColor');
   }
 
   .drawer-menu-list {

@@ -1,13 +1,23 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 15:23:46
- * @LastEditTime: 2022-07-21 13:30:12
+ * @LastEditTime: 2022-10-29 09:04:47
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\user\Index.vue
 -->
 <template>
-  <q-btn dense rounded no-caps size="md" class="q-mr-sm" auto-close icon="person" :label="user.info?.username">
+  <q-chip
+    v-if="$route.name !== 'login'"
+    dense
+    rounded
+    no-caps
+    size="md"
+    class="q-mr-sm cursor-pointer"
+    auto-close
+    icon="person"
+    :label="user.info?.username"
+  >
     <q-menu>
       <q-list dense>
         <q-item v-close-popup clickable dense @click="onItemClick">
@@ -20,7 +30,7 @@
         </q-item>
       </q-list>
     </q-menu>
-  </q-btn>
+  </q-chip>
 </template>
 
 <script lang="ts" setup>

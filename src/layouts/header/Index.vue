@@ -1,63 +1,56 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-09-21 20:53:52
+ * @LastEditTime: 2022-10-29 09:33:00
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
 -->
 <template>
-  <div class="main-header" :style="{ opacity: searchActive ? 0.5 : 1 }">
-    <div class="left">
-      <div class="content">
-        <div size="60px" class="logo-img float">
-          <img src="https://zouyaoji.top/vue-cesium/favicon.png" />
-        </div>
-        <q-btn
-          flat
-          icon="menu"
-          class="text-white"
-          round
-          style="height: 24px"
-          :disable="!asideMenus.length"
-          @click="onToggleLeftDrawer"
-        ></q-btn>
-        <div class="title text-h4 float">
-          <div>{{ title }}</div>
-        </div>
-        <div class="nav float">
-          <q-tabs v-model:model-value="selectedTab" @update:model-value.once="onUpdateSelectedTab">
-            <q-route-tab
-              v-for="(menu, index) in headerMenus"
-              :key="index"
-              :name="menu.name"
-              :to="menu.path"
-              exact
-              :label="$t(menu.title)"
-              active-class="menu-active"
-            />
-          </q-tabs>
-        </div>
-      </div>
-    </div>
+  <q-toolbar class="main-header">
+    <!-- <q-btn v-if="asideMenus.length" flat round dense icon="menu" class="q-mr-sm" @click="onToggleLeftDrawer" /> -->
+    <q-avatar class="cursor-pointer" @click="onToggleLeftDrawer">
+      <img src="https://zouyaoji.top/vue-cesium/favicon.png" />
+    </q-avatar>
 
-    <div class="right q-ml-sm q-mr-sm">
-      <div v-if="headerMenus.length" class="content">
-        <vc-geocoder></vc-geocoder>
-        <q-btn size="md" flat round color="#fff" @click="onNavigation">
-          <q-icon name="fa fa-github"></q-icon>
-        </q-btn>
-        <!-- 如果你只想在开发环境显示这个按钮请添加 v-if="isDevelopment" -->
-        <!-- <header-log v-if="isDevelopment" /> -->
-        <header-layer></header-layer>
-        <header-log />
-        <header-fullscreen />
-        <header-theme />
-        <header-locale />
-        <header-user />
-      </div>
+    <q-toolbar-title :shrink="true" style="width: 280px; font-weight: bold; text-align: left">{{
+      title
+    }}</q-toolbar-title>
+    <div class="menu-container">
+      <q-tabs
+        v-model:model-value="selectedTab"
+        align="left"
+        indicator-color="cyan-13"
+        @update:model-value.once="onUpdateSelectedTab"
+      >
+        <q-route-tab
+          v-for="(menu, index) in headerMenus"
+          :key="index"
+          :name="menu.name"
+          :to="menu.path"
+          exact
+          :label="menu.caption"
+          content-class="menu-tab"
+          active-class="menu-active"
+        />
+      </q-tabs>
     </div>
-  </div>
+    <q-space></q-space>
+    <div v-if="headerMenus.length" class="right-btn">
+      <vc-geocoder></vc-geocoder>
+      <!-- 如果你只想在开发环境显示这个按钮请添加 v-if="isDevelopment" -->
+      <!-- <header-log v-if="isDevelopment" /> -->
+      <header-layer></header-layer>
+      <header-log />
+      <header-fullscreen />
+      <header-theme />
+      <header-locale />
+      <header-user />
+      <q-btn size="md" flat round color="#fff" @click="onNavigation">
+        <q-icon name="fa fa-github"></q-icon>
+      </q-btn>
+    </div>
+  </q-toolbar>
 </template>
 <script setup lang="ts">
 import HeaderLog from './log/Index.vue'
@@ -71,12 +64,12 @@ import { useRoute } from 'vue-router'
 import { ref, computed, onMounted, watch } from 'vue'
 import { store } from '@src/store'
 import { ThemeOptions } from '@src/types/theme'
-import useTimeout from 'vue-cesium/es/composables/private/use-timeout'
 import { storeToRefs } from 'pinia'
+import useTimeout from 'quasar/src/composables/private/use-timeout'
 import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
 
 defineOptions({
-  name: 'VcDemoMainHeader'
+  name: 'MainHeader'
 })
 
 const $route = useRoute()
@@ -97,6 +90,10 @@ const headerMenus = computed(() => {
   return header.length ? header[0].children : []
 })
 
+const isDevelopment = computed(() => {
+  return import.meta.env.MODE === 'development'
+})
+
 const asideMenus = computed(() => {
   return menuStore.aside
 })
@@ -104,10 +101,6 @@ const asideMenus = computed(() => {
 const theme = computed<ThemeOptions>(() => {
   const themeStore = store.system.useThemeStore()
   return themeStore.themeConfig[themeStore.activeName]
-})
-
-const isDevelopment = computed(() => {
-  return import.meta.env.MODE === 'development'
 })
 
 watch(
@@ -154,79 +147,39 @@ const onUpdateSelectedTab = e => {
 .main-header {
   position: relative;
   display: flex;
-  width: 100vw;
+  // width: 100vw;
   height: 100%;
   justify-content: space-between;
   pointer-events: all;
-  .left {
-    background: v-bind('theme.header.themeHeaderBackgroundColor');
-    border-radius: 30px;
-    .content {
-      // 头部左侧背景颜色
-      // background: linear-gradient(180deg, rgba(239, 180, 8, 0) 0%, rgba(235, 177, 7, 0.62) 100%);
-      background: v-bind('theme.header.themeHeaderContentBackgroundColor');
-      border-radius: 30px;
-      padding-right: 30px;
-      transition: all 0.2s ease 0.2s;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      .logo-img {
-        background: v-bind('theme.header.themeHeaderLogoBackgroundColor');
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        position: relative;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 45px;
-          height: 45px;
-        }
-      }
-      .title {
-        // 标题文字颜色
-        color: v-bind('theme.header.themeHeaderTitleColor');
-        font-family: ziticqtezhanti;
-        padding: 10px 20px 10px 10px;
-        font-style: oblique;
-        width: 510px;
-      }
-      .nav {
-        // 菜单文字颜色
-        color: v-bind('theme.header.themeHeaderColor');
-        padding: 6px 0;
-        .q-tab__label {
-          font-size: 14px;
-        }
-      }
 
-      // 菜单选中项文字颜色
-      .menu-active {
-        color: v-bind('theme.global.themeColorActive');
-        :deep(.q-tab__label) {
-          font-size: 16px;
-        }
-      }
-    }
-  }
-  .right {
-    background: v-bind('theme.header.themeHeaderBackgroundColor');
-    color: v-bind('theme.header.themeHeaderColor');
+  .menu-container {
+    // width: 80%;
+    // margin: 0 auto;
+    // padding-left: 150px;
+    height: 50px;
+    color: #ddd;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
     position: relative;
-    right: 10px;
-    z-index: 9;
-    border-radius: 30px;
-    line-height: 60px;
-    .content {
-      // background: linear-gradient(180deg, rgba(239, 180, 8, 0) 0%, rgba(235, 177, 7, 0.62) 100%);
-      // 头部右侧背景颜色
-      background: v-bind('theme.header.themeHeaderContentBackgroundColor');
-      border-radius: 30px;
+  }
+
+  .right-btn {
+    line-height: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+
+    button {
+      margin: 0 5px 0 0;
     }
-    .q-btn:before {
-      box-shadow: none;
+
+    .geocoder {
+      margin: 0 5px 0 0;
+    }
+
+    :v-deep(.vc-geocoder) {
+      margin: 0 5px 0 0 !important;
     }
   }
 }
