@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-26 17:00:08
- * @LastEditTime: 2022-09-04 14:30:43
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2023-08-15 00:33:57
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\.eslintrc.js
  */
@@ -103,6 +103,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-self-closing': 'off',
     'vue/require-default-prop': 'off',
-    'vue/html-closing-bracket-spacing': 'error'
+    'vue/html-closing-bracket-spacing': 'error',
+    'vue/multi-word-component-names': 'off'
   }
 }

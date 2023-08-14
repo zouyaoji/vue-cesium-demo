@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:20:18
- * @LastEditTime: 2022-01-17 11:17:42
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2023-08-15 00:33:04
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\drag-wrapper\index.ts
  */
@@ -55,11 +55,14 @@ export default defineComponent({
         inertia: true,
         onmove: dragMoveListener,
         // keep the element within the element
-        restrict: {
-          restriction: props.restriction,
-          endOnly: true,
-          elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
-        }
+        modifiers: [
+          interact.modifiers.restrict({
+            // keep the element within the element
+            restriction: props.restriction as string,
+            endOnly: true,
+            elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
+          })
+        ]
       })
 
       addEventListener('resize', resizeListener, false)

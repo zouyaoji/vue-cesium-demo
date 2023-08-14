@@ -1,232 +1,134 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require('fs')
-const path = require('path')
-//git commit -m"特性11(asdddd): asda "
-/**
- *
- * @param {*} context
- * @returns
+/*
+ * @Author: zouyaoji@https://github.com/zouyaoji
+ * @Date: 2023-04-12 22:12:42
+ * @Description: Do not edit
+ * @LastEditors: zouyaoji 370681295@qq.com
+ * @LastEditTime: 2023-04-13 01:07:01
+ * @FilePath: \lc_-sys_-platform\commitlint.config.js
  */
-function getPackages(context) {
-  return Promise.resolve()
-    .then(() => {
-      const srcDir = path.resolve(__dirname, './src')
-      const srcDirs = fs.readdirSync(srcDir).filter(dir => !dir.includes('.'))
-      const pagesDir = path.resolve(__dirname, './src/pages')
-      const pageDirs = fs.readdirSync(pagesDir).filter(dir => !dir.includes('.'))
-      return Promise.resolve([...srcDirs, ...pageDirs])
-    })
-    .then(a => {
-      return a
-    })
-}
+// .commitlintrc.js
+/** @type {import('cz-git').UserConfig} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require('fs')
 
-const scopes = ['project', 'core', 'style', 'docs', 'ci', 'dev', 'build', 'deploy', 'other']
-// const scopes = ['项目', '核心', '风格', '文档', '集成', '构建', '发布', '其他']
+const components = []
+const dirs = ['./src/pages', './src/components']
+
+dirs.forEach(dir => {
+  let files = fs.readdirSync(dir)
+  files.forEach(function (item, index) {
+    let stat = fs.lstatSync(`${dir}/` + item)
+    if (stat.isDirectory() === true) {
+      components.push(item)
+    }
+  })
+})
+
+const scopes = [
+  ...components,
+  'utils',
+  'router',
+  'project',
+  'core',
+  'style',
+  'docs',
+  'ci',
+  'dev',
+  'build',
+  'deploy',
+  'other'
+]
+
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
-  parserPreset: {
-    // eslint-disable-next-line no-useless-escape
-    parserOpts: { headerPattern: /^([^\(\):]*)(?:\((.*)\))?!?: (.*)$/ }
-  },
   rules: {
-    // 'scope-enum': ctx => getPackages(ctx).then(packages => [1, 'always', [...packages, ...scopes]]),
-    'body-leading-blank': [1, 'always'],
-    'footer-leading-blank': [1, 'always'],
-    'header-max-length': [2, 'always', 72],
-    'scope-case': [2, 'always', 'lower-case'],
-    'subject-case': [1, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
-    'subject-empty': [2, 'never'],
-    'subject-full-stop': [2, 'never', '.'],
-    'type-case': [2, 'always', 'lower-case'],
-    'type-empty': [2, 'never'],
-    'type-enum': [
-      2,
-      'always',
-      [
-        'build', // 构建
-        'ci', // ci
-        'chore', // 改变构建流程、或者增加依赖库、工具等
-        'docs', // 仅仅修改了文档，比如README, CHANGELOG, CONTRIBUTE等等
-        'feat', // 新增feature
-        'fix', // 修复bug
-        'perf', // 优化相关，比如提升性能、体验
-        'refactor', // 代码重构，没有加新功能或者修复bug
-        'revert', // 回滚到上一个版本
-        'style', //  仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑
-        'test' // 测试用例，包括单元测试、集成测试等
-        // '构建', // 构建
-        // '集成', // ci
-        // '架构', // 改变构建流程、或者增加依赖库、工具等
-        // '文档', // 仅仅修改了文档，比如README, CHANGELOG, CONTRIBUTE等等
-        // '特性', // 新增feature
-        // '修复', // 修复bug
-        // '性能', // 优化相关，比如提升性能、体验
-        // '重构', // 代码重构，没有加新功能或者修复bug
-        // '回滚', // 回滚到上一个版本
-        // '风格', //  仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑
-        // '测试' // 测试用例，包括单元测试、集成测试等
-      ]
-    ]
+    // @see: https://commitlint.js.org/#/reference-rules
   },
   prompt: {
-    questions: {
-      type: {
-        // description: "Select the type of change that you're committing",
-        description: '选择一种你的提交类型',
-        enum: {
-          // feat: {
-          //   description: 'A new feature',
-          //   title: 'Features',
-          //   emoji: '✨'
-          // },
-          feat: {
-            description: '一个新的特性',
-            title: 'Features',
-            emoji: '✨'
-          },
-          // fix: {
-          //   description: 'A bug fix',
-          //   title: 'Bug Fixes',
-          //   emoji: '🐛'
-          // },
-          fix: {
-            description: '修复一个Bug',
-            title: 'Bug Fixes',
-            emoji: '🐛'
-          },
-          // docs: {
-          //   description: 'Documentation only changes',
-          //   title: 'Documentation',
-          //   emoji: '📚'
-          // },
-          docs: {
-            description: '仅更改了文档',
-            title: 'Documentation',
-            emoji: '📚'
-          },
-          // style: {
-          //   description:
-          //     'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
-          //   title: 'Styles',
-          //   emoji: '💎'
-          // },
-          style: {
-            description: '不改变代码逻辑的更改（空格、格式、缺少分号等）',
-            title: 'Styles',
-            emoji: '💎'
-          },
-          // refactor: {
-          //   description: 'A code change that neither fixes a bug nor adds a feature',
-          //   title: 'Code Refactoring',
-          //   emoji: '📦'
-          // },
-          refactor: {
-            description: '代码重构，没有加新功能或者修复Bug',
-            title: 'Code Refactoring',
-            emoji: '📦'
-          },
-          // perf: {
-          //   description: 'A code change that improves performance',
-          //   title: 'Performance Improvements',
-          //   emoji: '🚀'
-          // },
-          perf: {
-            description: '优化性能的更改',
-            title: 'Performance Improvements',
-            emoji: '🚀'
-          },
-          // test: {
-          //   description: 'Adding missing tests or correcting existing tests',
-          //   title: 'Tests',
-          //   emoji: '🚨'
-          // },
-          test: {
-            description: '添加缺失的测试或者纠正现有的测试',
-            title: 'Tests',
-            emoji: '🚨'
-          },
-          // build: {
-          //   description:
-          //     'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
-          //   title: 'Builds',
-          //   emoji: '🛠'
-          // },
-          build: {
-            description: '影响构建系统或外部依赖项的更改（示例范围：gulp、broccoli、npm）',
-            title: 'Builds',
-            emoji: '🛠'
-          },
-          // ci: {
-          //   description:
-          //     'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)',
-          //   title: 'Continuous Integrations',
-          //   emoji: '⚙️'
-          // },
-          ci: {
-            description: '对 CI 配置文件和脚本的更改（示例范围：Travis、Circle、BrowserStack、SauceLabs)',
-            title: 'Continuous Integrations',
-            emoji: '⚙️'
-          },
-          // chore: {
-          //   description: "Other changes that don't modify src or test files",
-          //   title: 'Chores',
-          //   emoji: '♻️'
-          // },
-          chore: {
-            description: '不修改 src 或测试文件的其他更改',
-            title: 'Chores',
-            emoji: '♻️'
-          },
-          // revert: {
-          //   description: 'Reverts a previous commit',
-          //   title: 'Reverts',
-          //   emoji: '🗑'
-          // },
-          revert: {
-            description: '回滚到上一个版本',
-            title: 'Reverts',
-            emoji: '🗑'
-          }
-        }
+    alias: { fd: 'docs: fix typos' },
+    messages: {
+      type: '选择你要提交的类型 :',
+      scope: '选择一个提交范围（可选）:',
+      customScope: '请输入自定义的提交范围 :',
+      subject: '填写简短精炼的变更描述 :\n',
+      body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
+      breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
+      footerPrefixesSelect: '选择关联issue前缀（可选）:',
+      customFooterPrefix: '输入自定义issue前缀 :',
+      footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
+      confirmCommit: '是否提交或修改commit ?'
+    },
+    types: [
+      { value: 'feat', name: 'feat:     新增功能 | ✨ A new feature', emoji: ':sparkles:' },
+      { value: 'fix', name: 'fix:      修复缺陷 | 🐛 A bug fix', emoji: ':bug:' },
+      { value: 'docs', name: 'docs:     文档更新 | 📝 Documentation only changes', emoji: ':memo:' },
+      {
+        value: 'style',
+        name: 'style:    代码格式 | 💄 hanges that do not affect the meaning of the code',
+        emoji: ':lipstick:'
       },
-      scope: {
-        // description: 'What is the scope of this change (e.g. component or file name)'
-        description: '此更改的范围是什么（例如组件或文件名）'
+      {
+        value: 'refactor',
+        name: 'refactor: 代码重构 | ♻️  A code change that neither fixes a bug nor adds a feature',
+        emoji: ':recycle:'
       },
-      subject: {
-        // description: 'Write a short, imperative tense description of the change'
-        description: '写一个简短的、命令式的变化描述'
+      { value: 'perf', name: 'perf:     性能提升 | ⚡️ A code change that improves performance', emoji: ':zap:' },
+      {
+        value: 'test',
+        name: 'test:     测试相关 | ✅ Adding missing tests or correcting existing tests',
+        emoji: ':white_check_mark:'
       },
-      body: {
-        // description: 'Provide a longer description of the change'
-        description: '提供更详细的更改描述'
+      {
+        value: 'build',
+        name: 'build:    构建相关 | 📦️ Changes that affect the build system or external dependencies',
+        emoji: ':package:'
       },
-      isBreaking: {
-        // description: 'Are there any breaking changes?'
-        description: '包含破坏性更改吗？'
+      {
+        value: 'ci',
+        name: 'ci:       持续集成 | 🎡 Changes to our CI configuration files and scripts',
+        emoji: ':ferris_wheel:'
       },
-      breakingBody: {
-        // description: 'A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit itself'
-        description: '一个破坏性更改需要提交一个正文。请输入一个更长更详细的描述'
-      },
-      breaking: {
-        // description: 'Describe the breaking changes'
-        description: '描述破坏性更改'
-      },
-      isIssueAffected: {
-        // description: 'Does this change affect any open issues?'
-        description: '本次更改是否影响某个打开的 issues ？'
-      },
-      issuesBody: {
-        // description:
-        //   'If issues are closed, the commit requires a body. Please enter a longer description of the commit itself'
-        description: '如果需要关闭了一些 issues，则需要提交一个正文。请输入一个更长更详细的描述'
-      },
-      issues: {
-        // description: 'Add issue references (e.g. "fix #123", "re #123".)'
-        description: '添加问题参考（例如“修复 #123”、“重开 #123”。）'
+      { value: 'revert', name: 'revert:   回退代码 | ⏪️ Revert to a commit', emoji: ':rewind:' },
+      {
+        value: 'chore',
+        name: 'chore:    其他修改 | 🔨 Other changes that do not modify src or test files',
+        emoji: ':hammer:'
       }
-    }
+    ],
+    useEmoji: true,
+    emojiAlign: 'center',
+    useAI: false,
+    aiNumber: 1,
+    themeColorCode: '',
+    scopes,
+    allowCustomScopes: true,
+    allowEmptyScopes: true,
+    customScopesAlign: 'bottom',
+    customScopesAlias: 'custom',
+    emptyScopesAlias: 'empty',
+    upperCaseSubject: false,
+    markBreakingChangeMode: false,
+    allowBreakingChanges: ['feat', 'fix'],
+    breaklineNumber: 100,
+    breaklineChar: '|',
+    skipQuestions: [],
+    issuePrefixes: [
+      // 如果使用 gitee 作为开发管理
+      { value: 'link', name: 'link:     链接 ISSUES 进行中' },
+      { value: 'closed', name: 'closed:   标记 ISSUES 已完成' }
+    ],
+    customIssuePrefixAlign: 'top',
+    emptyIssuePrefixAlias: 'skip',
+    customIssuePrefixAlias: 'custom',
+    allowCustomIssuePrefix: true,
+    allowEmptyIssuePrefix: true,
+    confirmColorize: true,
+    maxHeaderLength: Infinity,
+    maxSubjectLength: Infinity,
+    minSubjectLength: 0,
+    scopeOverrides: undefined,
+    defaultBody: '',
+    defaultIssues: '',
+    defaultScope: '',
+    defaultSubject: ''
   }
 }

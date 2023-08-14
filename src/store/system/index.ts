@@ -9,7 +9,6 @@
 import { Pinia } from 'pinia'
 import { useAccountStore } from './account'
 import { useDBStore } from './db'
-import { useFullscreenStore } from './fullscreen'
 import { useGrayStore } from './gray'
 import { useLayoutStore } from './layout'
 import { useLogStore } from './log'
@@ -24,7 +23,6 @@ import { useUserStore } from './user'
 export const systemStore = {
   useAccountStore: (pinia?: Pinia) => useAccountStore(pinia),
   useDBStore: (pinia?: Pinia) => useDBStore(pinia),
-  useFullscreenStore: (pinia?: Pinia) => useFullscreenStore(pinia),
   useGrayStore: (pinia?: Pinia) => useGrayStore(pinia),
   useLayoutStore: (pinia?: Pinia) => useLayoutStore(pinia),
   useLogStore: (pinia?: Pinia) => useLogStore(pinia),
