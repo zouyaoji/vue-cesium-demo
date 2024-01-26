@@ -27,7 +27,8 @@ export default {
         typhoon: '台风'
       },
       other: {
-        tsx: 'TSX'
+        tsx: 'TSX',
+        issue: '问题反馈'
       }
     },
     panel: {

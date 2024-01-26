@@ -1,8 +1,8 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2022-10-29 09:33:00
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-01-26 14:57:11
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
 -->
@@ -29,7 +29,7 @@
           :name="menu.name"
           :to="menu.path"
           exact
-          :label="menu.caption"
+          :label="$t(menu.title)"
           content-class="menu-tab"
           active-class="menu-active"
         />

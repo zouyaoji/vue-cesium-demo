@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-05 09:41:14
- * @LastEditTime: 2022-09-20 09:42:31
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-01-26 14:58:27
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\i18n\en-US\index.ts
  */
@@ -27,7 +27,8 @@ export default {
         typhoon: 'Typhoon'
       },
       other: {
-        tsx: 'TSX'
+        tsx: 'TSX',
+        issue: 'BugReport'
       }
     },
     panel: {

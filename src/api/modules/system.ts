@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-09-06 17:58:31
- * @LastEditTime: 2022-09-20 09:41:39
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-01-26 14:43:10
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\system.ts
  */
@@ -170,19 +170,32 @@ const menus: Array<Menu> = [
         caption: '其他测试',
         title: 'message.header.other',
         type: 10,
-        redirect: '/other/tsx',
+        redirect: '/other/issue',
         children: [
+          // {
+          //   id: uuidv4(),
+          //   component: '/other/tsx',
+          //   icon: 'bug_report',
+          //   islock: false,
+          //   hidden: false,
+          //   name: 'tsx',
+          //   path: '/other/tsx',
+          //   sort: 1000,
+          //   caption: 'TSX 渲染',
+          //   title: 'message.sideBar.other.tsx',
+          //   type: 10
+          // },
           {
             id: uuidv4(),
-            component: '/other/tsx',
+            component: '/other/issue',
             icon: 'bug_report',
             islock: false,
             hidden: false,
             name: 'tsx',
-            path: '/other/tsx',
+            path: '/other/issue',
             sort: 1000,
             caption: 'TSX 渲染',
-            title: 'message.sideBar.other.tsx',
+            title: 'message.sideBar.other.issue',
             type: 10
           }
         ]

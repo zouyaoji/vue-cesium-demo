@@ -1,14 +1,14 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-01-04 16:12:47
- * @LastEditTime: 2022-08-28 14:43:49
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-01-26 14:35:11
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\components\viewer\Index.vue
 -->
 <template>
   <vc-config-provider :locale="vclocale" :cesium-path="cesiumPath" :access-token="accesstToken">
-    <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesiumReady="onCesiumReady">
+    <vc-viewer ref="viewerRef" class="main-viewer" @ready="onViewerReady" @cesium-ready="onCesiumReady">
       <!-- 导航罗盘控件 -->
       <vc-navigation
         :offset="navOffset"

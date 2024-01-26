@@ -1,10 +1,10 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-08 23:26:13
- * @LastEditTime: 2023-08-15 00:29:20
+ * @LastEditTime: 2024-01-26 14:32:32
  * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
- * @FilePath: \vue-cesium-demo\vite.config.ts
+ * @FilePath: \vue-cesium-demo\vite.config.mts
  */
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -66,7 +66,6 @@ export default ({ mode }) => {
     },
     server: {
       host: '0.0.0.0',
-      https: false,
       port: 3000,
       proxy: {
         '/traffictile': {
@@ -78,11 +77,6 @@ export default ({ mode }) => {
           target: 'https://restapi.amap.com/v3',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/v3/, '/')
-        },
-        '/geoserver': {
-          target: 'http://47.111.68.226:8080/geoserver',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/geoserver/, '/')
         }
       }
     },
