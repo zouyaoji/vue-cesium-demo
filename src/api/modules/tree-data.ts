@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2022-07-21 17:27:55
- * @LastEditTime: 2022-09-12 23:49:12
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-05-28 10:58:05
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\api\modules\tree-data.ts
  */
@@ -270,6 +270,37 @@ export default [
                       }
                     }
                   ]
+                }
+              }
+            },
+            geometry: {
+              coordinates: [108.965836, 34.225607],
+              type: 'Point'
+            }
+          }
+        ]
+      },
+      {
+        id: uuidv4(),
+        name: 'GeoJSON',
+        icon: '',
+        checked: false,
+        expanded: false,
+        renderingType: 'geojson',
+        children: [
+          {
+            type: 'Feature',
+            properties: {
+              id: uuidv4(),
+              checked: false,
+              name: '水系',
+              props: {
+                geojson: {
+                  strokeWidth: 5,
+                  stroke: '#ffc107',
+                  fill: 'transparent',
+                  show: false,
+                  data: `${import.meta.env.BASE_URL}datas/work-bench/水系.json`
                 }
               }
             },

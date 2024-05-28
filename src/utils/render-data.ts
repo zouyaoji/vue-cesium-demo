@@ -1,8 +1,8 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-10-28 10:19:54
- * @LastEditTime: 2022-10-20 01:18:16
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-05-28 10:56:31
+ * @LastEditors: zouyaoji 370681295@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\render-data.ts
  */
@@ -137,8 +137,8 @@ export function highlightRenderData(
       selectedFeatureProps && isPlainObject(selectedFeatureProps)
         ? selectedFeatureProps
         : selectedFeatureProps
-        ? JSON.parse(selectedFeatureProps)
-        : {}
+          ? JSON.parse(selectedFeatureProps)
+          : {}
 
     const props = renderingApi === 'primitive' ? model : model[renderingType]
     const selectedRenderProps = selectedProps?.[renderingType]
@@ -714,19 +714,38 @@ const addRenderDataset = (dataset: VcDataset, page: string, type: string, render
           dataset.props && isPlainObject(dataset?.props)
             ? dataset?.props
             : dataset.props
-            ? JSON.parse(dataset?.props)
-            : {}
+              ? JSON.parse(dataset?.props)
+              : {}
         const featureProps =
           feature.properties?.props && isPlainObject(feature.properties?.props)
             ? feature.properties?.props
             : feature.properties.props
-            ? JSON.parse(feature.properties?.props)
-            : {}
+              ? JSON.parse(feature.properties?.props)
+              : {}
 
         // 优先取 feature 上的 props 参数
         const props = Object.assign({}, datasetProps, featureProps)
 
-        if (dataset.renderingType === 'tileset') {
+        if (dataset.renderingType === 'geojson') {
+          const vcProps = Object.assign(
+            {},
+            props[dataset.renderingType],
+            feature.properties?.props?.[dataset.renderingType]
+          )
+
+          feature.properties.actualRenderingType = dataset.renderingType
+          renderData.datasets.push({
+            cmpName: 'VcDatasourceGeojson',
+            props: {
+              ...vcProps,
+              show: toRef(feature.properties, 'checked'),
+              onReady: (e: VcReadyObject) => {
+                resolve(e)
+              }
+            } as VcDatasourceGeojsonProps,
+            feature
+          })
+        } else if (dataset.renderingType === 'tileset') {
           const vcProps = Object.assign(
             {},
             props[dataset.renderingType],
