@@ -1,25 +1,28 @@
 /*
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-08-27 11:49:24
- * @LastEditTime: 2022-02-06 14:34:42
- * @LastEditors: zouyaoji
+ * @LastEditTime: 2024-11-06 17:18:53
+ * @LastEditors: JohnRay
  * @Description:
  * @FilePath: \vue-cesium-demo\src\utils\db.ts
  */
 
-import low from 'lowdb'
-import LocalStorage from 'lowdb/adapters/LocalStorage'
+import { Low } from 'lowdb'
+import type { Adapter } from 'lowdb'
+import { LocalStorage } from 'lowdb/browser'
+import { getProperty, setProperty } from 'dot-prop'
 import * as webStorage from './web-storage'
 import { cloneDeep } from 'lodash'
 
-const webStoragePrefix = import.meta.env.VITE_VUE_APP_PREFIX
-const adapter = new LocalStorage(`${webStoragePrefix || 'VueCesiumDemo'}-${__APP_VERSION__}`)
-const db = low(adapter)
+type Schema = {
+  sys: object
+  database:object
+};
 
-db.defaults({
-  sys: {},
-  database: {}
-}).write()
+const webStoragePrefix = import.meta.env.VITE_VUE_APP_PREFIX
+const adapter:LocalStorage<Schema> = new LocalStorage<Schema>(`${webStoragePrefix || 'VueCesiumDemo'}-${__APP_VERSION__}`)
+const defaultData:Schema = { sys:{}, database: {} }
+const db = new Low(adapter as unknown as Adapter<Schema>,defaultData)
 
 export default db
 
@@ -41,9 +44,10 @@ export function pathInit({
 }) {
   const uuid = webStorage.getLocalStorage('uuid') || 'ghost-uuid'
   const currentPath = `${dbName}.${user ? `user.${uuid}` : 'public'}${path ? `.${path}` : ''}`
-  const value = db.get(currentPath).value()
+  const value = getProperty(db.data, currentPath)
   if (!(value !== undefined && validator(value))) {
-    db.set(currentPath, defaultValue).write()
+    setProperty(db.data, currentPath, defaultValue)
+    db.write()
   }
   return currentPath
 }
@@ -57,14 +61,14 @@ export function pathInit({
  * @param {Object} payload user {Boolean} 是否区分用户
  */
 export function dbSet({ dbName = 'database', path = '', value = '', user = false }) {
-  db.set(
+  setProperty(db.data,
     pathInit({
       dbName,
       path,
       user
     }),
-    value
-  ).write()
+    value)
+  db.write()
 }
 
 /**
@@ -77,16 +81,14 @@ export function dbSet({ dbName = 'database', path = '', value = '', user = false
  */
 export function dbGet({ dbName = 'database', path = '', defaultValue = '', user = false }) {
   return cloneDeep(
-    db
-      .get(
+    getProperty(db.data,
         pathInit({
           dbName,
           path,
           user,
           defaultValue
         })
-      )
-      .value()
+    )
   )
 }
 
@@ -101,8 +103,7 @@ export function database({
   validator = () => true,
   defaultValue = ''
 } = {}) {
-  return db.get(
-    pathInit({
+  return getProperty( db.data, pathInit({
       dbName,
       path,
       user,
