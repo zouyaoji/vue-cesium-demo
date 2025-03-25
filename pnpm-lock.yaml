@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@quasar/extras':
-        specifier: ^1.16.9
-        version: 1.16.9
+        specifier: ^1.16.17
+        version: 1.16.17
       '@turf/turf':
         specifier: ^6.5.0
         version: 6.5.0
@@ -79,8 +79,8 @@ importers:
         specifier: ^18.6.0
         version: 18.6.0
       '@quasar/vite-plugin':
-        specifier: ^1.6.0
-        version: 1.6.0(@vitejs/plugin-vue@5.0.3(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3)))(quasar@2.18.1)(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3))
+        specifier: ^1.9.0
+        version: 1.9.0(@vitejs/plugin-vue@5.0.3(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3)))(quasar@2.18.1)(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3))
       '@types/geojson':
         specifier: ^7946.0.13
         version: 7946.0.13
@@ -625,16 +625,16 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@quasar/extras@1.16.9':
-    resolution: {integrity: sha512-SlOhwzXyPQHWgQIS2ncyDdYdksCJvUYNtgsDQqzAKEG3r3d/ejOxvThle79HTK3Q6HB+gQWFG21Ux00Osr5XSw==}
+  '@quasar/extras@1.16.17':
+    resolution: {integrity: sha512-4aX9XU/oj1+8O2C7LQCgywmoIw7suyUEZMPFFLWI61f21mF55VOsMdLCBhjeFgL5U4EWy079mfOR6/J8thi/ag==}
 
-  '@quasar/vite-plugin@1.6.0':
-    resolution: {integrity: sha512-LmbV76G1CwWZbrEQhqyZpkRQTJyO3xpW55aXY1zWN+JhyUeG77CcMCEWteBVnJ6I6ehUPFDC9ONd2+WlwH6rNQ==}
-    engines: {node: '>=12'}
+  '@quasar/vite-plugin@1.9.0':
+    resolution: {integrity: sha512-r1MFtI2QZJ2g20pe75Zuv4aoi0uoK8oP0yEdzLWRoOLCbhtf2+StJpUza9TydYi3KcvCl9+4HUf3OAWVKoxDmQ==}
+    engines: {node: '>=18'}
     peerDependencies:
-      '@vitejs/plugin-vue': ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-beta.0
-      quasar: ^2.8.0
-      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-beta.0
+      '@vitejs/plugin-vue': ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+      quasar: ^2.16.0
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
       vue: ^3.0.0
 
   '@sinclair/typebox@0.27.8':
@@ -4026,9 +4026,9 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  '@quasar/extras@1.16.9': {}
+  '@quasar/extras@1.16.17': {}
 
-  '@quasar/vite-plugin@1.6.0(@vitejs/plugin-vue@5.0.3(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3)))(quasar@2.18.1)(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3))':
+  '@quasar/vite-plugin@1.9.0(@vitejs/plugin-vue@5.0.3(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3)))(quasar@2.18.1)(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3))':
     dependencies:
       '@vitejs/plugin-vue': 5.0.3(vite@4.5.2(@types/node@20.11.7)(sass@1.33.0)(terser@5.27.0))(vue@3.4.15(typescript@5.3.3))
       quasar: 2.18.1
