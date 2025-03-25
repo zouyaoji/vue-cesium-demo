@@ -1,8 +1,8 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-20 16:15:37
- * @LastEditTime: 2024-01-26 14:57:11
- * @LastEditors: zouyaoji 370681295@qq.com
+ * @LastEditTime: 2025-03-25 11:30:46
+ * @LastEditors: rza hellorza@qq.com
  * @Description:
  * @FilePath: \vue-cesium-demo\src\layouts\header\Index.vue
 -->
@@ -59,13 +59,12 @@ import HeaderTheme from './theme/Index.vue'
 import HeaderUser from './user/Index.vue'
 import HeaderLocale from './locale/Index.vue'
 import HeaderLayer from './layer/Index.vue'
-import { openURL } from 'quasar'
+import { openURL, useTimeout } from 'quasar'
 import { useRoute } from 'vue-router'
 import { ref, computed, onMounted, watch } from 'vue'
 import { store } from '@src/store'
 import { ThemeOptions } from '@src/types/theme'
 import { storeToRefs } from 'pinia'
-import useTimeout from 'quasar/src/composables/private/use-timeout'
 import VcGeocoder from '@src/components/vc-geocoder/Index.vue'
 
 defineOptions({
